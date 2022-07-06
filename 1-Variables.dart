@@ -45,9 +45,26 @@ void main() {
 
   bool goddess = true;
 
+  // the keyword var can be used instead of explicitly assigning a data type
+
+  var spiritAnimal = 'Stich';
+
+  // the keywords final and const make your variables immutable
+  // const is a runtime constant
+
+  final int x = 2;
+
+  const int y = 3;
+
   // $ is a single variable format literal.
   // Use ${} when more than one variable is being specified.
 
   print(
       "$fairy is a fairy goddess: $goddess with $num_cat cat who wants to know what is special about pie: $pie");
+
+  print(spiritAnimal);
+
+  spiritAnimal = "Ifrit";
+
+  print(spiritAnimal);
 }
