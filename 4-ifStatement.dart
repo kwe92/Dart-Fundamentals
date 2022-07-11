@@ -30,4 +30,18 @@ void main() {
   nums.forEach((e) {
     print(e);
   });
+
+  // Conditional Operation
+
+  Function rand = Random().nextInt;
+
+  var a = rand(10);
+
+  var b = rand(10);
+
+  var c = a > b ? pow(a, 2) : pow(b, 3);
+
+  print('value of a: $a');
+  print('value of b: $b');
+  print('value of c: $c');
 }
