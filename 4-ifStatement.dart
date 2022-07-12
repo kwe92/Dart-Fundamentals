@@ -41,7 +41,7 @@ void main() {
 
   var b = rand(10);
 
-  // if a is greater than b assign c a squared else assign c b cubed
+  // if a is greater than b assign c a squared else assign c b cubed.
 
   var c = a > b ? pow(a, 2) : pow(b, 3);
 
@@ -50,7 +50,7 @@ void main() {
   print('value of c: $c');
 
   // condition ?? expr1:expr2
-  // if expr1 is non-null return its value else return expr2
+  // if expr1 is non-null return its value else return expr2.
   a = null;
   b = rand(100);
 
