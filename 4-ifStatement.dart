@@ -32,6 +32,8 @@ void main() {
   });
 
   // Conditional Operation
+  // Dart has two conditional operations that let you evaluate expressions
+  // condition ? expr1:expr2
 
   Function rand = Random().nextInt;
 
@@ -39,7 +41,20 @@ void main() {
 
   var b = rand(10);
 
+  // if a is greater than b assign c a squared else assign c b cubed
+
   var c = a > b ? pow(a, 2) : pow(b, 3);
+
+  print('value of a: $a');
+  print('value of b: $b');
+  print('value of c: $c');
+
+  // condition ?? expr1:expr2
+  // if expr1 is non-null return its value else return expr2
+  a = null;
+  b = rand(100);
+
+  c = a ?? b;
 
   print('value of a: $a');
   print('value of b: $b');
