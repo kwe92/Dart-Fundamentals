@@ -14,7 +14,7 @@ void main() {
     print(heroNames[i].toUpperCase());
   }
 
-  // Useful methods of a List
+  // Useful methods of a collection List/array
 
   // Adds a value to the end of an array
   heroNames.add('Vegeta');
@@ -35,4 +35,8 @@ void main() {
   print(heroNames);
   heroNames.removeAt(2);
   print(heroNames);
+
+  // Boolean method that returns true
+  // if the collection contains the element passed and false otherwise
+  print(heroNames.contains('Freza'));
 }
