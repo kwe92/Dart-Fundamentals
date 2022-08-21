@@ -9,9 +9,9 @@ void main() {
   // List<data_type> myListVariableName = [n...list of correct data types];
   List<String> heroNamesTest = ['Goku', 'Naruto', 'Gon', 'Deku'];
 
-  // it is still better to use const, final and var for declaration
-  // Allowing dart to inffer the type
-  // To use inffered types and still make an Array homogeneous use the following notation
+  // It is still better to use const, final and var for declaration
+  // Allowing dart to infer the type
+  // To use infered types and still make an Array homogeneous use the following notation
   const heroNames = <String>['Goku', 'Naruto', 'Gon', 'Deku'];
 
   // Different ways to iterate through an arrays elements
