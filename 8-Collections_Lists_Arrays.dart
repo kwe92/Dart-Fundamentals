@@ -1,10 +1,16 @@
 /// The entry point to our program
 
 void main() {
+  // A vary commonly used collection is an Array
+  // In the Dart programming language Arrays are represented as Lists
+  // Lists in the dart programming are nonhomogeneous by default
+  // You can declare and initialize a List as a homogeneous array by
+  // being explicit using the following notation
+  // List<data_type> myListVariableName = [n...list of correct data types];
   List<String> heroNames = ['Goku', 'Naruto', 'Gon', 'Deku'];
 
   // Different ways to iterate through an arrays elements
-  heroNames.forEach((h) => print(h.toLowerCase()));
+  heroNames.forEach((element) => print(element.toLowerCase()));
 
   for (var hero in heroNames) {
     print(hero);
@@ -39,4 +45,11 @@ void main() {
   // Boolean method that returns true
   // if the collection contains the element passed and false otherwise
   print(heroNames.contains('Freza'));
+
+  // Returns the length of the collection
+  print(heroNames.length);
+
+  // A method that removes all elements from the collection
+  heroNames.clear();
+  print(heroNames);
 }
