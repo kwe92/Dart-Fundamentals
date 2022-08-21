@@ -7,7 +7,12 @@ void main() {
   // You can declare and initialize a List as a homogeneous array by
   // being explicit using the following notation
   // List<data_type> myListVariableName = [n...list of correct data types];
-  List<String> heroNames = ['Goku', 'Naruto', 'Gon', 'Deku'];
+  List<String> heroNamesTest = ['Goku', 'Naruto', 'Gon', 'Deku'];
+
+  // it is still better to use const, final and var for declaration
+  // Allowing dart to inffer the type
+  // To use inffered types and still make an Array homogeneous use the following notation
+  const heroNames = <String>['Goku', 'Naruto', 'Gon', 'Deku'];
 
   // Different ways to iterate through an arrays elements
   heroNames.forEach((element) => print(element.toLowerCase()));
