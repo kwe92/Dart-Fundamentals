@@ -5,15 +5,15 @@ void main() {
   var myList = [1, 3, 5, 7, 9];
   print('The sum of $myList is ${sum(myList)}');
 
-  // Find the intersection of two sets, print the intersection
-  // Then print the sum of the intersection
+  // Find the erlements that belong to set1 or set2 but not both sets
+  // Then print the sum of the resulting set
 
   var set1 = randomSet(15);
   var set2 = randomSet(15);
 
   print('Random set1 values: $set1');
   print('Random set2 values: $set2');
-  setIntersectAdd(set1, set2);
+  setFunc(set1, set2);
 }
 
 num sum(var iter) {
@@ -25,10 +25,12 @@ num sum(var iter) {
 }
 
 // High order function
-void setIntersectAdd(var a, var b) {
+void setFunc(var a, var b) {
   var intersect_set = a.intersection(b);
-  print('The intersection of $a and $b is: $intersect_set');
-  print('The sum of $intersect_set is ${sum(intersect_set)}');
+  var union_set = a.union(b);
+  var result = union_set.difference(intersect_set);
+  print('The diffrence of $union_set and $intersect_set is: $result');
+  print('The sum of $result is ${sum(result)}');
 }
 
 Set randomSet(int setLength) {
