@@ -1,7 +1,7 @@
 /// The entry point to our program
 
 void main() {
-  // A vary commonly used collection is an Array
+  //Lists also known as Arrays are 0-based indexed data structures
   // In the Dart programming language Arrays are represented as Lists
   // Lists in the dart programming are nonhomogeneous by default
   // You can declare and initialize a List as a homogeneous array by
@@ -61,4 +61,16 @@ void main() {
   // A method that removes all elements from the collection
   heroNames.clear();
   print(heroNames);
+
+  // Create an array of numbers then sum them
+  var myList = [1, 3, 5, 7, 9];
+  print('The sum of $myList is ${sum(myList)}');
+}
+
+num sum(var iter) {
+  num result = 0;
+  for (var ele in iter) {
+    result += ele;
+  }
+  return result;
 }

@@ -1,15 +1,22 @@
 import 'dart:math';
 
 void main() {
-  // Create an array of numbers then sum them
-  var myList = [1, 3, 5, 7, 9];
-  print('The sum of $myList is ${sum(myList)}');
+  // Sets are collections in the dart programming language
+  // The are considered unique Lists that can not contain duplicate values
+  // Sets also adhere to set theory principles union, intersect, difference (except)
+  var set1 = {1, 2, 2, 3, 3, 4};
+  var set2 = {2, 2, 4, 4, 6, 8};
+  print('set1 elements: $set1');
+  print('set2 elements: $set2');
+
+  // Return items in both sets
+  print('itersection of set1 and set2: ${set1.intersection(set2)}');
 
   // Find the elements that belong to set1 or set2 but not both sets
   // Then print the sum of the resulting set
 
-  var set1 = randomSet(15);
-  var set2 = randomSet(15);
+  set1 = randomSet(15) as Set<int>;
+  set2 = randomSet(15) as Set<int>;
 
   print('Random set1 values: $set1');
   print('Random set2 values: $set2');
