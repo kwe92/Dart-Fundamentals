@@ -12,15 +12,20 @@ void main() {
     'vegetarian'
   ];
 
-  final total_bill = totalBill(order, pizzaPrices);
-
-  print('The total bill for your order is: \$${total_bill}.');
+  totalBill(order, pizzaPrices);
 }
 
-double totalBill(var order, var pizzaPrices) {
+void totalBill(var order, var pizzaPrices) {
   var result = 0.0;
   for (var item in order) {
-    result += pizzaPrices[item] as double;
+    if (pizzaPrices.keys.contains(item) == false) {
+      print(
+          '$item is not on the menu, please select one of the following margherita, pepperoni, vegetarian');
+      break;
+    } else {
+      result += pizzaPrices[item] as double;
+    }
   }
-  return result;
+  print('The total bill for your order is: \$${result}.');
+  ;
 }

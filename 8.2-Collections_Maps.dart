@@ -1,6 +1,6 @@
 /// The entry point to our program
 void main() {
-  // Maps are collections that cotain key, value pairs
+  // Maps are collections that contain key, value pairs
   // Using type annotation can be used with Maps
   // Maps are also known as dictionaries in other languages
   Map<String, dynamic> hero = {
@@ -33,4 +33,8 @@ void main() {
   for (var entry in hero.entries) {
     print('key: ${entry.key} | value: ${entry.value}');
   }
+  // the .forEach method is also available
+  hero.forEach((key, value) {
+    print('Key using forEach: $key | value using forEach: $value');
+  });
 }
