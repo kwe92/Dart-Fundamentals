@@ -38,6 +38,8 @@ void main() {
 
   var myList = [1, 2, 3];
 
+  // similar to using *variable for tuple unpacking in python
+
   print([...myList]);
 
   colors = [
