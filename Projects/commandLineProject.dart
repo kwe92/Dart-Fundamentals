@@ -14,14 +14,21 @@ void main(List<String> arguments) {
     exit(1);
   }
   var input = arguments.first;
+
   try {
-    var lines = File(input).readAsLinesSync();
-    for (var line in lines) print(line);
-    print('Length of $input is ${lines.length} rows.');
+    var data = File(input).readAsLinesSync();
+    printRows(data, numRows: 5);
+    print('Length of $input is ${data.length} rows.');
   } catch (e) {
-    print(
-        'The value passed to arguments from the command line should be a csv file.');
+    print('Error message: $e' +
+        '\n' +
+        "The input: '$input' is not a valid file path string literal");
   }
 
   //print('Command line arguements passed to the main function: $input');
+}
+
+/// Prints rows of a csv starting at numRows = 5 ny default.
+void printRows(var data, {int numRows = 5}) {
+  for (var row in data.getRange(0, numRows)) print(row);
 }
