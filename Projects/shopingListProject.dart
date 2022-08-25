@@ -1,4 +1,4 @@
-// Exercise: Shopping List
+// Project: Shopping List
 // Given the following program:
 // Rewrite this code so that the shoppingList variable is
 // initialized using collection-if,

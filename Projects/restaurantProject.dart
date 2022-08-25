@@ -1,4 +1,4 @@
-// Restaurant Exercise
+// Restaurant Project
 /*
 
 Write a program that calculates the average rating score
