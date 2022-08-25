@@ -14,5 +14,14 @@ void main(List<String> arguments) {
     exit(1);
   }
   var input = arguments.first;
-  print('Command line arguements passed to the main function: $input');
+  try {
+    var lines = File(input).readAsLinesSync();
+    for (var line in lines) print(line);
+    print('Length of $input is ${lines.length} rows.');
+  } catch (e) {
+    print(
+        'The value passed to arguments from the command line should be a csv file.');
+  }
+
+  //print('Command line arguements passed to the main function: $input');
 }
