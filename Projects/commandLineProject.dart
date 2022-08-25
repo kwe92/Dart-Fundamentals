@@ -1,7 +1,7 @@
 import 'dart:io';
 
-/// The entry point to our program
-// Define the type explicitly in the main function call
+// TODO: for each tag add the duration to a list within a map matching that tag
+
 // agruments are passed through the commandline when the file is initally called
 // dart run commandLineProject.dart some_text_to_read_into_main_function
 void main(List<String> arguments) {
@@ -9,23 +9,43 @@ void main(List<String> arguments) {
   if (arguments.isEmpty) {
     //
     print('Usage: dart totals.dart <input_file.csv>');
-    // import dart i/o for the exit function and pass 1 to it to indicate failure
-    // exits the dart VM immediately
-    exit(1);
+
+    exit(1); // exits the dart VM immediately
   }
   var input = arguments.first;
+  var values = <String>[];
+  var duration = 0.0;
+  var durationByTag = {};
+  var tag = '';
 
   try {
     var data = File(input).readAsLinesSync();
+    //var durationByTag = {for (var tag in ) tag: []};
     printRows(data, numRows: 5);
     print('Length of $input is ${data.length} rows.');
+    data.removeAt(0);
+    for (var row in data) {
+      values = row.split(',');
+      duration = double.parse(values[3].replaceAll('"', ''));
+      tag = values[5].replaceAll('"', '');
+      durationByTag.addAll({tag: duration});
+    }
+    print(durationByTag);
   } catch (e) {
     print('Error message: $e' +
         '\n' +
         "The input: '$input' is not a valid file path string literal");
   }
-
-  //print('Command line arguements passed to the main function: $input');
+  // data = readFile(file_name)
+  // durationByTag = empty map
+  // data.removeFirst() // because the first line is as header
+  // for(row in data)
+  //    values = data.split(',')
+  //    duration = value[3]
+  //    tag = values[5]
+  //    update(durationByTag[tag], duration)
+  // end
+  // printAll(durationByTag)
 }
 
 /// Prints rows of a csv starting at numRows = 5 ny default.
