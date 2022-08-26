@@ -17,12 +17,11 @@ void main(List<String> arguments) {
   var duration = 0.0;
   var tag = '';
   Set tags = {};
+  num totalDuration = 0;
 
   try {
     var data = File(input).readAsLinesSync();
-
-    //var durationByTag = {for (var tag in ) tag: []};
-    printRows(data, numRows: 5);
+    // printRows(data, numRows: 5);
     print('Length of $input is ${data.length} rows.');
     data.removeAt(0);
 
@@ -32,7 +31,9 @@ void main(List<String> arguments) {
       tags.add(tag);
     }
 
-    var durationByTag = {for (var tag in tags) tag: []};
+    var durationByTag = {
+      for (var tag in tags) tag = tag == '' ? 'Unallocated' : tag: []
+    };
 
     for (var row in data) {
       values = row.split(',');
@@ -43,27 +44,28 @@ void main(List<String> arguments) {
     }
 
     durationByTag.forEach((key, value) {
-      print('Tag: $key | Average Duration: ${avg(value)}');
-      print('Tag: $key | Total Duration: ${sum(value)}');
+      print('Tag: $key | Tag Duration: ${sum(value)}');
+      // print('Tag: $key | Average Duration: ${avg(value)}');
+      // print('Tag: $key | Total Duration: ${sum(value)}');
     });
+
+    durationByTag.forEach((key, value) {
+      totalDuration += sum(value);
+    });
+    print(
+        'Total Duration Hrs: ${double.parse(totalDuration.toStringAsFixed(2))}');
+    print(
+        'Total Duration Days: ${double.parse((totalDuration / 24).toStringAsFixed(2))}');
+    print(
+        'Total Duration Working 8 hrs/Day: ${double.parse((totalDuration / 8).toStringAsFixed(2))}');
   } catch (e) {
     print('Error message: $e' +
         '\n' +
         "The input: '$input' is not a valid file path string literal");
   }
-  // data = readFile(file_name)
-  // durationByTag = empty map
-  // data.removeFirst() // because the first line is as header
-  // for(row in data)
-  //    values = data.split(',')
-  //    duration = value[3]
-  //    tag = values[5]
-  //    update(durationByTag[tag], duration)
-  // end
-  // printAll(durationByTag)
 }
 
-/// Prints rows of a csv starting at numRows = 5 ny default.
+/// Prints rows of a csv starting at numRows = 5 by default.
 void printRows(var data, {int numRows = 5}) {
   for (var row in data.getRange(0, numRows)) print(row);
 }
@@ -79,5 +81,6 @@ num avg(var iter) {
 num sum(var iter) {
   num val = 0;
   for (var element in iter) val += element;
+  val = double.parse(val.toStringAsFixed(2));
   return val;
 }
