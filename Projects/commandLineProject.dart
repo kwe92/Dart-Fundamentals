@@ -31,9 +31,13 @@ void main(List<String> arguments) {
       tags.add(tag);
     }
 
+    print('tags: $tags');
+
     var durationByTag = {
       for (var tag in tags) tag = tag == '' ? 'Unallocated' : tag: []
     };
+
+    // print('Duration by tag: $durationByTag');
 
     for (var row in data) {
       values = row.split(',');
