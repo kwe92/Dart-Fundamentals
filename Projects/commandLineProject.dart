@@ -15,22 +15,37 @@ void main(List<String> arguments) {
   var input = arguments.first;
   var values = <String>[];
   var duration = 0.0;
-  var durationByTag = {};
   var tag = '';
+  Set tags = {};
 
   try {
     var data = File(input).readAsLinesSync();
+
     //var durationByTag = {for (var tag in ) tag: []};
     printRows(data, numRows: 5);
     print('Length of $input is ${data.length} rows.');
     data.removeAt(0);
+
+    for (var row in data) {
+      values = row.split(',');
+      tag = values[5].replaceAll('"', '');
+      tags.add(tag);
+    }
+
+    var durationByTag = {for (var tag in tags) tag: []};
+
     for (var row in data) {
       values = row.split(',');
       duration = double.parse(values[3].replaceAll('"', ''));
       tag = values[5].replaceAll('"', '');
-      durationByTag.addAll({tag: duration});
+      //durationByTag.addAll({tag: duration});
+      durationByTag[tag]?.add(duration);
     }
-    print(durationByTag);
+
+    durationByTag.forEach((key, value) {
+      print('Tag: $key | Average Duration: ${avg(value)}');
+      print('Tag: $key | Total Duration: ${sum(value)}');
+    });
   } catch (e) {
     print('Error message: $e' +
         '\n' +
@@ -51,4 +66,18 @@ void main(List<String> arguments) {
 /// Prints rows of a csv starting at numRows = 5 ny default.
 void printRows(var data, {int numRows = 5}) {
   for (var row in data.getRange(0, numRows)) print(row);
+}
+
+num avg(var iter) {
+  num val = 0;
+  for (var element in iter) val += element;
+
+  final result = val / iter.length;
+  return result;
+}
+
+num sum(var iter) {
+  num val = 0;
+  for (var element in iter) val += element;
+  return val;
 }
