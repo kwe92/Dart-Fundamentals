@@ -15,10 +15,18 @@ void main() {
     (element) => element * multiplier,
   );
 
-  print(newIter);
-  print('Run time data type of newIter: ${newIter.runtimeType}');
+  print('newIter value: $newIter');
+  print('Run time type of newIter: ${newIter.runtimeType}');
 
   // Iterables are not Lists
   // The bellow code will not run if uncommented
   // List newList = newIter;
+
+  // The as operator will throw an error as well
+  // List newList = newIter as List;
+
+  // To create a list of the elements contained in the Iterable use
+  // .toList() method
+  List newList = newIter.toList();
+  print('Run time type of newList2: ${newList.runtimeType}');
 }
