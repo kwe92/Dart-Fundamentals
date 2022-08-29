@@ -34,9 +34,7 @@ List<R> transform<T, R>(List<T> items, R Function(T) f) {
 
 // Doubles the items in a list and returns a list
 // returns a new transformed list
-List<int> doubleItems(List<int> list) {
-  final result =
-      <int>[]; // initialize a new empty array restricted to intergers only
-  for (var element in list) result.add(element * 2);
-  return result;
-}
+List<int> doubleItems(List<int> list) => <int>[
+      for (var element in list) element * 2
+    ]; // initialize a new empty array restricted to integers only
+

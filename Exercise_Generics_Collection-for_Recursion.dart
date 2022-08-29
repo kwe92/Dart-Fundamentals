@@ -7,8 +7,10 @@ void main() {
   print(transList);
 }
 
-List<R> transform<T, R>(List<T> items, R Function(T) f) {
-  List<R> result = [for (var i = 0; i < items.length; i++) f(items[i])];
+List<R> transform<T, R>(List<T> collection, R Function(T) f) {
+  List<R> result = [
+    for (var i = 0; i < collection.length; i++) f(collection[i])
+  ];
   return result;
 }
 
