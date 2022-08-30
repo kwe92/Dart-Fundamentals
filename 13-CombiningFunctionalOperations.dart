@@ -18,13 +18,24 @@ void main() {
   // List of known domains
   const knownDomains = <String>['gmail.com', 'yahoo.com'];
 
+  // returns Iterable ('abc.com', 'example.com', 'gmail.com', 'yahoo.com')
+  // returns Iterable ('abc.com', 'example.com')
   final List<String> unknownDomains = emails
-      .map((stringElement) => stringElement
-          .split('@')
-          .last) // returns Iterable ('abc.com', 'example.com', 'gmail.com', 'yahoo.com')
-      .where((domain) => !knownDomains
-          .contains(domain)) // returns Iterable ('abc.com', 'example.com')
+      .map((stringElement) => stringElement.split('@').last)
+      .where((domain) => !knownDomains.contains(domain))
       .toList(); // returns ['abc.com', 'example.com']
 
   print(unknownDomains); // prints ['abc.com', 'example.com']
+  print(
+      'Values using getUnknownDomains function: ${getUnknownDomains(emails, knownDomains)}');
 }
+
+// getUnknownDomains
+//    - takes two arguments, both Lists of Strings
+//    - Returns the values in the first List not in the Second list
+Iterable<String> getUnknownDomains(
+        List<String> emails, List<String> knownDomains) =>
+    emails
+        .map((stringElement) => stringElement.split('@').last)
+        .where((domain) => !knownDomains.contains(domain))
+        .toList();
