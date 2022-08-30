@@ -19,9 +19,12 @@ void main() {
   const knownDomains = <String>['gmail.com', 'yahoo.com'];
 
   final List<String> unknownDomains = emails
-      .map((stringElement) => stringElement.split('@').last)
-      .where((domain) => !knownDomains.contains(domain))
-      .toList();
+      .map((stringElement) => stringElement
+          .split('@')
+          .last) // returns Iterable ('abc.com', 'example.com', 'gmail.com', 'yahoo.com')
+      .where((domain) => !knownDomains
+          .contains(domain)) // returns Iterable ('abc.com', 'example.com')
+      .toList(); // returns ['abc.com', 'example.com']
 
-  print(unknownDomains);
+  print(unknownDomains); // prints ['abc.com', 'example.com']
 }
