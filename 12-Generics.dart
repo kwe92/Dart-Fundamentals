@@ -25,10 +25,7 @@ void main() {
 }
 
 List<R> transform<T, R>(List<T> items, R Function(T) f) {
-  var result = <R>[];
-  for (var x in items) {
-    result.add(f(x));
-  }
+  var result = <R>[for (var x in items) f(x)];
   return result;
 }
 
