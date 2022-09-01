@@ -1,10 +1,10 @@
 // ignore_for_file: file_names, avoid_print
 
 class SalaryException implements Exception {
-  late String _message;
   SalaryException([message = 'Invalid Message!']) {
     _message = message;
   }
+  late String _message;
   @override
   String toString() {
     return _message;
@@ -12,7 +12,7 @@ class SalaryException implements Exception {
 }
 
 void main() {
-  var emp1 = Employee('Kweayon', 'Clark', 185000.00);
+  var emp1 = Employee('Baki', 'H', 185000.00);
 
   emp1.info();
 
@@ -20,17 +20,12 @@ void main() {
 
   print(emp1.salary);
 
-  var emp2 = Employee('Ronin', 'Clark', 120000.00);
+  var emp2 = Employee('Mugen', 'C', 120000.00);
 
   print(emp2.fullname);
 }
 
 abstract class BaseEmployee {
-  late String fname;
-  late String lname;
-  late String email;
-  late String fullname;
-  late double _salary;
   BaseEmployee(this.fname, this.lname, salary) {
     if (salary < 90000) {
       throw SalaryException(
@@ -41,12 +36,11 @@ abstract class BaseEmployee {
       email = '$fname.$lname.AyonInnovations.kings';
     }
   }
-
-  void info();
-
-  get salary {
-    return _salary;
-  }
+  late final String fname;
+  late final String lname;
+  late final String email;
+  late final String fullname;
+  late final double _salary;
 
   BaseEmployee.fromString(String s) {
     var infoStringList = s.split('-');
@@ -55,6 +49,12 @@ abstract class BaseEmployee {
     _salary = double.parse(infoStringList[2]);
     email = '$fname.$lname@AyyonInnovations.kings';
     fullname = '$fname $lname';
+  }
+
+  void info();
+
+  get salary {
+    return _salary;
   }
 }
 
