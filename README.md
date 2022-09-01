@@ -1,3 +1,3 @@
-# Dart-Programming-Language-Basics
+# Dart-Programming-Language-Foundation
 
-    - Learn dart programming language basics and fundamentals with me!
+    - Learn the Dart programming language core conpects and principles step by step.
