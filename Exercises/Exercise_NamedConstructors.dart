@@ -17,15 +17,17 @@ void main() {
 
   print(
       'tempc1.celsius: ${tempc1.celsius} | tempc2.celsius: ${round(tempc2.celsius, 0)}');
+
+  print('Conversion back to farenheit: ${tempc1.farenheit}');
 }
 
 class TemperatureC {
   const TemperatureC(this.celsius);
-  TemperatureC.fromFarenheit(double farenheit)
-      : celsius = convertFarenheit(farenheit);
+  TemperatureC.fromFarenheit(final double farenheit)
+      : celsius = (farenheit - 32) / 1.8;
+  double get farenheit => round(celsius * 1.8 + 32, 0);
   final double celsius;
 }
 
-double convertFarenheit(double farenheit) => (farenheit - 32) / 1.8;
-
-double round(num x, [var r = 1]) => double.parse(x.toStringAsFixed(r));
+double round(final num x, [final int r = 1]) =>
+    double.parse(x.toStringAsFixed(r));
