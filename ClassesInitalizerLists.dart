@@ -1,4 +1,4 @@
-// Classes
+// Classes Syntax: Intializer List
 //    - Classes are the pillar of Object Oriented Programming
 //    - Classes are like containers that hold data
 //    - The containers encapsulate functionality that manipulates data held within
@@ -19,6 +19,7 @@ void main() {
 }
 
 class BankAccount {
+  // Class Constructor using Initalizer Lists
   BankAccount({required String acctHolder, double balance = 0})
       : balance = balance,
         acctHolder = acctHolder;
