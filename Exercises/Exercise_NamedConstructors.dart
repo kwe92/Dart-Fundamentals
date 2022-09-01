@@ -12,21 +12,31 @@
 // TODO: ADD COMMENTS to main function and TemperatureC class
 
 void main() {
-  const TemperatureC tempc1 = TemperatureC(32);
-  final TemperatureC tempc2 = TemperatureC.fromFarenheit(90);
+  final Temperature temp1 = Temperature(32);
+
+  final Temperature temp2 = Temperature.fromFarenheit(90);
 
   print(
-      'tempc1.celsius: ${tempc1.celsius} | tempc2.celsius: ${round(tempc2.celsius, 0)}');
+      'temp1.celsius: ${temp1.celsius} | temp2.celsius: ${round(temp2.celsius, 0)}');
 
-  print('Conversion back to farenheit: ${tempc1.farenheit}');
+  print('Conversion back to farenheit: ${temp1.farenheit}');
+
+  print('set farenheit temp1 to 120 degrees: ${temp1.farenheit = 120}');
+
+  print(
+      'New celsius temperature of temp1: ${temp1.celsius} | farenhiet temperature: ${temp1.farenheit}');
 }
 
-class TemperatureC {
-  const TemperatureC(this.celsius);
-  TemperatureC.fromFarenheit(final double farenheit)
-      : celsius = (farenheit - 32) / 1.8;
+class Temperature {
+  Temperature(this.celsius);
+
+  Temperature.fromFarenheit(final double farenheit)
+      : celsius = round((farenheit - 32) / 1.8, 0);
+
   double get farenheit => round(celsius * 1.8 + 32, 0);
-  final double celsius;
+
+  set farenheit(double farenheit) => celsius = round((farenheit - 32) / 1.8, 0);
+  double celsius;
 }
 
 double round(final num x, [final int r = 1]) =>
