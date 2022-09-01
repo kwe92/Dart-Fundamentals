@@ -1,10 +1,10 @@
-// Classes
+// Classes Syntax: Intializer List
 //    - Classes are the pillar of Object Oriented Programming
 //    - Classes are like containers that hold data
 //    - The containers encapsulate functionality that manipulates data held within
 
 void main() {
-  final BankAccount acct1 = BankAccount(100, 'Baki Hanma');
+  final BankAccount acct1 = BankAccount(acctHolder: 'Baki Hanma');
 
   print(acct1.balance);
 
@@ -19,9 +19,7 @@ void main() {
 }
 
 class BankAccount {
-  BankAccount(double balance, String acctHolder)
-      : balance = balance,
-        acctHolder = acctHolder;
+  BankAccount({required this.acctHolder, this.balance = 0});
   // Creates a private member variable
   final String acctHolder;
   double balance;
