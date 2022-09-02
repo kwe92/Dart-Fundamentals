@@ -1,8 +1,8 @@
 // ignore_for_file: file_names, avoid_print
 
 class SalaryException implements Exception {
-  SalaryException([message = 'Invalid Message!']);
-  late final _message;
+  SalaryException([this._message = 'Invalid Message!']);
+  String _message;
   String get message => _message;
 }
 
@@ -10,7 +10,8 @@ abstract class BaseEmployee {
   BaseEmployee(this.fname, this.lname, this._salary) {
     if (_salary < 90000) {
       throw SalaryException(
-          '$_salary is an invalid salary, salary must be above 90000');
+              '$_salary is an invalid salary, salary must be above 90000.00')
+          .message;
     }
   }
   final String fname;
@@ -55,6 +56,9 @@ void main() {
 
   final Programmer prog1 =
       Programmer('Takagi', 'Fujimaru', 220000.00, progLang: 'C++');
+
+  // final Programmer prog2 =
+  // Programmer('Nine', 'Unknwon', 50000.00, progLang: 'Haskell');
 
   print('print 0: ${emp1.info()}');
   lineSpace();
