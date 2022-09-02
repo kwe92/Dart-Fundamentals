@@ -1,3 +1,4 @@
+import 'dart:html';
 import 'dart:math';
 
 abstract class Shape {
@@ -6,7 +7,7 @@ abstract class Shape {
 
 class Square extends Shape {
   Square(this.side);
-  double side;
+  final double side;
 
   @override
   double get area => side * side;
@@ -14,10 +15,20 @@ class Square extends Shape {
 
 class Circle extends Shape {
   Circle(this.radius);
-  double radius;
+  final double radius;
 
   @override
   double get area => pi * radius * radius;
+}
+
+class Triangle extends Shape {
+  Triangle(this.a, this.b, this.c);
+  final double a;
+  final double b;
+  final double c;
+
+  @override
+  double get area => 1;
 }
 
 void main() {
