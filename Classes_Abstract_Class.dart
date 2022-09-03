@@ -3,6 +3,9 @@ import 'dart:math';
 // Abstract Classes
 abstract class Shape {
   double get area;
+  double get perimeter;
+
+  void printValues() => print('Area: $area | Perimeter: $perimeter');
 }
 
 class Square extends Shape {
@@ -10,7 +13,10 @@ class Square extends Shape {
   final double side;
 
   @override
-  double get area => side * side;
+  double get area => round(side * side);
+
+  @override
+  double get perimeter => round(4 * side, 2);
 }
 
 class Circle extends Shape {
@@ -18,7 +24,10 @@ class Circle extends Shape {
   final double radius;
 
   @override
-  double get area => pi * radius * radius;
+  double get area => round(pi * radius * radius, 2);
+
+  @override
+  double get perimeter => round(2 * pi * radius, 2);
 }
 
 class Triangle extends Shape {
@@ -27,12 +36,18 @@ class Triangle extends Shape {
   final double b;
   final double c;
 
+  double get base => b;
+
   @override
   double get area => round(_getArea(a, b, c), 4);
 
+  double get perimeter => round((a + b + c));
+
   double get height => round(_getArea(a, b, c) / (0.5 * b), 4);
 
-  double get base => b;
+  @override
+  void printValues() =>
+      print('Area: $area | Perimeter: $perimeter | Height: $height');
 
   // Area of a triangle using Heron's Formula and a private method
   double _getArea(var a, var b, var c) {
@@ -56,6 +71,8 @@ void main() {
   print('Base of t1: ${t1.base}');
 
   listOfShapes.forEach(printArea);
+
+  listOfShapes.forEach((shape) => shape.printValues());
 }
 
 void printArea(Shape shape) => print(round(shape.area, 2));
