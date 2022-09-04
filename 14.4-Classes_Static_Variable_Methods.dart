@@ -2,6 +2,7 @@
 
 //    - Are variables and methods that are specific to a class itself
 //      rather than instances of a class
+//    - Instances of a class can not access static methods and variables
 
 class Strings {
   static const welcome = 'Welcome';

@@ -2,23 +2,30 @@
 
 import 'dart:math';
 
-// Abstract Classes
-abstract class Shape {
-  double get area;
-  double get perimeter;
+// Abstract Class
+//    - A class that defines an interface thast can be implemented
+//    - You can implement this interface class accross many sub-classes
+//    - Can not be instantiated
 
-  void printValues() => print('Area: $area | Perimeter: $perimeter');
+abstract class Shape {
+  double get area; // Abstract getter variable - (Required)
+  double get perimeter; // Abstract getter variable - (Required)
+
+  void printValues() => print(
+      'Area: $area | Perimeter: $perimeter'); // A function that is implemented - (Not Required)
 }
 
+// extending the interface of Shape to its child Square
 class Square extends Shape {
   Square(this.side);
   final double side;
 
   @override
-  double get area => round(side * side);
+  double get area => round(side * side); // defining required implementation
 
   @override
-  double get perimeter => round(4 * side, 2);
+  double get perimeter =>
+      round(4 * side, 2); // defining required implementation
 }
 
 class Circle extends Shape {
@@ -48,13 +55,13 @@ class Triangle extends Shape {
   double get height => round(_getArea(a, b, c) / (0.5 * b), 4);
 
   @override
-  void printValues() =>
-      print('Area: $area | Perimeter: $perimeter | Height: $height');
+  void printValues() => print(
+      'Area: $area | Perimeter: $perimeter | Height: $height'); // defining optional implementation
 
   // Area of a triangle using Heron's Formula and a private method
-  double _getArea(var a, var b, var c) {
-    var s = (a + b + c) / 2;
-    var result = sqrt(s * ((s - a) * (s - b) * (s - c)));
+  double _getArea(final double a, final double b, final double c) {
+    final s = (a + b + c) / 2;
+    final result = sqrt(s * ((s - a) * (s - b) * (s - c)));
     return result;
   }
 }
@@ -77,6 +84,6 @@ void main() {
   listOfShapes.forEach((shape) => shape.printValues());
 }
 
-void printArea(Shape shape) => print(round(shape.area, 2));
+void printArea(final Shape shape) => print(round(shape.area, 2));
 
-double round(num n, [var p = 0]) => double.parse(n.toStringAsFixed(p));
+double round(final num n, [var p = 0]) => double.parse(n.toStringAsFixed(p));

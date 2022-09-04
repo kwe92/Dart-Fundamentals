@@ -29,7 +29,7 @@ void main() {
 }
 
 // To initalize a const constructor the member variables must be:
-//       - final (private members / immutable members)
+//       - final (private members / immutable members in and outside fo the class)
 class Complex {
   const Complex(this.re, this.im);
   // Represent Special Complex Numbers with Named Constructors

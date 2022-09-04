@@ -1,5 +1,11 @@
 // Private variables and methods
-// Prefix the variable with a leading underscore
+// Prefix the variable with a leading underscore: _memberVariable
+// Why use private member variables?
+//    - Encapsulates logic that should not be modified or accessed
+//      outside of the class structure
+//    - Allows member variables to be:
+//          - Read-only outside of the class structure
+//          - Read and write inside of the class structure
 // see the BankAccount.dart File
 
 import 'BankAccount.dart';

@@ -6,6 +6,8 @@
 
 void main() {
   const Complex c1 = Complex(2, 4);
+
+  print(c1);
 }
 
 // To initalize a const constructor the member variables must be:
@@ -14,4 +16,7 @@ class Complex {
   const Complex(this.re, this.im);
   final double re;
   final double im;
+
+  @override
+  String toString() => super.toString() + '\n' 're: $re | im: $im';
 }
