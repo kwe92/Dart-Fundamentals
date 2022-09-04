@@ -27,7 +27,7 @@ abstract class BaseEmployee {
   // Private Variable mutable variable _salary
   double _salary;
 
-  // Computed getter variables
+  // getter variables / computed variables
   double get salary => _salary;
   String get fullname => '$fname $lname';
   String get email => '$fname.$lname@AyonInnovations.org';

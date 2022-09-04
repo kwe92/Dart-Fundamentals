@@ -11,8 +11,8 @@ abstract class Shape {
   double get area; // Abstract getter variable - (Required)
   double get perimeter; // Abstract getter variable - (Required)
 
-  void printValues() => print(
-      'Area: $area | Perimeter: $perimeter'); // A function that is implemented - (Not Required)
+  // A function that is implemented - (Not Required)
+  void printValues() => print('Area: $area | Perimeter: $perimeter');
 }
 
 // extending the interface of Shape to its child Square
@@ -20,12 +20,13 @@ class Square extends Shape {
   Square(this.side);
   final double side;
 
+  // defining required implementation
   @override
-  double get area => round(side * side); // defining required implementation
+  double get area => round(side * side);
 
+  // defining required implementation
   @override
-  double get perimeter =>
-      round(4 * side, 2); // defining required implementation
+  double get perimeter => round(4 * side, 2);
 }
 
 class Circle extends Shape {
@@ -54,9 +55,10 @@ class Triangle extends Shape {
 
   double get height => round(_getArea(a, b, c) / (0.5 * b), 4);
 
+  // defining optional implementation
   @override
-  void printValues() => print(
-      'Area: $area | Perimeter: $perimeter | Height: $height'); // defining optional implementation
+  void printValues() =>
+      print('Area: $area | Perimeter: $perimeter | Height: $height');
 
   // Area of a triangle using Heron's Formula and a private method
   double _getArea(final double a, final double b, final double c) {

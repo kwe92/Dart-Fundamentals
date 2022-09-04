@@ -1,10 +1,8 @@
 // Extends vs Implements
-
-// TODO: Absract vs Concrete Methods
 // TODO: Add more Comments
 
 abstract class InterfaceA {
-  void a();
+  void a(); // Abstract method that has a function head and no function body
 }
 
 abstract class InterfaceB {
@@ -41,7 +39,19 @@ abstract class Base {
   void foo(); // abstract method
   void bar() => print('bar'); // Concrete Method
 }
-// TODO: Explain why this fails
-// class SubClass extends Base {}
 
-// class SubClass2 implements Base {}
+// Abstract methods in a abstract must be overridden implemented
+class SubClass extends Base {
+  @override
+  void foo() => 'Hello!';
+}
+
+// All methods in a abstract class must be overridden if implements is used
+/*
+
+class SubClass2 implements Base {
+  @override
+  void foo() => 'Universe!';
+}
+
+*/
