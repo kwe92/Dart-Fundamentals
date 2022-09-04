@@ -14,6 +14,7 @@ class Point {
   final double x;
   final double y;
   // Operator Overloading
+  //    - Define how operators should function with your class
   bool operator ==(Object other) {
     if (other is Point) {
       return x == other.x &&
