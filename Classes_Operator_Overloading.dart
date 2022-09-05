@@ -1,3 +1,4 @@
+//TODO: override hashCode or use equatable package
 // Operator Overloading - (Without covariant)
 //    - Define how operators should function with your class
 //    - Can throw exceptions to generate run time errors

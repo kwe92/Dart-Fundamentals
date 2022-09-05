@@ -1,4 +1,5 @@
-// Operator Overloading with covariant
+//TODO: override hashCode or use equatable package
+// Operator Overloading - (with covariant)
 // Create a Point class and use operator overloading for:
 //     - Relational Operator:
 //        - ==
@@ -8,6 +9,14 @@
 //  - Add Euclidean Distance formula method
 
 import 'dart:math';
+
+class TypeError implements Exception {
+  TypeError([this.message = 'Wrong Type']) : super();
+  final String message;
+
+  @override
+  String toString() => 'TypeError: $message';
+}
 
 class Point {
   Point(this.x, this.y);
@@ -26,12 +35,21 @@ class Point {
 
   Point operator -(covariant Point other) => Point(x - other.x, y - other.y);
 
-  Point operator *(covariant Point other) => Point(x * other.x, y * other.y);
+  Point operator *(Object other) {
+    if (other is Point) {
+      return Point(x * other.x, y * other.y);
+    }
+    if (other is num) {
+      return Point(x * other, y * other);
+    } else {
+      throw TypeError('${other.runtimeType} must be a num or Point type.');
+    }
+  }
 
   Point operator /(covariant Point other) => Point(x / other.x, y / other.y);
 
   @override
-  String toString() => 'Point($x,$y)';
+  String toString() => 'Point($x, $y)';
 
   double euclideanDistance(Point p) {
     return round(sqrt(pow(p.x - x, 2) + pow(p.y - y, 2)), 2);
@@ -44,6 +62,7 @@ void main() {
   print('$p1 + $p2 = ${p1 + p2}');
   print('$p1 - $p2 = ${p1 - p2}');
   print('$p1 * $p2 = ${p1 * p2}');
+  print('$p1 * 5 = ${p1 * 5}'); // multiply a point by a scalar
   print('$p1 / $p2 = ${p1 / p2}');
   print('$p1 == $p2 = ${p1 == p2}');
   print(
