@@ -32,7 +32,31 @@ class Point {
     if (other is Point) {
       return Point(x + other.x, y + other.y);
     } else {
-      throw TypeError('${other.runtimeType} is ');
+      throw TypeError('${other.runtimeType} is not of type Point.');
+    }
+  }
+
+  Point operator -(Object other) {
+    if (other is Point) {
+      return Point(x - other.x, y - other.y);
+    } else {
+      throw TypeError('${other.runtimeType} is not of type Point.');
+    }
+  }
+
+  Point operator *(Object other) {
+    if (other is Point) {
+      return Point(x * other.x, y * other.y);
+    } else {
+      throw TypeError('${other.runtimeType} is not of type Point.');
+    }
+  }
+
+  Point operator /(Object other) {
+    if (other is Point) {
+      return Point(x / other.x, y / other.y);
+    } else {
+      throw TypeError('${other.runtimeType} is not of type Point.');
     }
   }
 }
