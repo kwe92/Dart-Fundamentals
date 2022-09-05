@@ -1,16 +1,16 @@
 import 'package:equatable/equatable.dart';
 
 class Point extends Equatable {
-  Point(this.x, this.y);
+  const Point(this.x, this.y);
   final double x;
   final double y;
 
   @override
-  // Abstract method that must be implemented
+  // Abstract computed variable that must be implemented
   List<Object?> get props => [x, y];
 
   @override
-  //Optional implementation that allows you to return the toString method
+  // Optional implementation that allows you to return the toString method
   bool? get stringify => true;
 }
 
