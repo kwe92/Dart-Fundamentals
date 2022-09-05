@@ -1,9 +1,7 @@
-// TODO: Add Explanatory Comments
-
 import 'dart:math';
 
 // Abstract Class
-//    - A class that defines an interface thast can be implemented
+//    - A class that defines an interface that can be implemented
 //    - You can implement this interface class accross many sub-classes
 //    - Can not be instantiated
 

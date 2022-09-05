@@ -9,14 +9,6 @@
 
 import 'dart:math';
 
-class TypeError implements Exception {
-  TypeError([this.message = 'Wrong Type']) : super();
-  final String message;
-
-  @override
-  String toString() => 'TypeError: $message';
-}
-
 class Point {
   Point(this.x, this.y);
   final double x;
@@ -30,37 +22,13 @@ class Point {
     }
   }
 
-  Point operator +(Object other) {
-    if (other is Point) {
-      return Point(x + other.x, y + other.y);
-    } else {
-      throw TypeError('${other.runtimeType} is not of type Point.');
-    }
-  }
+  Point operator +(covariant Point other) => Point(x + other.x, y + other.y);
 
-  Point operator -(Object other) {
-    if (other is Point) {
-      return Point(x - other.x, y - other.y);
-    } else {
-      throw TypeError('${other.runtimeType} is not of type Point.');
-    }
-  }
+  Point operator -(covariant Point other) => Point(x - other.x, y - other.y);
 
-  Point operator *(Object other) {
-    if (other is Point) {
-      return Point(x * other.x, y * other.y);
-    } else {
-      throw TypeError('${other.runtimeType} is not of type Point.');
-    }
-  }
+  Point operator *(covariant Point other) => Point(x * other.x, y * other.y);
 
-  Point operator /(Object other) {
-    if (other is Point) {
-      return Point(x / other.x, y / other.y);
-    } else {
-      throw TypeError('${other.runtimeType} is not of type Point.');
-    }
-  }
+  Point operator /(covariant Point other) => Point(x / other.x, y / other.y);
 
   @override
   String toString() => 'Point($x,$y)';
