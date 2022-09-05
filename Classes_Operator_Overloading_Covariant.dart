@@ -1,4 +1,3 @@
-//TODO: override hashCode or use equatable package
 // Operator Overloading - (with covariant)
 // Create a Point class and use operator overloading for:
 //     - Relational Operator:
@@ -7,7 +6,6 @@
 //        - subtraction, addition, multiplication, and division
 // Bonus:
 //  - Add Euclidean Distance formula method
-
 import 'dart:math';
 
 class TypeError implements Exception {
@@ -22,6 +20,9 @@ class Point {
   Point(this.x, this.y);
   final double x;
   final double y;
+
+  @override
+  int get hashCode => super.hashCode;
 
   bool operator ==(Object other) {
     if (other is Point) {

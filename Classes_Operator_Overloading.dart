@@ -1,4 +1,3 @@
-//TODO: override hashCode or use equatable package
 // Operator Overloading - (Without covariant)
 //    - Define how operators should function with your class
 //    - Can throw exceptions to generate run time errors
@@ -17,6 +16,10 @@ class Point {
   const Point(this.x, this.y);
   final double x;
   final double y;
+
+  @override
+  int get hashCode => super.hashCode;
+
   bool operator ==(Object other) {
     if (other is Point) {
       return x == other.x &&
