@@ -1,4 +1,7 @@
-//TODO: refactor to then use covariant at some point
+// Operator Overloading - (Without covariant)
+//    - Define how operators should function with your class
+//    - Can throw exceptions to generate run time errors
+
 // Point(1,1) == Point(1,1) should return true
 // override the operator if Object is a point compare the points and return false other wise
 
@@ -13,8 +16,6 @@ class Point {
   const Point(this.x, this.y);
   final double x;
   final double y;
-  // Operator Overloading
-  //    - Define how operators should function with your class
   bool operator ==(Object other) {
     if (other is Point) {
       return x == other.x &&
