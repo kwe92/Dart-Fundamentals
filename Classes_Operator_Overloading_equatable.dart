@@ -6,7 +6,7 @@ class Point extends Equatable {
   final double y;
 
   @override
-  // Must be abstract method that must be implemented
+  // Abstract method that must be implemented
   List<Object?> get props => [x, y];
 
   @override
