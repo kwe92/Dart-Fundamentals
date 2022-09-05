@@ -7,4 +7,34 @@
 // Bonus:
 //  - Add Euclidean Distance formula method
 
+class TypeError implements Exception {
+  TypeError([this.message = 'Wrong Type']) : super();
+  final String message;
+
+  @override
+  String toString() => 'TypeError: $message';
+}
+
+class Point {
+  Point(this.x, this.y);
+  final double x;
+  final double y;
+
+  bool operator ==(Object other) {
+    if (other is Point) {
+      return x == other.x && y == other.y;
+    } else {
+      return false;
+    }
+  }
+
+  Point operator +(Object other) {
+    if (other is Point) {
+      return Point(x + other.x, y + other.y);
+    } else {
+      throw TypeError('${other.runtimeType} is ');
+    }
+  }
+}
+
 void main() {}
