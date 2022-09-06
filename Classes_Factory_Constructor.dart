@@ -5,6 +5,7 @@
 //    - Initalize a final variable using logic that cant be hanlded
 //      in a initalizer list
 
+import 'dart:convert';
 import 'dart:math';
 
 abstract class Shape {
@@ -53,8 +54,19 @@ class Circle extends Shape {
 }
 
 void main() {
-  final Map<String, Object> jsonData = {'type': 'Circle', 'radius': 15.0};
-  final Shape s1 = Shape.fromJSON(jsonData);
+  final List<Map<String, Object>> jsonData = [
+    {'type': 'Circle', 'radius': 15.0},
+    {'type': 'Square', 'side': 6.0},
+    {'type': 'Circle', 'radius': 5.0}
+  ];
 
-  print(s1);
+  final List<Shape> shapeList = [
+    for (var json in jsonData) Shape.fromJSON(json)
+  ];
+
+  print(shapeList);
+
+  shapeList.forEach((element) => print(round(element.area, 2)));
 }
+
+double round(num n, [p = 0]) => double.parse(n.toStringAsFixed(p));
