@@ -7,6 +7,7 @@ class Point extends Equatable {
 
   @override
   // Abstract computed variable that must be implemented
+  // Properties that will be compared
   List<Object?> get props => [x, y];
 
   @override
