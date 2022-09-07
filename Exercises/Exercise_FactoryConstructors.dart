@@ -11,11 +11,11 @@ class Person {
     if (name is String && age is num) {
       return Person(name: name, age: age);
     } else {
-      throw UnsupportedError(
-          '${name.runtimeType} must be a String | ${age.runtimeType} must be a num');
+      throw UnsupportedError('name must be a String | age must be a num');
     }
   }
-  // toJSON
+
+  Map<String, Object> toJSON() => {'name': name, 'age': age};
 
   @override
   String toString() => 'Name: $name' '\n' 'Age: $age';
@@ -26,5 +26,9 @@ void main() {
 
   final Person p1 = Person.fromJSON(json);
 
+  final json2 = p1.toJSON();
+
   print(p1);
+
+  print(json2);
 }
