@@ -1,8 +1,13 @@
 /// The entry point to our program
 void main() {
-  // Maps are collections that contain key, value pairs
-  // Using type annotation can be used with Maps
-  // Maps are also known as dictionaries in other languages
+  // Maps
+  //  - Maps are collections that contain key, value pairs
+  //  - Using type annotation can be used with Maps
+  //  - Maps are also known as dictionaries in other languages
+
+  // Maps and null return values
+  //  - If a key is passed and the key does not exist then a null value is returned
+
   Map<String, dynamic> hero = {
     'Name': 'Gon',
     'Age': 12,

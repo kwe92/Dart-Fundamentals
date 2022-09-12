@@ -20,6 +20,8 @@ List<Product> allProducts = [
 ];
 
 void main() {
+  /*
+ 
   final String productListString =
       allProducts.map((product) => product.displayName).join();
   final String? productChoice;
@@ -32,5 +34,9 @@ void main() {
       stdout.write("Product not found!");
     }
   }
-  // print(productListString);
+ 
+ */
+
+  Map<int, String> items = {1: "apples", 2: "bananas"};
+  stdout.write("Product id 3: ${items[3]}\n");
 }

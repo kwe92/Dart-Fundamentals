@@ -1,3 +1,5 @@
+import 'dart:io';
+
 /* 
     - The first thing you do in any application is run the main function
 
@@ -10,5 +12,5 @@
  */
 
 void main() {
-  print("Hello Universe!");
+  stdout.write("Hello Universe!\n");
 }

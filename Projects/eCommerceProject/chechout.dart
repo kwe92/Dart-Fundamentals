@@ -34,14 +34,15 @@ const allProducts = [
 void main() {
   while (true) {
     stdout.write(
-        'What do you want to do? (v)iew items, (a)dd items, (c)heckout: ');
+        'What do you want to do? (v)iew items, (a)dd items, (c)heckout: \n');
     final String? input = stdin.readLineSync();
     if (input?.toLowerCase() == 'a') {
-      stdout.write(chooseProduct());
+      final chosenPrduct = chooseProduct();
+      if (chosenPrduct != null) {
+        stdout.write(chosenPrduct);
+      }
     } else if (input == 'v') {
-      final String productListString =
-          allProducts.map((p) => p.displayName).join();
-      stdout.write('Available Products:' '\n' '$productListString');
+      // TODO: View the items added to your cart
     } else if (input == 'c') {
       // TODO Implement
     } else if (input == 'q') {
@@ -52,16 +53,16 @@ void main() {
 
 // returns a nullable Product? type if we do not have a product the customer is looking for
 // Display list of available products to the user
-String? chooseProduct() {
+Product? chooseProduct() {
   final productList = allProducts.map((product) => product.displayName).join();
   final String? userInput;
   stdout.write('Select a product:' '\n' '$productList');
   userInput = stdin.readLineSync();
   for (var product in allProducts) {
     if (product.inital == userInput?.toLowerCase()) {
-      return "$product";
+      return product;
     }
   }
-  stdout.write("Product not found!");
+  stdout.write("Product not found!\n");
   return null;
 }
