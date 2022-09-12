@@ -42,4 +42,6 @@ void main() {
   hero.forEach((key, value) {
     print('Key using forEach: $key | value using forEach: $value');
   });
+
+  print(hero.values); // returns an Iterable of the values in the Map
 }

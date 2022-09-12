@@ -13,14 +13,46 @@ class Product {
   String toString() => "Product Name: $name\n" "Product Price: $price\n";
 }
 
-class Items {
-  const Items({required this.product, this.quantity = 1});
+class Item {
+  const Item({required this.product, this.quantity = 1});
   final Product product;
   final int quantity;
   double get price => product.price * quantity;
+
+  @override
+  String toString() => "$quantity x ${product.name} = $price\n";
 }
 
-class Cart {}
+class Cart {
+  final Map<int, Item> _items = {};
+
+  void addProduct(Product product) {
+    final item = _items[product.id];
+    if (item == null) {
+      _items[product.id] = Item(product: product, quantity: 1);
+    } else {
+      _items[product.id] = Item(product: product, quantity: item.quantity + 1);
+    }
+  }
+
+  double total() {
+    final num result = _items.values
+        .map((item) => item.quantity * item.price)
+        .reduce((value, element) => value + element);
+    return double.parse(result.toStringAsFixed(2));
+  }
+
+  @override
+  String toString() {
+    // Defensive check
+    if (_items.isEmpty) {
+      return "Cart is empty";
+    } else {
+      final itemizedList = _items.values.map((item) => item.toString()).join();
+      return "\n------\n$itemizedList" + "Total: \$${total()}\n------\n";
+    }
+  }
+}
 
 // const global variable
 const allProducts = [
@@ -32,6 +64,7 @@ const allProducts = [
   Product(id: 6, name: 'potatoes', price: 1.5),
 ];
 void main() {
+  var cart = Cart();
   while (true) {
     stdout.write(
         'What do you want to do? (v)iew items, (a)dd items, (c)heckout: \n');
@@ -39,10 +72,11 @@ void main() {
     if (input?.toLowerCase() == 'a') {
       final chosenPrduct = chooseProduct();
       if (chosenPrduct != null) {
-        stdout.write(chosenPrduct);
+        stdout.write("$chosenPrduct added to the cart.\n");
+        cart.addProduct(chosenPrduct);
       }
     } else if (input == 'v') {
-      // TODO: View the items added to your cart
+      stdout.write("$cart\n");
     } else if (input == 'c') {
       // TODO Implement
     } else if (input == 'q') {
