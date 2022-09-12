@@ -6,7 +6,7 @@ class Product {
   final String name;
   final double price;
 
-  String get displayName => '($inital)${name.substring(1)}: \$$price';
+  String get displayName => '($inital)${name.substring(1)}: \$$price\n';
   String get inital => name.substring(0, 1);
 }
 
@@ -34,10 +34,11 @@ void main() {
         'What do you want to do? (v)iew items, (a)dd items, (c)heckout: ');
     final input = stdin.readLineSync();
     if (input == 'a') {
-      // TODO Implement
-
+      chooseProduct();
     } else if (input == 'v') {
-      // TODO Implement
+      final String productListString =
+          allProducts.map((p) => p.displayName).join();
+      stdout.write('Available Products:' '\n' '$productListString');
     } else if (input == 'c') {
       // TODO Implement
     }
@@ -46,7 +47,7 @@ void main() {
 
 // returns a nullable Product? type if we do not have a product the customer is looking for
 Product? chooseProduct() {
-  final productList =
-      allProducts.map((product) => product.displayName).join('\n');
+  final productList = allProducts.map((product) => product.displayName).join();
   // TODO: Implement display list of available products to the user
+  stdout.write('Select a product:' '\n' '$productList');
 }
