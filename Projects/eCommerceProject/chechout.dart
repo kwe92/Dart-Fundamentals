@@ -8,6 +8,9 @@ class Product {
 
   String get displayName => '($inital)${name.substring(1)}: \$$price\n';
   String get inital => name.substring(0, 1);
+
+  @override
+  String toString() => "Product Name: $name\n" "Product Price: $price\n";
 }
 
 class Items {
@@ -32,22 +35,33 @@ void main() {
   while (true) {
     stdout.write(
         'What do you want to do? (v)iew items, (a)dd items, (c)heckout: ');
-    final input = stdin.readLineSync();
-    if (input == 'a') {
-      chooseProduct();
+    final String? input = stdin.readLineSync();
+    if (input?.toLowerCase() == 'a') {
+      stdout.write(chooseProduct());
     } else if (input == 'v') {
       final String productListString =
           allProducts.map((p) => p.displayName).join();
       stdout.write('Available Products:' '\n' '$productListString');
     } else if (input == 'c') {
       // TODO Implement
+    } else if (input == 'q') {
+      break;
     }
   }
 }
 
 // returns a nullable Product? type if we do not have a product the customer is looking for
-Product? chooseProduct() {
+// Display list of available products to the user
+String? chooseProduct() {
   final productList = allProducts.map((product) => product.displayName).join();
-  // TODO: Implement display list of available products to the user
+  final String? userInput;
   stdout.write('Select a product:' '\n' '$productList');
+  userInput = stdin.readLineSync();
+  for (var product in allProducts) {
+    if (product.inital == userInput?.toLowerCase()) {
+      return "$product";
+    }
+  }
+  stdout.write("Product not found!");
+  return null;
 }
