@@ -12,5 +12,6 @@ import 'dart:io';
  */
 
 void main() {
+  // It is best practice to end string literals with
   stdout.write("Hello Universe!\n");
 }
