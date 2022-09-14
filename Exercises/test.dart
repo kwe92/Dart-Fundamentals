@@ -1,4 +1,5 @@
-void main() {
-  final json = {'name': 'Kwe', 'age': 30};
-  print(json.entries.last.key);
+int main() {
+  var myList = [for (int i = 0; i < 5; i++) i];
+  print(myList);
+  return 0;
 }

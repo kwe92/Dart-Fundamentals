@@ -1,5 +1,11 @@
 import 'dart:math';
 
+// added an extension to Shape
+// extensions are also extended to any children of a type or class
+extension on Shape {
+  num areaSqured() => round(pow(this.area, 2));
+}
+
 // Abstract Class
 //    - A class that defines an interface that can be implemented
 //    - You can implement this interface class accross many sub-classes
@@ -75,6 +81,7 @@ void main() {
   final List<Shape> listOfShapes = [c1, s1, t1];
 
   print('Area of c1: ${round(c1.area, 2)}');
+  print('Squared area of c1: ${c1.areaSqured()}');
   print('Area of s1: ${s1.area}');
   print('Area of t1: ${t1.area}');
   print('Height of t1: ${t1.height}');
