@@ -49,6 +49,7 @@ class Triangle extends Shape {
   @override
   double get area => round(_getArea(a, b, c), 4);
 
+  @override
   double get perimeter => round((a + b + c));
 
   double get height => round(_getArea(a, b, c) / (0.5 * b), 4);
