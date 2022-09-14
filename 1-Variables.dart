@@ -58,7 +58,7 @@ void main() {
 
   // $ is a single variable format literal.
   // Use ${} when more than one variable is being specified.
-
+  // print seems to add a new line to the console
   print(
       "$fairy is a fairy goddess: $goddess with $num_cat cat who wants to know what is special about pie: $pie");
 

@@ -1,6 +1,6 @@
 // Mixins
-//  - are one of two features in the dart language
-//  the minix feature extends the functionality of existing types/classes
+//  - mixins one of two features in the dart language used for functionality extention
+//    the mixin feature extends the functionality of existing types/classes
 
 // Mixins
 //  - typically dart classes can only extend one class but implement many classes
@@ -84,4 +84,10 @@ int main() {
 //  - Class names should refer to a thing (noun)
 //  - not a single specific action (verb)
 //  - use "mixin" instead of a class for verbs or actions
-//   
+
+// Drawbacks of mixins
+//  - mixins can not have constructors
+//  - mixins are vulnerable to name collisions
+//    the compiler does not warn you about name collisions
+//  - consider these disadvanteges when using mixins over
+//    abstract classes and interfaces
