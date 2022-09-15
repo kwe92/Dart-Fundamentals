@@ -9,11 +9,12 @@ Future<String> fetchOrder() => Future.delayed(
 //  - get the result value a Future returns
 //  - only allowed in functions that have a function body prefixed with async
 
-// Asynchronous exception handling
-// use try catch finally with asynchronous functions to hand exceptions
+// Asynchronous Exception Handling
+//  - use try catch finally with asynchronous functions to hand exceptions
+//    thrown by a future
 
 // async
-//  -
+//  - must prefix function bodies to allow the await keyword to work
 
 // Using async && await
 //  - A function prefixed with async awaiting an asynchronous operation
