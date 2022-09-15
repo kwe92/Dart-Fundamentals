@@ -1,7 +1,5 @@
 // Futures with async && await
 
-Future<String> fetchOrder() => Future.delayed(
-    Duration(seconds: 2), () => throw Exception("Out of oat milk!"));
 // Future.delayed(Duration(seconds: 2), () => 'Vanilla Oat Milk Cold Brew');
 
 // await
@@ -20,12 +18,25 @@ Future<String> fetchOrder() => Future.delayed(
 //  - A function prefixed with async awaiting an asynchronous operation
 //    should have a return type of Future<data_type>
 // -  prefix the function body with "async"
+
+Future<String> fetchOrder() =>
+    Future.delayed(Duration(seconds: 2), () => "Out of oat milk!");
+
+//Future.value and Future.error are good when writing unit tests and Future API's
+// Future.value creates a future completed with the value passed
+// awaits if the value passed is a Future
+Future<String> fetchOrder2() => Future.value("Have a tea!");
+
+Future<String> fetchOrder3() =>
+    Future.error(throw Exception("out of green tea!"));
 Future<int> main() async {
   // prefix function call with "await"
   print("Order started!");
   try {
     final order = await fetchOrder();
+    final order2 = await fetchOrder3();
     print(order);
+    print(order2);
   } catch (error) {
     print(error);
   } finally {
