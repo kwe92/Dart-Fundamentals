@@ -1,0 +1,10 @@
+// Asynchronous Programming
+//  - Your program needs to be responsive
+//    while waiting for asynchronous applcations to complete
+
+// Async Programming in Dart
+//  - uses Future, async, and await
+
+// Streams
+//  - streams are asynchronous events delivered over time
+//  - often used in reactive applcations (flutter and other delcarative framworks)
