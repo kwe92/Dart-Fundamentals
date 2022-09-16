@@ -8,6 +8,7 @@ environment:
 
 dependencies:
   equatable: ^2.0.0
+  http: ^0.13.1
 
 dev_dependencies:
   pedantic: ^1.11.0
