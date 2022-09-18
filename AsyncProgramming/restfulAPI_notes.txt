@@ -1,0 +1,51 @@
+// REST
+
+//  - Can be thought of as a standardized protocol
+//    for clients to communicate to servers
+//  - Clients can make a request using certain methods (GET private, POST public)
+//    to interact with the server 
+//  - a protocol for client server communication
+
+// Server Response Code
+
+//  - Successful Request
+
+//    - a status code of 200 (GET) will be sent if the request was successful
+//    - a status code of 201 (POST) will be sent if the request was successful
+
+//  - Unsuccessful Request
+
+//      - a status code of 400 (client error: client did something wrong, or requested data that is not accessable) 
+//      - a status code of 500 (server error: may indicate that the server is unavailable or timed out)
+
+// GET http method / function
+
+//  - Read data without modifying server state
+//  - data is displayed to everyone
+
+// POST http method / function
+
+//  - Writes data to a server
+
+// Payload
+
+//  - The data result from a successful api call
+//  - Payload Formats:
+
+//    - JSON
+//      - Most common for data and looks like a HashMap (key-value pair object)
+
+//    - HTML
+//      - typically used when requesting data from a website - web scraping
+//      - Defines how the data should look on a website
+
+//    - XML
+//      - typically used when requesting data from a website - web scraping
+//      - Defines how the data should look on a website
+
+// Payload in Mobile Apps
+
+//  - We are instrested in just the data (JSON)
+//  - it is the code inside the client that decides how the data should look
+// nl
+
