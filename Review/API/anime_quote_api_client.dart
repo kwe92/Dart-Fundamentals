@@ -6,17 +6,19 @@ import 'package:http/http.dart' as http;
 class FetchError implements Exception {
   const FetchError(this._message);
   final _message;
+
   @override
   String toString() => _message;
 }
 
 class AnimeChanApiClient {
-  static const baseUrl = "https://animechan.vercel.app/api/random";
+  static const baseUrl = "https://animechan.vercel.app/api/rando";
   Future<AnimeQuote> fetchQuote() async {
     final url = Uri.parse(baseUrl);
     final response = await http.get(url);
     if (response.statusCode != 200) {
-      throw FetchError("Error");
+      throw FetchError(
+          "Status Code: ${response.statusCode} | Unable to fetch data.");
     }
     final json = jsonDecode(response.body);
     return AnimeQuote.fromJSON(json);
@@ -45,8 +47,12 @@ $quote
 
 Future<int> main() async {
   final AnimeChanApiClient api = AnimeChanApiClient();
-  final AnimeQuote animeQuote = await api.fetchQuote();
-  print(animeQuote);
-
+  try {
+    final AnimeQuote animeQuote = await api.fetchQuote();
+    print(animeQuote);
+  } catch (error) {
+    print(error);
+    return 1;
+  }
   return 0;
 }
