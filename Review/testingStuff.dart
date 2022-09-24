@@ -1,18 +1,12 @@
-void main() {
-  var str = '4+5*2-2/3*4/';
-
-  print(str[str.length - 1]);
-
-  print(str.replaceFirst('/', '@'));
-
-  print('sub string: ${str.substring(0, str.length - 1) + '9999'}');
-
-  if (str.isNotEmpty && str[str.length - 1] == '/' ||
-      str[str.length - 1] == 'x' ||
-      str[str.length - 1] == '+' ||
-      str[str.length - 1] == '-') {
-    print('print2: ${str.substring(0, str.length - 1) + '+'}');
-  } else {
-    print('Not an operator');
-  }
+num binarySearch(List arr, int low, int high, num x) {
+  if (high >= low) {
+    int mid = (low + high - 1) ~/ 2;
+    if (arr[mid] == x) {
+      return arr[mid];
+    } else if (x < arr[mid]) {
+      return binarySearch(arr, low, mid - 1, x);
+    }
+    return binarySearch(arr, low, mid + 1, x);
+  } else
+    return -1;
 }
