@@ -1,15 +1,15 @@
 import 'dart:math';
 
-int binarySearch(List arr, int low, int high, num x) {
-  while (high >= low) {
-    var mid = low + ((high - low) / 2).floor();
+int binarySearch(List arr, int l, int r, num x) {
+  while (r >= l) {
+    var mid = l + ((r - l) / 2).floor();
     if (arr[mid] == x) {
       return mid;
     }
     if (x < arr[mid]) {
-      high = mid - 1;
+      r = mid - 1;
     } else
-      low = mid + 1;
+      l = mid + 1;
   }
   return -1;
 }

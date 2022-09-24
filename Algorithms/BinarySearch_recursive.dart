@@ -15,17 +15,17 @@ List<int> getRandom({required int length, int maxRange = 5}) {
   return result;
 }
 
-//int binarySearch({required List<int> arr, required num x, int low = 0, required int high}) {}
-num binarySearch(List arr, int low, int high, num x) {
-  if (high >= low) {
-    int mid = low + ((high - low) / 2).floor();
+//int binarySearch({required List<int> arr, required num x, int l = 0, required int r}) {}
+num binarySearch(List arr, int l, int r, num x) {
+  if (r >= l) {
+    int mid = l + ((r - l) / 2).floor();
     if (arr[mid] == x) {
       return mid;
     }
     if (arr[mid] > x) {
-      return binarySearch(arr, low, mid - 1, x);
+      return binarySearch(arr, l, mid - 1, x);
     } else {
-      return binarySearch(arr, mid + 1, high, x);
+      return binarySearch(arr, mid + 1, r, x);
     }
   }
   return -1;
