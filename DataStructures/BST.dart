@@ -1,5 +1,4 @@
 // Binary Search Trees
-//  -
 
 import 'dart:math';
 
@@ -19,46 +18,41 @@ class BST {
     if (key < this.key!.toInt()) {
       if (this.left == null) {
         this.left = BST(key);
-      } else {
-        this.left!.insert(key);
       }
+      this.left!.insert(key);
     }
     if (key > this.key!.toInt()) {
       if (this.right == null) {
         this.right = BST(key);
-      } else {
-        this.right!.insert(key);
       }
+      this.right!.insert(key);
     }
   }
+}
 
-  int? toSearch(int key) {
-    if (key == this.key) {
-      return this.key;
-    }
-    if (key < this.key!.toInt()) {
-      if (this.left == null && key == this.key) {
-        return this.key;
-      }
-      if (this.left == null && key != this.key) {
-        return null;
-      } else {
-        return this.left!.toSearch(key);
-      }
-    }
-    if (key > this.key!.toInt()) {
-      if (this.right == null && key == this.key) {
-        return this.key;
-      }
-      if (this.right == null && key != this.key) {
-        return null;
-      } else {
-        return this.right!.toSearch(key);
-      }
+int? toSearch(int key, BST? bst) {
+  if (bst?.key != null) {
+    if (key == bst!.key) {
+      return bst.key;
     } else {
-      return null;
+      int? foundNode = toSearch(key, bst.left);
+      if (foundNode == null) {
+        foundNode = toSearch(key, bst.right);
+      }
+      return foundNode;
     }
+  } else {
+    return null;
   }
+}
+
+void inOrderPrint(BST? bst) {
+  if (bst == null) {
+    return;
+  }
+  inOrderPrint(bst.left);
+  print(bst.key);
+  inOrderPrint(bst.right);
 }
 
 List<int> randIntList({required int length, int range = 10}) {
@@ -68,17 +62,17 @@ List<int> randIntList({required int length, int range = 10}) {
 }
 
 int main() {
-  final arr = randIntList(length: 5000);
-  final BST bst = BST();
-  for (var element in arr) {
-    bst.insert(element);
-  }
+  try {
+    final arr = randIntList(length: 10, range: 20);
+    final BST bst = BST();
+    arr.forEach((key) => bst.insert(key));
+    inOrderPrint(bst);
 
-  // Ensure return -1 works
-  arr.add(25);
-  print(arr);
-  for (int element in arr) {
-    print("Element $element in BST: ${bst.toSearch(element)}");
+    arr.add(404);
+    print(arr);
+    arr.forEach((key) => print("Element $key in BST: ${toSearch(key, bst)}"));
+  } catch (e) {
+    print(e);
   }
   return 0;
 }
