@@ -1,4 +1,5 @@
 // Binary Search Trees
+//  -
 
 import 'dart:math';
 
@@ -36,18 +37,26 @@ class BST {
       return this.key;
     }
     if (key < this.key!.toInt()) {
-      if (this.left == null) {
-        this.key;
+      if (this.left == null && key == this.key) {
+        return this.key;
+      }
+      if (this.left == null && key != this.key) {
+        return null;
       } else {
         return this.left!.toSearch(key);
       }
     }
     if (key > this.key!.toInt()) {
-      if (this.right == null) {
-        this.key;
+      if (this.right == null && key == this.key) {
+        return this.key;
+      }
+      if (this.right == null && key != this.key) {
+        return null;
       } else {
         return this.right!.toSearch(key);
       }
+    } else {
+      return null;
     }
   }
 }
@@ -59,7 +68,7 @@ List<int> randIntList({required int length, int range = 10}) {
 }
 
 int main() {
-  final arr = randIntList(length: 10);
+  final arr = randIntList(length: 5000);
   final BST bst = BST();
   for (var element in arr) {
     bst.insert(element);
