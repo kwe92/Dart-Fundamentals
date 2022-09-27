@@ -12,6 +12,21 @@
 // when the curr_nodeent node pointer is null assign the new node to the null pointer
 // get length computed variable
 
+// Pseudo Code: elementAt method
+
+//  - takes an int index as an argument
+//  - if the integer passed is greater than or equal to the length of our list
+//    throw an OutOfIndexRange error and return null
+//  - NOTE: the reason that the defensive check is greater than or equal to is because the head node
+//          should not be indexed as it only contains a poniter to the first node with data and no data itself
+//  - if the defensive if statement passes declare and initalize two variables:
+//    curr_node = head.next && curr_index = 0
+//  - while true (continue infinitly until a return condition is met)
+//  - iterate through the linked list until the curr_index is equal to the index argument passed
+//  - return the curr_node.data
+//  - increase increment counter
+// nl
+
 //TODO: add methods: display, get and erase
 
 import 'dart:math';
@@ -66,19 +81,6 @@ class SingleLinkedList {
     }
     print(result);
   }
-  // Pseudo Code: elementAt method
-
-  //  - takes an int index as an argument
-  //  - if the integer passed is greater than or equal to the length of our list
-  //    throw an OutOfIndexRange error and return null
-  //  - NOTE: the reason that the defensive check is greater than or equal to is because the head node
-  //          should not be indexed as it only contains a poniter to the first node with data and no data itself
-  //  - if the defensive if statement passes declare and initalize two variables:
-  //    curr_node = head.next && curr_index = 0
-  //  - while true (continue infinitly until a return condition is met)
-  //  - iterate through the linked list until the curr_index is equal to the index argument passed
-  //  - return the curr_node.data
-  // nl
 
   int elementAt(int index) {
     if (index >= length!.toInt()) {
@@ -90,6 +92,26 @@ class SingleLinkedList {
     while (true) {
       curr_node = curr_node?.next;
       if (curr_index == index) return curr_node!.data!.toInt();
+      curr_index++;
+    }
+  }
+
+  void erase(int index) {
+    if (index >= length!.toInt()) {
+      throw OutOfRange(
+          "The index passed: $index must be less than the length: $length");
+    }
+    Node? curr_node = this.head;
+    int curr_index = 0;
+    while (true) {
+      // last node == head node initally
+      Node? last_node = curr_node;
+      // the current node is now the first node with data
+      curr_node = curr_node?.next;
+      if (curr_index == index) {
+        last_node?.next = curr_node?.next;
+        return;
+      }
       curr_index++;
     }
   }
@@ -109,12 +131,17 @@ SingleLinkedList randIntSingleLinkedList({required int size, int range = 10}) {
 void lines() => print("----------------------------------------------");
 
 int main() {
-  SingleLinkedList linkedList = randIntSingleLinkedList(size: 70, range: 25);
-  int index = Random().nextInt(80);
+  SingleLinkedList linkedList = randIntSingleLinkedList(size: 15, range: 10);
+  int index = Random().nextInt(14);
+  lines();
+  linkedList.display();
   lines();
   print("Single Linked List Length: ${linkedList.length}");
   lines();
-  linkedList.display();
+  print("Erase at index: $index");
+  linkedList.erase(index);
+  lines();
+  print("Single Linked List Length after erase: ${linkedList.length}");
   lines();
   try {
     print("Element at index: $index is value: ${linkedList.elementAt(index)}");
