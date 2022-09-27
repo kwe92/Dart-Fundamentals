@@ -10,7 +10,7 @@
 // curr_node node
 // while the curr_noderent node pointer (next) is not null reasign the curr_nodeent node to the next node
 // when the curr_nodeent node pointer is null assign the new node to the null pointer
-// get length
+// get length computed variable
 
 //TODO: add methods: display, get and erase
 
