@@ -65,11 +65,10 @@ class SingleLinkedList {
 
   void append(int data) {
     Node? curr_node = this.head;
-    Node newNode = Node(data);
     while (curr_node?.next != null) {
       curr_node = curr_node!.next;
     }
-    curr_node?.next = newNode;
+    curr_node?.next = Node(data);
   }
 
   void display() {
@@ -128,24 +127,16 @@ SingleLinkedList randIntSingleLinkedList({required int size, int range = 10}) {
   return ll;
 }
 
-void lines() => print("----------------------------------------------");
-
 int main() {
   SingleLinkedList linkedList = randIntSingleLinkedList(size: 15, range: 10);
   int index = Random().nextInt(14);
-  lines();
   linkedList.display();
-  lines();
   print("Single Linked List Length: ${linkedList.length}");
-  lines();
   print("Erase at index: $index");
   linkedList.erase(index);
-  lines();
   print("Single Linked List Length after erase: ${linkedList.length}");
-  lines();
   try {
     print("Element at index: $index is value: ${linkedList.elementAt(index)}");
-    lines();
   } catch (error) {
     print(error);
   }
