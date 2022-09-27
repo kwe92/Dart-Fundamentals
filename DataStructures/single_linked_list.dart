@@ -7,9 +7,10 @@
 
 // method append
 // new node
-// cur node
-// while the current node pointer (next) is not null reasign the curent node to the next node
-// when the curent node pointer is null assign the new node to the null pointer
+// curr_node node
+// while the curr_noderent node pointer (next) is not null reasign the curr_nodeent node to the next node
+// when the curr_nodeent node pointer is null assign the new node to the null pointer
+// get length
 
 //TODO: add methods: display, get and erase
 
@@ -24,24 +25,33 @@ class Node {
 class SingleLinkedList {
   SingleLinkedList({required this.head});
   Node head;
-
-  void append(int data) {
-    Node? cur = head;
-    Node newNode = Node(data);
-    while (cur?.next != null) {
-      cur = cur!.next;
-    }
-    cur?.next = newNode;
-  }
-
-  int length() {
+  int? get length {
     int total = 0;
-    Node? cur = head;
-    while (cur?.next != null) {
-      cur = cur!.next;
+    Node? curr_node = this.head;
+    while (curr_node?.next != null) {
+      curr_node = curr_node!.next;
       total += 1;
     }
     return total;
+  }
+
+  void append(int data) {
+    Node? curr_node = this.head;
+    Node newNode = Node(data);
+    while (curr_node?.next != null) {
+      curr_node = curr_node!.next;
+    }
+    curr_node?.next = newNode;
+  }
+
+  void display() {
+    List<int?> result = [];
+    Node? curr_node = this.head;
+    while (curr_node?.next != null) {
+      curr_node = curr_node!.next;
+      result.add(curr_node!.data);
+    }
+    print(result);
   }
 }
 
@@ -57,8 +67,9 @@ SingleLinkedList randIntSingleLinkedList({required int size, int range = 10}) {
 }
 
 int main() {
-  SingleLinkedList linkedList = randIntSingleLinkedList(size: 10);
+  SingleLinkedList linkedList = randIntSingleLinkedList(size: 76, range: 25);
 
-  print(linkedList.length());
+  print("Single Linked List Length: ${linkedList.length}");
+  linkedList.display();
   return 0;
 }
