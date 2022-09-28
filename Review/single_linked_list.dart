@@ -55,6 +55,45 @@ class LinkedList {
     }
     curr_node?.next = Node(data: val);
   }
+
+  void display() {
+    List<int?> result = [];
+    Node? curr_node = this.head;
+    while (curr_node?.next != null) {
+      curr_node = curr_node!.next;
+      result.add(curr_node!.data);
+    }
+    print(result);
+  }
+
+  List<int?> toList() {
+    List<int?> result = [];
+    Node? curr_node = this.head;
+    while (curr_node?.next != null) {
+      curr_node = curr_node!.next;
+      result.add(curr_node!.data);
+    }
+    return (result);
+  }
+
+  void erase({required int index}) {
+    if (index >= length) {
+      print('Index is out of range');
+      return;
+    }
+    int curr_index = 0;
+    Node? curr_node = this.head;
+    Node? last_node;
+    while (true) {
+      last_node = curr_node;
+      curr_node = curr_node?.next;
+      if (curr_index == index) {
+        last_node!.next = curr_node!.next;
+        return;
+      }
+      curr_index++;
+    }
+  }
 }
 
 LinkedList randIntLinkedList({required int length, int range = 5}) {
@@ -71,7 +110,12 @@ LinkedList randIntLinkedList({required int length, int range = 5}) {
 }
 
 int main() {
+  int randIndex = Random().nextInt(4);
   LinkedList linkedList = randIntLinkedList(length: 5, range: 10);
+  print(linkedList.length);
+  linkedList.display();
+  linkedList.erase(index: randIndex);
+  linkedList.display();
   print(linkedList.length);
   return 0;
 }
