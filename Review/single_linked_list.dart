@@ -94,6 +94,22 @@ class LinkedList {
       curr_index++;
     }
   }
+
+  int? elementAt({required int index}) {
+    if (index >= length) {
+      print('Index is out of range');
+      return null;
+    }
+    int curr_index = 0;
+    Node? curr_node = this.head;
+    while (true) {
+      curr_node = curr_node?.next;
+      if (curr_index == index) {
+        return curr_node!.data;
+      }
+      curr_index++;
+    }
+  }
 }
 
 LinkedList randIntLinkedList({required int length, int range = 5}) {
@@ -113,9 +129,12 @@ int main() {
   int randIndex = Random().nextInt(4);
   LinkedList linkedList = randIntLinkedList(length: 5, range: 10);
   print(linkedList.length);
+  print(
+      'Element at index: $randIndex is: ${linkedList.elementAt(index: randIndex)}');
   linkedList.display();
   linkedList.erase(index: randIndex);
   linkedList.display();
   print(linkedList.length);
+
   return 0;
 }
