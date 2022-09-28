@@ -101,11 +101,13 @@ class SingleLinkedList {
           "The index passed: $index must be less than the length: $length");
     }
     Node? curr_node = this.head;
+    Node? last_node;
     int curr_index = 0;
     while (true) {
       // last node == head node initally
-      Node? last_node = curr_node;
+      last_node = curr_node;
       // the current node is now the first node with data
+      // TODO: Darw this out on paper | still slightly confused
       curr_node = curr_node?.next;
       if (curr_index == index) {
         last_node?.next = curr_node?.next;
