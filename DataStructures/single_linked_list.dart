@@ -1,33 +1,39 @@
+// param = function parameter
+
 // Pseudo Code: Node Class
-// data
-// next
+//  - param data: member variable nullable integer data type
+//  - param next: member variable nullable Node data type
 
-// Pseudo Code: SingleLinkedList
-// head
+// Pseudo Code: LinkedList
+//  - param head: nullable Node data type
 
-// method append
-// new node
-// curr_node node
-// while the curr_noderent node pointer (next) is not null reasign the curr_nodeent node to the next node
-// when the curr_nodeent node pointer is null assign the new node to the null pointer
-// get length computed variable
+//  Pseudo Code: apend method | return void
+//  - param val: integer
+//  - curr_node: inital value is always the head node
+//  - while (pointer not null)
+//      - reassign the curr_node to the pointer i.e. the next node
+//      - when the curr_node pointer is null, assign curr_node.pointer = new Node(val)
 
-// Pseudo Code: elementAt method
+// Pseudo Code: get length computed variable integer
+//      - skip head Node and iterate through all other nodes with a counter
 
-//  - takes an int index as an argument
-//  - if the integer passed is greater than or equal to the length of our list
-//    throw an OutOfIndexRange error and return null
-//  - NOTE: the reason that the defensive check is greater than or equal to is because the head node
-//          should not be indexed as it only contains a poniter to the first node with data and no data itself
-//  - if the defensive if statement passes declare and initalize two variables:
-//    curr_node = head.next && curr_index = 0
-//  - while true (continue infinitly until a return condition is met)
-//  - iterate through the linked list until the curr_index is equal to the index argument passed
-//  - return the curr_node.data
-//  - increase increment counter
-// nl
+// Pseudo Code: elementAt method | return nullable integer
+//      - param index: integer
+//      - Return an element at a specified index
+//        if the index passed is less than the length of the linked list
+//      - if the integer passed is greater than or equal too the length of our list
+//        return nothing and print or throw some error message
+//      - NOTE: the reason that the defensive check is greater than or equal to is because the head node
+//              should not be indexed as it only contains a poniter to the first node with data and no data itself
+//      - if the defensive if statement passes declare and initalize two variables:
+//        curr_node = head.next && curr_index = 0
+//     - while true (continue infinitly until a return condition is met)
+//      - iterate through the linked list until the curr_index is equal to the index argument passed
+//      - return the curr_node.data
+//      - increase increment counter
 
-//TODO: add methods: display, get and erase
+// Pseudo Code: erase method | return void
+// n
 
 import 'dart:math';
 
@@ -104,10 +110,7 @@ class SingleLinkedList {
     Node? last_node;
     int curr_index = 0;
     while (true) {
-      // last node == head node initally
       last_node = curr_node;
-      // the current node is now the first node with data
-      // TODO: Darw this out on paper | still slightly confused
       curr_node = curr_node?.next;
       if (curr_index == index) {
         last_node?.next = curr_node?.next;
