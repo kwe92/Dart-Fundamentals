@@ -1,0 +1,1 @@
+// 'https://animechan.vercel.app/api/quotes/anime?title=naruto'

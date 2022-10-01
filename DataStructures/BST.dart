@@ -28,6 +28,20 @@ class BST {
       this.right!.insert(key);
     }
   }
+
+  int height(BST? root) {
+    if (root == null) {
+      return 0;
+    }
+    int left = 1 + root.height(root.left);
+    int right = 1 + root.height(root.left);
+
+    if (left > right) {
+      return left;
+    } else {
+      return right;
+    }
+  }
 }
 
 int? toSearch(int key, BST? bst) {
@@ -105,6 +119,8 @@ int main() {
     print(arr);
     lines();
     arr.forEach((key) => print("Element $key in BST: ${toSearch(key, bst)}"));
+    lines();
+    print("BST hieght: ${bst.height(bst)}");
   } catch (e) {
     print(e);
   }

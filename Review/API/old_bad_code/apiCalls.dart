@@ -1,5 +1,6 @@
-import "animeAPI.dart";
+import 'animeAPI.dart';
 
+//TODO: This is ugl code, do not call api's in this manner
 Future<int> main() async {
   List<AnimeQuote> ql = [];
   for (var i = 0; i < 3; i++) {

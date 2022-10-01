@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 // https://animechan.vercel.app/api/random
-
+//TODO: this is a better way to fetch data but still not optimal
 class FetchError implements Exception {
   const FetchError(this._message);
   final _message;

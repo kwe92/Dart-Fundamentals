@@ -1,33 +1,58 @@
-import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:http/http.dart' as http;
 
-class AnimeQuote {
-  AnimeQuote({this.anime, this.quote});
-  var anime;
-  var quote;
+// https://animechan.vercel.app/api/random
+//TODO: this is a better way to fetch data but still not optimal
+class FetchError implements Exception {
+  const FetchError(this._message);
+  final _message;
 
   @override
-  String toString() => "Anime: $anime\n" "Quote: $quote";
+  String toString() => _message;
+}
 
-  Future<void> fetchQuotes() async {
-    final url = Uri.parse("https://animechan.vercel.app/api/random");
+class AnimeChanApiClient {
+  static const baseUrl = "https://animechan.vercel.app/api/rando";
+  Future<AnimeQuote> fetchQuote() async {
+    final url = Uri.parse(baseUrl);
     final response = await http.get(url);
     if (response.statusCode != 200) {
-      throw Exception("Error in getting quote data.");
+      throw FetchError(
+          "Status Code: ${response.statusCode} | Unable to fetch data.");
     }
-    final responseJSON = jsonDecode(response.body);
-    anime = responseJSON["anime"];
-    quote = responseJSON["quote"];
+    final json = jsonDecode(response.body);
+    return AnimeQuote.fromJSON(json);
   }
 }
 
+class AnimeQuote {
+  const AnimeQuote({required this.anime, required this.quote});
+  final anime;
+  final quote;
+
+  factory AnimeQuote.fromJSON(Map<String, Object?> json) =>
+      AnimeQuote(anime: json["anime"], quote: json["quote"]);
+
+  @override
+  String toString() => """
+Anime: 
+
+$anime
+
+Quote Text:
+
+$quote
+""";
+}
+
 Future<int> main() async {
-  var quoteList = [];
-  for (var i = 0; i < 5; i++) {
-    final AnimeQuote aniQuote = AnimeQuote();
-    await aniQuote.fetchQuotes();
-    quoteList.add(aniQuote);
+  final AnimeChanApiClient api = AnimeChanApiClient();
+  try {
+    final AnimeQuote animeQuote = await api.fetchQuote();
+    print(animeQuote);
+  } catch (error) {
+    print(error);
+    return 1;
   }
-  quoteList.forEach((element) => print(element));
   return 0;
 }
