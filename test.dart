@@ -19,7 +19,15 @@ Future<int> fetchInt() {
   return Future.value(999);
 }
 
-void main(List<String> args) async {
-  print(await fetchInt());
-  print('kidBuu@dbz.net'.split('').reversed);
+class Point {
+  Point(this.x, this.y);
+  int x;
+  int y;
+
+  int getX() => x;
+}
+
+void main(List<String> args) {
+  print(() => '');
+  print(Point(2, 4).getX);
 }
