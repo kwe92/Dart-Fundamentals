@@ -1,8 +1,6 @@
 int main() {
   // Declaring and Initalizing a variable as an Anonymous function
-  final Function(int) someNumPlus5 = (int n) {
-    return 5 + n;
-  };
+  final someNumPlus5 = (int n) => 5 + n;
 
   final return5 = () {
     return 5;
