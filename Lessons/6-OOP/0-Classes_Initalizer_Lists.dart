@@ -21,25 +21,14 @@ void main() {
 class BankAccount {
   // Class Constructor using Initalizer Lists
   BankAccount({required String acctHolder, double balance = 0})
-      : balance = balance,
+      : _balance = balance,
         acctHolder = acctHolder;
   // Creates a private member variable
   final String acctHolder;
-  double balance;
+  double _balance;
+  double get balance => _balance;
 
-  void deposit(double amt) {
-    if (amt > 0)
-      balance += amt;
-    else
-      print('Can not deposit a negative ammount: $amt.');
-  }
+  void deposit(double amt) => amt > 0 ? _balance += amt : print('Can not deposit a negative ammount: $amt.');
 
-  void withdraw(var amt) {
-    if (amt <= balance) {
-      balance -= amt;
-    } else {
-      print(
-          'Can not withdraw: $amt as it exceeds curtent balance of: $balance');
-    }
-  }
+  void withdraw(var amt) => amt <= _balance ? _balance -= amt : print('Can not withdraw: $amt as it exceeds curtent balance of: $_balance');
 }
