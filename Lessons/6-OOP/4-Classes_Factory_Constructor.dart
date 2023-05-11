@@ -58,9 +58,7 @@ void main() {
     {'type': 'Circle', 'radius': 5.0}
   ];
 
-  final List<Shape> shapeList = [
-    for (var json in jsonData) Shape.fromJSON(json)
-  ];
+  final List<Shape> shapeList = [for (var json in jsonData) Shape.fromJSON(json)];
 
   print(shapeList);
 
