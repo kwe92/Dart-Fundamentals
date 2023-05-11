@@ -10,12 +10,14 @@ double loglogLinear(int n) => n * log2(log2(n));
 void p(x) => print(x);
 
 void main() {
-  final int n = 4;
-  print('log linear ${logLinear(n)}');
-  print('log log linear ${loglogLinear(n)}');
-  print(logLinear(n) > loglogLinear(n));
-  print(logLinear(n) - loglogLinear(n));
-  print(logLinear(n) / loglogLinear(n));
+  // final int n = 4;
+  // print('log linear ${logLinear(n)}');
+  // print('log log linear ${loglogLinear(n)}');
+  // print(logLinear(n) > loglogLinear(n));
+  // print(logLinear(n) - loglogLinear(n));
+  // print(logLinear(n) / loglogLinear(n));
+
+  print(log2(7));
 }
 
 
