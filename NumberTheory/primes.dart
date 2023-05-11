@@ -1,6 +1,8 @@
 import 'dart:math';
 
-int ayonPrime(int n) => (pow(n, 2) + n + (pow(2, n) - 1)).toInt();
+int ayonPrime(int n) => (pow(n, 2) + n + pow(2, n) - 1).toInt();
+
+int mersennePrime(int n) => ((pow(2, n) - 1)).toInt();
 
 // Generate array of whole numbers in a given range exclusive
 List range({int start = 0, required int range}) => (Iterable.generate(range).map((ele) => ele + start)).toList();
@@ -13,23 +15,38 @@ bool? isPrime(int n) {
   }
 
   // Check from 2 to sqrt(n)
-  for (int i in range(start: 2, range: sqrt(n).toInt() + 1)) {
+  for (int i = 2; i < n; i++) {
     if (n % i == 0) {
+      print('$n is divisible by $i');
       return false;
     }
-    return true;
   }
-  ;
+  return true;
 }
 
 int main() {
+  int x = 83;
+  //
+  // 137
+  // 139
+  // 149
+  // 151
+  // 157
+  print('Is prime function: ${isPrime(x)}');
+  print('Ayon Algorithm: ${ayonPrime(x)}');
+  print('Mersenne Algorithm: ${mersennePrime(x)}');
+  print('Proof of Ayon Algorithm: ${isPrime(ayonPrime(x))}');
+  print('Proof of Mersenne Algorithm: ${isPrime(mersennePrime(x))}');
+  print(pow(2, x));
+
   // print(range(start: 2, range: 10));
-  // print('Is prime function: ${isPrime(21)}');
+
   // print(ayonPrime(31));
-  print('Proof of Ayon Algorithm: ${isPrime(ayonPrime(547))}');
+
   // print('Prime array length: ${primes.length}');
 
   // primes.forEach((prime) => print('isPrime: ${isPrime(ayonPrime(prime))}'));
+
   return 0;
 }
 
