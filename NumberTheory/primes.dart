@@ -1,6 +1,5 @@
 import 'dart:math';
 
-// Euler + Mesenne
 int ayonPrime(int n) => (pow(n, 2) + n + (pow(2, n) - 1)).toInt();
 
 // Generate array of whole numbers in a given range exclusive
