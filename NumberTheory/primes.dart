@@ -25,7 +25,7 @@ bool? isPrime(int n) {
 }
 
 int main() {
-  int x = 83;
+  int x = 23;
   //
   // 137
   // 139
@@ -37,7 +37,6 @@ int main() {
   print('Mersenne Algorithm: ${mersennePrime(x)}');
   print('Proof of Ayon Algorithm: ${isPrime(ayonPrime(x))}');
   print('Proof of Mersenne Algorithm: ${isPrime(mersennePrime(x))}');
-  print(pow(2, x));
 
   // print(range(start: 2, range: 10));
 
