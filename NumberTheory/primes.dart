@@ -8,7 +8,7 @@ int mersennePrime(int n) => ((pow(2, n) - 1)).toInt();
 List range({int start = 0, required int range}) => (Iterable.generate(range).map((ele) => ele + start)).toList();
 
 // Function to check whether a number is prime
-bool? isPrime(int n) {
+bool isPrime(int n) {
   // Corner case
   if (n <= 1) {
     return false;
