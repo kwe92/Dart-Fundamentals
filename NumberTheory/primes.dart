@@ -25,7 +25,7 @@ bool isPrime(int n) {
 }
 
 int main() {
-  int x = 23;
+  int x = 11;
   //
   // 137
   // 139
