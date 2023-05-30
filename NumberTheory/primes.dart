@@ -1,6 +1,9 @@
 import 'dart:math';
 
-int ayonPrime(int n) => (pow(n, 2) + n + pow(2, n) - 1).toInt();
+int ayonPrime0(int n) => (pow(n, 2) + n + pow(2, n) - 1).toInt();
+
+// New Prime Algo
+int ayonPrime1(int n) => (pow(3, n) - 2).toInt();
 
 int mersennePrime(int n) => ((pow(2, n) - 1)).toInt();
 
@@ -25,32 +28,23 @@ bool isPrime(int n) {
 }
 
 int main() {
-  // Ayon Prim
-  // - Largest 34
-  int x = 61;
-  //
-  // 137
-  // 139
-  // 149
-  // 151
-  // 157
-  print('Is prime function: ${isPrime(x)}');
-  print('Ayon Algorithm: ${ayonPrime(x)}');
-  print('Mersenne Algorithm: ${mersennePrime(x)}');
-  print('Proof of Ayon Algorithm: ${isPrime(ayonPrime(x))}');
-  print('Proof of Mersenne Algorithm: ${isPrime(mersennePrime(x))}');
-  print(ayonPrime(x) - mersennePrime(x));
+  int x = 22;
 
-  // print(range(start: 2, range: 10));
+  // print('Proof of Ayon Algorithm: ${ayonPrime(x)} ${isPrime(ayonPrime(x))}');
 
-  // print(ayonPrime(31));
+  print('Proof of Mersenne Algorithm: ${mersennePrime(x)} ${isPrime(mersennePrime(x))}');
 
-  // print('Prime array length: ${primes.length}');
-
-  // primes.forEach((prime) => print('isPrime: ${isPrime(ayonPrime(prime))}'));
+  print('Algo 1: ${ayonPrime1(x)} ${isPrime(ayonPrime1(x))}');
 
   return 0;
 }
+
+// Largest Prime Found 31_381_059_607
+// x = 22
+// Maybe 71 takes sa really long time to compute
+
+// Ayon Prim
+// - Largest 34
 
 List<int> primes = [
   2,
