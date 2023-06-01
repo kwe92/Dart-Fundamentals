@@ -1,6 +1,5 @@
-// typedef syntax
-// typedef returnType FunctionTypeName (parameterType parameterName);
-typedef int IntFunc(int x);
+// Function Signatures
+typedef IntFunc = int Function(int x);
 
 int main() {
   final IntFunc t = (int x) => x * 2;
