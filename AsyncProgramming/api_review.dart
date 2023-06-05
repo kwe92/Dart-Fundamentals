@@ -1,7 +1,7 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class AnimeChaneApi {
+class AnimeChanApi {
   static const uri = 'https://animechan.vercel.app/api/random';
 
   static Future<void> fetchData() async {
@@ -13,6 +13,6 @@ class AnimeChaneApi {
 }
 
 int main(List<String> args) {
-  AnimeChaneApi.fetchData();
+  AnimeChanApi.fetchData();
   return 0;
 }
