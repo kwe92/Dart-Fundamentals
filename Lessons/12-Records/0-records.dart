@@ -17,6 +17,9 @@
 
 void divider() => print("---------------------------------------");
 void main() {
+  // Record expression
+  // var record = (type_0, type_1, . . . , type_n)
+
   var record1 = (
     "string",
     1,
