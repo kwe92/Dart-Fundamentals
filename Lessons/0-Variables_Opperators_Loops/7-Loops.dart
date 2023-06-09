@@ -1,5 +1,5 @@
 void main() {
-  var num = 5;
+  var num = 4;
   var factorial = 1;
 
   List<String> dopeAnimeCharacters = [
@@ -19,7 +19,7 @@ void main() {
   // The initializer is var i = num or 5
   // The condition of execution is as long as i is greater than or equal to 1 repeat the loop
   // The final expression i-- reduces i by 1 for every iteration that the block is ran until i reaches 0
-  // for (define counter, condition, increase or decrease counter)
+  // for (counter, condition, counter++ || counter--)
   // Example 1:
 
   //      - For loops to generate a factorial

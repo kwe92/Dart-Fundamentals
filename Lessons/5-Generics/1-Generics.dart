@@ -13,7 +13,7 @@ Object objectIdentityFunction(Object e) => e;
 T genericIdentityFunction<T>(T e) => e;
 int main() {
   print(dynamicIdentityFunction(42).isEven); // The Compiler is TRUSTING YOU
-  objectIdentityFunction(42).isEven; // EVERYTHING is an Object | Can only use Object properties and Methods
+  // objectIdentityFunction(42).isEven; // EVERYTHING is an Object | Can only use Object properties and Methods
   print(genericIdentityFunction(42).isEven); // Compiler KNOWS type | Type information (Tooling!) is preserved
 
   return 0;

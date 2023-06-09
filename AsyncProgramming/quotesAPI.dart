@@ -28,10 +28,9 @@ Future<int> main() async {
   try {
     var quoteList = [];
     var randQuotes = await fetchQuotes() as List;
-    var quote = randQuotes[0];
+    // var quote = randQuotes[0];
     for (var i = 0; i < randQuotes.length; i++) {
-      quoteList
-          .add(Quote(author: randQuotes[0]["q"], quote: randQuotes[0]["a"]));
+      quoteList.add(Quote(author: randQuotes[0]["q"], quote: randQuotes[0]["a"]));
     }
     print(quoteList[3]);
     //print(quote["q"]);

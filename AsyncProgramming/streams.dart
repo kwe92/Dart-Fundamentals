@@ -25,8 +25,7 @@ Future<num> sumStream(Stream<num> stream) async {
 // Stream.reduce
 //    - Works like the Iterable.reduce
 //    - awaits every event to be available without explicitly being told by the user
-Future<int> sumStream2(Stream<int> stream) =>
-    stream.reduce((previous, element) => previous + element);
+Future<int> sumStream2(Stream<int> stream) => stream.reduce((previous, element) => previous + element);
 
 // Stream Generators
 //    - similar to the synta of creating functions thar return a future
@@ -49,7 +48,7 @@ Iterable<num> syncGenerator(int n) sync* {
 }
 
 Future<int> main() async {
-  final stream = Stream.fromIterable([1, 2, 3, 4, 5]);
+  // final stream = Stream.fromIterable([1, 2, 3, 4, 5]);
   final stream2 = countStream(5);
   final sumOfStream = await sumStream2(stream2);
   print("Sum of stream sequence: $sumOfStream");
