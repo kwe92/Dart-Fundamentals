@@ -3,8 +3,8 @@ import 'package:http/http.dart' as http;
 
 // https://animechan.vercel.app/api/random
 //TODO: this is a better way to fetch data but still not optimal
-class FetchError implements Exception {
-  const FetchError(this._message);
+class _FetchError implements Exception {
+  const _FetchError(this._message);
   final _message;
 
   @override
@@ -17,8 +17,7 @@ class AnimeChanApiClient {
     final url = Uri.parse(baseUrl);
     final response = await http.get(url);
     if (response.statusCode != 200) {
-      throw FetchError(
-          "Status Code: ${response.statusCode} | Unable to fetch data.");
+      throw _FetchError("Status Code: ${response.statusCode} | Unable to fetch data.");
     }
     final json = jsonDecode(response.body);
     return AnimeQuote.fromJSON(json);
@@ -30,8 +29,7 @@ class AnimeQuote {
   final anime;
   final quote;
 
-  factory AnimeQuote.fromJSON(Map<String, Object?> json) =>
-      AnimeQuote(anime: json["anime"], quote: json["quote"]);
+  factory AnimeQuote.fromJSON(Map<String, Object?> json) => AnimeQuote(anime: json["anime"], quote: json["quote"]);
 
   @override
   String toString() => """
@@ -39,7 +37,7 @@ Anime:
 
 $anime
 
-Quote Text:
+Quote Text: 
 
 $quote
 """;
