@@ -9,22 +9,22 @@ class FetchError implements Exception {
   String toString() => _message;
 }
 
-typedef QuoteRecord = ({
+typedef QuoteRecord = (
   String author,
   String quote,
   int characterCount,
-});
+);
 
 QuoteRecord parseQuote(Map<String, dynamic> json) => (
-      author: json["a"],
-      quote: json["q"],
-      characterCount: int.parse(json["c"]),
+      json["a"],
+      json["q"],
+      int.parse(json["c"]),
     );
 
 void _responsePredicate(response) =>
     response.statusCode != 200 ? throw FetchError("Status Code: ${response.statusCode} | Unable to fetch data.") : null;
 
-Future<QuoteRecord?> useQuotes() async {
+Future<QuoteRecord> useQuotes() async {
   const baseUrl = 'https://zenquotes.io/api/quotes';
   final url = Uri.parse(baseUrl);
   final response = await http.get(url);
@@ -34,9 +34,12 @@ Future<QuoteRecord?> useQuotes() async {
 
 Future<void> main() async {
   final result = await useQuotes();
+  final (author, quote, word_count) = result;
+
+  final arr1 = [];
+
   print(result);
-//   var (
-//     author,
-//     quote,
-//   ) = result;
+
+  // const ({int x, int y}) p1 = (x: 4, y: 3);
+  // var (i, j) = p1;
 }
