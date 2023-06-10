@@ -1,4 +1,4 @@
-// TODO: Add comments
+// Functional Dart
 
 const bookJSON = {
   "author": "Shunryū Suzuki",
@@ -25,4 +25,25 @@ void main() {
   );
 
   final Book book1 = parseBookJSON(bookJSON);
+}
+
+// Old Way
+class BookModel {
+  final String author;
+  final String title;
+  final String op;
+  final String about;
+  const BookModel({
+    required this.author,
+    required this.title,
+    required this.op,
+    required this.about,
+  });
+
+  factory BookModel.fromJSON(Map<String, dynamic> json) => BookModel(
+        author: json["author"],
+        title: json["title"],
+        op: json["op"],
+        about: json["about"],
+      );
 }
