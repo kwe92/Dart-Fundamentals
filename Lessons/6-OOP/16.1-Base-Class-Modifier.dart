@@ -1,5 +1,5 @@
 // base class modifier
-//   - base classes must have their signatures implemented
+//   - Enforces signature implemention
 //   - Can not be implemented outside of its own module (library)
 //   - Can be instantiated, but why would you
 

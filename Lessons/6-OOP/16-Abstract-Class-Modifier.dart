@@ -7,13 +7,12 @@
 
 // abstract class modifier
 
-//  - Can not be instantiated in any module (library)
-//  - Sub-types do not require full concrete implementation of entire interface
-//  - You don't need to implement the function signatures defined by the super
+//  - Can not be instantiated (constructed) in any module (library)
+//  - function signature implementation is not enforced on sub-types
 
 // abstract methods
 
-//   - replace method body with semi-colon indicates to the compiler that the method is abstract
+//   - replace method body with semi-colon, indicatesing to the compiler that the method is abstract
 //   - Only abstract classes can have abstract methods
 
 // Stateful abstract class Employee
@@ -34,7 +33,7 @@ abstract class Employee {
     this._salary = salary;
   }
 
-  // an abstract method that must be implemented by the sup-type
+  // an abstract method that must be implemented by the sub-type
   void giveRaise(double x);
 }
 
@@ -81,7 +80,7 @@ int main() {
   print("Salary after raise: ${emp1.salary}");
   emp1.giveRaise(0.16);
 
-// no setter therefore an error occurs
+// no setter therefore an error will occur
   // emp1.salary = 99999999;
 
   return 0;
