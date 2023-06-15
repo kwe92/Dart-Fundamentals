@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable, unused_import
+
 /// The entry point to our program
 
 void main() {

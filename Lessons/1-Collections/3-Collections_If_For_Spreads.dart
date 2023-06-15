@@ -1,3 +1,4 @@
+// ignore_for_file: unused_local_variable, unused_import, dead_code
 void main() {
   // Adding a value to a Collection only if a condition is true
   var colors = ['green', 'yellow'];

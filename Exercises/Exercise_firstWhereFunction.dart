@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable, unused_import
+
 // Implement a 'firstWhere' function that takes arguments:
 //      - A List
 //      - A boolean function arg that evaluates all items of the List
@@ -17,11 +19,9 @@ void main() {
   print(firstWhere<int, int>(intList, (x) => x > 20, orElse: (() => -1)));
 }
 
-List<int> randIntList(var n, var r) =>
-    <int>[for (var i = 0; i < n; i++) Random().nextInt(r)];
+List<int> randIntList(var n, var r) => <int>[for (var i = 0; i < n; i++) Random().nextInt(r)];
 
-T firstWhere<T, R>(List<T> collection, bool Function(T) f,
-    {required T Function() orElse}) {
+T firstWhere<T, R>(List<T> collection, bool Function(T) f, {required T Function() orElse}) {
   for (var x in collection) {
     if (f(x)) return x;
   }
