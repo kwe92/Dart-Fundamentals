@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 //todo: Add Comments
 // Flutter Widgets
 //    - In flutter everything is a widget

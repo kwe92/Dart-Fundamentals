@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable, unused_import
+
 // as keyword
 //  - defines a dommon identifier to be used when calling functions inside of a package
 
@@ -13,8 +15,7 @@ http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country
 var apikey = "";
 Future<void> fetchData(String city) async {
   final baseURL = "http://api.openweathermap.org/geo/1.0";
-  final locationURL = Uri.parse(
-      "http://api.openweathermap.org/geo/1.0/direct?q=London&limit=5&appid=");
+  final locationURL = Uri.parse("http://api.openweathermap.org/geo/1.0/direct?q=London&limit=5&appid=");
   final response = await http.post(locationURL);
   if (response.statusCode != 200) {
     print(response.statusCode);
