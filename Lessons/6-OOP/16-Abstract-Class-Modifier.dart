@@ -1,5 +1,3 @@
-// TODO: add sealed from docs
-
 // Dart 3 Class Modifiers
 
 // Class Modifiers
