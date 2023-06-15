@@ -43,7 +43,7 @@ final class Computer extends VonNeumannModel {
 
 void main() {
   final VonNeumannModel comp1 = Computer(
-    cpu: "Intel Core i9-13900KS",
+    cpu: "Intel Core  i9-13900KS",
     memory: 99999,
     storage: 99999,
   );
