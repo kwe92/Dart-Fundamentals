@@ -2,7 +2,7 @@
 
 //   - Class modifiers can be combined to create new class modifiers
 
-// Abstract Interface - Pure Interface
+// Abstract Interface Class - Pure Interface
 
 //   - Combines the class modifiers: abstract interface
 //   - Creates a new pure interface

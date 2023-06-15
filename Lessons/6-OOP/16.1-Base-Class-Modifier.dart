@@ -2,6 +2,7 @@
 //   - Enforces signature implemention
 //   - Can not be implemented outside of its own module (library)
 //   - Can be instantiated, but why would you
+//   - Can be inherited
 
 import 'dart:math';
 
