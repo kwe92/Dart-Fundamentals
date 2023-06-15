@@ -16,17 +16,23 @@
 //   - replace method body with semi-colon indicates to the compiler that the method is abstract
 //   - Only abstract classes can have abstract methods
 
+// Stateful abstract class Employee
+
 abstract class Employee {
   final String fname;
   final String lname;
-  double salary;
+  late double _salary;
+
+  double get salary => _salary;
   String get email => "${fname.substring(0, 1).toLowerCase()}${lname.toLowerCase()}@ayonInnovations.net";
 
   Employee({
     required this.fname,
     required this.lname,
-    required this.salary,
-  });
+    required double salary,
+  }) {
+    this._salary = salary;
+  }
 
   // an abstract method that must be implemented by the sup-type
   void giveRaise(double x);
@@ -44,7 +50,7 @@ class SoftwareEngineer extends Employee {
   @override
   void giveRaise(double x) {
     x <= 0.15
-        ? this.salary = this.salary + (this.salary * x)
+        ? this._salary = this._salary + (this._salary * x)
         : print(
             "raise can not exceed 15%",
           );
@@ -69,7 +75,14 @@ int main() {
 
   print(emp1.email);
 
-  print(emp1);
+  print("Salary: ${emp1.salary}");
+  emp1.giveRaise(0.14);
+
+  print("Salary after raise: ${emp1.salary}");
+  emp1.giveRaise(0.16);
+
+// no setter therefore an error occurs
+  // emp1.salary = 99999999;
 
   return 0;
 }

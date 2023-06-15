@@ -1,7 +1,11 @@
 // interface class modifier
 
-//   - interface classes can not be extended (inherited) outside of the module (library)
-//   - interface classes can be implemented
+//  - interface classes
+//    - can not be extended (inherited) outside of the module (library)
+//    - can be constructed
+//    - can be implemented
+//    -
+//  - interface classes can be implemented
 
 interface class TodoInterface {
   final String id;
@@ -17,7 +21,11 @@ interface class TodoInterface {
 }
 
 class Todo extends TodoInterface {
-  const Todo({required super.id, required super.todo, required super.isComplete});
+  const Todo({
+    required super.id,
+    required super.todo,
+    required super.isComplete,
+  });
 }
 
 void main() {
