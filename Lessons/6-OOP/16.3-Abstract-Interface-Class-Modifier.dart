@@ -4,12 +4,12 @@
 
 // Abstract Interface Class - Pure Interface
 
-//   - Combines the class modifiers: abstract interface
+//   - Combines the class modifiers: abstract && interface
 //   - Creates a new pure interface
 
 // Pure Interface
 
-//   - Can not be instantiated at all
+//   - Can not be instantiated (constructed) at all
 //   - Can not be extended outside of its own library
 //   - Can be implemented outside of its own library
 
