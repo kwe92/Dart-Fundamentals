@@ -39,10 +39,12 @@ abstract class Employee {
 
 class SoftwareEngineer extends Employee {
   final List<String> progLangs;
+  final List<String> sdks;
   SoftwareEngineer({
     required super.fname,
     required super.lname,
     required this.progLangs,
+    required this.sdks,
     required super.salary,
   });
 
@@ -68,16 +70,20 @@ int main() {
   final emp1 = SoftwareEngineer(
     fname: 'Kweayon',
     lname: 'Clark',
+    salary: 130000,
     progLangs: [
       'SQL',
       'Python',
       'HTML',
       'CSS',
       'Dart',
-      'Javascript',
-      'Typescript',
+      'JavaScript',
+      'TypeScript',
     ],
-    salary: 130000,
+    sdks: <String>[
+      'Flutter',
+      'React',
+    ],
   );
 
   print(emp1.email + '\n');
