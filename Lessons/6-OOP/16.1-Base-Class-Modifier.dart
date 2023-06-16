@@ -1,8 +1,9 @@
 // base class modifier
+
 //   - Enforces signature implemention
 //   - Can not be implemented outside of its own module (library)
-//   - Can be instantiated, but why would you
-//   - Can be inherited
+//   - Can be instantiated (constructed)
+//   - Can be extended (inherited)
 
 import 'dart:math';
 
