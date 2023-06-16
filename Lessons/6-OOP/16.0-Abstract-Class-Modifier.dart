@@ -12,7 +12,7 @@
 
 // abstract methods
 
-//   - replace method body with semi-colon, indicatesing to the compiler that the method is abstract
+//   - replace method body with semi-colon, indicating to the compiler that the method is abstract
 //   - Only abstract classes can have abstract methods
 
 // Stateful abstract class Employee
@@ -23,7 +23,7 @@ abstract class Employee {
   late double _salary;
 
   double get salary => _salary;
-  String get email => "${fname.substring(0, 1).toLowerCase()}${lname.toLowerCase()}@ayonInnovations.net";
+  String get email => '${fname.substring(0, 1) + lname}@ayonInnovations.net'.toLowerCase();
 
   Employee({
     required this.fname,
@@ -33,7 +33,7 @@ abstract class Employee {
     this._salary = salary;
   }
 
-  // an abstract method that must be implemented by the sub-type
+  // an abstract signature that must be implemented by inheriting sub-types
   void giveRaise(double x);
 }
 
@@ -51,35 +51,55 @@ class SoftwareEngineer extends Employee {
     x <= 0.15
         ? this._salary = this._salary + (this._salary * x)
         : print(
-            "raise can not exceed 15%",
+            'raise can not exceed 15%',
           );
   }
 }
 
+class RaiseSalaryError extends Error {
+  final String? message;
+  RaiseSalaryError({required this.message});
+
+  @override
+  String toString() => message != null ? message as String : 'Raise amount can not exceed 15%.';
+}
+
 int main() {
   final emp1 = SoftwareEngineer(
-    fname: "Kweayon",
-    lname: "Clark",
+    fname: 'Kweayon',
+    lname: 'Clark',
     progLangs: [
-      "SQL",
-      "Python",
-      "HTML",
-      "CSS",
-      "Dart",
-      "Javascript",
-      "Typescript",
+      'SQL',
+      'Python',
+      'HTML',
+      'CSS',
+      'Dart',
+      'Javascript',
+      'Typescript',
     ],
     salary: 130000,
   );
 
-  print(emp1.email);
-
-  print("Salary: ${emp1.salary}");
+  print(emp1.email + '\n');
+  print('Salary: ${emp1.salary}\n');
   emp1.giveRaise(0.14);
 
-  print("Salary after raise: ${emp1.salary}");
-  emp1.giveRaise(0.16);
+  print('Salary after raise: ${emp1.salary}\n');
+  try {
+    emp1.giveRaise(0.16);
+  } catch (error, stackTrace) {
+    print('\n Error Message: $error\n');
+    print('Stack Trace: $stackTrace\n');
+  } finally {
+    print('''
 
+Begin, to begin is half the work let half still remain;
+Again begin this and thou wilt have finished.
+
+- Marcus A.
+
+''');
+  }
 // no setter therefore an error will occur
   // emp1.salary = 99999999;
 
