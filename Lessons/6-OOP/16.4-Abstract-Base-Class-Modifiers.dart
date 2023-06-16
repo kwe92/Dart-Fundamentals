@@ -23,6 +23,7 @@ abstract base class VonNeumannModel {
     this._storage = storage;
   }
 
+// abstract signatures that must be implemented
   void addMemory(double ram);
   void addStorage(double diskSpace);
 }
