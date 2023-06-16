@@ -2,9 +2,11 @@
 
 //   - final classes:
 
-//     - Prevents subtyping outside of its own library
+//     - Prevents subtyping outside of its own library (module)
+//     - Can be instantiated (constructed) in external libraries
 //     - Can not be extended (inherited)
 //     - Can not be implemented
+//     - Sub-classes of a final class must be marked final, base or sealed
 
 final class FinalEmployee {
   final String fname;
