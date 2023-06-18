@@ -1,17 +1,19 @@
 import 'dart:io';
 
 /* 
-    - The first thing you do in any application is run the main function
+    - main function
 
-    - The main () function tells dart where the program starts
+      - First function executed
 
-    - The compiler starts to execute code in our main function
+      - tells dart where the program starts
 
-    - Any line written in the dart programing language should end with a semi colon
+      - Compiler executes code starting with the main function
+
+      - Lines end in a semi-colon
 
  */
 
 void main() {
-  // It is best practice to end string literals with
-  stdout.write("Hello Universe!\n");
+  // string literals should end with \n (new line - similate to endl in C++)
+  stdout.write('Hello Universe!\n');
 }
