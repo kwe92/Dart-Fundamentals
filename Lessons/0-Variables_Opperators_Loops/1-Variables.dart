@@ -2,67 +2,78 @@
 
 /*
 
-The Dart language supports the following types−
+Dart language: Types
+
+  - Numbers
+  - Strings
+  - Booleans
+  - Lists
+  - Maps
+  - Records
 
 Numbers
-Strings
-Booleans
-Lists
-Maps
-Numbers
 
-Numbers in Dart are used to represent numeric literals. The Number Dart come in two flavours:
+  - Numeric literals:
 
-Integer − Integer values represent non-fractional values, i.e., numeric values without a decimal point.
-          For example, the value "10" is an integer. Integer literals are represented using the int keyword.
+      - Integer:
 
-Double − Dart also supports fractional numeric values i.e. values with decimal points.
-         The Double data type in Dart represents a 64-bit (double-precision) floating-point number.
-         For example, the value "10.10".
-         The keyword double is used to represent floating point literals.
+          - Set of integers Z
+          - {..., -3, -2, -1, 0, 1, 2, 3, ...}
+
+      - Double:
+
+          - Set of rational numbers Q: fractional form required
+          - {..., -3.21, -2.0, -0.45, 0.0, 1.0, 2.42, 3.5, ...}
+
 
 Strings
 
-Strings represent a sequence of characters. For instance, if you were to store some data like name
-, address etc. the string data type should be used. A Dart string is a sequence of UTF-16 code units. 
-Runes are used to represent a sequence of UTF-32 code units.
-
-The keyword String is used to represent string literals.
-String values are embedded in either single or double quotes.
+    - sequence of characters
+    - A Dart string is a sequence of UTF-16 code units. 
 
 Boolean
 
-The Boolean data type represents Boolean values true and false.
-Dart uses the bool keyword to represent a Boolean value.
-
-
+  - true and false values.
+  
 */
 
 void main() {
-  String fairy = "Kira";
+  String fighter = 'Baki';
 
-  int num_cat = 1;
+  int numFightingStyles = 6;
 
   double pie = 3.14;
 
-  bool goddess = true;
+  bool grappler = true;
 
-  // the keyword var can be used instead of explicitly assigning a data type
+  // var keyword
+
+  //   - mutable variable
+  //   - can be initalized to any type and remains that type
 
   var spiritAnimal = 'Stich';
 
-  // the keywords final and const make your variables immutable
-  // const is a runtime constant
+  // final and const keywords:
+
+  //   final
+
+  //     - immutable variables that can only be set once and then become frozen
+
+  //   const
+
+  //     - compile-time constant frozen at compile-time
 
   final int x = 2;
 
   const int y = 3;
 
-  // $ is a single variable format literal.
-  // Use ${} when more than one variable is being specified.
-  // print seems to add a new line to the console
-  print("$fairy is a fairy goddess: $goddess with $num_cat cat who wants to know what is special about pie: $pie");
+// String interpolation
 
+//  - Insert variables into strings
+//  - use $variableName syntax to format a single variable into a string literal.
+//  - Use ${} when you are specifiying more than one variable or using dot notation.
+
+  print("$fighter is a fighter with $numFightingStyles fighting styles.");
   print(spiritAnimal);
 
   spiritAnimal = "Ifrit";
