@@ -8,19 +8,22 @@ Dart language: Types
   - Strings
   - Booleans
   - Lists
+  - Sets
   - Maps
   - Records
+  - Runes
+  - Symbols
 
 Numbers
 
   - Numeric literals:
 
-      - Integer:
+      - int:
 
           - Set of integers Z
           - {..., -3, -2, -1, 0, 1, 2, 3, ...}
 
-      - Double:
+      - double:
 
           - Set of rational numbers Q: fractional form required
           - {..., -3.21, -2.0, -0.45, 0.0, 1.0, 2.42, 3.5, ...}
@@ -34,7 +37,7 @@ Strings
 Boolean
 
   - true and false values.
-  
+
 */
 
 void main() {

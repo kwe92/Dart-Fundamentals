@@ -1,34 +1,37 @@
 void main() {
-  var y = 5;
-  // .parse is used to turn numbers represented as strings into numbers
+  int y = 5;
 
-  String q = '29';
-  var q2 = int.parse(q);
-  var q3 = double.parse(q);
+  int num1 = 42;
+  int num2 = 12;
 
-  print(q.runtimeType); // .runtimeType returns the data type of a variable
-  print(q2.runtimeType);
-  print(q3.runtimeType);
+  print(num1.runtimeType);
+  print(num2.runtimeType);
 
-  var q4 = q2 + q3; // adding variables
+  var sum_num1_num2 = num1 + num2; // adding variables
 
-  print('the value of q4 is $q4.');
+  print('the sum of $num1 + $num2 is $sum_num1_num2.');
 
   // Working with operators
-  // use double & to represent AND with boolean operations
 
-  print(q4 >= q2 && q4 == q2 + q3);
+  // Logical AND
+  //   - && represents AND
+
+  print(sum_num1_num2 >= num1 && sum_num1_num2 == num1 + num2);
 
   print(10 % 2); // returns the remander
 
-  // use double | to represent OR with a boolean operation
-  print(q4 >= q2 || q2 < q3);
+  // Logical OR
+  //   - || represents OR
 
-  // is returns turns true if the condition is met false otherwise
+  print(sum_num1_num2 >= num1 || num1 < num2);
 
-  print(q4 is int);
+  // is keyword
 
-  print(q4 is! bool); // is! == is not
+  //   - returns turns true if the condition is met false otherwise
+
+  print(sum_num1_num2 is! bool); // is! == is not
+
+// Augmented operators
 
   y += 5; // the same as y = y + 5;
 
