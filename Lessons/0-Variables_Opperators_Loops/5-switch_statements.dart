@@ -1,28 +1,19 @@
+// Switch statements
+
+//   - evaluate some expression
+//   - test evaluated expression against all case statements
+//   - execute the case statement that matches the expression
+//   - if no case clause is matched then the default case is returned
+
+// Example 1:
+//  - given some mathmatical operation to perform
+//  - execute the given operation on variables x & y respectively
+
 void main() {
-  // Say you have two numbers:
+  int x = 5;
+  int y = 3;
 
-  //      x = 5
-  //      y = 3
-
-  // You dont know which opperation you want to perform on both numbers
-  // So we use a switch statement
-  // op in this example is representative of the operation we want to perform
-
-  var x = 5;
-  var y = 3;
-
-  var op = 'add';
-
-  // Switch statements
-
-  //      - Evaluate some expression in this case our expression is the variable op
-  //      - The value of the expression is tested against all case statements
-  //      - if the expression returns true for a case statement then that case statements code block is returned
-  //      - if there is no matching case statement for the evaluated expression then our default case is returned
-
-  // Example 1:
-
-  //      - Given some mathmatical operation to perform, execute the given operation on variables x & y respectively
+  String op = 'add';
 
   switch (op) {
     case 'add':
@@ -41,8 +32,7 @@ void main() {
       print('x % y = ${x % y}');
       break;
     default:
-      print(
-          'Incorrect operation, please use one of the following: add, subtract, multiply, divide, mod');
+      print('Incorrect operation, please use one of the following: add, subtract, multiply, divide, mod');
       break;
   }
 
