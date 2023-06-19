@@ -14,6 +14,7 @@ void main() {
   // Working with operators
 
   // Logical AND
+
   //   - && represents AND
 
   print(sum_num1_num2 >= num1 && sum_num1_num2 == num1 + num2);
@@ -21,6 +22,7 @@ void main() {
   print(10 % 2); // returns the remander
 
   // Logical OR
+
   //   - || represents OR
 
   print(sum_num1_num2 >= num1 || num1 < num2);
