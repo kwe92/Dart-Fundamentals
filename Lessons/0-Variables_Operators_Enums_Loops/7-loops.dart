@@ -1,3 +1,5 @@
+// TODO: Read docs, expand on more and clean up code and comments
+
 void main() {
   var num = 4;
   var factorial = 1;
