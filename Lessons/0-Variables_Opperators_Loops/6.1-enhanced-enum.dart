@@ -6,7 +6,8 @@
 
 // Example: Vehicle enum
 
-//   order:
+//   order of operations:
+
 //     - instance variables
 //     - const class constructor
 
