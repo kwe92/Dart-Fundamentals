@@ -19,7 +19,10 @@ void main() {
 
   print(sum_num1_num2 >= num1 && sum_num1_num2 == num1 + num2);
 
-  print(10 % 2); // returns the remander
+// Modulo
+//  - returns the remander
+
+  print(10 % 2);
 
   // Logical OR
 
