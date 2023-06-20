@@ -4,6 +4,8 @@
 //       - use break in an empty case's body to prevent fall through
 
 // Switch statement - non-sequential fallthrough
+
+//   - execute different sections of a switch statement depending on the value passed
 //   - use the continue statement and a label
 
 void executePaid() => print('paid, closing and shipping.');
