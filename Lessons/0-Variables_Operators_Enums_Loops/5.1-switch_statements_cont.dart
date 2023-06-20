@@ -1,16 +1,16 @@
 import 'dart:math';
 
-void executeOpen() => print('Status is open');
+void executeOpen() => print('Status is open.');
 
-void executeClosed() => print('Status is closed');
+void executeClosed() => print('Status is closed.');
 
-void executePending() => print('Status is pending');
+void executePending() => print('Status is pending.');
 
-void executeApproved() => print('Status is approved');
+void executeApproved() => print('Status is approved.');
 
-void executeDenied() => print('Status is denied');
+void executeDenied() => print('Status is denied.');
 
-void executeUnknown() => print('Status is unknown');
+void executeUnknown() => print('Status is unknown.');
 
 int _randInt(int x) => Random().nextInt(x);
 
