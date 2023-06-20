@@ -4,6 +4,7 @@ typedef VonNeumannModel = ({
   String memory,
   String storage,
 });
+
 final VonNeumannModel macRecord = (
   os: 'macOS Ventura 13.0.1',
   cpu: 'Apple M1',
@@ -23,6 +24,13 @@ final VonNeumannModel windowsRecord = (
   storage: 'Seagate BarraCuda 8TB HDD',
 );
 
+VonNeumannModel? getComputer(String os) => switch (os) {
+      'mac' => macRecord,
+      'windows' => windowsRecord,
+      'linux' => linuxRecord,
+      _ => throw FormatException('$os is not an operating system')
+    };
+
 void main() {
   final List<String> os = [
     'mac',
@@ -30,12 +38,30 @@ void main() {
     'linux',
   ];
 
-  final computer = switch (os[1]) {
+// Switch statement expression
+
+//   - return a value from a switch statement:
+//       - assign it to a variable
+//       - return value of a function
+
+  final computer0 = switch (os[1]) {
     'mac' => macRecord,
     'windows' => windowsRecord,
     'linux' => linuxRecord,
     _ => 'not a known operating system',
   };
 
-  print(computer);
+  final VonNeumannModel? computer1 = switch (os[2]) {
+    'mac' => macRecord,
+    'windows' => windowsRecord,
+    'linux' => linuxRecord,
+    _ => throw FormatException(),
+  };
+
+  print('computer0: $computer0');
+  print('computer1: $computer1');
+
+  final computer2 = getComputer(os[0]);
+
+  print('computer2: $computer2');
 }
