@@ -24,7 +24,7 @@ final VonNeumannModel windowsRecord = (
   storage: 'Seagate BarraCuda 8TB HDD',
 );
 
-VonNeumannModel? getComputer(String os) => switch (os) {
+VonNeumannModel getComputer(String os) => switch (os) {
       'mac' => macRecord,
       'windows' => windowsRecord,
       'linux' => linuxRecord,
@@ -42,16 +42,16 @@ void main() {
 
 //   - return a value from a switch statement:
 //       - assign it to a variable
-//       - return value of a function
+//       - use as areturn value of a function
 
-  final computer0 = switch (os[1]) {
+  final computer0 = switch (os[0]) {
     'mac' => macRecord,
     'windows' => windowsRecord,
     'linux' => linuxRecord,
     _ => 'not a known operating system',
   };
 
-  final VonNeumannModel? computer1 = switch (os[2]) {
+  final VonNeumannModel computer1 = switch (os[1]) {
     'mac' => macRecord,
     'windows' => windowsRecord,
     'linux' => linuxRecord,
@@ -61,7 +61,7 @@ void main() {
   print('computer0: $computer0');
   print('computer1: $computer1');
 
-  final computer2 = getComputer(os[0]);
+  final computer2 = getComputer(os[2]);
 
   print('computer2: $computer2');
 }
