@@ -27,7 +27,9 @@ class Point {
 // function returning a switch expression
 Point getPoint(Pair pair) => switch (pair) {
       (double a, double b) when a >= b && b > 0 => Point(x: a, y: b),
-      _ => throw PointException('x must be greater than y and y must be greater than 0.'),
+      _ => throw PointException(
+          message: 'x must be greater than y and y must be greater than 0.',
+        ),
     };
 
 // type signature
@@ -35,8 +37,8 @@ typedef Pair = (double a, double b);
 
 // custom exception
 class PointException extends Error {
-  final String? message;
-  PointException([this.message]);
+  final String message;
+  PointException({required this.message});
 
   @override
   String toString() => message ?? super.toString();
