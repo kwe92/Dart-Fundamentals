@@ -50,13 +50,15 @@ void main() {
     print(p0);
   } catch (errorMsg, stackTrace) {
     print('\n$errorMsg\n');
-
-    stackTrace.toString().split('#').forEach((stackTrackMessage) {
-      print('$stackTrackMessage\n');
-    });
+    printStackTrace(stackTrace);
   } finally {
     const Pair pair1 = (4.0, 2.0);
     final Point p1 = getPoint(pair1);
     print('Point1: $p1');
   }
+}
+
+void printStackTrace(StackTrace stackTrace) {
+  final List<String> stackTrackList = stackTrace.toString().split('#');
+  stackTrackList.forEach((StackTracestackTraceLine) => print(stackTrace));
 }
