@@ -3,6 +3,9 @@
 //   - Dart if statements now support if clauses followed by a pattern
 //   - A way to match the destructure ]of an object to a single pattern
 
+// when gaurd clause
+
+//   - used to evaluate a arbitrary boolean expression
 class Point {
   final double x;
   final double y;
