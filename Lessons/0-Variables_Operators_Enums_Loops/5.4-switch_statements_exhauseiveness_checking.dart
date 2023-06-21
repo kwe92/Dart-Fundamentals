@@ -4,8 +4,9 @@ import 'dart:math';
 
 //   - All possible outcomes must be exhausted
 //   - compiletime error if a value does not match a case within a switch statement
+//   - Allows you to use dart in a more functional way
 
-// Enumerated and sealed types
+// Exhaustiveness: Enumerated and sealed types
 
 //   - enumerated and sealed types do not require a default case
 //   - all possible values are known and fully enumerable
