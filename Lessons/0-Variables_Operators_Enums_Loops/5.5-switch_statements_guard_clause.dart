@@ -59,6 +59,12 @@ void main() {
 }
 
 void printStackTrace(StackTrace stackTrace) {
-  final List<String> stackTrackList = stackTrace.toString().split('#');
-  stackTrackList.forEach((StackTracestackTraceLine) => print(stackTrace));
+  final List<String> stackTraceList = stackTrace.toString().split('#');
+  stackTraceList.map((stackTraceEle) => stackTraceEle.trim()).forEach((stackTraceEle) {
+    if (stackTraceEle.length > 0) {
+      print(
+        '#$stackTraceEle\n  length ${stackTraceEle.length}',
+      );
+    }
+  });
 }
