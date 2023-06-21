@@ -18,13 +18,23 @@ class Point {
   String toString() => 'Point($x, $y)';
 }
 
-Point getPoint(arr) => switch (arr) {
-      (double a, double b) => Point(x: a, y: b),
+Point getPoint(Pair pair) => switch (pair) {
+      (double a, double b) when a >= b && b > 0 => Point(x: a, y: b),
       _ => throw FormatException(),
     };
 
+typedef Pair = (double a, double b);
+
+class PointException extends Error {
+  final String? message;
+  PointException([this.message]);
+
+  @override
+  String toString() => message ?? super.toString();
+}
+
 void main() {
-  const (double, double) arr1 = (4.0, 2.0);
+  const Pair arr1 = (4.0, 2.0);
   final Point p1 = getPoint(arr1);
   print(p1);
 }
