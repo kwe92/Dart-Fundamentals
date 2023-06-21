@@ -19,7 +19,7 @@ const List<double> pair = [4.0, 2.0];
 const List<double> triplet = [2.12, 43.3, 5.6];
 
 Point? getPoint(Iterable pair) {
-  if (pair case [double x, double y]) {
+  if (pair case [double x, double y] when x > y && y > 0) {
     return Point(x: x, y: y);
   }
   return null;
