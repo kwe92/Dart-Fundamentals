@@ -54,17 +54,21 @@ void main() {
   } finally {
     const Pair pair1 = (4.0, 2.0);
     final Point p1 = getPoint(pair1);
-    print('Point1: $p1');
+    print('Point1: $p1\n');
   }
 }
 
 void printStackTrace(StackTrace stackTrace) {
   final List<String> stackTraceList = stackTrace.toString().split('#');
-  stackTraceList.map((stackTraceEle) => stackTraceEle.trim()).forEach((stackTraceEle) {
-    if (stackTraceEle.length > 0) {
-      print(
-        '#$stackTraceEle\n  length ${stackTraceEle.length}',
-      );
-    }
-  });
+  final List<String> trimedStackTraceList = stackTraceList
+      .map(
+        (stackTraceEle) => stackTraceEle.trim(),
+      )
+      .toList();
+
+  trimedStackTraceList.forEach((stackTraceEle) => stackTraceEle.length > 0
+      ? print(
+          '#$stackTraceEle\n',
+        )
+      : null);
 }
