@@ -43,6 +43,7 @@ class PointException extends Error {
 }
 
 void main() {
+  // try, catch, finally to handle error
   try {
     const Pair pair0 = (3, -7);
     final Point p0 = getPoint(pair0);
