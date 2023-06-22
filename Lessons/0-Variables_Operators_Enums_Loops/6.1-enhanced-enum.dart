@@ -1,15 +1,16 @@
-// Enhanced Enumeration
+import '5.5-switch_statements_guard_clause.dart';
 
-//   - enum with fields, methods, and a const constructor
-//   - declare enum with multiple instances
-//   - instance methods use this to reference the current value
+// Enhanced enum
 
-// Example: Vehicle enum
+//   - multiple unique instances
+//   - this keyword references current instance
 
-//   order of operations:
+// Enhanced enum parts and order:
 
-//     - instance variables
-//     - const class constructor
+//   - unique instances of the const class
+//   - fields (member variables / derivations)
+//   - const class constructor
+//   - methods
 
 enum Vehicle implements Comparable<Vehicle> {
   bycicle(
@@ -26,11 +27,13 @@ enum Vehicle implements Comparable<Vehicle> {
     tires: 6,
     passengers: 50,
     carbonKilometer: 800,
-  );
+  ),
+  ;
 
   final int tires;
   final int passengers;
   final int carbonKilometer;
+  // computed get dervation - returns a derivative
   int get carbonFootPrint => (carbonKilometer / passengers).round();
   bool get isTwoWheeled => this == Vehicle.bycicle;
 
@@ -42,4 +45,20 @@ enum Vehicle implements Comparable<Vehicle> {
 
   @override
   int compareTo(Vehicle other) => this.carbonFootPrint - other.carbonFootPrint;
+
+  @override
+  String toString() =>
+      '${this.name}(tires: $tires, passengers: $passengers, carbonKilometer: $carbonKilometer, carbonFootPrint: $carbonFootPrint, isTwoWheeled: $isTwoWheeled)';
+}
+
+void main() {
+  final Vehicle bike = Vehicle.bycicle;
+  final Vehicle sedan = Vehicle.car;
+  try {
+    print('Bike: ${bike}');
+    print('Sedan: ${sedan}');
+  } catch (errorMsg, stackTrace) {
+    print(errorMsg);
+    printStackTrace(stackTrace);
+  } finally {}
 }
