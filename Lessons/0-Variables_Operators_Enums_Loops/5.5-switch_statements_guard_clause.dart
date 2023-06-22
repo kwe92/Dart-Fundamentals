@@ -1,8 +1,10 @@
 // Switch Statement: Guard Clause
 
-//   - evaluates an arbitrary boolean expression after matching
+// when keyword
+//   - optional guard clause after a case clause is matched
+//   - evaluates an arbitrary boolean expression
 //   - adds additional constraints
-//   - If a gaurd clause is false it will fallthrough to the next case statement
+//   - false gaurd clauses fallthrough
 
 class Point {
   final double x;
@@ -60,7 +62,7 @@ void main() {
   }
 }
 
-// Prints returned Stack Trace of a call sequence that triggers an exception in a readable way
+// Prints Stack Trace of a call sequence triggering an exception
 
 void printStackTrace(StackTrace stackTrace) => stackTrace
     .toString()
