@@ -41,7 +41,7 @@ class PointException extends Error {
   PointException({required this.message});
 
   @override
-  String toString() => message ?? super.toString();
+  String toString() => message;
 }
 
 void main() {
@@ -49,7 +49,7 @@ void main() {
   try {
     const Pair pair0 = (3, -7);
     final Point p0 = getPoint(pair0);
-    print(p0);
+    print('p0: $p0');
   } catch (errorMsg, stackTrace) {
     print('\n$errorMsg\n');
     printStackTrace(stackTrace);
@@ -60,17 +60,16 @@ void main() {
   }
 }
 
-void printStackTrace(StackTrace stackTrace) {
-  final List<String> stackTraceList = stackTrace.toString().split('#');
-  final List<String> trimedStackTraceList = stackTraceList
-      .map(
-        (stackTraceEle) => stackTraceEle.trim(),
-      )
-      .toList();
+// Prints returned Stack Trace of a call sequence that triggers an exception in a readable way
 
-  trimedStackTraceList.forEach((stackTraceEle) => stackTraceEle.length > 0
-      ? print(
-          '#$stackTraceEle\n',
-        )
-      : null);
-}
+void printStackTrace(StackTrace stackTrace) => stackTrace
+    .toString()
+    .split('#')
+    .where(
+      // filter predicate
+      (String stackTraceEle) => stackTraceEle.trim().length > 0,
+    )
+    .forEach(
+      // for each stack trace message print the message
+      (String stackTraceEle) => print('#${stackTraceEle.trim()}\n'),
+    );
