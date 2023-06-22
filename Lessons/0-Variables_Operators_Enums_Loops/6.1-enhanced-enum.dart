@@ -7,10 +7,12 @@ import '5.5-switch_statements_guard_clause.dart';
 
 // Enhanced enum parts and order:
 
-//   - unique instances of the const class
+//   - unique instances of const class
 //   - fields (member variables / derivations)
 //   - const class constructor
-//   - methods
+//   - class methods
+
+// inheriting from Comparable class is optional
 
 enum Vehicle implements Comparable<Vehicle> {
   bycicle(
