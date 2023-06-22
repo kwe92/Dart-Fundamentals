@@ -1,8 +1,40 @@
-// TODO: Read docs, expand on more and clean up code and comments
+// For Loops
+
+//   - finite loop, executes a block of code x number of times
+
+// Example 1:
+
+//  - for loop: factorial
+
+//      - consists of initializer, condition and final expression
+
+int getFactorial(int x) {
+  var factorial = 1;
+  for (var i = x; i >= 1; i--) {
+    factorial *= i;
+  }
+  return factorial;
+}
+
+typedef EmployeeRecord = ({
+  String fname,
+  String lname,
+  String position,
+  double salary,
+});
 
 void main() {
-  var num = 4;
-  var factorial = 1;
+  final num = 4;
+
+  print(
+    'The factorial of $num is ${getFactorial(num)}',
+  );
+
+  // Example 2:
+
+  //   - forEach
+
+  //       - a method of interables
 
   List<String> dopeAnimeCharacters = [
     'Baki Hanma',
@@ -12,71 +44,92 @@ void main() {
     'Thorfinn',
   ];
 
-  // For Loops
-
-  // A for loop is a finite loop that executes a block of code a specified number of times
-  // Variables can be defined in the initialization
-  // This for loop has 3 parts
-  // initializer, condition and final expression
-  // The initializer is var i = num or 5
-  // The condition of execution is as long as i is greater than or equal to 1 repeat the loop
-  // The final expression i-- reduces i by 1 for every iteration that the block is ran until i reaches 0
-  // for (counter, condition, counter++ || counter--)
-  // Example 1:
-
-  //      - For loops to generate a factorial
-
-  for (var i = num; i >= 1; i--) {
-    factorial *= i;
-  }
-
-  // Example 2:
-
-  //      - Print out dope anime character names
-
-  print('The factorial of $num is $factorial');
-
-  for (var i in dopeAnimeCharacters) {
-    print(i);
-  }
+  dopeAnimeCharacters.forEach(
+    (hero) => print(hero),
+  );
 
   print('----------------');
 
-  for (var i in dopeAnimeCharacters) {
-    if (i.length > 8) print(i);
+// Example 2.1
+
+//   - Callbacks in for loops
+
+//       - The value is captured in callback
+
+  var callBacks = [];
+  for (var i = 0; i < 3; i++) {
+    callBacks.add(() => print(i));
   }
 
-  // While Loops
+// Example 2.1 cont.
 
-  //      - A while loop can be finite or infinte
-  //      - Evaluates some condition and executes the code block as long as that condition remaines true
-  //      - The while loop evaluates the condition before the block of code is executed
-  //      - Checks condition the executes some code
+// for in
 
-  var i = 8;
-  while (i > 0) {
-    print('You are a beautiful human!');
-    i--;
+//   - you can then iterate over callbacks, calling them indvidually
+
+  for (final lambdaFunction in callBacks) {
+    lambdaFunction();
   }
 
-  // Do While Loops
+  // Summary of for loop with callbacks
 
-  //      - Similar to while loops with a slight difference
-  //      - While loops evaluate the condition and if true executes the code block
-  //      - Do while loops executes the code block and then evaluates the condition
+  //   - The variable in the for loop is captured by the callback by index
+  //   - The array of callbacks can then be iterated over
 
-  i = 8;
+  print('----------------');
 
-  do {
-    print('Begin, beginning is half the work!');
-    i--;
-  } while (i > 0);
+  const EmployeeRecord emp1 = (
+    fname: 'Kweayon',
+    lname: 'Clark',
+    position: 'Distinguished Software Engineer',
+    salary: 264725,
+  );
 
-  // Infinite While loop
+  final List emp2 = [
+    'Kweayon',
+    'Clark',
+    'Distinguished Software Engineer',
+    264725,
+  ];
+  for (var (
+        _,
+        _,
+        :position,
+        :salary,
+      ) in emp2) {
+    print('Position $position salary $salary');
+  }
+  // // While Loops
 
-  //      - Pass the boolean value true to the while loop and it will become infinite
+  // //   - can be finite or infinte
+  // //   - Evaluates some condition, executes code block while the condition remains true
+  // //   - while loop evaluates the condition before the block of code is executed
+  // //   - Checks condition, executes some code
 
-  // Uncomment the below lines to run the inifinte loop
-  // while (true) {
-  //  print('We are all Human');}
+  // var i = 3;
+  // while (i > 0) {
+  //   print('You are a beautiful human!');
+  //   i--;
+  // }
+
+  // // Do While Loops
+
+  // //  - Similar to while loops
+  // //  - Do while loops executes the code block
+  // //  - then evaluates the condition
+
+  // i = 3;
+
+  // do {
+  //   print('Begin, beginning is half the work!');
+  //   i--;
+  // } while (i > 0);
+
+  // // Infinite While loop
+
+  // //   - Pass the boolean value true to the while loop and it will become infinite
+
+  // // Uncomment the below lines to run the inifinte loop
+  // // while (true) {
+  // //  print('We are all Human');}
 }
