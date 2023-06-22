@@ -11,6 +11,8 @@
 
 // Example 1: factorial
 
+import '5.5-switch_statements_guard_clause.dart';
+
 int getFactorial(int x) {
   var factorial = 1;
   for (var i = x; i >= 1; i--) {
@@ -20,6 +22,7 @@ int getFactorial(int x) {
 }
 
 // Records
+
 //   - new feature of Dart 3 jan 2023
 //   - see record lessons
 //   - no need to skip to Record lessons though
@@ -70,56 +73,59 @@ void main() {
 
   print('----------------');
 
-// TODO: Continue editing rom here
 // Example 2.1
 
 //   - Callbacks in for loops
 
 //       - The value is captured in callback
 
-  var callBacks = [];
+  var lambdaFunctions = [];
   for (var i = 0; i < 3; i++) {
-    callBacks.add(() => print(i));
+    lambdaFunctions.add(() => print(i));
   }
 
 // Example 2.1 cont.
 
 // for in
 
-//   - you can then iterate over callbacks, calling them indvidually
+//   - iterate over callbacks, calling them indvidually
 
-  for (final lambdaFunction in callBacks) {
-    lambdaFunction();
+  for (final lambda in lambdaFunctions) {
+    lambda();
   }
 
   // Summary of for loop with callbacks
 
-  //   - The variable in the for loop is captured by the callback by index
-  //   - The array of callbacks can then be iterated over
+  //   - variable captured by callback
+  //   - collection of callbacks can then be iterated over
+  //   - executing with the stored value
 
   print('----------------');
-  // TODO: can be uncommented
-  // const EmployeeRecord emp1 = (
-  //   fname: 'Kweayon',
-  //   lname: 'Clark',
-  //   position: 'Distinguished Software Engineer',
-  //   salary: 264725,
-  // );
 
-  // final List emp2 = [
-  //   'Kweayon',
-  //   'Clark',
-  //   'Distinguished Software Engineer',
-  //   264725,
-  // ];
-  // for (var (
-  //       _,
-  //       _,
-  //       :position,
-  //       :salary,
-  //     ) in emp2) {
-  //   print('Position $position salary $salary');
-  // }
+  try {
+    // TODO: can be uncommented
+    const EmployeeRecord emp1 = (
+      fname: 'Kweayon',
+      lname: 'Clark',
+      position: 'Distinguished Software Engineer',
+      salary: 264725,
+    );
+
+    final List emp2 = [
+      'Kweayon',
+      'Clark',
+      'Distinguished Software Engineer',
+      264725,
+    ];
+
+    for (var [fname, lname, position, salary] in emp2) {
+      print('Position $position salary $salary`');
+    }
+  } catch (errorMsg, stackTrack) {
+    print("Exception Msg: $errorMsg");
+    printStackTrace(stackTrack);
+  } finally {}
+
   // While Loops
 
   //   - can be finite or infinte
