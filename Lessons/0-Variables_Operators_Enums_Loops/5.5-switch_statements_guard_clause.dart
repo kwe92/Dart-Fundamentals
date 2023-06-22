@@ -1,4 +1,4 @@
-// Switch Statement: Guard Clause
+// Switch Statement / Expressions: Guard Clause
 
 // when keyword
 //   - optional guard clause after a case clause is matched

@@ -1,6 +1,6 @@
 // Enumerated types: enum - Enumerations
 
-//   - special class representing a fixed number of constant values
+//   - a set of unique constant values, defined by a special class
 
 enum DayOfWeek {
   Monday,
@@ -14,40 +14,42 @@ enum DayOfWeek {
 
 /// The entry point to our program.
 void main() {
-  // after a enumerated list is defined we can then initialize a variable.
+  // variables can be initalized from an enumerated list
   const DayOfWeek dow = DayOfWeek.Sunday;
 
   switch (dow) {
     case DayOfWeek.Monday:
-      print('Numerical day: ${dow.index + 1}');
+      _getDayByNumber(dow);
       print('Monday');
-      break;
     case DayOfWeek.Tuesday:
-      print('Numerical day: ${dow.index + 1}');
+      _getDayByNumber(dow);
       print('Tuesday');
-      break;
+
     case DayOfWeek.Wednesday:
-      print('Numerical day: ${dow.index + 1}');
+      _getDayByNumber(dow);
       print('Wednesday');
-      break;
+
     case DayOfWeek.Thursday:
-      print('Numerical day: ${dow.index + 1}');
+      _getDayByNumber(dow);
       print('Thursday');
-      break;
+
     case DayOfWeek.Friday:
-      print('Numerical day: ${dow.index + 1}');
+      _getDayByNumber(dow);
       print('Friday');
-      break;
+
     case DayOfWeek.Saturday:
-      print('Numerical day: ${dow.index + 1}');
+      _getDayByNumber(dow);
       print('Saturday');
-      break;
+
     case DayOfWeek.Sunday:
-      print('Numerical day: ${dow.index + 1}');
+      _getDayByNumber(dow);
       print('Sunday');
-      break;
+
     default:
       print('Not a valid day of the week!');
-      break;
   }
 }
+
+void _getDayByNumber(DayOfWeek dow) => print(
+      'Numerical day: ${dow.index + 1}',
+    );
