@@ -38,5 +38,5 @@ void main() {
 
 // Summary
 
-// - With the introduction of patterns you can now use case clauses in if-statements
+// - patternsallow  you to use case clauses in if-statements
 // - If the pattern matches the value then the branch executes with any variables the pattern defines in scope
