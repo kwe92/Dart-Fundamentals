@@ -1,13 +1,28 @@
 /// The entry point to our program
 
 void main() {
-  // TODO: go over again and make more concise
-  // Lists
+  // Iterables
 
-  //   - arrays are 0-based indexed data structures
-  //       - index one-to-one correspondence with Whole numbers {0, 1, 2, 3,...}
+  //   - data structure, representing a collection of elements
+  //   - can be accessed sequentially
+  //   - abstract class (can not instantiate)
+
+  // Iterable: Lists
+
+  //   - 0-based indexed array
+  //   - one-to-one correspondence to Whole numbers {0, 1, 2, 3,...}
   //   - non-homogeneous by default
+  //   - List literals [] can be declared as Interables
 
+  const Iterable<double> iterable = [3.14, 0.001, 0.05];
+
+  // ? List literals returned as Interables can not be indexed using brackets []
+
+  // iterable[9];
+
+  // Iterable.elementAt O(n) time complexity not O(1) as with indexing
+
+  print('Iterable');
   // const arrays are frozen at compile-time
 
   const List<String> heroNamesTest = ['Goku', 'Naruto', 'Gon', 'Deku'];
