@@ -9,7 +9,7 @@
 //   - condition
 //   - final expression
 
-// Example 1: factorial
+// Example 1: for loop
 
 import '5.5-switch_statements_guard_clause.dart';
 
@@ -73,9 +73,7 @@ void main() {
 
   print('----------------');
 
-// Example 2.1
-
-//   - Callbacks in for loops
+// Example 2.1: Callbacks in for loops
 
 //       - The value is captured in callback
 
@@ -84,9 +82,7 @@ void main() {
     lambdaFunctions.add(() => print(i));
   }
 
-// Example 2.1 cont.
-
-// for in
+// Example 2.2: for-in loop
 
 //   - iterate over callbacks, calling them indvidually
 
@@ -94,69 +90,40 @@ void main() {
     lambda();
   }
 
-  // Summary of for loop with callbacks
-
-  //   - variable captured by callback
-  //   - collection of callbacks can then be iterated over
-  //   - executing with the stored value
-
   print('----------------');
 
-  try {
-    // TODO: can be uncommented
-    const EmployeeRecord emp1 = (
-      fname: 'Kweayon',
-      lname: 'Clark',
-      position: 'Distinguished Software Engineer',
-      salary: 264725,
-    );
+  // While loops
 
-    final List emp2 = [
-      'Kweayon',
-      'Clark',
-      'Distinguished Software Engineer',
-      264725,
-    ];
+  //  - can be finite or infinte
+  //  - Evaluates some condition
+  //  - executes code block while condition remains true
+  //  - evaluates condition before block is executed
+  //  - Checks condition, executes some code
 
-    for (var [fname, lname, position, salary] in emp2) {
-      print('Position $position salary $salary`');
-    }
-  } catch (errorMsg, stackTrack) {
-    print("Exception Msg: $errorMsg");
-    printStackTrace(stackTrack);
-  } finally {}
+  var i = 3;
+  while (i > 0) {
+    print('You are a beautiful human!');
+    i--;
+  }
 
-  // While Loops
+  // do-while loops
 
-  //   - can be finite or infinte
-  //   - Evaluates some condition, executes code block while the condition remains true
-  //   - while loop evaluates the condition before the block of code is executed
-  //   - Checks condition, executes some code
-
-  // var i = 3;
-  // while (i > 0) {
-  //   print('You are a beautiful human!');
-  //   i--;
-  // }
-
-  // Do While Loops
-
-  //  - Similar to while loops
-  //  - Do while loops executes the code block
+  //  - executes the code block
   //  - then evaluates the condition
 
-  // i = 3;
+  i = 3;
 
-  // do {
-  //   print('Begin, beginning is half the work!');
-  //   i--;
-  // } while (i > 0);
+  do {
+    print('Begin, beginning is half the work!');
+    i--;
+  } while (i > 0);
 
-  // Infinite While loop
+  // infinite while loop
 
-  //   - Pass the boolean value true to the while loop and it will become infinite
+  //   - passing boolean value true to a while loop results in infinite loop
 
   // Uncomment the below lines to run the inifinte loop
+
   // while (true) {
   //  print('We are all Human');}
 }

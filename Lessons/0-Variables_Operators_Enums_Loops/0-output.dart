@@ -3,17 +3,18 @@ import 'dart:io';
 /* 
     - main function
 
-      - First function executed
+      - Compiler executes main function first
 
-      - tells dart where the program starts
+      - informing dart where the program starts
 
-      - Compiler executes code starting with the main function
-
-      - Lines end in a semi-colon
+      - Lines terminate with semi-colon
 
  */
 
 void main() {
-  // string literals should end with \n (new line - similate to endl in C++)
+  // string literals end with \n
+  // \n
+  //   - new line
+  //   -  similar to endl in C++
   stdout.write('Hello Universe!\n');
 }
