@@ -1,32 +1,44 @@
-// ignore_for_file: unused_local_variable, unused_import
-
 /// The entry point to our program
 
 void main() {
-  //Lists also known as Arrays are 0-based indexed data structures
-  // In the Dart programming language Arrays are represented as Lists
-  // Lists in the dart programming are nonhomogeneous by default
-  // You can declare and initialize a List as a homogeneous array by
-  // being explicit using the following notation
-  // List<data_type> myListVariableName = [n...list of correct data types];
-  // <data_type> is type annotation
-  List<String> heroNamesTest = ['Goku', 'Naruto', 'Gon', 'Deku'];
+  // TODO: go over again and make more concise
+  // Lists
 
-  // It is still better to use const, final and var for declaration
-  // Allowing dart to infer the type
-  // To use infered types and still make an Array homogeneous use the following notation
-  const heroNames = <String>['Goku', 'Naruto', 'Gon', 'Deku'];
+  //   - arrays are 0-based indexed data structures
+  //       - index one-to-one correspondence with Whole numbers {0, 1, 2, 3,...}
+  //   - non-homogeneous by default
 
-  // const makes the Array immutable but the error is only caught at runtime not compile time
-  // heroNames[0] = 'Gohan'; // will result in a runtime error uncomment to see
+  // const arrays are frozen at compile-time
 
-  // Different ways to iterate through an arrays elements
-  heroNames.forEach((element) => print(element.toLowerCase()));
+  const List<String> heroNamesTest = ['Goku', 'Naruto', 'Gon', 'Deku'];
 
+  try {
+    // a run-time error is thrown
+    heroNamesTest[3] = 'Almight';
+  } catch (errorMessage, stackTrace) {
+    print('Error Message: $errorMessage');
+  } finally {
+    print('Some anime charaters $heroNamesTest');
+  }
+
+  // mutable if final or const is omitted
+
+  List<String> heroNames = ['Goku', 'Naruto', 'Gon', 'Deku'];
+
+// Iterable iteration
+
+  // forEach
+  heroNames.forEach(
+    (element) => print(
+      element.toLowerCase(),
+    ),
+  );
+
+  // for-in
   for (var hero in heroNames) {
     print(hero);
   }
-
+  // for loop
   for (var i = 0; i < heroNames.length; i++) {
     print(heroNames[i].toUpperCase());
   }
@@ -69,10 +81,4 @@ void main() {
   print('The sum of $myList is ${sum(myList)}');
 }
 
-num sum(var iter) {
-  num result = 0;
-  for (var ele in iter) {
-    result += ele;
-  }
-  return result;
-}
+int sum(List<int> iter) => iter.reduce((value, element) => value + element);
