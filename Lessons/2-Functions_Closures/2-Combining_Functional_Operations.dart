@@ -1,41 +1,49 @@
 // Combining Functional Operations
-//    - you can method chain or combine functional operations or methods
 
-// Task
-//    - Given a list of email addresses and known domains:
-//        - Parse the domain name from the email list and return only domains that are unknown
-//        - Complete the task only using functional operatons and chaining them together
+//   - method chaining
+
+// Task:
+
+//   - given list of email addresses and known domains
+//   - parse domain name from email list
+//   - return known and unknown domains in seprate collections
 
 void main() {
   // List of known email adresses
-  const emails = <String>[
+  const List<String> emails = [
     'abc@abc.com',
     'me@example.com',
     'john@gmail.com',
-    'katy@yahoo.com'
+    'katy@yahoo.com',
   ];
 
   // List of known domains
-  const knownDomains = <String>['gmail.com', 'yahoo.com'];
+  const List<String> knownDomains = [
+    'gmail.com',
+    'yahoo.com',
+  ];
 
-  // returns Iterable ('abc.com', 'example.com', 'gmail.com', 'yahoo.com')
-  // returns Iterable ('abc.com', 'example.com')
+// returns ['abc.com', 'example.com']
   final List<String> unknownDomains = emails
-      .map((stringElement) => stringElement.split('@').last)
-      .where((domain) => !knownDomains.contains(domain))
-      .toList(); // returns ['abc.com', 'example.com']
+      .map(
+        (emailAddress) => emailAddress.split('@').last,
+      )
+      .where(
+        (domain) => !knownDomains.contains(domain),
+      )
+      .toList();
 
   print(unknownDomains); // prints ['abc.com', 'example.com']
   print(
-      'Values using getUnknownDomains function: ${getUnknownDomains(emails, knownDomains)}');
+    'Values using getUnknownDomains function: ${getUnknownDomains(emails, knownDomains)}',
+  );
 }
 
 // getUnknownDomains
-//    - takes two arguments, both Lists of Strings
-//    - Returns the values in the first List not in the Second list
-Iterable<String> getUnknownDomains(
-        List<String> emails, List<String> knownDomains) =>
-    emails
-        .map((stringElement) => stringElement.split('@').last)
-        .where((domain) => !knownDomains.contains(domain))
-        .toList();
+Iterable<String> getUnknownDomains(List<String> emails, List<String> knownDomains) => emails
+    .map(
+      (emailAddress) => emailAddress.split('@').last,
+    )
+    .where(
+      (domain) => !knownDomains.contains(domain),
+    );
