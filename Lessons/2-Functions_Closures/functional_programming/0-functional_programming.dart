@@ -1,32 +1,34 @@
 // Function Signatures
+
 typedef IntFunc = int Function(int x);
 
+typedef HighOrderFunction = Iterable Function(List, IntFunc);
+
 int main() {
-  final IntFunc t = (int x) => x * 2;
+  // assign callback to a variable
+  final IntFunc times2 = (int x) => x * 2;
 
   const int x = 4;
 
-  const arr1 = [1, 2, 3, 4];
+  const List<int> arr1 = [1, 2, 3, 4];
 
-  final List Function(List, IntFunc) mapper = (List arr, IntFunc func) {
-    List returnArr = [];
-    for (int i = 0; i < arr.length; i++) {
-      returnArr.insert(
-        i,
-        func(arr[i]),
+// takes a function as an arguement
+  final HighOrderFunction mapper = (
+    List arr,
+    IntFunc func,
+  ) =>
+      arr.map(
+        (ele) => func(ele),
       );
-    }
-    return returnArr;
-  };
 
-  final arr2 = mapper(arr1, t);
+  final arr2 = mapper(arr1, times2);
 
   int mod2(int x) => x % 2;
 
-  print(t(x));
+  print(times2(x));
   print('Arr2: $arr2');
   print(mod2(x));
-  print(t.toString());
+  print(times2.toString());
 
   return 0;
 }
