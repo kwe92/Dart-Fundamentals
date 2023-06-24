@@ -15,8 +15,8 @@ void main() {
 
   var i = 0;
 
-// elements can be predicates in Iterables
-// creating elements dynamily
+// elements of an Iterables can be control flow statements and predicates
+// creating elements dynamically
 
   final wordMap = {
     "i_come_first": 'first element',
