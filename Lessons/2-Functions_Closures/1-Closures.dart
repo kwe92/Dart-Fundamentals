@@ -1,13 +1,14 @@
 // Closure:
 
 //   - anonymous function
-//   - have access to variables inside their lexical scope
+//   - has access to variables inside their lexical scope
 //   - even when a function is used outside of its original scope
 
 typedef IntFunc = int Function(int);
 
-// returns an anonymous function
-// can be used anywhere an anonymous function can be used
+// makeAdder returns an anonymous function
+// functions are objects and can be returned as values
+
 IntFunc makeAdder(int addBy) => (int x) => x + addBy;
 
 /// The entry point of any program
