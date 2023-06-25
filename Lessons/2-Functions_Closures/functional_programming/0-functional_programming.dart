@@ -17,9 +17,7 @@ int main() {
     List arr,
     IntFunc func,
   ) =>
-      arr.map(
-        (ele) => func(ele),
-      );
+      arr.map((ele) => func(ele));
 
   final arr2 = mapper(arr1, times2);
 
