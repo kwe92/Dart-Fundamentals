@@ -11,7 +11,7 @@
 //       - callback:
 
 //           - references to functions in memory not defined in current module
-//           - can be access in other parts of a program)
+//           - can be access in other parts of a program
 
 typedef IntFunc = int Function(int);
 void main() {
