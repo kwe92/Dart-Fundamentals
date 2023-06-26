@@ -1,0 +1,48 @@
+ "ALL IS OBJECT."
+        
+        - Type System
+
+// Classes
+
+//    - pillar of OOP - Object Oriented Programming
+//    - containers that hold data along with functions that manipulate their internal data
+//    - encapsulate functionality that manipulates internal data (state)
+
+// Object Class
+
+//   - every object is an instance of a class
+//   - everything is a subtype of Object with the exception of Null
+//   - 
+
+// Mixedin-based Inheritance
+
+//   - all classes except Object have only one super-type
+
+// Extension Methods
+
+//   - adds extra functionality to an existing library (Module / Class)
+//   - users of an API can add functionality without changing the implementation details directly
+
+// Class Modifiers
+
+//   - controls how a class or mix-in can be used
+//   - add additional restrictions:
+//       - from within it own library (file where the API is defined)
+//       - from outside its library (how API gets inherited or instantiated)
+
+// Class Members
+
+//   - objects only have two types members:
+//       - data (instance variables / member variables)
+//       - functions (signatures / methods)
+
+// invoke (invocation)
+
+//   - when a method is called you invoke that method upon an object
+//   - methods have access to an objects internal data and other methods
+
+// dot (.) notation
+
+//   - a syntax used in programming languages to access an objects:
+//       - attributes (member variables)
+//       - methods (functions that manipulate behavior)
