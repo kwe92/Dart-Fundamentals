@@ -1,3 +1,5 @@
+ The Use of CLasses
+ 
  "ALL IS OBJECT."
         
         - Type System
@@ -5,41 +7,41 @@
  Classes
  
    - pillar of OOP - Object Oriented Programming
-   - containers that hold data along with functions that manipulate their internal data
-   - encapsulate functionality that manipulates internal data (state)
+   - containers that hold data and functions that manipulate behavior of internal data
+   - encapsulates functionality that manipulates internal data (state)
 
  Object Class
 
-   - every object is an instance of a class
+   - every Object is an instance of a Class
    - everything is a subtype of Object with the exception of Null
-   - 
 
  Mixedin-based Inheritance
 
    - all classes except Object have only one super-type
+   - you vacn not extend more than one super-type
 
  Extension Methods
 
-   - adds extra functionality to an existing library (Module / Class)
+   - adds extra functionality to an existing library (Module / Class / API)
    - users of an API can add functionality without changing the implementation details directly
 
  Class Modifiers
 
-   - controls how a class or mix-in can be used
+   - controls how a class or mix-in can be inherited and instantiated 
    - add additional restrictions:
        - from within it own library (file where the API is defined)
        - from outside its library (how API gets inherited or instantiated)
 
  Class Members
 
-   - objects only have two types members:
-       - data (instance variables / member variables)
+   - Objects only have two types members:
+       - data (instance variables / member variables) mutable || immutable
        - functions (signatures / methods)
 
  invoke (invocation)
 
-   - when a method is called you invoke that method upon an object
-   - methods have access to an objects internal data and other methods
+   - when a method is called you invoke that method upon an Object
+   - methods have access to an Objects internal data and methods
 
  dot (.) notation
 
@@ -63,4 +65,6 @@ const Class
   - object shape and data are known at compile time and will not change
   - less guess work for the compiler to do
 
-start @ canonical
+invocation of const Class
+
+  - if const is omitted then the instance is not flagged as a compile time constant
