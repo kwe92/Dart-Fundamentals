@@ -2,47 +2,65 @@
         
         - Type System
 
-// Classes
+ Classes
+ 
+   - pillar of OOP - Object Oriented Programming
+   - containers that hold data along with functions that manipulate their internal data
+   - encapsulate functionality that manipulates internal data (state)
 
-//    - pillar of OOP - Object Oriented Programming
-//    - containers that hold data along with functions that manipulate their internal data
-//    - encapsulate functionality that manipulates internal data (state)
+ Object Class
 
-// Object Class
+   - every object is an instance of a class
+   - everything is a subtype of Object with the exception of Null
+   - 
 
-//   - every object is an instance of a class
-//   - everything is a subtype of Object with the exception of Null
-//   - 
+ Mixedin-based Inheritance
 
-// Mixedin-based Inheritance
+   - all classes except Object have only one super-type
 
-//   - all classes except Object have only one super-type
+ Extension Methods
 
-// Extension Methods
+   - adds extra functionality to an existing library (Module / Class)
+   - users of an API can add functionality without changing the implementation details directly
 
-//   - adds extra functionality to an existing library (Module / Class)
-//   - users of an API can add functionality without changing the implementation details directly
+ Class Modifiers
 
-// Class Modifiers
+   - controls how a class or mix-in can be used
+   - add additional restrictions:
+       - from within it own library (file where the API is defined)
+       - from outside its library (how API gets inherited or instantiated)
 
-//   - controls how a class or mix-in can be used
-//   - add additional restrictions:
-//       - from within it own library (file where the API is defined)
-//       - from outside its library (how API gets inherited or instantiated)
+ Class Members
 
-// Class Members
+   - objects only have two types members:
+       - data (instance variables / member variables)
+       - functions (signatures / methods)
 
-//   - objects only have two types members:
-//       - data (instance variables / member variables)
-//       - functions (signatures / methods)
+ invoke (invocation)
 
-// invoke (invocation)
+   - when a method is called you invoke that method upon an object
+   - methods have access to an objects internal data and other methods
 
-//   - when a method is called you invoke that method upon an object
-//   - methods have access to an objects internal data and other methods
+ dot (.) notation
 
-// dot (.) notation
+   - a syntax used in programming languages to access an objects:
+       - attributes (member variables)
+       - methods (functions that manipulate behavior)
 
-//   - a syntax used in programming languages to access an objects:
-//       - attributes (member variables)
-//       - methods (functions that manipulate behavior)
+Class Constructors
+
+  - used to create Objects
+  - three types of Constructors:
+
+      - Default Constructors (ClassName)
+      - Named Constructors (ClassName.identifier - pre-defined member variables)
+      - Factory Constructors (ClassName.identifier - typically for JSON data)
+
+const Class
+
+  - compile-time constant Class (immutable Class)
+  - frozen at compile-time
+  - object shape and data are known at compile time and will not change
+  - less guess work for the compiler to do
+
+start @ canonical
