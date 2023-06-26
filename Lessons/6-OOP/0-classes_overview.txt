@@ -47,16 +47,28 @@
 
    - a syntax used in programming languages to access an objects:
        - attributes (member variables)
-       - methods (functions that manipulate behavior)
+       - methods (functions / signatures)
 
 Class Constructors
 
   - used to create Objects
-  - three types of Constructors:
+  - 2 types of Constructors:
 
-      - Default Constructors (ClassName)
-      - Named Constructors (ClassName.identifier - pre-defined member variables)
-      - Factory Constructors (ClassName.identifier - typically for JSON data)
+      - Default Constructors
+
+          - default constructor name is identical to the class name
+          - example: const default constructor
+
+                class Point{
+                  final double x;
+                  final double y;
+                  const Point({required this.x, required this.y});
+                }
+
+      ClassName.identifier Constructors:
+      
+        - Named Constructors (pre-defined member variables)
+        - Factory Constructors (typically used for JSON data)
 
 const Class
 
