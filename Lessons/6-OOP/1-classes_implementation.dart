@@ -1,11 +1,11 @@
+import 'dart:math';
+
 // Class Implementation
 
 // mutable Class
 
 //   - also known as a stateful class
-//   - state of data can change throughout
-
-import 'dart:math';
+//   - state of data can change throughout the program
 
 class Point {
   double x;
@@ -18,13 +18,14 @@ class Point {
   @override
   String toString() => 'Point($x, $y)';
 
-  void euclideanDistance(Point other) => sqrt(
+  double euclideanDistance(Point other) => sqrt(
         pow((other.x = this.x), 2) + pow((other.y - this.y), 2),
       );
 }
 
 int main() {
   Point p1 = Point(x: 4, y: 3);
+  Point p2 = Point(x: 3, y: 6);
   print('inital point: $p1');
 
   // square the Point
@@ -33,6 +34,7 @@ int main() {
     ..y = pow(p1.y, 2).toDouble();
 
   print('squared point: $p1');
+  print('Distance Function: ${p2.euclideanDistance(p2)}');
 
   return 1;
 }
