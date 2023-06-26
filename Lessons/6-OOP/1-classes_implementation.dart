@@ -5,7 +5,7 @@ import 'dart:math';
 // mutable Class
 
 //   - also known as a stateful class
-//   - state of data can change throughout the program
+//   - state of the data can change throughout the program
 
 class Point {
   double x;
@@ -28,7 +28,8 @@ int main() {
   Point p2 = Point(x: 3, y: 6);
   print('inital point: $p1');
 
-  // square the Point
+  // square the Point changing its internal state
+
   p1
     ..x = pow(p1.x, 2).toDouble()
     ..y = pow(p1.y, 2).toDouble();
