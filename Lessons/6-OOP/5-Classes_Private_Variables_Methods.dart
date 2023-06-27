@@ -1,7 +1,10 @@
-// Private variables and methods
-// Prefix the variable with a leading underscore: _memberVariable
+// Private variables && methods
+
+// Prefix variable with leading underscore: _memberVariable
+
 // Why use private member variables?
-//    - Encapsulates logic that should not be modified or accessed
+
+//    - encapsulates logic that should not be modified or accessed
 //      outside of the class structure
 //    - Allows member variables to be:
 //          - Read-only outside of the class structure

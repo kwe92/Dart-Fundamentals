@@ -1,13 +1,16 @@
 import 'dart:math';
 
-// added an extension to Shape
-// extensions are also extended to any children of a type or class
+// extensions
+
+//   - adds extra functionality to a class
+//   - extended to any children of a type or class
 extension on Shape {
   num areaSqured() => round(pow(this.area, 2));
 }
 
 // Abstract Class
-//    - A class that defines an interface that can be implemented
+
+//    - defines an interface that can be implemented
 //    - You can implement this interface class accross many sub-classes
 //    - Can not be instantiated
 
@@ -19,7 +22,7 @@ abstract class Shape {
   void printValues() => print('Area: $area | Perimeter: $perimeter');
 }
 
-// extending the interface of Shape to its child Square
+// extend interface of Shape to its child Square
 class Square extends Shape {
   Square(this.side);
   final double side;
@@ -62,8 +65,7 @@ class Triangle extends Shape {
 
   // defining optional implementation
   @override
-  void printValues() =>
-      print('Area: $area | Perimeter: $perimeter | Height: $height');
+  void printValues() => print('Area: $area | Perimeter: $perimeter | Height: $height');
 
   // Area of a triangle using Heron's Formula and a private method
   double _getArea(final double a, final double b, final double c) {

@@ -1,9 +1,11 @@
 // Factory Constructors
-//    - Most commonly used to parse JSON data
-//    - Useful when implementing a constructor that doesnt always create a
+
+//    - mused to parse JSON data
+//    - useful when implementing a constructor that doesnt always create a
 //      new instance of its class
-//    - Initalize a final variable using logic that cant be hanlded
+//    - initalize a final variable using logic that cant be hanlded
 //      in a initalizer list
+
 import 'dart:math';
 
 abstract class Shape {
@@ -12,25 +14,13 @@ abstract class Shape {
   const Shape();
 
   factory Shape.fromJSON(Map<String, Object> json) {
-    final type = json['type'];
-    switch (type) {
-      case 'Square':
-        final side = json['side'];
-        if (side is double) {
-          return Square(side);
-        } else {
-          throw UnsupportedError('$type is not of type double');
-        }
-      case 'Circle':
-        final radius = json['radius'];
-        if (radius is double) {
-          return Circle(radius);
-        } else {
-          throw UnsupportedError('$type is not of type double');
-        }
-      default:
-        throw UnsupportedError('$type is not of type Square');
-    }
+    final [type, side, radius] = json.values.toList();
+
+    return switch (type) {
+      'Square' => side is double ? Square(side) : throw UnsupportedError('$type is not of type double'),
+      'Circle' => radius is double ? Circle(radius) : throw UnsupportedError('$type is not of type double'),
+      _ => throw UnsupportedError('$type is not of type Square')
+    };
   }
 }
 
@@ -58,11 +48,21 @@ void main() {
     {'type': 'Circle', 'radius': 5.0}
   ];
 
-  final List<Shape> shapeList = [for (var json in jsonData) Shape.fromJSON(json)];
+  final List<Shape> shapeList = [
+    for (var json in jsonData) Shape.fromJSON(json),
+  ];
 
   print(shapeList);
 
-  shapeList.forEach((element) => print(round(element.area, 2)));
+  shapeList.forEach(
+    (shape) => print(
+      round(shape.area, 2),
+    ),
+  );
 }
 
-double round(num n, [p = 0]) => double.parse(n.toStringAsFixed(p));
+double round(num n, [p = 0]) => double.parse(
+      n.toStringAsFixed(
+        p,
+      ),
+    );

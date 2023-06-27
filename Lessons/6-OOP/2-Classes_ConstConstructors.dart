@@ -1,22 +1,28 @@
-// Const Constructors
-// Representing a Complex Number
-// Complex Number
-//    - A Complex number is a number that can be expressed in the form a + bi
-//      where a && b are real numbers and i represents the imaginary unit.
+// const Constructors
 
-void main() {
-  const Complex c1 = Complex(2, 4);
+//   - generates an immutable Object
+//   - ALL member variables must be final
 
-  print(c1);
+// immutable Object
+
+class Employee {
+  final String fname;
+  final String lname;
+  final double salary;
+
+  // getter
+
+  //   - a derivation process that generates a derivative
+  //   - can be a primative or a combination of primatives and member variables
+  //   - final by default
+
+  String get email => '@ayonInovations.net';
+
+  const Employee({
+    required this.fname,
+    required this.lname,
+    required this.salary,
+  });
 }
 
-// To initalize a const constructor the member variables must be:
-//       - final (private members / immutable members)
-class Complex {
-  const Complex(this.re, this.im);
-  final double re;
-  final double im;
-
-  @override
-  String toString() => super.toString() + '\n' 're: $re | im: $im';
-}
+void main() {}

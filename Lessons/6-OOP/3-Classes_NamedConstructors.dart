@@ -1,11 +1,5 @@
 // ignore_for_file: unused_local_variable
 
-// Const Constructors
-// Representing a Complex Number
-// Complex Number
-//    - A Complex number is a number that can be expressed in the form a + bi
-//      where a && b are real numbers and i represents the imaginary unit.
-
 void main() {
   const Complex c1 = Complex(0, 4);
   print('value of c1.re: ${c1.re}');

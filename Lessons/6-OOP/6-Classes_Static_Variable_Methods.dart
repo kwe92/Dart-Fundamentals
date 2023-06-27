@@ -1,8 +1,7 @@
 // Static Variables & Methods
 
-//    - Are variables and methods that are specific to a class itself
-//      rather than instances of a class
-//    - Instances of a class can not access static methods and variables
+//    - variables && member methods that are specific to a class itself
+//    - Instances of a class can not access static methods and member variables
 
 class Strings {
   static const welcome = 'Welcome';

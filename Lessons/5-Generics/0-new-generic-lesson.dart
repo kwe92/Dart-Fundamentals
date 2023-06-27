@@ -1,19 +1,12 @@
 // ignore_for_file: unused_catch_stack
-// TODO: fix comments
 
 // Type Theory: Parameterized Types - Generics
 
-//   - parameterized types define a family of related types
-//   - the family is obtained by instantiating the parameterized type
-//      - producing an instantiation
-//   - classes and functions can work with multiple types
-//   - dynamically typed interfaces that retain tooling (complie-time type safety)
-//   - Reduce code duplication
-//   - Helps write type safe code
-
-// assignment
-
-//   - variable assigned a specified type
+//  - defines a family of related types
+//  - retain tooling (complie-time type safety)
+//  - classes and functions can work with multiple types
+//  - Reduce code duplication
+//  - Helps write type safe code
 
 // replace place holder parameter types explicitly during instantiation
 
