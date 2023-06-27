@@ -6,8 +6,7 @@
 // immutable Object
 
 class Employee {
-  final String fname;
-  final String lname;
+  final String fname, lname;
   final double salary;
 
   // getter
