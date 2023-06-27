@@ -9,10 +9,8 @@ import 'dart:math';
 
 class Point {
   double x, y;
-  Point({
-    required this.x,
-    required this.y,
-  });
+
+  Point({required this.x, required this.y}); // named parameters use {} and prefix variables with required
 
   @override
   String toString() => 'Point($x, $y)';
