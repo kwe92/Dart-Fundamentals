@@ -2,19 +2,18 @@
 
 //   - special method providing read access to:
 //       - member variables and computed variables
-//   - generated implicitly for member vairables
-//   - a derivation process generating a derivative (computed variable)
-//   - returns a primative or a combination of primatives and member variables
-//   - final by default
+//   - generated implicitly for all member vairables
 
 // setter
 
-//  - special method that provides write access to mutable member variables
+//  - special method, provides write access to mutable member variables
+//  - non-final and late-final instance variables without initalizers implicitly have a setter method
 
 // Nullable mutable Class
 //   - constructor can be ommited
 
 class Employee {
+  // has implicit getter and setter methods
   String? fname, lname;
   double? salary;
   // computed variable
