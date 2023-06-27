@@ -9,20 +9,13 @@ class Employee {
   final String fname, lname;
   final double salary;
 
-  // getter
-
-  //   - a derivation process that generates a derivative
-  //   - can be a primative or a combination of primatives and member variables
-  //   - final by default
-
-  String get email => '@ayonInovations.net';
-
   const Employee({
     required this.fname,
     required this.lname,
     required this.salary,
   });
 
+  // override toString method to print out Object
   @override
   String toString() => 'Employee(fname: ${this.fname}, lname: ${this.lname}, salary: ${this.salary})';
 }
