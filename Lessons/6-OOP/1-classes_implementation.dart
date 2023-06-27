@@ -8,8 +8,7 @@ import 'dart:math';
 //   - state of the data can change throughout the program
 
 class Point {
-  double x;
-  double y;
+  double x, y;
   Point({
     required this.x,
     required this.y,
