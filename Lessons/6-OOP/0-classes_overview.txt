@@ -80,3 +80,7 @@ const Class
 invocation of const Class
 
   - if const is omitted then the instance is not flagged as a compile time constant
+
+implicit getters
+
+  - getters are impllicity defined when you declare a member variable in a class
