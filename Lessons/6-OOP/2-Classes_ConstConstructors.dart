@@ -23,6 +23,17 @@ class Employee {
     required this.lname,
     required this.salary,
   });
+
+  @override
+  String toString() => 'Employee(fname: ${this.fname}, lname: ${this.lname}, salary: ${this.salary})';
 }
 
-void main() {}
+void main() {
+  final emp1 = Employee(
+    fname: 'Kweayon',
+    lname: 'Harshen-Wuta',
+    salary: 130000.00,
+  );
+
+  print(emp1);
+}
