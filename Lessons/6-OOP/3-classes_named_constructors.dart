@@ -2,3 +2,5 @@
 
 // Named Constructors
 //   - implement multiple constructors for a class
+
+class Vehcile {}
