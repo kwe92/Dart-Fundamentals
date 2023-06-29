@@ -15,6 +15,7 @@ class Vehicle {
     required this.electricVehicle,
     required this.color,
   });
+
   // Named Constructors
   // - have no prefix
   // - ClassName.identifiers(optional parameters)
@@ -39,6 +40,23 @@ class Vehicle {
         motorVehicle = motorVehicle ?? true,
         electricVehicle = electricVehicle ?? false,
         color = color;
+}
+
+// TODO: continue from Named constructors
+// Inheriting Constructors
+//     - Constructors are NOT inherited (including named Constructors)
+//     - You must implement the superclass constructor in the subclass
+//     - If the implementation of the super class constructor is ommited
+//       the super class unnamed no argument constructor is used
+
+class ExtendedVehicle extends Vehicle {
+  const ExtendedVehicle({
+    required super.wheels,
+    required super.passangers,
+    required super.motorVehicle,
+    required super.electricVehicle,
+    required super.color,
+  });
 }
 
 void main() {
