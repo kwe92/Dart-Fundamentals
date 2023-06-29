@@ -15,6 +15,10 @@ class Vehicle {
     required this.electricVehicle,
     required this.color,
   });
+  // Named Constructors
+  // - have no prefix
+  // - ClassName.identifiers(optional parameters)
+  // - Uses initalizer list
   Vehicle.bicycle({required String color, bool? motorVehicle, bool? electricVehicle})
       : wheels = 2,
         passangers = 1,
