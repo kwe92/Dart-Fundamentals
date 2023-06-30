@@ -1,3 +1,13 @@
+// Super Class No Default Constructor
+
+//   - if a super class does not have a default constructor
+//     then a unnamed no-argument constructor is created
+
+//   - if the super class does not have a constructor
+//     but has a named constructor then you must
+//     initalize the named constructor in the sub class with an initalizer list
+
+// Nullable and mutable class
 class Person {
   String? fname, lname;
 
