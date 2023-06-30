@@ -10,7 +10,8 @@ import 'dart:math';
 class Point {
   double x, y;
 
-  Point({required this.x, required this.y}); // named parameters use {} and prefix variables with required
+  // named parameters use {} and prefix variables with required
+  Point({required this.x, required this.y});
 
   @override
   String toString() => 'Point($x, $y)';
@@ -26,7 +27,6 @@ int main() {
   print('inital point: $p1');
 
   // square the Point changing its internal state
-
   p1
     ..x = pow(p1.x, 2).toDouble()
     ..y = pow(p1.y, 2).toDouble();
