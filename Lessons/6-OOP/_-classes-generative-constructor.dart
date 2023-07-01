@@ -7,7 +7,7 @@
 // Generative Constructor
 
 //   - the most common form of a constructor in all OOP languages
-//   - creates a new instance of an Object
+//   - when instantiated creates a new instance of an Object
 
 class AnimeCharacter {
   String fname, lname, anime;
@@ -23,7 +23,7 @@ class AnimeCharacter {
 
 //   - the most verbose constructor
 //   - member variables are declared (assigned a datatype) above the constructor function
-//   - member variables are passed into the constructor function via this.memberVariable
+//   - member variables are passed into the constructor function head via this.memberVariable
 //   - member variables are then initalized in the constructor function body
 //   - this.memberVariable = memberVariable where both names are identical
 
