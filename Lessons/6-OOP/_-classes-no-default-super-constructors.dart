@@ -33,6 +33,7 @@ class Engineer extends Person {
 
 class DataAnalyst extends Engineer {
   final List<String> analyticsTools;
+
   DataAnalyst.fromJSON(super.json)
       : analyticsTools = json['analyticsTools'],
         super.fromJSON();
