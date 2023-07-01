@@ -19,16 +19,21 @@ class AnimeCharacter3 {
 }
 
 void main() {
+  // instantiate
   final AnimeCharacter3 animeCharacter3 = AnimeCharacter3();
+
+  // assign values
   animeCharacter3
     ..fname = 'Shikamaru'
     ..lname = 'Nara'
     ..anime = 'Naruto';
 
-  final AnimeCharacter3 animeChar4 = AnimeCharacter3()
+  // instantiate && assign values simultaneously
+  final AnimeCharacter3 animeCharacter4 = AnimeCharacter3()
     ..fname = 'Houtarou'
     ..lname = 'Oreki'
     ..anime = 'Hyouka';
 
   print('\nfavorite anime character: ${animeCharacter3.fname} ${animeCharacter3.lname}\n');
+  print('\nAnother favorite anime character: ${animeCharacter4.fname} ${animeCharacter4.lname}\n');
 }
