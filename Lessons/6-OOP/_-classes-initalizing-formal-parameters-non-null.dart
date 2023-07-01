@@ -25,7 +25,8 @@ class AnimeCharacter {
 
 class AnimeCharacter2 {
   String fname, lname, anime;
-  AnimeCharacter2(this.fname, this.lname, this.anime); // constructor body is ommited
+  AnimeCharacter2(this.fname, this.lname, this.anime);
+  // constructor body is ommited
 }
 
 void main() {
