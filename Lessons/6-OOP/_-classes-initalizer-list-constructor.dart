@@ -1,6 +1,9 @@
+// Named Constructor
+
 // Initalizer Lists
 
 //   - Initalize instance variables BEFORE the constructor body
+//   - MUST return an instance of the class
 //   - useful when dealing with API data
 //   - also useful when creating test robots (very advanced concept)
 
