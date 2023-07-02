@@ -2,6 +2,7 @@
 
 //   - a constructor implementation that doesn't
 //     always create a new instance of its class
+//   - Can be either unnamed and named
 //   - may return an instance from a cache
 //   - may return an instance of a subtype
 //   - initalizing a final variable
@@ -13,10 +14,16 @@ class Logger {
   bool mute = false;
 
   // private class variable
+
   static final Map<String, Logger> _cache = <String, Logger>{};
 
-  // Initalizer list (Named Constructor) to create a Logger from JSON data
-  Logger.fromJSON(Map<String, String> json) : name = json['name'].toString();
+  // Named Factory Constructor
+
+  //   - named constructors MUST return an instance of their class
+
+  factory Logger.fromJSON(Map<String, String> json) => Logger(
+        json['name'].toString(),
+      );
 
   factory Logger(String name) => _cache.putIfAbsent(
         name,
@@ -25,6 +32,7 @@ class Logger {
 
   // factory methods are considered a unnamed constructor
   // so you must use a named constructor
+
   Logger._internal(this.name);
 
   void log(String msg) => !mute ? print(msg) : null;
