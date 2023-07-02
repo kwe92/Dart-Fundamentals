@@ -4,8 +4,12 @@
 
 //   - Initalize instance variables BEFORE the constructor body
 //   - MUST return an instance of the class
-//   - useful when dealing with API data
-//   - also useful when creating test robots (very advanced concept)
+
+// Initalizer Lists are useful when:
+
+//   - dealing with API data
+//   - initalizing final variables
+//   - creating test robots (very advanced concept)
 
 Future<Map<String, dynamic>> useFetchQuoteAPI() async {
   await Future.delayed(
