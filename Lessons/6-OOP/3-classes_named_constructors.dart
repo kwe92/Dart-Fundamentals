@@ -1,5 +1,19 @@
 // Named Constructors
+
 //   - implement multiple constructors for a class
+//   - has no prefix of datatype as it
+//     MUST return an instance of itself
+
+// Named Constructor Syntax:
+
+//   - ClassName.identifier(args, kwargs)
+
+// Types of Named Constructors:
+
+//   - Initalizer List Constructor
+//   - Factory Constructors
+//   - Redirecting Constructors
+//   - Named Generator Constructor
 
 class Vehicle {
   final int wheels, passangers;
@@ -14,11 +28,10 @@ class Vehicle {
     required this.color,
   });
 
-  // Named Constructors Cont.
+// Initalizer Lists
 
-  // - have no prefix
-  // - ClassName.identifier(args, kwargs)
-  // - Uses initalizer list
+//   - Executes before the Unnamed Constructor
+
   Vehicle.bicycle({required String color, bool? motorVehicle, bool? electricVehicle})
       : wheels = 2,
         passangers = 1,
