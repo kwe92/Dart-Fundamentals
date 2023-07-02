@@ -1,6 +1,6 @@
 // Initalizer Lists
 
-//   - Initalizing instance variables before the constructor body
+//   - Initalize instance variables BEFORE the constructor body
 //   - useful when dealing with API data
 //   - also useful when creating test robots (very advanced concept)
 
