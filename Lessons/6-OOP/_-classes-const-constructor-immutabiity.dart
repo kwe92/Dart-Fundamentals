@@ -4,7 +4,7 @@
 //   - the data within the class never changes
 //   - the compiler knows that for the lifetime of the program the data will not change
 //     requiring the compiler to do less guess work
-//   - all variables in the class are final implying stateless
+//   - all variables in the class are final creating a stateless object
 
 Future<Map<String, dynamic>> useFetchTodoApi() async {
   await Future.delayed(

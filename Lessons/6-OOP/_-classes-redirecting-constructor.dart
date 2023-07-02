@@ -12,6 +12,8 @@ class Point {
 
   Point(this.x, this.y);
 
+// delegation initalizer lists
+
   Point.alongXaxis(double x) : this(x, 3.14159);
   Point.alongYaxis(double y) : this(3.14159, y);
 
