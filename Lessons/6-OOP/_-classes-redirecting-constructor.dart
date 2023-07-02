@@ -24,7 +24,7 @@ int main() {
   final Point p2 = Point.alongYaxis(42);
   final Point p3 = Point(42, 34);
 
-  List<Point> points = [p1, p2, p3];
+  final List<Point> points = [p1, p2, p3];
 
   for (Point point in points) {
     print(point);
