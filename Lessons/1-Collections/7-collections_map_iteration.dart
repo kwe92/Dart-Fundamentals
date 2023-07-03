@@ -2,9 +2,6 @@
 
 // HashMap: Iteration
 
-// key property
-
-//   - returns all keys in a Iterable
 void main() {
   Map<String, dynamic> hero = {
     'name': 'Killua',
@@ -13,13 +10,12 @@ void main() {
     'friends': <String>['Gon', 'Kurapika', 'Leorio']
   };
 
-  // for-in loop
-
   // keys property
 
-  //   - returns all keys as Iterable
+  //   - returns all keys as elements of an Iterable Object
 
   final Iterable<String> keys = hero.keys;
+
   for (String key in keys) {
     print(key);
   }
@@ -41,12 +37,16 @@ void main() {
     print(hero[key]);
   }
 
-  // entries property
+  // entries property (MapEntry)
 
-  //   - keys and values can be accessed via entries Iterable
+  //   - an Iterable object where its elements are MapEntry objects
 
-  for (MapEntry<String, dynamic> entry in hero.entries) {
-    print('key: ${entry.key} | value: ${entry.value}');
+// MapEntry Object
+
+//   - represents a single entry of a Map
+
+  for (MapEntry<String, dynamic> mapEntry in hero.entries) {
+    print('key: ${mapEntry.key} | value: ${mapEntry.value}');
   }
   // forEach method
 
