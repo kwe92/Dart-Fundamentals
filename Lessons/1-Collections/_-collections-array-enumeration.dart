@@ -1,13 +1,14 @@
 // Enumerating Over Arrays
 
 //   - accessing the index of an array
-//     during iteration (looping)
 
 //  List.asMap() Method
 
 //    - transforms the List into an unmodifed Map
-//      where the keys of the Map are integers
-//      with a 1-to-1 maping to the array indices
+//        - keys are integers
+//        - values are any type you choose
+
+//    - 1-to-1 mapping to array indices
 
 void main() {
   final List<String> animeCharactersArray = ['Gaara Sabaku', 'Gon Freecss', 'Shikimaru Nara', 'Hotaro Oreki'];
@@ -18,9 +19,9 @@ void main() {
 
   // Enumeration
 
-  //   - List.asMap can also act as a way to enumerate arrays
+  //   - List.asMap can also act as a way to enumerate Lists
   //   - use the key from the callback as the index
-  //   - as it is a 1-to-1 mapping to the array index
+  //   - .asMap provides a 1-to-1 mapping to the array index
 
   print('Enumerating over array: ');
   animeCharactersArray.asMap().forEach(
