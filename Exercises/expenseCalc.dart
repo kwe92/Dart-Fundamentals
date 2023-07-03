@@ -2,6 +2,8 @@
 
 import 'dart:io';
 
+import '../utility/round.dart';
+
 class ExpenseCalc {
   ExpenseCalc({required this.netPay, required this.expenses, this.savPct = 0.20});
   final double netPay;
@@ -9,12 +11,11 @@ class ExpenseCalc {
   final double savPct;
 
   double get exp => expenses.reduce((ele, val) => ele + val);
-  double get toSave => _round(netPay * savPct);
-  double get finalNet => _round(netPay - (exp + toSave), 2);
+  double get toSave => round(netPay * savPct);
+  double get finalNet => round(netPay - (exp + toSave), 2);
 
   @override
   String toString() => "Expense total: $exp\n" "Total Saved: $toSave\n" "Final Net: $finalNet\n";
-  double _round(num n, [int p = 0]) => double.parse(n.toStringAsFixed(p));
 }
 
 void main() {

@@ -7,6 +7,8 @@ key-value pair for that restaurant.
 
  */
 
+import '../utility/round.dart';
+
 void main() {
   var restaurants = [
     {
@@ -51,11 +53,5 @@ num avg(var iter) {
     iterSum += element;
   }
   result = iterSum / iter.length;
-  return round(result, precision: 1);
-}
-
-double round(var n, {var precision = 0}) {
-  var stringN = n.toStringAsFixed(precision);
-  var result = double.parse(stringN);
-  return result;
+  return round(result.toDouble(), 1);
 }

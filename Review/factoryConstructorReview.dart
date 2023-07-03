@@ -3,6 +3,8 @@
 
 import 'dart:math';
 
+import '../utility/round.dart';
+
 abstract class Shape {
   Shape();
 
@@ -57,5 +59,3 @@ void main() {
   print(c1.area);
   print(someShape.area);
 }
-
-double round(num n, [p = 0]) => double.parse(n.toStringAsFixed(p));

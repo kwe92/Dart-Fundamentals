@@ -1,11 +1,13 @@
 import 'dart:math';
 
+import '../../utility/round.dart';
+
 // extensions
 
 //   - adds extra functionality to a class
 //   - extended to any children of a type or class
 extension on Shape {
-  num areaSqured() => round(pow(this.area, 2));
+  num areaSqured() => round(pow(this.area, 2).toDouble());
 }
 
 // Abstract Class
@@ -95,5 +97,3 @@ void main() {
 }
 
 void printArea(final Shape shape) => print(round(shape.area, 2));
-
-double round(final num n, [var p = 0]) => double.parse(n.toStringAsFixed(p));

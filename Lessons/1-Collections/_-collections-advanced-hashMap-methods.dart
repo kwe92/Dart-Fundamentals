@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import '../../Projects/restaurantProject.dart';
+import '../../utility/round.dart';
 
 // TODO: Add comments and explain what you are doing
 
@@ -20,15 +20,14 @@ void main() {
     marsDiameterMi,
   ];
 
-  final [
+  final <double>[
     earthDiameterBase2,
     jupiterDiameterBase2,
     marsDiameterBase2,
   ] = diametersMi
-      .map((double element) => round(
-            logBase2(element),
-            precision: 2,
-          ))
+      .map(
+        (double element) => round(logBase2(element), 2),
+      )
       .toList();
 
   final diametersBase2 = <double, String>{

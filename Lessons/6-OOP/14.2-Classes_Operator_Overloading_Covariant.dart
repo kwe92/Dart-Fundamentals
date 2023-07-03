@@ -8,6 +8,8 @@
 //  - Add Euclidean Distance formula method
 import 'dart:math';
 
+import '../../utility/round.dart';
+
 class TypeError implements Exception {
   TypeError([this.message = 'Wrong Type']) : super();
   final String message;
@@ -52,8 +54,7 @@ class Point {
   @override
   String toString() => 'Point($x, $y)';
 
-  double euclideanDistance(Point p) =>
-      round(sqrt(pow(p.x - x, 2) + pow(p.y - y, 2)), 2);
+  double euclideanDistance(Point p) => round(sqrt(pow(p.x - x, 2) + pow(p.y - y, 2)), 2);
 }
 
 void main() {
@@ -65,11 +66,8 @@ void main() {
   print('$p1 * 5 = ${p1 * 5}'); // multiply a point by a scalar
   print('$p1 / $p2 = ${p1 / p2}');
   print('$p1 == $p2 = ${p1 == p2}');
-  print(
-      'Pythagorean distance between $p1 and $p2 = ${p1.euclideanDistance(p2)}');
+  print('Pythagorean distance between $p1 and $p2 = ${p1.euclideanDistance(p2)}');
   // print(round(2 * sqrt(2), 2));
 }
 
 double pow(var x, var e) => e == 0 ? 1 : x * pow(x, e - 1);
-
-double round(num n, [var p = 0]) => double.parse(n.toStringAsFixed(p));
