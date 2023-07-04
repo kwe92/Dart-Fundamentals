@@ -7,11 +7,11 @@
 
 // Factory Named Constructor (Identifier Constructor)
 
-//   - ALL named constructors MUST return an instance of their type
-//   - factory named constructors have access to the constructor body
-//     allowing logic that can't be handled in an initalizer list
+//   - MUST return an instance of its type
+//   - factory named constructors have access to a constructor body
+//     allowing logic that could not be handled within an initalizer list
 
-// Unnamed Factory Constructors
+// Unnamed Factory Constructors (Generator Constructor)
 
 //   - a generative constructor which
 //     does not have to return an instance of its type
@@ -53,6 +53,9 @@ class Logger {
   }
 
   // Default Named Constructor
+
+  //   - needed in this example to initalize final instance variables
+
   Logger._internal(this.name);
 
   void log(String msg) => !mute ? print(msg) : null;
