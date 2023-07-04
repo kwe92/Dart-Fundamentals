@@ -52,23 +52,40 @@
 Class Constructors
 
   - used to create Objects
-  - 2 types of Constructors:
+  
+  
+Class Constructors Types:
 
-      - Default Constructors
+      - Generator Constructor (Unnamed Constructor)
 
-          - default constructor name is identical to the class name
-          - example: const default constructor
+        - generator constructor names are identical to the class name
 
-                class Point{
-                  final double x;
-                  final double y;
-                  const Point({required this.x, required this.y});
-                }
+          - Two types of Generator Constructors:
+              
+              - Default Generator Constructor (Return instance of type REQUIRED)
 
-      ClassName.identifier Constructors:
-      
-        - Named Constructors (pre-defined member variables)
-        - Factory Constructors (typically used for JSON data)
+              - Factory Generator Constructor (Return instance of type optional)
+                - prefix default generator constructor with factory modifier
+              
+
+                - example: const Default Generator Constructor
+
+                      class Point{
+                        final double x;
+                        final double y;
+                        const Point({required this.x, required this.y});
+                      }
+
+      - Identifier Constructor (Named Constructor)
+        
+        - identifier constructor names are identical to the class name with an added .identiferName
+
+        - e.g. ClassName.fromJSON
+
+        - Two types of Generator Constructors:
+
+            - Identifier Lists (can NOT have a function)
+            - Factory Constructor (Can have a function body)
 
 const Class
 
