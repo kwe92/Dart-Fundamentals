@@ -1,7 +1,16 @@
-// Static Variables & Methods
+// Static Class Variables
 
-//    - variables && member methods that are specific to a class itself
-//    - Instances of a class can not access static methods and member variables
+//   - class wide state and constant variables
+//   - ALL instances share static variables
+//     if a getter is implemented
+
+// Static Methods
+
+//   - static methods are specific to the class itself
+//   - instances do not have access to
+//     static class methods (class wide functions)
+//   - attempting to access a static class method
+//     through an instance of a class will result in error
 
 class Strings {
   static const welcome = 'Welcome';
@@ -14,8 +23,6 @@ void main() {
   print(Strings.signIn);
   print(Strings.greeting('Goku'));
 
-  // Trying to access a static class method
-  // Through an instance of a class will result in error
   /*
   
   Strings c1 = Strings as Strings;
