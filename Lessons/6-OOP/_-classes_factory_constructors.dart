@@ -8,8 +8,8 @@
 // Factory Named Constructor (Identifier Constructor)
 
 //   - MUST return an instance of its type
-//   - factory named constructors have access to a constructor body
-//     allowing logic that could not be handled within an initalizer list
+//   - has access to the constructor function body
+//     allowing complex logic that can not be handled by an Initalizer List
 
 // Unnamed Factory Constructors (Generator Constructor)
 
@@ -42,6 +42,11 @@ class Logger {
   }
 
   // Factory Unnamed Constructor (Generator Constructor)
+
+  //   - this constructor caches the Logger in a hashMap if
+  //     the Logger does not exist with the specified name
+  //   - if the name exists in the hashMap as a key
+  //     then the Logger associated with that key is returned
 
   factory Logger(String name) {
     final LoggerCallback handleLogger = () => Logger._internal(name);
