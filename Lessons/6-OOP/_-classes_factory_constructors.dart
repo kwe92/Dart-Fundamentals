@@ -80,17 +80,19 @@ Future<Map<String, String>> useFetchLoggerApi() async {
 }
 
 Future<void> main() async {
-  final Logger logger = Logger('U.I.');
+  final logger = Logger('U.I.');
 
-  final Map<String, String> jsonData = await useFetchLoggerApi();
+  final jsonData = await useFetchLoggerApi();
 
-  final Logger loggerJson = Logger.fromJSON(jsonData);
+  final loggerJson = Logger.fromJSON(jsonData);
 
   print('\nAPI Data result: $jsonData\n');
 
   logger.log('Logger.log: button clicked\n');
 
-  print('Logger class variable: ${Logger.cache}\n');
+  print('Logger class variable cahe: ${Logger.cache}\n');
 
   print('loggerJson name: ${loggerJson.name}\n');
+
+  print('U.I. exists as a key in the cache of the Logger class state variable, åso that Logger is returned: ${Logger('U.I.')}\n');
 }
