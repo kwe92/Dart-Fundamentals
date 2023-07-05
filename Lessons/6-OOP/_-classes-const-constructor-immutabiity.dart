@@ -1,10 +1,11 @@
-// constant Classes (Immutable - Stateless)
+// Constant Classes (Immutable - Stateless)
 
-//   - classes that are compile-time constants (frozen at run time)
+//   - classes that are compile-time constants (frozen at compile-time)
 //   - the data within the class never changes
-//   - the compiler knows that for the lifetime of the program the data will not change
-//     requiring the compiler to do less guess work
-//   - all variables in the class are final creating a stateless object
+//   - the compiler knows that for the lifetime of the program the data within
+//     will not change requiring the compiler to do less guess work
+//   - all variables in the class are final (frozen / immutable once initalized)
+//     creating a stateless object
 
 Future<Map<String, dynamic>> useFetchTodoApi() async {
   await Future.delayed(
@@ -43,9 +44,8 @@ class TodoItem {
 }
 
 Future<void> main() async {
-  final TodoItem todo = TodoItem.fromJSON(
-    await useFetchTodoApi(),
-  );
+  final Map<String, dynamic> json = await useFetchTodoApi();
+  final TodoItem todo = TodoItem.fromJSON(json);
 
   print('Todo Items: $todo');
 }
