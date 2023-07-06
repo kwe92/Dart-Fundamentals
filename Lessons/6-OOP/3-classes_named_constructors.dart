@@ -1,5 +1,3 @@
-// TODO: Review, if no changes do not commit
-
 // Named Constructors
 
 //   - implement multiple constructors for a class
@@ -30,6 +28,16 @@ class Vehicle {
     required this.color,
   });
 
+  // Factory Named Constructor
+  factory Vehicle.fromJSON(Map<String, dynamic> json) => Vehicle(
+      wheels: json['wheels'],
+      passangers: json['passangers'],
+      motorVehicle: json['motorVehicle'],
+      electricVehicle: json['electricVehicle'],
+      color: json['color']);
+
+  // Redirecting Named Constructor
+
   Vehicle.redirector(bool isElectric)
       : this(
           wheels: 4,
@@ -49,7 +57,7 @@ class Vehicle {
     required this.color,
   });
 
-// Initalizer Lists
+// Initalizer List Named Constructor
 
 //   - Executes before the Unnamed Constructor
 
