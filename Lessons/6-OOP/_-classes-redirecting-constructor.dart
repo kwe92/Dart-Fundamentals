@@ -1,10 +1,7 @@
-// TODO: Review, if no changes do not commit
+// Redirecting Constructor (Named Constructor)
 
-// Redirecting Constructor (named constructor)
-
-//   - as the name implies it is a constructor that redirects
-//     to another constructor in the same class
-//   - an initalizer list that utilizing this keyword
+//   - redirects to another constructor in the same class
+//   - an Initalizer List that utilizing this keyword
 //     instead of the instance variables or class name directly
 
 class Point {
@@ -22,6 +19,9 @@ class Point {
   String toString() => 'Point(x: $x, y: $y)';
 }
 
+// In the above example the named constructor redirects
+// to a generative constructor
+
 int main() {
   final Point p1 = Point.alongXaxis(42);
   final Point p2 = Point.alongYaxis(42.314159);
@@ -31,7 +31,14 @@ int main() {
 
   print('\n');
 
-  points.asMap().forEach((index, point) => print('$index: $point'));
+// enumerate over an Array of points
+  enumerate(points);
 
   return 0;
 }
+
+void enumerate(Iterable iter) => iter.toList().asMap().forEach(
+      (index, element) => print(
+        '$index: $element\n',
+      ),
+    );
