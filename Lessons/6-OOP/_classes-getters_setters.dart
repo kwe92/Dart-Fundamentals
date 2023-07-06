@@ -1,22 +1,25 @@
-// getter
+// getter (Derivation / Computed)
 
 //   - special method providing read access to:
 //       - member variables and computed variables
-//   - generated implicitly for all member vairables
+//   - generated implicitly for all public member vairables
 
 // setter
 
 //  - special method, provides write access to mutable member variables
-//  - non-final and late-final instance variables without initalizers implicitly have a setter method
+//  - nullable and late instance variables that have
+//    not been initalized implicitly have setter methods
 
 // Nullable mutable Class
+
 //   - constructor can be ommited
 
 class Employee {
-  // has implicit getter and setter methods
+  //implicitly has a getter and setter method
   String? fname, lname;
   double? salary;
-  // computed variable
+
+  // derivation
   String? get email => '$fname.$lname@ayonInovations.net';
 
   // print string representation of Object
@@ -25,12 +28,12 @@ class Employee {
 }
 
 void main() {
-  // initally all member variables are null
+  // implicitly initalize all member variables as Null
   Employee emp1 = Employee();
 
   print('emp1: $emp1');
 
-  // using the setter method for member variables
+  // set each variable via cascading
   emp1
     ..fname = 'Kweayon'
     ..lname = 'Harshen-wuta'
