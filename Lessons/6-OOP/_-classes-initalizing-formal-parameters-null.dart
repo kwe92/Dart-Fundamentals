@@ -5,22 +5,25 @@
 //   - member variables declared null get initalized as Null Objects implicitly
 //   - to declare a null member variable suffix its type with [?]
 //       - e.g.
-//           - String? would declare a member variable as a mutable nullable String
+//           - String? would declare a member
+//             variable as a mutable nullable String
 
 // Class with nullable member variables
 
 //   - constructor can be ommited entirely
-//   - if the constructor is ommited there is an unnamed no arguement constructor generated
-//   - no arguement constructor imply you must instantiate the class
+//   - if the constructor is ommited there is an
+//     unnamed no arguement constructor generated
+//   - no arguement constructor implies you must instantiate the class
 //     without arguments or use cascading during instantiation
 
 // Mutable (Stateful) Nullable Class
+//   the constructor can be ommited entirely
 class AnimeCharacter3 {
   String? fname, lname, anime;
 }
 
 void main() {
-  // instantiate
+  // creating an Object
   final AnimeCharacter3 animeCharacter3 = AnimeCharacter3();
 
   // assign values
