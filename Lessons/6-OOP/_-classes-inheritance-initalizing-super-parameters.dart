@@ -8,14 +8,8 @@
 //   - Implementing the super-class constructor is manditory
 //   - you can use super.instanceVariable
 //     to initalize super-class parameters
-//     in the head on the sub-class constructor
-
-//     Advantages:
-
-//       - offers more brevity by writting less code
-//       - removes the need to redeclare variables in the sub-class
-//       - removes the need to use an initalizer list
-//         within the sub-class to initalize the super constructor
+//     in the head of the sub-class constructor
+//     reducing the amount of code neede in order to initalize super-class variables
 
 class FictonalPerson {
   final String fname, lname;
@@ -40,6 +34,9 @@ class AnimeCharacter extends FictonalPerson {
 class Vector2d {
   final double x;
   final double y;
+
+  // Named Constructor
+  //
   Vector2d.pointOnCartesianPlane({required this.x, required this.y});
 
   @override
@@ -49,6 +46,7 @@ class Vector2d {
 class Vector3d extends Vector2d {
   final double z;
 
+  // initalizing variables with super class constructor and initalizer list
   Vector3d({required this.z, required super.y}) : super.pointOnCartesianPlane(x: 0);
 
   @override
