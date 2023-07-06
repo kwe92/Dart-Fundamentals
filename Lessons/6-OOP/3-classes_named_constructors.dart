@@ -4,7 +4,7 @@
 
 //   - implement multiple constructors for a class
 //   - has no prefix of datatype as it
-//     MUST return an instance of itself
+//     MUST return an instance of its type
 
 // Named Constructor Syntax:
 
@@ -23,6 +23,25 @@ class Vehicle {
   final String? color;
 
   const Vehicle({
+    required this.wheels,
+    required this.passangers,
+    required this.motorVehicle,
+    required this.electricVehicle,
+    required this.color,
+  });
+
+  Vehicle.redirector(bool isElectric)
+      : this(
+          wheels: 4,
+          passangers: 2,
+          motorVehicle: isElectric ? false : true,
+          electricVehicle: !isElectric ? false : true,
+          color: 'royal blue',
+        );
+
+  // Named Generator Constructor
+
+  Vehicle.create({
     required this.wheels,
     required this.passangers,
     required this.motorVehicle,
