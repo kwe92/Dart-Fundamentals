@@ -1,8 +1,8 @@
+// TODO: Breake apart into multiple lessons maybe?
+
 // Named Constructors
 
 //   - implement multiple constructors for a class
-//   - has no prefix of datatype as it
-//     MUST return an instance of its type
 
 // Named Constructor Syntax:
 
@@ -10,31 +10,34 @@
 
 // Types of Named Constructors:
 
-//   - Initalizer List Constructor
-//   - Factory Constructors
-//   - Redirecting Constructors
 //   - Named Generator Constructor
+//   - Initalizer List Constructor
+//   - Factory Constructor
+//   - Redirecting Constructor
 
 class Vehicle {
   final int wheels, passangers;
   final bool motorVehicle, electricVehicle;
   final String? color;
+  static int _createdVehicleCount = 0;
+  static int get numCreatedVehicles => _createdVehicleCount;
 
   const Vehicle({
     required this.wheels,
     required this.passangers,
     required this.motorVehicle,
     required this.electricVehicle,
-    required this.color,
+    this.color,
   });
 
   // Factory Named Constructor
   factory Vehicle.fromJSON(Map<String, dynamic> json) => Vehicle(
-      wheels: json['wheels'],
-      passangers: json['passangers'],
-      motorVehicle: json['motorVehicle'],
-      electricVehicle: json['electricVehicle'],
-      color: json['color']);
+        wheels: json['wheels'],
+        passangers: json['passangers'],
+        motorVehicle: json['motorVehicle'],
+        electricVehicle: json['electricVehicle'],
+        color: json['color'],
+      );
 
   // Redirecting Named Constructor
 
@@ -54,8 +57,10 @@ class Vehicle {
     required this.passangers,
     required this.motorVehicle,
     required this.electricVehicle,
-    required this.color,
-  });
+    this.color,
+  }) {
+    _createdVehicleCount += 1;
+  }
 
 // Initalizer List Named Constructor
 
