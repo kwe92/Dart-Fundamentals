@@ -1,4 +1,4 @@
-// TODO: Breake apart into multiple lessons maybe?
+// TODO: Break apart into multiple lessons maybe?
 
 // Named Constructors
 
@@ -41,13 +41,13 @@ class Vehicle {
 
   // Redirecting Named Constructor
 
-  Vehicle.redirector(bool isElectric)
+  Vehicle.redirector({required bool isElectric, String? color})
       : this(
           wheels: 4,
-          passangers: 2,
+          passangers: 5,
           motorVehicle: isElectric ? false : true,
           electricVehicle: !isElectric ? false : true,
-          color: 'royal blue',
+          color: color ?? 'royal blue',
         );
 
   // Named Generator Constructor
@@ -80,31 +80,40 @@ class Vehicle {
         electricVehicle = electricVehicle ?? false,
         color = color;
 
-  Vehicle.truck({required String color, bool? motorVehicle, bool? electricVehicle})
-      : wheels = 18,
-        passangers = 3,
-        motorVehicle = motorVehicle ?? true,
-        electricVehicle = electricVehicle ?? false,
-        color = color;
-
   @override
   String toString() =>
       'Vehicle(wheels: $wheels, passangers: $passangers, motorVehicle: $motorVehicle, electricVehicle: $electricVehicle, color: $color)';
 }
 
-void main() {
+Future<Map<String, dynamic>> useFetchSportback() async {
+  await Future.delayed(
+    Duration(
+      seconds: 1,
+      milliseconds: 100,
+    ),
+  );
+  return {
+    'wheels': 4,
+    'passangers': 5,
+    'motorVehicle': true,
+    'electricVehicle': false,
+  };
+}
+
+Future<void> main() async {
+  final Map<String, dynamic> vehicleJSON = await useFetchSportback();
   final Vehicle bicycle = Vehicle.bicycle(color: 'Orange');
 
-  final Vehicle motorCycle = Vehicle.bicycle(
-    color: 'Black',
-    motorVehicle: true,
-    electricVehicle: false,
-  );
-
-  final Vehicle tesla = Vehicle.sedan(
-    color: 'Royal Blue',
+  final Vehicle kawasakiEbike = Vehicle.create(
+    wheels: 2,
+    passangers: 2,
     motorVehicle: false,
     electricVehicle: true,
+    color: 'green-blue-silver',
+  );
+  final Vehicle tesla = Vehicle.redirector(
+    isElectric: true,
+    color: 'black',
   );
 
   final Vehicle hondaAccordHybrid = Vehicle.sedan(
@@ -112,19 +121,28 @@ void main() {
     electricVehicle: true,
   );
 
-  final Vehicle teslaSemiTruck = Vehicle.truck(
-    color: 'Silver',
+  final Vehicle teslaSemiTruck = Vehicle.create(
+    wheels: 18,
+    passangers: 4,
+    color: 'blue-grey',
     motorVehicle: false,
     electricVehicle: true,
   );
 
+  final Vehicle s5Sportback = Vehicle.fromJSON(vehicleJSON);
+
   final List<Vehicle> fleet = [
     bicycle,
-    motorCycle,
+    kawasakiEbike,
     tesla,
     hondaAccordHybrid,
     teslaSemiTruck,
+    s5Sportback,
   ];
 
-  print("FLeet Inventory: $fleet");
+  print('\n');
+
+  fleet.asMap().forEach(
+        (int index, Vehicle vehicle) => print('${index + 1}: $vehicle\n'),
+      );
 }
