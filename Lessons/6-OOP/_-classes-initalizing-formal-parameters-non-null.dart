@@ -8,12 +8,15 @@
 
 // Mutable (Stateful) Class
 
-//   - member variables are mutable if final or const is ommited upon declaration
+//   - member variables are mutable if they are
+//     not prefixed with final or const upon declaration
 
 // non-nullable variables
 
-//   - the data type declared for a variable is not suffixed with [?]
+//   - the data type declared for a variable
+//     is not suffixed with [?]
 
+// Mutable Class
 class AnimeCharacter {
   String fname, lname, anime;
   AnimeCharacter(this.fname, this.lname, this.anime) {
