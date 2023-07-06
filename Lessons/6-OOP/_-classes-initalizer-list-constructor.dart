@@ -1,16 +1,16 @@
-// TODO: Review, if no changes do not commit
-
-// Named Constructor
-
 // Initalizer Lists
 
-//   - Initalize instance variables BEFORE the constructor body
-//   - MUST return an instance of the class
+//   - one of two types of named constructors
+//   - initalize instance variables BEFORE the constructor body
+//   - CAN NOT have a constructor body of its own
+//   - implying that it can not handle complex logic
+//   - MUST return an instance of its type
 
 // Initalizer Lists are useful when:
 
 //   - dealing with API data
 //   - initalizing final variables
+//     with simple logic involved
 //   - creating test robots (very advanced concept)
 
 Future<Map<String, dynamic>> useFetchQuoteAPI() async {
@@ -26,7 +26,7 @@ Future<Map<String, dynamic>> useFetchQuoteAPI() async {
 }
 
 class BiblicalQuote {
-  String verseID, book, author, quote;
+  final String verseID, book, author, quote;
 
   BiblicalQuote.fromJSON(Map<String, dynamic> json)
       : verseID = json['verseID'],
@@ -39,8 +39,9 @@ class BiblicalQuote {
 }
 
 Future<void> main() async {
+  final Map<String, dynamic> result = await useFetchQuoteAPI();
   final BiblicalQuote biblicalQuote = BiblicalQuote.fromJSON(
-    await useFetchQuoteAPI(),
+    result,
   );
-  print('Random Bible Verse: $biblicalQuote');
+  print('\nRandom Bible Verse: $biblicalQuote\n');
 }
