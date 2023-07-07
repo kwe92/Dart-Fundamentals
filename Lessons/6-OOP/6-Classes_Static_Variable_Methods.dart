@@ -1,13 +1,15 @@
 // Class Variables - Static Variables
 
 //   - class wide state and constant variables
-//   - ALL instances share class variables
+//   - can be accessed by instances
+//     if a getter is defined but all instance
+//     will share the Class variable
 
 // Static Methods
 
 //   - static methods are specific to the class itself
-//   - useful for created namespaces for collections of
-//     functions
+//   - useful for created namespaces for a collection
+//     of related methods
 //   - instances do not have access to
 //     static class methods (class wide functions)
 //   - attempting to access a static class method
@@ -30,6 +32,8 @@ class Employee extends Person {
   final int employeeId;
   static int _employeeCnt = 0;
   static int get employeeCnt => _employeeCnt;
+  int get getStaticVariable => _employeeCnt;
+
   Employee({
     required this.employeeId,
     required super.fname,
@@ -61,5 +65,11 @@ void main() {
     age: 15,
   );
 
-  print('\nEmployee Count: ${Employee.employeeCnt}\n');
+  print('\nStatic variable access via Class: ${Employee.employeeCnt}\n');
+  print('Static variable accessed via getter for instance: ${emp0.getStaticVariable}\n');
+
+// Accessing a static method without an instance getter
+// will result in a compile-time error
+
+// emp0.employeeCnt
 }
