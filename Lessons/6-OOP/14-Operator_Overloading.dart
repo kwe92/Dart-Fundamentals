@@ -1,54 +1,32 @@
-// Operator Overloading - (Without covariant)
-//    - Define how operators should function with your class
-//    - Can throw exceptions to generate run time errors
+// Opertor overloading
 
-// Point(1,1) == Point(1,1) should return true
-// override the operator if Object is a point compare the points and return false other wise
-
-class TypeError implements Exception {
-  TypeError([this.msg = 'Wrong type.']) : super();
-  final String msg;
-  @override
-  String toString() => 'TypeError: $msg';
-}
+//   - distinct from method overriding
+//   - operator overloading is a compile-time polymorphism
+//   - gives common operators user-defined meanings
+//   - e.g. the addition of two strings concatenates them
 
 class Point {
-  const Point(this.x, this.y);
   final double x;
   final double y;
 
-  @override
-  int get hashCode => super.hashCode;
+  const Point(this.x, this.y);
 
+  @override
   bool operator ==(Object other) {
-    if (other is Point) {
-      return x == other.x && y == other.y; // boolean expression that evaluates to ture or false
-    } else {
-      return false;
-    }
-  }
+    // if (identical(this, other)) return true;
 
-  Point operator +(Object other) {
-    if (other is Point) {
-      return Point(x + other.x, y + other.y);
-    } else {
-      throw TypeError('${other.runtimeType} is not of type Point. '
-          '\n'
-          '$other + Point($x,$y) is not a valid operation.');
-    }
+    return other is Point && other.x == x && other.y == y;
   }
 
   @override
-  String toString() => 'Point($x,$y)';
+  int get hashCode => x.hashCode ^ y.hashCode;
 }
 
 void main() {
-  const Point p1 = Point(1, 1);
-  const Point p2 = Point(1, 1);
+  final p0 = Point(3, 4);
+  final p1 = Point(42, 3.124);
+  final p2 = Point(3, 4);
 
-  print(p1 == p2);
-
-  print(p1 + p2);
-
-  p1 + 1;
+  print('p0 == p1: ${p0 == p1}');
+  print('p1 == p2: ${p0 == p2}');
 }
