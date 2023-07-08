@@ -3,15 +3,15 @@
 //   - as seen in previous lessons inheritance is the
 //     process of a sub-class inheriting variables and methods
 //     of a super-class in which the sub-class
-//     making the sub-class tightly coupled to the super=class implementation
-//     has the ability to re-implement the methods in a diffrent way
+//     inheritance makes the sub-class tightly coupled to the super=class implementation
+//     the sub-class has the ability to re-implement the methods in a diffrent way
 //     this can lead to some difficult U.I. bugs
 
 // Composition
 
 //   - composition aims to decouple implementations
 //     by seperating classes entirely
-//   - instead the User Interface is made up of small components or widgets
+//   - the User Interface is instead made up of small components or widgets
 //   - that act as constituent parts which then
 //   - combined to create entire User Interfaces
 //   - this allow seperation of concerns
