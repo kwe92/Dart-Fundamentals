@@ -1,7 +1,3 @@
-// TODO: expanded lesson to include type literals | Add more comments
-//TODO:  type literals of all kinds are generics
-// ?? <String>[] Map<String, int>()
-
 import 'dart:math';
 
 // Generic Types
@@ -27,7 +23,7 @@ import 'dart:math';
 
 //Generics Are reified
 
-//   - reified means type information is retained at run-time but not compile-time if the type is not parameterized when instantiated or a method is envoked
+//   - reified means type information is retained at run-time but not compile-time if the type is not parameterized then it is dynamic by default until run-time
 
 // Generic Class Implementation Example
 
@@ -67,5 +63,6 @@ void main() {
   // the reified run-time type information is retained
   print('\nx run time type: ${p0.x.runtimeType}\n');
   print('y run time type: ${p0.y.runtimeType}\n');
+
   print('euclidean distance between:\n\n$p0 and $p1:\n\n${distance}\n');
 }
