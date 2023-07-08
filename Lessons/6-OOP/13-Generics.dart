@@ -47,14 +47,18 @@ abstract base class AbstractBasePoint<T extends num, int, double> {
     required this.y,
   });
 
-  T euclideanDistance();
+  T euclideanDistance(Point orther);
 }
 
 final class Point<T extends num, int, double> extends AbstractBasePoint {
   const Point({required super.x, required super.y});
 
+  @override
   T euclideanDistance(Point other) {
-    final result = (pow((other.x - this.x), 2) + pow((other.y - this.y), 2),) as T;
+    final result = sqrt(
+      pow((other.x - this.x), 2) + pow((other.y - this.y), 2),
+    ) as T;
+    return result;
   }
 }
 
