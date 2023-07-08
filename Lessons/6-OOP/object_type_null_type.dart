@@ -8,6 +8,10 @@
 //   - Object is implemented implicitly
 //     on all non-nullable sub-types
 
+// Object? (nullable-object)
+//   - by defult all classes extend Object?
+//     making them nullable
+
 class Person {
   final String fname, lname;
   final int age;
