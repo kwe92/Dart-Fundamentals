@@ -22,8 +22,7 @@ class Point {
 
   bool operator ==(Object other) {
     if (other is Point) {
-      return x == other.x &&
-          y == other.y; // boolean expression that evaluates to ture or false
+      return x == other.x && y == other.y; // boolean expression that evaluates to ture or false
     } else {
       return false;
     }

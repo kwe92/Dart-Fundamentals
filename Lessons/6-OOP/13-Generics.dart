@@ -1,3 +1,7 @@
+// TODO: expanded lesson to include type literals | Add more comments
+//TODO:  type literals of all kinds are generics
+// ?? <String>[] Map<String, int>()
+
 // Generic Types
 
 //   - allows an implementation to specify multiple types explicitly
