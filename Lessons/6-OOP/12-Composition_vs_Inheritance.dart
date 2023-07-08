@@ -1,25 +1,57 @@
-// ignore_for_file: unused_local_variable
+// Composition over Inheritance
 
-//todo: Add Comments
-// Flutter Widgets
-//    - In flutter everything is a widget
+//   - as seen in previous lessons inheritance is the
+//     process of a sub-class inheriting variables and methods
+//     of a super-class in which the sub-class
+//     making the sub-class tightly coupled to the super=class implementation
+//     has the ability to re-implement the methods in a diffrent way
+//     this can lead to some difficult U.I. bugs
 
-class Widget {}
+// Composition
+
+//   - composition aims to decouple implementations
+//     by seperating classes entirely
+//   - instead the User Interface is made up of small components or widgets
+//   - that act as constituent parts which then
+//   - combined to create entire User Interfaces
+//   - this allow seperation of concerns
+//   - keeps code D.R.Y
+//   - encapsulates isolated parts of your User Interface
+
+class Widget extends Object {
+  const Widget();
+}
 
 class Text extends Widget {
-  Text(this.string);
-  final String string;
+  final String text;
+  const Text(this.text);
+
+  @override
+  String toString() => '$text';
 }
+
+typedef VoidCallback = void Function();
 
 class Button extends Widget {
-  Button({required this.child, this.onPressed});
   final Widget child;
-  final void Function()? onPressed;
+  final VoidCallback onPressed;
+
+  const Button({
+    required this.child,
+    required this.onPressed,
+  });
 }
 
+final VoidCallback handleOnPressed = () => {
+      print('Button pressed'),
+    };
+
 void main() {
-  final b1 = Button(
-    child: Text('Hello!'),
-    onPressed: () => print('Button Pressed!'),
+  final Button buttonComponent = Button(
+    child: Text('I am a Text Widget'),
+    onPressed: handleOnPressed,
   );
+
+  print('\n child propery of button: ${buttonComponent.child}\n');
+  print('\n onPressed propery of button: ${buttonComponent.onPressed}\n');
 }
