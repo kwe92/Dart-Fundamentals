@@ -35,7 +35,8 @@
 //   - reified means type information is retained at run-time but not compile-time
 // tooling highlighting may not always show the corrent type
 
-// Generic Class Implementation Example
+// Explicit Generic Class Implementation Example
+
 //   - explicitly expecting one of three specified types
 
 import 'dart:math';
@@ -47,7 +48,7 @@ abstract base class AbstractBasePoint<T extends num, int, double> {
     required this.y,
   });
 
-  T euclideanDistance(Point orther);
+  T euclideanDistance(Point other);
 }
 
 final class Point<T extends num, int, double> extends AbstractBasePoint {
@@ -62,6 +63,7 @@ final class Point<T extends num, int, double> extends AbstractBasePoint {
   }
 }
 
+// TODO: Create lesson for implicit
 // the above class instance variables can be of any non-nullable type
 
 class Point2<T extends Object> {
