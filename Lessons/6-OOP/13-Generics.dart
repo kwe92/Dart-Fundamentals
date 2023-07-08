@@ -4,7 +4,7 @@
 //   - uses single capitalized letter by convention
 //   - use parameterized notation <...> to specify what the type will be
 //       - if extends is ommited e.g. <T> then the
-//         arguments to your implementation can be of any type
+//         arguments to your implementation can be of ANY type, including nullable
 //   - generics are reified meaning type information is retained at run-time
 
 class Point<T extends num, int, double> {
@@ -14,6 +14,8 @@ class Point<T extends num, int, double> {
     required this.y,
   });
 }
+
+// generic classs that is explicitly expecting one of three specified types
 
 void main() {
   final Point p0 = Point(x: 4, y: 3.14);
