@@ -1,35 +1,24 @@
-// Using Generics with Classes
-// Generics Recap:
-//      - Allows you to write more readable code
-//      - Allows your classes to work with diffrent types
+// Generic Types
 
-//TODO: Define Stack
-// Stack Definition
-//    - routing widgets do this as well
+//   - allows an implementation to specify multiple types explicitly
+//   - uses single capitalized letter by convention
+//   - use parameterized notation <...> to specify what the type will be
+//       - if extends is ommited e.g. <T> then the
+//         arguments to your implementation can be of any type
+//   - generics are reified meaning type information is retained at run-time
 
-class Stack<T> {
-  List<T> _list = [];
-
-  void push(T item) {
-    _list.add(item);
-  }
-
-  T pop() => _list.removeLast();
+class Point<T extends num, int, double> {
+  final T x, y;
+  const Point({
+    required this.x,
+    required this.y,
+  });
 }
 
 void main() {
-  Stack<int> s1 = Stack();
-  Stack<String> s2 = Stack();
+  final Point p0 = Point(x: 4, y: 3.14);
 
-  s1.push(43);
-  s1.push(99);
-
-  s2.push('Edward Elric');
-  s2.push('Alphonze Elric');
-
-  print(s1.pop());
-  print(s1.pop());
-
-  print(s2.pop());
-  print(s2.pop());
+  // type information is retained at run-time
+  print('\nx run time type: ${p0.x.runtimeType}\n');
+  print('y run time type: ${p0.y.runtimeType}\n');
 }
