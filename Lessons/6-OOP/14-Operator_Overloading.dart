@@ -22,6 +22,13 @@ class Person {
     required this.age,
   });
 
+  Person? copyWith([
+    String? fname,
+    String? lname,
+    int? age,
+  ]) =>
+      Person(fname: fname ?? this.fname, lname: lname ?? this.lname, age: age ?? this.age);
+
   Family operator +(covariant Person other) => Family(people: [this, other]);
 
   @override
@@ -36,4 +43,11 @@ class Family {
   String toString() => 'Family($people)';
 }
 
-void main() {}
+void main() {
+  final Person animeCharacter0 = Person(fname: 'Hinata', lname: 'Hyuga', age: 12);
+  final Person animeCharacter1 = Person(fname: 'Neji', lname: 'Hyuga', age: 14);
+
+  final Family hyugaClan = animeCharacter0 + animeCharacter1;
+
+  print(hyugaClan);
+}
