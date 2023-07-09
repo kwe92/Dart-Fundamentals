@@ -1,32 +1,39 @@
 // Opertor overloading
 
-//   - distinct from method overriding
+//   - a feature found in most OOP languages distinct from method overriding
 //   - operator overloading is a compile-time polymorphism
-//   - gives common operators user-defined meanings
+//   - user-defined custom implementations
+//     of common operators such as:
+//       - Arithmetic operators +, -, *
+//       - Equality operators == and !=
+//       - Relational operators >, >=, <, <=
+//       - many more
+// -
 //   - e.g. the addition of two strings concatenates them
 
-class Point {
-  final double x;
-  final double y;
+class Person {
+  final String fname;
+  final String lname;
+  final int age;
 
-  const Point(this.x, this.y);
+  const Person({
+    required this.fname,
+    required this.lname,
+    required this.age,
+  });
+
+  Family operator +(covariant Person other) => Family(people: [this, other]);
 
   @override
-  bool operator ==(Object other) {
-    // if (identical(this, other)) return true;
+  String toString() => 'Person(fname: ${fname}, lname: ${lname}, age: ${age})';
+}
 
-    return other is Point && other.x == x && other.y == y;
-  }
+class Family {
+  final List<Person> people;
+  const Family({required this.people});
 
   @override
-  int get hashCode => x.hashCode ^ y.hashCode;
+  String toString() => 'Family($people)';
 }
 
-void main() {
-  final p0 = Point(3, 4);
-  final p1 = Point(42, 3.124);
-  final p2 = Point(3, 4);
-
-  print('p0 == p1: ${p0 == p1}');
-  print('p1 == p2: ${p0 == p2}');
-}
+void main() {}
