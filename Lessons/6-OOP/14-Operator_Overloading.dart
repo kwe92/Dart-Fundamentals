@@ -27,7 +27,11 @@ class Person {
     String? lname,
     int? age,
   ]) =>
-      Person(fname: fname ?? this.fname, lname: lname ?? this.lname, age: age ?? this.age);
+      Person(
+        fname: fname ?? this.fname,
+        lname: lname ?? this.lname,
+        age: age ?? this.age,
+      );
 
   Family operator +(covariant Person other) => Family(people: [this, other]);
 
@@ -39,15 +43,32 @@ class Family {
   final List<Person> people;
   const Family({required this.people});
 
+  Family operator +(Object other) {
+    if (other is Family) {
+      return Family(people: this.people + other.people);
+    }
+    if (other is Person) {
+      final additionalFamily = <Person>[...this.people, other];
+      return Family(people: additionalFamily);
+    }
+    throw Error();
+  }
+
   @override
   String toString() => 'Family($people)';
 }
 
 void main() {
-  final Person animeCharacter0 = Person(fname: 'Hinata', lname: 'Hyuga', age: 12);
-  final Person animeCharacter1 = Person(fname: 'Neji', lname: 'Hyuga', age: 14);
+  final Person animeCharacter0 = Person(
+    fname: 'Hinata',
+    lname: 'Hyuga',
+    age: 12,
+  );
+  final Person animeCharacter1 = Person(
+    fname: 'Neji',
+    lname: 'Hyuga',
+    age: 14,
+  );
 
   final Family hyugaClan = animeCharacter0 + animeCharacter1;
-
-  print(hyugaClan);
 }
