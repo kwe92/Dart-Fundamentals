@@ -1,3 +1,9 @@
+// TODO: Finish expanding on the lesson
+// TODO: Add try catch finally in main
+// TODO: Maybe break apart into multiple lessons
+// TODO: Add additional in depth comments
+// TODO: add additional operator examples
+
 // Opertor overloading
 
 //   - a feature found in most OOP languages distinct from method overriding
@@ -39,6 +45,15 @@ class Person {
   String toString() => 'Person(fname: ${fname}, lname: ${lname}, age: ${age})';
 }
 
+class TypeError extends Error {
+  final String? message;
+
+  TypeError([this.message]);
+
+  @override
+  String toString() => message ?? super.toString();
+}
+
 class Family {
   final List<Person> people;
   const Family({required this.people});
@@ -51,7 +66,7 @@ class Family {
       final additionalFamily = <Person>[...this.people, other];
       return Family(people: additionalFamily);
     }
-    throw Error();
+    throw TypeError('\nThe type must be either Person or Family:\n\nRecieved a type of: ${other.runtimeType}');
   }
 
   @override
