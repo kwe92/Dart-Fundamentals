@@ -1,7 +1,7 @@
 // TODO: Finish expanding on the lesson
 // TODO: Add try catch finally in main
 // TODO: Maybe break apart into multiple lessons
-// TODO: Add additional in depth comments
+// TODO: Add additional in depth66 comments
 // TODO: add additional operator examples
 
 // Opertor overloading
@@ -66,6 +66,7 @@ class Family {
       final additionalFamily = <Person>[...this.people, other];
       return Family(people: additionalFamily);
     }
+    // TODO: ensure error is thrown properly
     throw TypeError('\nThe type must be either Person or Family:\n\nRecieved a type of: ${other.runtimeType}');
   }
 
@@ -86,4 +87,7 @@ void main() {
   );
 
   final Family hyugaClan = animeCharacter0 + animeCharacter1;
+
+  // TODO: expanded on print statement
+  print(hyugaClan);
 }
