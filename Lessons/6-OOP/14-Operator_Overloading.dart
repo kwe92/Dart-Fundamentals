@@ -1,9 +1,3 @@
-// TODO: Finish expanding on the lesson
-// TODO: Add try catch finally in main
-// TODO: Maybe break apart into multiple lessons
-// TODO: Add additional in depth66 comments
-// TODO: add additional operator examples
-
 // Opertor overloading
 
 //   - a feature found in most OOP languages distinct from method overriding
@@ -27,11 +21,11 @@ class Person {
     required this.age,
   });
 
-  Person copyWith([
+  Person copyWith({
     String? fname,
     String? lname,
     int? age,
-  ]) =>
+  }) =>
       Person(
         fname: fname ?? this.fname,
         lname: lname ?? this.lname,
@@ -102,7 +96,16 @@ void main() {
 
   final Family uzumakiClan = Family(people: [animeCharacter4]);
 
-  // TODO: expanded on print statement
+  final Family uzumakiClanExtended = uzumakiClan + animeCharacter0.copyWith(lname: 'Uzumaki');
+
   print('\nHyuga Clan: $hyugaClan\n');
   print('\nUzumakiClan Clan: $uzumakiClan\n');
+  print('\nHinata joins the Uzumaki Clan: $uzumakiClanExtended\n');
+
+  try {
+    uzumakiClanExtended + 'I should throw an error';
+  } catch (error, st) {
+    print('$error\n');
+    print('Stack Trace:\n\n$st');
+  } finally {}
 }
