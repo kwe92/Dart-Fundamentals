@@ -1,16 +1,20 @@
 abstract class State {
   final int state;
   const State({required this.state});
+
+  @override
+  String toString() => 'State(state: $state)';
 }
 
 class AppState extends State {
-  AppState({required int state}) : super(state: state);
+  const AppState({required super.state});
 }
 
 class StateGraph {
-  static List<AppState> _state = [];
-  static void apply(AppState state) => _state.add(state);
-  static int get currentState => _state.last.state;
+  static List<AppState> _states = [];
+  static List<AppState> get allStates => _states;
+  static AppState get currentState => _states.last;
+  static void apply(AppState state) => _states.add(state);
 }
 
 int main() {
