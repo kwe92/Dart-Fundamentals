@@ -1,29 +1,34 @@
 import 'dart:math';
 
-// Generic Types
+// Generic Types (Parameterized Types)
 
-//   - allows an implementation to specify multiple types implicitly or explicitly by extends
-//   - uses a single capitalized letter to represent a placeholder type
+//   - allows implementations to specify multiple types using extends keyword
+//   - avsingle capitalized letter represents placeholder types
 
 // Placeholder Type
 
-//   - A single capitalized letter that represents a placeholder type prior to initalization or a function being invoked
-//   - the placeholder type can be used anywhere a default type can be used
+//   - a single capitalized letter representing a placeholder type
+//     prior to initalization or a function being invoked
+//   - placeholder types can be used anywhere a default type can be used or returned
 
 // Parameterized Notation
 
 //   - pass the placeholder type between angle brackets
 
-// Explicit Parameterized
+// Explicit Placeholder Types
 
-//   - you can explicitly define what type a placeholder type can be
-//   - this is achieved by suffixing the place holder type with extends followed by what type it can be
+//   - placeholder types can be explicitly defined
+//     by suffixing the placeholder with extends
+//     followed by what type it will be:
 //       - e.g. <T extends Object>
 //       - typically used to ensure an Object is non-null when generic
 
 //Generics Are reified
 
-//   - reified means type information is retained at run-time but not compile-time if the type is not parameterized then it is dynamic by default until run-time
+//   - reified means type information is retained at run-time
+//     but not at compile-time, if the type is not parameterized
+//     then the compile-time tooling type is
+//     dynamic by default until run-time
 
 // Generic Class Implementation Example
 
