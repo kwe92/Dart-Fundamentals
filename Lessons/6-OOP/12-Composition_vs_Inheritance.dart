@@ -1,11 +1,11 @@
 // Composition over Inheritance
 
-//   - as seen in previous lessons inheritance is the
-//     process of a sub-class inheriting variables and methods
-//     of a super-class in which the sub-class
-//     inheritance makes the sub-class tightly coupled to the super=class implementation
-//     the sub-class has the ability to re-implement the methods in a diffrent way
-//     this can lead to some difficult U.I. bugs
+//   - inheritance is the process of a sub-class
+//     inheriting variables and methods of a super-class
+//     inheritance tightly couples the sub-class to the super-class implementation
+//     the sub-classes ability to re-implement the methods
+//     of a super-class in a diffrent way can lead to some difficult U.I. bugs
+//     in many modern frameworks
 
 // Composition
 
