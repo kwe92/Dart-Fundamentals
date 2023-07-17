@@ -1,19 +1,23 @@
 // Custom Deep Copy Method: Maintaining Immutablility
 
-//   - You can implement your own deep copy method to maintain immutability
-//   - Allowing you to copy an object and all its properties
-//     without the need to reference the same address in memory
-//     returning a new object of that type with only
-//     the passed in properties changed
+//   - Implement a deepCopy method on a class
+//     maintaining immutability of its instances (instantiated objects)
+//   - Copy an object and all of its properties
+//     without referencing the same address in memory
+//   - deepCopy should return a new object of that type with
+//     only the specified properties changed
 
-// Null operator ??
+// Null operator ?? (Null aware operators)
 
 //   - part of the Set of null aware operators
-//   - returns the expression to the left if it is not null
-//     otherwise returns the expression to the right
+//   - returns the expression (variable) to the left if
+//     the expression is not null otherwise
+//     returns the expression to the right
 
 class UserCredentials {
-  final String userName, userEmail, userPassword;
+  final String userName;
+  final String userEmail;
+  final String userPassword;
   final bool isAdmin;
 
   const UserCredentials({
