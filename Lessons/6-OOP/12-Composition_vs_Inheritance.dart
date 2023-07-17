@@ -9,19 +9,23 @@
 
 // Composition
 
-//   - composition aims to decouple implementations
-//     by seperating classes entirely
-//   - the User Interface is instead made up of small components or widgets
-//   - that act as constituent parts which then
-//   - combined to create entire User Interfaces
-//   - this allow seperation of concerns
+//   - composition decouples implementations
+//     by separating classes entirely
+//   - a User Interface is made up of small components or widgets
+//   - that act as constituent parts of a whole User Interfaces
+//   - allowing separation of concerns
 //   - keeps code D.R.Y
 //   - encapsulates isolated parts of your User Interface
+//     into individual instantiated objects
 
-class Widget extends Object {
+// Simulating a U.I.
+
+// Abstract Widget Class to be inherited
+abstract class Widget extends Object {
   const Widget();
 }
 
+// Text widget which inherits Widget
 class Text extends Widget {
   final String text;
   const Text(this.text);
@@ -32,6 +36,7 @@ class Text extends Widget {
 
 typedef VoidCallback = void Function();
 
+// Button Widget
 class Button extends Widget {
   final Widget child;
   final VoidCallback onPressed;
