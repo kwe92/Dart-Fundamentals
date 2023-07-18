@@ -1,5 +1,4 @@
-// TODO: Add a lesson on List.generate
-// TODO: Look at other list functions
+// TODO: Review and edit
 
 // Generating Lists
 
@@ -19,6 +18,8 @@
 //       - return_type Function(int index)
 
 // create the shape of our generator callback function
+
+// ignore_for_file: unused_catch_stack
 
 typedef IntGeneratorCallback = int Function(int i);
 
@@ -48,5 +49,6 @@ void main() {
     print('growable generated List $generatedList\n');
     print('generated list type without specifying parameterized type ${generatedList.runtimeType}\n');
     print('fixed generated List: $fixedGeneratedList\n');
+    print('fixed generated List type with specifying parameterized type: ${fixedGeneratedList}\n');
   }
 }
