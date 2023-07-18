@@ -23,13 +23,16 @@
 typedef IntGeneratorCallback = int Function(int i);
 
 void main() {
+  // declare and initalize our generatorCallback function
   final IntGeneratorCallback generatorCallback = (int index) => index * 2;
 
+  // generate a non-parameterized List (angle brackets with explicit element type information ommited | non-homogeneous)
   final List generatedList = List.generate(
     12,
     generatorCallback,
   );
 
+  // generate a parameterized List (has angle brackets with explicit type information of elements | homogeneous)
   final List<int> fixedGeneratedList = List.generate(
     9,
     generatorCallback,
