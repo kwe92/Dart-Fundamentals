@@ -1,22 +1,17 @@
+// ignore_for_file: unused_catch_stack, unused_local_variable, unused_import
+
 import 'dart:math';
 
 // Iterable
 
 //   - abstract class (can not be instantiated)
-//   - data structure, represents a collection of elements
-//     or "values" that can be accessed sequentially (linearly)
-//   - Sets and Lists are sub-classes of Iterable
-//   - can be declared and initalized with List and Set generic literals
+//   - data structure, representing a collection of Objects
+//     called "elements" or "values" that can be accessed sequentially (linearly)
+//   - List and Set classes are sub-classes of Iterable (Implementations of Iterable super-class)
+//   - can be declared and initalized with List and Set generic literals (parameterized literals)
 //   - if a variable is declare as an Iterable it can't be indexed using brackets
 
-// Iterable.iterator
-
-// Iterable: List
-
-//   - 0-based indexed array
-//   - one-to-one correspondence to Whole numbers {0, 1, 2, 3,...}
-//   - non-homogeneous by default
-//   - List literals [] can be declared as Interable
+// Why have separate Implementations of Iterable?
 
 // iterable[9]; // will throw a compile error
 
@@ -27,19 +22,16 @@ import 'dart:math';
 typedef IntFunc = int Function(int);
 
 void main() {
+  // const arrays are frozen at compile-time
+
+  // homogenous List of double floating point numbers
   const Iterable iterable = <double>[3.14, 0.001, 0.05];
 
-  // const arrays are frozen at compile-time
+  // homogenous List of Strings
   const Iterable heroNamesTest = <String>['Goku', 'Naruto', 'Gon', 'Deku'];
 
-  final IntFunc randInt = Random().nextInt;
-
-  final int randomIndex = randInt(iterable.length + 1);
-
-  print('\nIterable at element[$randomIndex]: ${iterable.elementAt(randomIndex)}\n');
-
   try {
-    // a run-time error is thrown
+    // a compile-time error is thrown (caught by tooling, you can't run this code)
     // heroNamesTest[3] = 'Almight';
   } catch (errorMessage, stackTrace) {
     print('\nError Message: $errorMessage\n');
