@@ -23,6 +23,16 @@
 //       - Runes
 //       - SplayTreeSet
 
+// Other Iterable Objects
+
+//    - keys of a HashMap
+//    - Values of a HasMap
+
+// Methods returning Iterable objects (Lazy Iterable Objects)
+
+// map method
+// where method (filter method)
+
 // Why have separate Implementations (sub-classes) of Iterable?
 
 //    - separate implementations of the Iterable types
