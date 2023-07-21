@@ -27,26 +27,26 @@ import 'dart:math';
 //       - Runes
 //       - SplayTreeSet
 
-// Why have separate Implementations of Iterable?
+// Why have separate Implementations (sub-classes) of Iterable?
 
-//    - separate implementations of Iterable types
-//      allow sub-types (sub-classes) to
-//      serve distinct purposes and maintain
-//      separation of concerns (separation of behaviors between classes)
-
-// Iterable.elementAt
-
-//   - O(n) linear time complexity
+//    - separate implementations of the Iterable types
+//      allows sub-types (sub-classes) to serve distinct
+//      purposes as individual data structures and maintain
+//      separation of concerns (separation of behaviors between sub-types)
 
 typedef IntFunc = int Function(int);
 
 void main() {
-  // const arrays are frozen at compile-time
+  // Example: const Iterable
 
-  // homogenous List of double floating point numbers
+  //   - frozen at compile-time (unmodifiable iterable)
+  //   - initalized with a parameterized literal
+  //   - declared as an Iterable type (tooling can know what the class can and can't do | what methods and properties it has)
+
+  // homogenous Iterable of double floating point numbers
   const Iterable iterable = <double>[3.14, 0.001, 0.05];
 
-  // homogenous List of Strings
+  // homogenous Iterable of Strings
   const Iterable heroNamesTest = <String>['Goku', 'Naruto', 'Gon', 'Deku'];
 
   try {
