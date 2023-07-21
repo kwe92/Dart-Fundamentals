@@ -14,7 +14,7 @@
 // Iterable.moveNext
 
 //   - a predicate method of an Iterable object
-//   - moves the Iterator object forward in the iteration (sequence of values)
+//   - moves the Iterator object forward in the iteration (sequence of current values "elements")
 //     if returned as true
 //   - can be passed into a while loop and will be called
 //     until the sequence is exhausted (moveNext returns false)
@@ -22,9 +22,15 @@
 void spacedPrint<T>(T obj, [bool suffix_space = true]) => suffix_space ? print('\n$obj\n') : print('\n$obj');
 
 void main() {
+  // homogeneous Iterable of Strings
   final Iterable heros = <String>['Vegeta', 'Bakugo', 'Gaara'];
+
+  // assgin Iterator to a variable
   final Iterator herosIterator = heros.iterator;
+
+// loop through Iterator until exhausted (moveNext returns false)
   while (herosIterator.moveNext()) {
-    spacedPrint(herosIterator.current);
+    spacedPrint('Has next element: ${true}');
+    spacedPrint('Next Iterator value: ${herosIterator.current}');
   }
 }
