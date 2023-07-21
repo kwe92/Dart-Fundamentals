@@ -1,7 +1,3 @@
-// ignore_for_file: unused_catch_stack, unused_local_variable, unused_import
-
-import 'dart:math';
-
 // Iterable
 
 //   - abstract class (can not be instantiated)
@@ -37,24 +33,28 @@ import 'dart:math';
 typedef IntFunc = int Function(int);
 
 void main() {
-  // Example: const Iterable
+  // Example: const Iterable parameterized List literal
 
-  //   - frozen at compile-time (unmodifiable iterable)
-  //   - initalized with a parameterized literal
+  //   - frozen at compile-time (unmodifiable / immutable Iterable)
+  //   - initalized with a parameterized List literal
   //   - declared as an Iterable type (tooling can know what the class can and can't do | what methods and properties it has)
 
-  // homogenous Iterable of double floating point numbers
-  const Iterable iterable = <double>[3.14, 0.001, 0.05];
-
-  // homogenous Iterable of Strings
+  // homogenous Iterable of Strings (Strings themselves are a type of iterable but do not implement Iterable directly; as each character can be accessed by index using bracket notation, loops, and control flow)
   const Iterable heroNamesTest = <String>['Goku', 'Naruto', 'Gon', 'Deku'];
 
-  try {
-    // a compile-time error is thrown (caught by tooling, you can't run this code)
-    // heroNamesTest[3] = 'Almight';
-  } catch (errorMessage, stackTrace) {
-    print('\nError Message: $errorMessage\n');
-  } finally {
-    print('\nSome anime charaters $heroNamesTest\n');
-  }
+  // Example: final Iterable parameterized Set literal
+
+  //    - a compile-time constant after initalization
+  //    - modifiable / mutable, may return a diffrent pointer in memory if modified
+
+  // homogenous Iterable of double terminating decimal numbers
+  final Iterable terminalingDecimals = <double>{3.14, 0.001, 0.05};
+
+  const sayian = 'Goku';
+
+  print('\nSon ${sayian} first letter of name: ${sayian[0]}');
+
+  print('\nList as Iterable of anime characters: $heroNamesTest');
+
+  print('\nSet as Iterable of double terminating decimal numbers: $terminalingDecimals\n');
 }
