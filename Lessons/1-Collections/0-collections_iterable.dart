@@ -5,15 +5,18 @@ import 'dart:math';
 // Iterable
 
 //   - abstract class (can not be instantiated)
-//   - data structure, representing a collection of Objects
-//     called "elements" or "values" that can be accessed sequentially (linearly)
-//   - List and Set classes are sub-classes of Iterable (Implementations of Iterable super-class)
-//   - can be declared and initalized with List and Set generic literals (parameterized literals)
-//   - if a variable is declare as an Iterable it can't be indexed using brackets
+//   - a data structure, representing a collection of Objects;
+//    "elements" or "values" that can be accessed sequentially (linearly) O(n) worst case (asymptotic) time-complexity
+//   - can be declared and initalized with List and Set literals or literal parameterized types
+//   - List and Set classes are sub-classes of Iterable; implementations of the Iterable super-class
+//   - if a List or Set literal is initalized as an Iterable it can't be indexed using brackets
 
 // Why have separate Implementations of Iterable?
 
-// iterable[9]; // will throw a compile error
+//    - separate implementations of Iterable types
+//      allow sub-types (sub-classes) to
+//      serve distinct purposes and maintain
+//      separation of concerns (separation of behaviors between classes)
 
 // Iterable.elementAt
 
