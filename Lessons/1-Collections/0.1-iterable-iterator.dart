@@ -31,23 +31,24 @@
 //   - this is why we have diffrent implementations (WE WANNA GO FASTER!)
 
 // for-in-loop control flow statement
-//
+
 //   - control flow statements use the iterator getter behind the scenes
 
-void spacedPrint<T>(T obj, {bool prefix_space = true, bool suffix_space = true}) => prefix_space && !suffix_space
-    ? print('\n$obj')
-    : !prefix_space && suffix_space
-        ? print('$obj\n')
-        : print('\n$obj\n');
+import '../../utility/spacedPrint.dart';
 
 void main() {
   // homogeneous Iterable of Strings
+
   final Iterable heros = <String>['Vegeta', 'Bakugo', 'Gaara'];
 
   // assgin Iterator to a variable
+
   final Iterator herosIterator = heros.iterator;
 
+//----------Iterating with: while loop----------//
+
 // loop through Iterator until exhausted (moveNext returns false)
+
   while (herosIterator.moveNext()) {
     spacedPrint(
       'Has next element: ${true}',
@@ -55,6 +56,15 @@ void main() {
     );
     spacedPrint(
       'Next Iterator value: ${herosIterator.current}',
+      prefix_space: false,
+    );
+  }
+
+  //----------Iterating with: for-in-loop----------//
+
+  for (String hero in heros) {
+    spacedPrint(
+      hero.toUpperCase(),
       prefix_space: false,
     );
   }
