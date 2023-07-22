@@ -7,15 +7,19 @@
 //   - List and Set classes are sub-classes of Iterable; implementations of the Iterable super-class
 //   - if a List or Set literal is initalized as an Iterable it can't be indexed using brackets
 
-// All Implementors (sub-types / sub-classes) of the Iterable Abstract Class in Dart
+// Implementors (sub-types / sub-classes) of the Iterable Abstract Class in Dart
 
 //   - most commonly used implementors:
 
 //       - List
 //       - Set
+//       - MapKeySet (Iterable of HashMap keys)
+//       - MapValueSet (Iterable of HashMap values)
 
-//   - least commonly used implementors:
+//   - subset of least commonly used implementors:
 
+//       - ObserverList (useful for Observable Design patterns)
+//       - IterableZip (zip iterables)
 //       - LinkedList
 //       - Queue
 //       - DoubleLinkedQueue
