@@ -1,25 +1,36 @@
 // Accessing Elements of an Iterable Object
 
-//   - as stated earlier Iterable objects can not utilize
-//     bracket notation; O(1) constant time element access (worst-case asymptotic time complexity)
+//   - Iterable objects can not utilize bracket notation
+//     i.e. O(1) constant time element access (worst-case asymptotic time complexity)
 //   - elements of an Interable object are accessed linearly O(n)
 
 // Iterable.iterator
 
-//   - a read-only computed variable (immutable getter variable)
-//   - returns an Iterator object derived from the cueent Iterable
-//   - allows you to step through the elements of an Iterable in O(n)
+//   - read-only computed variable (immutable getter variable)
+//   - getter is a derivation process;
+//     in this case returning an Iterator object
+//     as a derivative of the current Iterable
+//   - the returned Iterator object allows the steping
+//     through of elements within the Iterable
+//     from which it was derived in Order-of(n) linear-time
 //   - returns a new Iterator object when called
 
 // Iterable.moveNext
 
-//   - a predicate method of an Iterable object
-//   - moves the Iterator object forward in the iteration (sequence of current values "elements")
-//     if returned as true
+//   - a predicate method (boolean function) of an Iterable object
+//   - if the predicate is evaluated to be true
+//   - the Iterator object is moved forward in the iteration
+//     i.e. sequence of current values "elements"
 //   - can be passed into a while loop and will be called
-//     until the sequence is exhausted (moveNext returns false)
+//     continuously until the sequence is exhausted (moveNext returns false)
 
-void spacedPrint<T>(T obj, [bool suffix_space = true]) => suffix_space ? print('\n$obj\n') : print('\n$obj');
+void spacedPrint<T>(T obj, {bool prefix_space = true, bool suffix_space = true}) {
+  if (prefix_space && !suffix_space) return print('\n$obj');
+
+  if (!prefix_space && suffix_space) return print('$obj\n');
+
+  return print('\n$obj\n');
+}
 
 void main() {
   // homogeneous Iterable of Strings
@@ -30,7 +41,13 @@ void main() {
 
 // loop through Iterator until exhausted (moveNext returns false)
   while (herosIterator.moveNext()) {
-    spacedPrint('Has next element: ${true}');
-    spacedPrint('Next Iterator value: ${herosIterator.current}');
+    spacedPrint(
+      'Has next element: ${true}',
+      prefix_space: false,
+    );
+    spacedPrint(
+      'Next Iterator value: ${herosIterator.current}',
+      prefix_space: false,
+    );
   }
 }
