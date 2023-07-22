@@ -1,8 +1,9 @@
 // Iterable
 
-//   - abstract class (can not be instantiated)
-//   - a data structure, representing a collection of Objects;
-//     "elements" or "values" that can be accessed sequentially (linearly) O(n) worst case (asymptotic) time-complexity
+//   - abstract class (can not be instantiated) intended to be
+//     extended or mixed in to implement its interface
+//   - the intended interface is a data structure, representing a collection of Objects;
+//     which are "elements" or "values" that can be accessed sequentially (linearly) O(n) worst case (asymptotic) time-complexity
 //   - can be declared and initalized with List and Set literals or literal parameterized types
 //   - List and Set classes are sub-classes of Iterable; implementations of the Iterable super-class
 //   - if a List or Set literal is initalized as an Iterable it can't be indexed using brackets
