@@ -24,13 +24,11 @@
 //   - can be passed into a while loop and will be called
 //     continuously until the sequence is exhausted (moveNext returns false)
 
-void spacedPrint<T>(T obj, {bool prefix_space = true, bool suffix_space = true}) {
-  if (prefix_space && !suffix_space) return print('\n$obj');
-
-  if (!prefix_space && suffix_space) return print('$obj\n');
-
-  return print('\n$obj\n');
-}
+void spacedPrint<T>(T obj, {bool prefix_space = true, bool suffix_space = true}) => prefix_space && !suffix_space
+    ? print('\n$obj')
+    : !prefix_space && suffix_space
+        ? print('$obj\n')
+        : print('\n$obj\n');
 
 void main() {
   // homogeneous Iterable of Strings
