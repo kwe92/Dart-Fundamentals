@@ -24,6 +24,16 @@
 //   - can be passed into a while loop and will be called
 //     continuously until the sequence is exhausted (moveNext returns false)
 
+// How Iterable Instance Member Access Elements
+
+//   - ALL members of an Iterable object
+//     access the elements in Order-of(n) linear time
+//   - this is why we have diffrent implementations (WE WANNA GO FASTER!)
+
+// for-in-loop control flow statement
+//
+//   - control flow statements use the iterator getter behind the scenes
+
 void spacedPrint<T>(T obj, {bool prefix_space = true, bool suffix_space = true}) => prefix_space && !suffix_space
     ? print('\n$obj')
     : !prefix_space && suffix_space
