@@ -15,9 +15,9 @@
 //     from which it was derived in Order-of(n) linear-time
 //   - returns a new Iterator object when called
 
-// Iterable.moveNext
+// Iterator.moveNext
 
-//   - a predicate method (boolean function) of an Iterable object
+//   - a predicate method (boolean function) of an Iterator object
 //   - if the predicate is evaluated to be true
 //   - the Iterator object is moved forward in the iteration
 //     i.e. sequence of current values "elements"
@@ -28,7 +28,7 @@
 
 //   - ALL members of an Iterable object
 //     access the elements in Order-of(n) linear time
-//   - this is why we have diffrent implementations (WE WANNA GO FASTER!)
+//   - this is why we have different implementations (WE WANNA GO FAST! Order-of(1) asymptotic time complexity)
 
 // for-in-loop control flow statement
 
@@ -48,15 +48,13 @@ void main() {
 //----------Iterating with: while loop----------//
 
 // loop through Iterator until exhausted (moveNext returns false)
-
+  print('\n');
   while (herosIterator.moveNext()) {
     spacedPrint(
       'Has next element: ${true}',
-      prefix_space: false,
     );
     spacedPrint(
       'Next Iterator value: ${herosIterator.current}',
-      prefix_space: false,
     );
   }
 
@@ -65,7 +63,6 @@ void main() {
   for (String hero in heros) {
     spacedPrint(
       hero.toUpperCase(),
-      prefix_space: false,
     );
   }
 }
