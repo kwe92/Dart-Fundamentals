@@ -9,7 +9,7 @@
 //   - read-only computed variable (immutable getter variable)
 //   - getter is a derivation process;
 //     in this case returning an Iterator object
-//     as a derivative of the current Iterable
+//     as a derivative of the current Iterable (this.Iterable)
 //   - the returned Iterator object allows the steping
 //     through of elements within the Iterable
 //     from which it was derived in Order-of(n) linear-time
