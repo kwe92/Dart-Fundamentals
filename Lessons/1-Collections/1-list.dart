@@ -30,7 +30,34 @@
 //       - use a List literal:
 
 //           - omit parameterized type: [] -> <dynamic>[] -> non-homogeneous List
-//           - include parameterized type: <type>[] -> homogeneous List
+//           - include parameterized type: <type>[] -> homogeneous List of specified type
+
+//       - use one of many Named (identity) Constructors
+
+// ignore_for_file: unused_local_variable
+
+//            - there are quite a few factory constructors you can use
+//              they will be initalized in the main function below
+import '../../utility/spacedPrint.dart';
+
 void main() {
+  // Non-homogeneous List Literal growable | modifiable / mutable
+  final List<dynamic> multiTypeArr = ['Garra', 14, 42.45];
+
+  multiTypeArr.add('Sand Ninja');
+
+  spacedPrint(multiTypeArr, prefix_space: true);
+
+  multiTypeArr.add(0);
+
+  multiTypeArr[4] = ['One-Tailed Sand Demon', 'Sand Coffin'];
+
+  spacedPrint(multiTypeArr);
+
+  // Homogeneous List Literal | growable | modifiable / mutable
+  final singleTypeArr = <int>[0, 1, 2, 3, 4, 5];
+
+  // singleTypeArr.add(''); code fails at compile time as you can not add a String to a List of integers
+
   // List Named (Identity Constructors)
 }
