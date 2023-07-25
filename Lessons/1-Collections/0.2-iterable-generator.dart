@@ -11,14 +11,14 @@ import '../../utility/spacedPrint.dart';
 //   - the callback can be a pointer it a callback or a lambda function
 
 // define shape of the parameterized generator anonymous callback
-typedef generatorCallback<E> = E Function(int index);
+typedef GeneratorCallback<E> = E Function(int index);
 
-// declare variable as a generatorCallback then initalize it with a lambda function
-final generatorCallback<int> intGeneratorCallback = (int index) => index * 2;
+// declare variable as a GeneratorCallback then initalize it with a lambda function
+final GeneratorCallback<int> intGeneratorCallback = (int index) => index * 2;
 
-final generatorCallback<int> powerCallback = (int index) => pow(index, 2).toInt();
+final GeneratorCallback<int> powerCallback = (int index) => pow(index, 2).toInt();
 
-final generatorCallback<String> qouteCallback =
+final GeneratorCallback<String> qouteCallback =
     (int index) => 'Begin, to begin is half of the work; Let half still remain; Again begin this and thou will have finished.';
 void main() {
   // Generates an Iterable of length 6 using Iterable.generate(length, generator)
