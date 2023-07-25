@@ -1,4 +1,4 @@
-// TODO: read docs on lists in dart and make a lesson
+// TODO: add more Named Constructors
 
 // List
 
@@ -60,4 +60,20 @@ void main() {
   // singleTypeArr.add(''); code fails at compile time as you can not add a String to a List of integers
 
   // List Named (Identity Constructors)
+
+  //List.filled | default fixed-length | modifiable / mutable
+  final fixedArr0 = List<dynamic>.filled(5, 0);
+
+  spacedPrint(fixedArr0);
+
+  fixedArr0[0] = 'Modified element';
+
+  spacedPrint(fixedArr0);
+
+  try {
+    // will result in a run-time error
+    fixedArr0.add('I can not be added');
+  } catch (error, stackTrace) {
+    spacedPrint('Error: $error');
+  } finally {}
 }
