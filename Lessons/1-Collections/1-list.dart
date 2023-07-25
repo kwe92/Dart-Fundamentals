@@ -14,16 +14,23 @@
 
 //     - The length is determined at compile-time and can not be changed
 //     - operations attempting to change the length by adding or removing elements will throw an error
+//     - you can modify the elements of a fixedlength List
 
 //   Growable List
 
 //     - the default implementation of a List literal <E>[]
 //     - an internal buffer is kept and grows as the list grows
 //     - allowing for amortized constant time operations
+
+// Constructing a List
+
+//   - the List class is abstract; can not be instantiated directly
+//   - you must construct a List one of two ways:
+
+//       - use a List literal:
+
+//           - omit parameterized type: [] -> <dynamic>[] -> non-homogeneous List
+//           - include parameterized type: <type>[] -> homogeneous List
 void main() {
-  var arr = List.empty();
-
-  // arr[0] = 42;
-
-  print(arr);
+  // List Named (Identity Constructors)
 }
