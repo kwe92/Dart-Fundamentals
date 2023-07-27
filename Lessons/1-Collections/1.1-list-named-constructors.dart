@@ -19,6 +19,9 @@ void main() {
   //   - default fixed-length "length can not be changed at compile-time"
   //   -  modifiable / mutable i.e. references "pointers in memory" can be accessed and their elements changed
 
+  // function expression to keep code D.R.Y
+  final prefixedSpacePrint = <T>(T obj) => spacedPrint(obj, prefix_space: true);
+
   final fixedArr0 = List<dynamic>.filled(5, 0);
 
   try {
@@ -26,7 +29,7 @@ void main() {
 
     fixedArr0.add('I can not be added');
   } catch (error, stackTrace) {
-    spacedPrint('Error: $error', prefix_space: true);
+    prefixedSpacePrint('Error: $error');
   } finally {
     // references "pointers" can be accessed to modify the elements "objects" that are being held at that point in memory
 
@@ -34,7 +37,7 @@ void main() {
 
     fixedArr0[0] = 'Modified element';
 
-    spacedPrint(fixedArr0);
+    prefixedSpacePrint(fixedArr0);
   }
 
   // List.castFrom
@@ -43,11 +46,31 @@ void main() {
   //   - the source type "data-type of elements" within <S>[...]
   //     must be a sub-type of <T>[...] or an error is thrown
 
-// e.g. Casting an Array of doubles into an Array of num
-// as double is a subtype of num in the type heirarchy
+  // e.g. Casting an Array of doubles into an Array of num
+  // as double is a subtype of num in the type heirarchy
 
   final decimalArr = <double>[3.14, 0.1, 0.01, 0.001];
+
   final List<num> castAsNumArr = List.castFrom<double, num>(decimalArr);
 
-  spacedPrint(castAsNumArr, prefix_space: true);
+  prefixedSpacePrint(castAsNumArr);
+
+  // List.empty
+
+  // - fixed-length by default
+  // - creates an empty List of length 0
+
+  final emptyArr = List.empty(growable: false);
+
+  try {
+    emptyArr[0] = 'I can not be added and will throw a run-time error.';
+  } catch (error, stackTrace) {
+    prefixedSpacePrint('Error: $error');
+  }
+
+  prefixedSpacePrint('Empty array: $emptyArr');
+
+  // List.from
+
+  // List.from(elements)
 }
