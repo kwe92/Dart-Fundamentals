@@ -10,6 +10,10 @@ import '../../utility/spacedPrint.dart';
 //     allowing for more complex logic when defining their implementation
 //   - however named constructors can also be Initalizer Lists
 //     for simpler implementations that do not need access to the this keyword
+//     or that do not require complex logic in a block
+
+// defining the shape of a dynamic predicate function (a function that only returns true or false)
+typedef DynamicPredicateCallback = bool Function(dynamic ele);
 
 void main() {
   // List Named "Identity" Constructors
@@ -19,7 +23,7 @@ void main() {
   //   - default fixed-length "length can not be changed at compile-time"
   //   -  modifiable / mutable i.e. references "pointers in memory" can be accessed and their elements changed
 
-  // function expression to keep code D.R.Y
+  // parameterized function expression to keep code D.R.Y
   final prefixedSpacePrint = <T>(T obj) => spacedPrint(obj, prefix_space: true);
 
   final fixedArr0 = List<dynamic>.filled(5, 0);
@@ -27,7 +31,7 @@ void main() {
   try {
     // modifying the length of a fixed-length List will result in a run-time error
 
-    fixedArr0.add('I can not be added');
+    fixedArr0.add('I can not be added.');
   } catch (error, stackTrace) {
     prefixedSpacePrint('Error: $error');
   } finally {
@@ -43,11 +47,11 @@ void main() {
   // List.castFrom
 
   //   - adapts the source List <S>[...] into a parameterized type <T>[...]
-  //   - the source type "data-type of elements" within <S>[...]
+  //   - the source type "data-type of the elements" within <S>[...]
   //     must be a sub-type of <T>[...] or an error is thrown
 
   // e.g. Casting an Array of doubles into an Array of num
-  // as double is a subtype of num in the type heirarchy
+  // as double is a sub-type of num in the Dart-type heirarchy
 
   final decimalArr = <double>[3.14, 0.1, 0.01, 0.001];
 
@@ -72,5 +76,28 @@ void main() {
 
   // List.from
 
-  // List.from(elements)
+  //   - takes an Iterable as an argument and converts it to a List
+  //   -
+
+  final DynamicPredicateCallback isFavoriteCharater = (dynamic name) => name == 'Rock Lee';
+
+  final Iterable strIter = <String>{'Gaara', 'Neji', 'Rock Lee'};
+
+  final favorite_character0 = List<String>.from(strIter).where(
+    (String name) => name == 'Gaara',
+  );
+
+  final favorite_character1 = strIter.toList().where(
+        isFavoriteCharater,
+      );
+
+  prefixedSpacePrint(favorite_character0);
+
+  spacedPrint(favorite_character1);
+
+// List.of
+
+//   - What the .toList method uses under the hood
+
+// List.of(elements)
 }
