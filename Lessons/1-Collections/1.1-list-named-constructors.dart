@@ -100,4 +100,26 @@ void main() {
 //   - What the .toList method uses under the hood for Iterables
 
 // List.of(elements)
+
+// ------------------------------------------//
+
+// List.unmodifiable
+
+// List.unmodifiable(elements)
+
+// ------------------------------------------//
+
+// List.writeIterable
+
+// List.writeIterable(target, at, source)
+
+// ------------------------------------------//
+
+// List.switch ??
+
+// List.switch (expression) {
+//   pattern => value,
+// }
+
+// ------------------------------------------//
 }
