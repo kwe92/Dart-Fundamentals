@@ -77,7 +77,7 @@ void main() {
   // List.from
 
   //   - takes an Iterable as an argument and converts it to a List
-  //   -
+  //   - can be used to down-cast a List
 
   final DynamicPredicateCallback isFavoriteCharater = (dynamic name) => name == 'Rock Lee';
 
@@ -97,7 +97,7 @@ void main() {
 
 // List.of
 
-//   - What the .toList method uses under the hood
+//   - What the .toList method uses under the hood for Iterables
 
 // List.of(elements)
 }
