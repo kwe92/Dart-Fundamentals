@@ -105,7 +105,7 @@ void main() {
 
   spacedPrint(favorite_character1);
 
-  //------------------------------------------//
+//------------------------------------------//
 
 // List.of
 
@@ -149,31 +149,35 @@ void main() {
 
 // List.writeIterable
 
-//   - takes the elements starting at a specified index from a List
-//     and sequentially adds the elements to an Iterable
-//   - The target Iterable must:
+//   - takes the elements starting at a specified index from an Iterable
+//     and sequentially adds the elements to a List
+//   - The target List must:
 //       - not be empty
-//       - must have a length at least as long as the elements being added
-//       - must be modifiable at least at the element reference level (pointers of contained objects can have their value changed)
+//       - must have a length at least as long as the number of elements being added
+//       - must be modifiable at least at the element reference level
+//        (pointers of contained objects can have their value changed)
 
-  final List<dynamic> sourceList = [
+  final Iterable<dynamic> sourceIterable = [
     'Gaara',
     'Sand Ninja',
     43.75,
     ['Sand Coffin', 'Sand Armor', 'One-Tailed Sand Demon']
   ];
 
-  final List<dynamic> targetList = List.filled(sourceList.length, 9999, growable: true);
+  final List<dynamic> targetList = List.filled(sourceIterable.length, 9999, growable: true);
 
-  List.writeIterable(targetList, 0, sourceList);
+  List.writeIterable(targetList, 0, sourceIterable);
 
   spacedPrint('Target List of writeIterable: $targetList');
 
 // List.copyRange
 
-//   - Copy a range of elements from one list into another
+//   - Copys a range of elements from one List into another
+//   - the target List has the same requirements of a target
+//     Iterable when using List.writeIterable
+//   - the difference is that List.copyWith takes
 
-  List.copyRange(targetList, 0, sourceList);
+  List.copyRange(targetList, 0, sourceIterable.toList());
 
   // spacedPrint('Target List of writeIterable: $targetList');
 
