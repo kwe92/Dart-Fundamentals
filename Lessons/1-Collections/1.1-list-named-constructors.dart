@@ -168,18 +168,22 @@ void main() {
 
   List.writeIterable(targetList, 0, sourceIterable);
 
-  spacedPrint('Target List of writeIterable: $targetList');
+  spacedPrint('Target List of List.writeIterable: $targetList');
 
 // List.copyRange
 
 //   - Copys a range of elements from one List into another
 //   - the target List has the same requirements of a target
-//     Iterable when using List.writeIterable
-//   - the difference is that List.copyWith takes
+//     List when passing the target to List.writeIterable
+//   - the differences between List.withIterable and List.copyRange:
+//       - List.copyWith source must be a List
+//       - the source being a List adds granularity as the source
+//         can be explicitly indexed with a start and end range
+//         where as Iterables can onlt be access sequentially (linearly Order-of(n) or Big-O-of(n))
 
-  List.copyRange(targetList, 0, sourceIterable.toList());
+  List.copyRange(targetList, 0, sourceIterable.toList(), 1);
 
-  // spacedPrint('Target List of writeIterable: $targetList');
+  spacedPrint('Target List of List.copyRange: $targetList');
 
 //------------------------------------------//
 
