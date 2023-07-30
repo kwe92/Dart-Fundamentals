@@ -8,11 +8,11 @@ import '../../utility/spacedPrint.dart';
 //     named "identity" constructors
 //   - most named constructors are Factory Constructors
 //     allowing for more complex logic when defining their implementation
-//   - however named constructors can also be Initalizer Lists
+//   - however named constructors can also be Initializer Lists
 //     for simpler implementations that do not need access to the this keyword
-//     or that do not require complex logic in a block
+//     or that do not require complex logic (Initializer Lists CAN NOT have a code block)
 
-// defining the shape of a dynamic predicate function (a function that only returns true or false)
+// defining the shape of a dynamic predicate function (a function that only returns true or false given some agrument)
 typedef DynamicPredicateCallback = bool Function(dynamic ele);
 
 void main() {
@@ -21,7 +21,10 @@ void main() {
   // List.filled
 
   //   - default fixed-length "length can not be changed at compile-time"
-  //   -  modifiable / mutable i.e. references "pointers in memory" can be accessed and their elements changed
+  //   -  modifiable / mutable elements
+  //        - references "pointers in memory" of values within
+  //          a fixed-length List can be accessed and their elements changed
+  //   - only immutable by length, not by deep copy
 
   // parameterized function expression to keep code D.R.Y
   final prefixedSpacePrint = <T>(T obj) => spacedPrint(obj, prefix_space: true);
@@ -50,8 +53,9 @@ void main() {
   //   - the source type "data-type of the elements" within <S>[...]
   //     must be a sub-type of <T>[...] or an error is thrown
 
-  // e.g. Casting an Array of doubles into an Array of num
-  // as double is a sub-type of num in the Dart-type heirarchy
+  // Example: Casting an Array of doubles into an Array of num
+
+  //   - double is a sub-type of num in the Dart-type heirarchy
 
   final decimalArr = <double>[3.14, 0.1, 0.01, 0.001];
 
@@ -61,7 +65,7 @@ void main() {
 
   // List.empty
 
-  // - fixed-length by default
+  // - fixed-length by default; can be changed with the growable property
   // - creates an empty List of length 0
 
   final emptyArr = List.empty(growable: false);
@@ -97,15 +101,33 @@ void main() {
 
 // List.of
 
+//   - can convert any sub-type of Iterable to a List
 //   - What the .toList method uses under the hood for Iterables
 
-// List.of(elements)
+  final Iterable iter0 = <int>{42, 11, 9999};
+
+  final Iterable heroArray0 = <String>['Garra', 'Killua', 'Shikimaru'];
+
+  final Set set0 = <double>{42, 3.14, 0.00001};
+
+  final List<Iterable> iterArray = [iter0, heroArray0, set0];
+
+  final List<List> listArray = [for (Iterable iter in iterArray) List.of(iter)];
+
+  spacedPrint('listArray $listArray');
+
+  for (Iterable iter in listArray) {
+    spacedPrint(iter.runtimeType);
+  }
 
 // ------------------------------------------//
 
 // List.unmodifiable
 
-// List.unmodifiable(elements)
+//   - converts any sub-type of Iterable into a completely immuable List
+//   - the length and the elements can not be changed
+
+  final immutableLists = <List<List>>[for (Iterable iter in listArray) List.unmodifiable(iter)];
 
 // ------------------------------------------//
 
@@ -117,9 +139,7 @@ void main() {
 
 // List.switch ??
 
-// List.switch (expression) {
-//   pattern => value,
-// }
+// /
 
 // ------------------------------------------//
 }
