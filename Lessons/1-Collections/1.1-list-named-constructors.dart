@@ -47,6 +47,8 @@ void main() {
     prefixedSpacePrint(fixedArr0);
   }
 
+  //------------------------------------------//
+
   // List.castFrom
 
   //   - adapts the source List <S>[...] into a parameterized type <T>[...]
@@ -63,6 +65,8 @@ void main() {
 
   prefixedSpacePrint(castAsNumArr);
 
+  //------------------------------------------//
+
   // List.empty
 
   // - fixed-length by default; can be changed with the growable property
@@ -77,6 +81,8 @@ void main() {
   }
 
   prefixedSpacePrint('Empty array: $emptyArr');
+
+  //------------------------------------------//
 
   // List.from
 
@@ -99,6 +105,8 @@ void main() {
 
   spacedPrint(favorite_character1);
 
+  //------------------------------------------//
+
 // List.of
 
 //   - can convert any sub-type of Iterable to a List
@@ -116,30 +124,64 @@ void main() {
 
   spacedPrint('listArray $listArray');
 
-  for (Iterable iter in listArray) {
+  for (final Iterable iter in listArray) {
     spacedPrint(iter.runtimeType);
   }
 
-// ------------------------------------------//
+//------------------------------------------//
 
 // List.unmodifiable
 
 //   - converts any sub-type of Iterable into a completely immuable List
-//   - the length and the elements can not be changed
+//   - the length and the elements can not be changed, as the name
+//     implies the Lists are completely unmodifiable
 
-  final immutableLists = <List<List>>[for (Iterable iter in listArray) List.unmodifiable(iter)];
+  final List<List<dynamic>> immutableLists = [for (final Iterable iter in listArray) List.unmodifiable(iter)];
+  spacedPrint('immutableLists: ${immutableLists[0]}');
+  try {
+    // will throw at run-time
+    immutableLists[0][0] = 9999;
+  } catch (error, stackTrace) {
+    spacedPrint(error);
+  } finally {}
 
-// ------------------------------------------//
+//------------------------------------------//
 
 // List.writeIterable
 
-// List.writeIterable(target, at, source)
+//   - takes the elements starting at a specified index from a List
+//     and sequentially adds the elements to an Iterable
+//   - The target Iterable must:
+//       - not be empty
+//       - must have a length at least as long as the elements being added
+//       - must be modifiable at least at the element reference level (pointers of contained objects can have their value changed)
 
-// ------------------------------------------//
+  final List<dynamic> sourceList = [
+    'Gaara',
+    'Sand Ninja',
+    43.75,
+    ['Sand Coffin', 'Sand Armor', 'One-Tailed Sand Demon']
+  ];
+
+  final List<dynamic> targetList = List.filled(sourceList.length, 9999, growable: true);
+
+  List.writeIterable(targetList, 0, sourceList);
+
+  spacedPrint('Target List of writeIterable: $targetList');
+
+// List.copyRange
+
+//   - Copy a range of elements from one list into another
+
+  List.copyRange(targetList, 0, sourceList);
+
+  // spacedPrint('Target List of writeIterable: $targetList');
+
+//------------------------------------------//
 
 // List.switch ??
 
 // /
 
-// ------------------------------------------//
+//------------------------------------------//
 }
