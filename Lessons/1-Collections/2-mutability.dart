@@ -18,12 +18,12 @@ void main() {
   // shifting ALL elements O(n) linear time complexity
   heroNames.insert(0, 'Almight');
 
-  // removes an element at a specified index location
+  // removes an element at a specified index location O(n)
   print(heroNames);
   heroNames.removeAt(2);
   print(heroNames);
 
-  //vremoves all elements from the collection
+  // removes all elements from a growable List
   heroNames.clear();
   print(heroNames);
 }
