@@ -3,6 +3,8 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
+import '../utility/spacedPrint.dart';
+
 class FetchError implements Exception {
   const FetchError(this._message);
   final _message;
@@ -36,11 +38,15 @@ Future<QuoteRecord> useQuotes() async {
 
 Future<void> main() async {
   final result = await useQuotes();
+
+  // similar to tuple unpacking in python
   final (author, quote, word_count) = result;
 
   final arr1 = [];
 
-  print(result);
+  spacedPrint(result, prefix_space: true);
+
+  spacedPrint(quote);
 
   // const ({int x, int y}) p1 = (x: 4, y: 3);
   // var (i, j) = p1;
