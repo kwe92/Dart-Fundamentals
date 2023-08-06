@@ -32,6 +32,13 @@
 //   print(Point(2, 4).getX);
 // }
 
+// from Pragmatic Programmer Illustration figure 3.4
+typedef AddProduct = ({
+  int id,
+  String name,
+  int orderCode,
+});
+
 void main() {
   String myString = 'Kweayon';
   String myString2 = '';
