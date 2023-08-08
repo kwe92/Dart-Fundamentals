@@ -31,7 +31,7 @@ class MemeService {
 
   final Uri _url = Uri.parse(_baseUrl);
 
-  Future<AniMemeModel> getMeme() async {
+  Future<AniMemesModel> getMeme() async {
     final http.Response response = await http.get(_url);
 
     if (response.statusCode != 200) {
@@ -43,7 +43,7 @@ class MemeService {
       response.body,
     );
 
-    final aniMeme = AniMemeModel.fromJSON(responseBody);
+    final aniMeme = AniMemesModel.fromJSON(responseBody);
 
     return aniMeme;
   }
