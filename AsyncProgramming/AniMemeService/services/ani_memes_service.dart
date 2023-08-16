@@ -18,16 +18,19 @@ class MemeService {
   // the base url to be parsed
   static final _baseUrl = 'https://vast-puce-mite-fez.cyclic.app/animeme';
 
-  // Uri: Uniform Resource Indicator
+  // Uri: Uniform Resource Identifier
 
   //   - an API that identifies online resources
   //   - you can explicitly define scheme, host, path, fragment
 
 // Uri.parse
+
 //   - A named constructor that makes parsing URL's easier for developers
 //   - handles the parsing (encoding and decoding)
 //     of special characters of a URL (Uniform Resource Locator)
 //   - preferred over explicitly defining scheme, host, path, fragment
+
+// Constructing Uri's with Complex queries
 
   final Uri _url = Uri.parse(_baseUrl);
 
