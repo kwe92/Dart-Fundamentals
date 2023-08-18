@@ -1,6 +1,8 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+// TODO: refactor to use HttpService and ApiService classes
+
 class AnimeChanApi {
   static const uri = 'https://animechan.vercel.app/api/random';
 

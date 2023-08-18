@@ -3,6 +3,8 @@ import 'package:http/http.dart' as http;
 
 // https://animechan.vercel.app/api/random
 //TODO: this is a better way to fetch data but still not optimal
+// TODO: refactor to use HttpService and ApiService classes
+
 class _FetchError implements Exception {
   const _FetchError(this._message);
   final _message;

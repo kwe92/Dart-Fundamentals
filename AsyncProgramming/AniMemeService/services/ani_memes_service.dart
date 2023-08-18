@@ -6,6 +6,8 @@ import 'package:http/http.dart' as http;
 import '../../../utility/spacedPrint.dart';
 import '../models/ani_memes_model.dart';
 
+// TODO: refactor to use HttpService and ApiService classes
+
 class _FetchError implements Exception {
   const _FetchError(this._message);
   final _message;
