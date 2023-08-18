@@ -7,13 +7,11 @@ import 'dart:convert';
 class AnimeChanApiClient {
   AnimeChanApiClient._();
   static void fetchData(String title) async {
-    final String uri =
-        'https://animechan.vercel.app/api/quotes/anime?title=${title}';
+    final String uri = 'https://animechan.vercel.app/api/quotes/anime?title=${title}';
     final Uri url = Uri.parse(uri);
     final response = await http.get(url);
     if (response.statusCode != 200) {
-      throw Exception(
-          "$title may not be an anime the endpoint has. Try another title.");
+      throw Exception("$title may not be an anime the endpoint has. Try another title.");
     }
     final responseObject = jsonDecode(response.body);
     print(responseObject);
