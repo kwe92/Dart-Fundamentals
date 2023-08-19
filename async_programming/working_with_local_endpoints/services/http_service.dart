@@ -1,5 +1,7 @@
 // ignore_for_file: unused_catch_stack
 
+import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 
 mixin HttpService {
@@ -21,14 +23,14 @@ mixin HttpService {
         headers: headers..addAll(extraHeaders ?? {}),
       );
 
-      return response;
+      return parseStatusCode(response, endpoint);
     } catch (error, stackTrace) {
       print('Error:\n\n${error.toString()}');
       return _httpSocketError;
     }
   }
 
-  // TODO: continue implementing post request function
+  // TODO: continue i`mplementing post request function
   Future<http.Response> post(
     String endpoint, {
     required dynamic body,
@@ -37,8 +39,19 @@ mixin HttpService {
     Map<String, String>? extraHeaders,
   }) async {
     try {
-      // TODO: continue implementation  | remove place holder response
-      return http.Response("place holder response.", 9999);
+      // TODO: Replace hardcoded body with TaskModel
+
+      final http.Response response = await http.post(
+        Uri.parse(tempHost ?? host + endpoint),
+        headers: headers..addAll(extraHeaders ?? {}),
+        body: {
+          "taskName": "Welcome The Void, Welcome The Pheonix",
+          "taskDetails":
+              "Moment by moment, rest in the void;\nThe universal mind;\nBurn away what is not pure;\nWhat is not born from love and compassion;\nFor oneself, for humanity as you are one.",
+          "createdDate": "2023-08-19",
+        },
+      );
+      return parseStatusCode(response, endpoint);
     } catch (error, stackTrace) {
       print("Error:\n\n${error.toString()}");
       return _httpSocketError;
@@ -46,9 +59,103 @@ mixin HttpService {
   }
 }
 
-// TODO: continue implementing parse status code
+///  parseStatusCode logs endpoint, response status code and the server response.
+http.Response parseStatusCode(http.Response response, String endpoint) {
+  print('\nEndpoint: \n\n${endpoint}');
+  print('\nStatus Code:\n\n${response.statusCode}');
+  print('\nResponse Body:\n\n${utf8.decode(response.bodyBytes)}');
 
-void parseStatusCode() {}
+  return response;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // TODO: Comment your code!
 
