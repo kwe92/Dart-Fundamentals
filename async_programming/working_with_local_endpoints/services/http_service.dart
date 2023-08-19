@@ -3,14 +3,18 @@
 import 'package:http/http.dart' as http;
 
 mixin HttpService {
-  static final httpSocketError =
+  static final _httpSocketError =
       http.Response('{"socket_exception":"Unable to communicate with server. Check your internet connection."}', 550);
 
   String get host;
 
   Map<String, String> get headers;
 
-  Future<http.Response> get(String endpoint, {String? tempHost, Map<String, String>? extraHeaders}) async {
+  Future<http.Response> get(
+    String endpoint, {
+    String? tempHost,
+    Map<String, String>? extraHeaders,
+  }) async {
     try {
       final http.Response response = await http.get(
         Uri.parse(tempHost ?? host + endpoint),
@@ -20,7 +24,24 @@ mixin HttpService {
       return response;
     } catch (error, stackTrace) {
       print('Error:\n\n${error.toString()}');
-      return httpSocketError;
+      return _httpSocketError;
+    }
+  }
+
+  // TODO: continue implementing post request function
+  Future<http.Response> post(
+    String endpoint, {
+    required dynamic body,
+    String? tempHost,
+    Map<String, String>? baseHeaders,
+    Map<String, String>? extraHeaders,
+  }) async {
+    try {
+      // TODO: continue implementation  | remove place holder response
+      return http.Response("place holder response.", 9999);
+    } catch (error, stackTrace) {
+      print("Error:\n\n${error.toString()}");
+      return _httpSocketError;
     }
   }
 }
