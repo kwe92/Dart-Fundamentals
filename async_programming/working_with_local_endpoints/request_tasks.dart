@@ -1,24 +1,54 @@
-// ignore_for_file: unused_catch_stack
-
-import '../../utility/spacedPrint.dart';
 import 'services/task_service.dart';
 
 Future<void> main() async {
   final taskService = TaskService();
 
-  final allTasks = await taskService.getAllTasks();
-  final task = await taskService.getTaskById(1005);
-
-  spacedPrint(
-    'All Tasks: \n\n$allTasks',
-    prefix_space: true,
-  );
-
-  spacedPrint('Task by id:\n\n$task');
+  await taskService.getAllTasks();
+  await taskService.getTaskById(1005);
+  await taskService.createTask({
+    "taskName": "Welcome The Void, Welcome The Pheonix",
+    "taskDetails":
+        "Moment by moment, rest in the void;\nThe universal mind;\nBurn away what is not pure;\nWhat is not born from love and compassion;\nFor oneself, for humanity as you are one.",
+    "createdDate": "2023-08-19",
+  });
 }
 
-// TODO: Review | Just review the whole package
-// HttpHeaders.contentTypeHeader: "application/json"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// TODO: Review: 
+// http package
+// HttpHeaders.contentTypeHeader: "application/json" // done
 // Dart Enhanced Enum
 // headers
 // hosts

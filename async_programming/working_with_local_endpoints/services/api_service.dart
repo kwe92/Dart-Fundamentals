@@ -2,6 +2,8 @@ import 'dart:io';
 import 'http_service.dart';
 
 // Todo: host should be hidden in .env | DotEnv dotenv | package:flutter_dotenv/src/dotenv.dart
+// TODO: remove hard coded hot and headers to make more abstract and reuseable
+// TODO: comment your code with brevity!
 
 abstract class ApiService with HttpService {
   @override
@@ -29,6 +31,3 @@ enum EndPoint {
 
   const EndPoint(this.path);
 }
-
-// TODO: Comment your code!
-
