@@ -6,8 +6,8 @@ import 'services/task_service.dart';
 Future<void> main() async {
   final taskService = TaskService();
 
-  final List<dynamic> allTasks = await taskService.getAllTasks();
-  final Map<String, dynamic> task = await taskService.getTaskById(1005);
+  final allTasks = await taskService.getAllTasks();
+  final task = await taskService.getTaskById(1005);
 
   spacedPrint(
     'All Tasks: \n\n$allTasks',
@@ -23,4 +23,3 @@ Future<void> main() async {
 // headers
 // hosts
 // json decoding and encoding
-// 

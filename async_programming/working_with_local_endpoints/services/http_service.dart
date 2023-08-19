@@ -24,3 +24,18 @@ mixin HttpService {
     }
   }
 }
+
+// TODO: continue implementing parse status code
+
+void parseStatusCode() {}
+
+// TODO: Comment your code!
+
+// What is a Service?
+
+//   - Services aslo referred to as repositories request responses from
+//     server endpoints
+//   - the response is then decoded and servered throughout your application
+//   - Services can also be used to serve temporary data throughtout your application
+//     like a ToastService that displays temporary snack bars and banners
+ 
