@@ -4,6 +4,8 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
+// TODO: Comment your code with brevity!
+
 mixin HttpService {
   static final _httpSocketError =
       http.Response('{"socket_exception":"Unable to communicate with server. Check your internet connection."}', 550);
@@ -23,14 +25,13 @@ mixin HttpService {
         headers: headers..addAll(extraHeaders ?? {}),
       );
 
-      return parseStatusCode(response, endpoint);
+      return parseStatusCode(response, host + endpoint);
     } catch (error, stackTrace) {
       print('Error:\n\n${error.toString()}');
       return _httpSocketError;
     }
   }
 
-  // TODO: continue i`mplementing post request function
   Future<http.Response> post(
     String endpoint, {
     required dynamic body,
@@ -39,19 +40,13 @@ mixin HttpService {
     Map<String, String>? extraHeaders,
   }) async {
     try {
-      // TODO: Replace hardcoded body with TaskModel
-
+      print("headers: $headers");
       final http.Response response = await http.post(
         Uri.parse(tempHost ?? host + endpoint),
         headers: headers..addAll(extraHeaders ?? {}),
-        body: {
-          "taskName": "Welcome The Void, Welcome The Pheonix",
-          "taskDetails":
-              "Moment by moment, rest in the void;\nThe universal mind;\nBurn away what is not pure;\nWhat is not born from love and compassion;\nFor oneself, for humanity as you are one.",
-          "createdDate": "2023-08-19",
-        },
+        body: body,
       );
-      return parseStatusCode(response, endpoint);
+      return parseStatusCode(response, host + endpoint);
     } catch (error, stackTrace) {
       print("Error:\n\n${error.toString()}");
       return _httpSocketError;
