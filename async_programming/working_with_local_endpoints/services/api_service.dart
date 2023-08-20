@@ -1,33 +1,11 @@
-import 'dart:io';
 import 'http_service.dart';
 
 // Todo: host should be hidden in .env | DotEnv dotenv | package:flutter_dotenv/src/dotenv.dart
-// TODO: remove hard coded hot and headers to make more abstract and reuseable
-// TODO: comment your code with brevity!
 
 abstract class ApiService with HttpService {
   @override
-  String get host => "http://127.0.0.1:8082";
+  String get host;
 
   @override
-  Map<String, String> get headers => {
-        HttpHeaders.contentTypeHeader: "application/json",
-      };
-}
-
-// Dart Enhanced Enum
-enum EndPoint {
-  gettasks("/gettasks"),
-
-  gettask("/gettask/"),
-
-  create("/create"),
-
-  update("/update/"),
-
-  delete("/delete/");
-
-  final String path;
-
-  const EndPoint(this.path);
+  Map<String, String> get headers;
 }
