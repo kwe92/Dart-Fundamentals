@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 
 // TODO: Comment your code with brevity!
 
+/// HttpService abstracts away commonly repeated API call details.
 mixin HttpService {
   static final _httpSocketError =
       http.Response('{"socket_exception":"Unable to communicate with server. Check your internet connection."}', 550);
@@ -14,6 +15,7 @@ mixin HttpService {
 
   Map<String, String> get headers;
 
+  /// get Sends an HTTP GET request with the given headers to the given URL 'endpoint'.
   Future<http.Response> get(
     String endpoint, {
     String? tempHost,
@@ -32,6 +34,7 @@ mixin HttpService {
     }
   }
 
+  /// post Sends an HTTP POST request with the given headers and body to the given URL.
   Future<http.Response> post(
     String endpoint, {
     required dynamic body,
@@ -40,7 +43,6 @@ mixin HttpService {
     Map<String, String>? extraHeaders,
   }) async {
     try {
-      print("headers: $headers");
       final http.Response response = await http.post(
         Uri.parse(tempHost ?? host + endpoint),
         headers: headers..addAll(extraHeaders ?? {}),
