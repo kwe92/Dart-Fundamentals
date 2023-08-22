@@ -20,23 +20,19 @@ List<Product> allProducts = [
 ];
 
 void main() {
-  /*
- 
-  final String productListString =
-      allProducts.map((product) => product.displayName).join();
+  final String productListString = allProducts.map((product) => product.displayName).join();
   final String? productChoice;
   stdout.write("Please select an available product:\n" "$productListString");
   productChoice = stdin.readLineSync();
   for (var product in allProducts) {
     if (product.inital.toLowerCase() == productChoice?.toLowerCase()) {
       stdout.write("You have chosen:\n" "$product");
+      break;
     } else {
       stdout.write("Product not found!");
     }
   }
- 
- */
 
-  Map<int, String> items = {1: "apples", 2: "bananas"};
-  stdout.write("Product id 3: ${items[3]}\n");
+  // Map<int, String> items = {1: "apples", 2: "bananas"};
+  // stdout.write("Product id 3: ${items[3]}\n");
 }
