@@ -39,10 +39,21 @@ class TaskService extends ApiService {
     );
     return jsonDecode(response.body);
   }
+
+  /// updateTask updates the given task if it exists.
+
+  Future<dynamic> updateTask(Map<String, dynamic> task) async {
+    final response = await put(
+      EndPoint.update.path + task['id'],
+      body: jsonEncode(task),
+    );
+
+    return jsonDecode(response.body);
+  }
 }
 
 /// EndPoint is an enumerated list of all task endpoints.
-///
+
 enum EndPoint {
   gettasks("/gettasks"),
 

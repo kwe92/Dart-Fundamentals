@@ -10,6 +10,12 @@ Future<void> main() async {
     "taskDetails":
         "Moment by moment, rest in the void;\nThe universal mind;\nBurn away what is not pure;\nWhat is not born from love and compassion;\nFor oneself, for humanity as you are one.",
   });
+  await taskService.updateTask({
+    "id": "1001",
+    "taskName": "Be Efficient",
+    "taskDetails": "Aim for effieciency over quickness and you will find speed in effieciency as you will avoid many errors.",
+    "createdDate": "08-22-2023",
+  });
 }
 
 
