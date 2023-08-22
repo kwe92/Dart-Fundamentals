@@ -9,7 +9,6 @@ Future<void> main() async {
     "taskName": "Welcome The Void, Welcome The Pheonix",
     "taskDetails":
         "Moment by moment, rest in the void;\nThe universal mind;\nBurn away what is not pure;\nWhat is not born from love and compassion;\nFor oneself, for humanity as you are one.",
-    "createdDate": "2023-08-19",
   });
 }
 
