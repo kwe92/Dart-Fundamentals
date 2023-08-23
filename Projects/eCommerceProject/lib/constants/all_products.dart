@@ -1,6 +1,6 @@
 import '/Users/kwe/DartTutorial/Dart-Programming-Language-Foundation/Projects/eCommerceProject/lib/models/product.dart';
 
-const allProducts = [
+const List<Product> allProducts = [
   Product(id: 1, name: 'apples', price: 1.60),
   Product(id: 2, name: 'bananas', price: 0.70),
   Product(id: 3, name: 'courgettes', price: 1.0),

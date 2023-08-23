@@ -6,6 +6,8 @@ import 'package:http/http.dart' as http;
 
 // TODO: Comment your code with brevity!
 
+//! REFACTOR:  Some http methods automatically initializes a new [Client] and closes that client once the request is complete. If you're planning on making multiple requests to the same server, you should use a single [Client] for all of those requests.
+
 /// HttpService abstracts away commonly repeated API call details.
 
 mixin HttpService {
@@ -72,6 +74,23 @@ mixin HttpService {
         body: body,
         headers: headers..addAll(extraHeaders ?? {}),
       );
+      return parseStatusCode(response, host + endpoint);
+    } catch (error, stackTrace) {
+      print("Error:\n\n${error.toString()}");
+      return _httpSocketError;
+    }
+  }
+
+  // TODO: add comment and continue implementation
+
+  /// delete sends an HTTP DELETE request with the passed in headers to the specified URI.
+
+  Future<http.Response> delete(String endpoint) async {
+    try {
+      final response = await http.delete(
+        Uri.parse(host + endpoint),
+      );
+
       return parseStatusCode(response, host + endpoint);
     } catch (error, stackTrace) {
       print("Error:\n\n${error.toString()}");
