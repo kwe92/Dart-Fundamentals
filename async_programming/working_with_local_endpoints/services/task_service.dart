@@ -5,6 +5,8 @@ import 'api_service.dart';
 
 // TODO: handle if the response is an array or error map | check the response type
 
+/// TaskService is a stub for sending requests to the task API endpoints.
+
 class TaskService extends ApiService {
   @override
   String get host => "http://127.0.0.1:8082";
@@ -78,17 +80,3 @@ enum EndPoint {
 
   const EndPoint(this.path);
 }
-
-//   Future<http.Response> getAllTasks() async {
-//     http.Response response = await get(EndPoint.gettasks.path);
-//     return response;
-//   }
-
-//   Future<http.Response> getTaskById(int id) async {
-//     http.Response response = await get(
-//       EndPoint.gettask.path + id.toString(),
-//     );
-//     return response;
-//   }
-
-// TODO: Comment your code!
