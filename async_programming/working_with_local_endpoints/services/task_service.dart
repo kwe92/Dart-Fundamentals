@@ -50,6 +50,15 @@ class TaskService extends ApiService {
 
     return jsonDecode(response.body);
   }
+
+  /// deleteTask removes a task with the specified id.
+
+  Future<dynamic> deleteTask(int taskId) async {
+    final response = await delete(
+      EndPoint.delete.path + taskId.toString(),
+    );
+    return jsonDecode(response.body);
+  }
 }
 
 /// EndPoint is an enumerated list of all task endpoints.
