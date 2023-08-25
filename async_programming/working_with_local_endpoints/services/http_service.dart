@@ -6,7 +6,10 @@ import 'package:http/http.dart' as http;
 
 // TODO: Comment your code with brevity!
 
-//! REFACTOR:  Some http methods automatically initializes a new [Client] and closes that client once the request is complete. If you're planning on making multiple requests to the same server, you should use a single [Client] for all of those requests.
+// Some http methods automatically initializes a new [Client] and closes that client once the request is complete. If you're planning on making multiple requests to the same server, you should use a single [Client] for all of those requests.
+// Should be a singleton with Service Locator design pattern in flutter
+
+final _client = http.Client();
 
 /// HttpService abstracts away commonly repeated API call details.
 
@@ -26,7 +29,7 @@ mixin HttpService {
     Map<String, String>? extraHeaders,
   }) async {
     try {
-      final http.Response response = await http.get(
+      final http.Response response = await _client.get(
         Uri.parse(tempHost ?? host + endpoint),
         headers: headers..addAll(extraHeaders ?? {}),
       );
@@ -48,7 +51,7 @@ mixin HttpService {
     Map<String, String>? extraHeaders,
   }) async {
     try {
-      final http.Response response = await http.post(
+      final http.Response response = await _client.post(
         Uri.parse(tempHost ?? host + endpoint),
         headers: headers..addAll(extraHeaders ?? {}),
         body: body,
@@ -60,7 +63,7 @@ mixin HttpService {
     }
   }
 
-  // put sends an HTTP PUT request with the passed in headers and body to the given URI.
+  /// put sends an HTTP PUT request with the passed in headers and body to the given URI.
 
   Future<http.Response> put(
     String endpoint, {
@@ -69,7 +72,7 @@ mixin HttpService {
     Map<String, String>? extraHeaders,
   }) async {
     try {
-      final http.Response response = await http.put(
+      final http.Response response = await _client.put(
         Uri.parse(tempHost ?? host + endpoint),
         body: body,
         headers: headers..addAll(extraHeaders ?? {}),
@@ -87,7 +90,7 @@ mixin HttpService {
 
   Future<http.Response> delete(String endpoint) async {
     try {
-      final response = await http.delete(
+      final response = await _client.delete(
         Uri.parse(host + endpoint),
       );
 
@@ -100,6 +103,7 @@ mixin HttpService {
 }
 
 ///  parseStatusCode logs endpoint, response status code and the server response.
+
 http.Response parseStatusCode(http.Response response, String endpoint) {
   print('\nEndpoint: \n\n${endpoint}');
   print('\nStatus Code:\n\n${response.statusCode}');
@@ -107,8 +111,6 @@ http.Response parseStatusCode(http.Response response, String endpoint) {
 
   return response;
 }
-
-// TODO: Comment your code!
 
 // What is a Service?
 
