@@ -105,7 +105,7 @@ mixin HttpService {
 ///  parseStatusCode logs endpoint, response status code and the server response.
 
 http.Response parseStatusCode(http.Response response, String endpoint) {
-  print('\nEndpoint: \n\n${endpoint}');
+  print('\nEndpoint: \n\n$endpoint');
   print('\nStatus Code:\n\n${response.statusCode}');
   print('\nResponse Body:\n\n${utf8.decode(response.bodyBytes)}');
 
