@@ -11,7 +11,7 @@ import 'maid.dart';
 import 'owner.dart';
 import 'texter.dart';
 
-/// Responsible for the creation of all consumed class implementations for both low level and high level modules
+/// Responsible for the creation (instantiation) of all consumed concrete class implementations for both low level and high level modules
 class Factory {
   const Factory._();
 
@@ -65,5 +65,10 @@ class Factory {
 }
 
 
-// TODO: rewrite notes | WFW
-// The Factory Method pattern, sometimes referred to as the Virtual Constructor pattern, provides a way to conceal an object's creation logic from client code, but the object returned is guaranteed to adhere to a known interface. It's one of the most widely used creational patterns, because it adds a lot of flexibility to your object creation architecture without adding much complexity.
+//? Factory Method Pattern
+
+//    - also referred to as the Virtual Constructor pattern
+//      provides a way to conceal an object's creation logic from client code
+//    - the object returned is guaranteed to adhere to a contract of a known interface
+//    - one of the most widely used creational patterns
+//    - adds a lot of flexibility to your object creation architecture without adding too much complexity

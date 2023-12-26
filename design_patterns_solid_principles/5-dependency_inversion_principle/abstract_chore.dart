@@ -8,13 +8,11 @@ abstract class AbstractChore {
 
   final AbstractOwner owner;
 
-  late double _hoursWorked;
+  // implementation required in sub-class
+  double get hoursWorked;
 
-  late bool _isComplete;
-
-  double get hoursWorked => _hoursWorked;
-
-  bool get isComplete => _isComplete;
+  // implementation required in sub-class
+  bool get isComplete;
 
   AbstractChore({
     required this.maid,
@@ -22,9 +20,14 @@ abstract class AbstractChore {
     required this.owner,
   });
 
+  // implementation required in sub-class
   void performedWork(double timeWorked);
 
+  // implementation required in sub-class
   void completeChore();
 }
 
-// Abstract Classes can act as interfaces if you do not implement the method signatures they define
+// Abstract Classes Acting as Interfaces
+
+//   - if defined method signatures and getter computed properties are not implemented 
+//     within an Abstract Class, the sub-class must implement all of them via the @override annotation (Polymorphism)

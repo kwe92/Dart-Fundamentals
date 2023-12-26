@@ -7,9 +7,10 @@ import 'abstract_owner.dart';
 import 'factory.dart';
 import 'logger.dart';
 
-// Example using simple maid service application
+// DPI Example: Simple Maid Service Application
 
 void main() {
+  // require an abstraction (interface / abstract class) instead of a concrete implementation
   final AbstractOwner owner = Factory.createOwner(
     firstName: "Baki",
     lastName: "Hanma",
@@ -44,52 +45,65 @@ void main() {
   Logger.logCache.forEach((logMessage) => print(logMessage));
 }
 
-//  TODO: Refactor Notes
+//? What are Design Patterns
 
+//    - Repeatable best practices and concepts to solve common software design problems
+//      and create a system of software that is:
+//        - Maintainable, Readable, Testable, Extensible, Modular, and Loosely Coupled
 
-// What are Design Patterns
+//? Software Entity (in the context of this writing)
 
-//   - General repeatable best practices and concepts
-//     that can be implemented in your code as solutions
-//     to solve commonly occuring software design problems
+//    - Class, Function, Method, and Module
 
+//? Dependency Inversion Principle
 
-// Dependency Inversion Principle
+//    - `High level modules should not depend on low level modules,
+//      both should depend on abstractions (Interfaces and Abstract Classes)
+//      and abstractions should not depend on details (implementations).`
 
-//   - `High level modules should not depend on low level modules,
-//     both should depend on abstractions (Interfaces and Abstract Classes)
-//     and abstractions should not depend on details (implementations).`
-//   - centralized instantiation of classes using some creatinal pattern, in this case a factory pattern
-//   - decouples code as classes are not instantiated internally but instead in one centralized location
-//   - rely on interfaces and abstractions instead of concrete implementations
-//   - similar to how M-V-VM used the MiewModel to instantiate the Model classes for the View and inject the created objects into the view
-//   - Your high level modules are disconnected from low level modules allowing you to easily swap the implementation entirely (class name, property names of methods and method implementations as method signatures do not include property names)
-//   - no direct dependencies (importing concrete implementations), only depend on abstractions and not implementations
-//   - you want to talk to just interfaces from top to bottom and from botton to top
-//   - each constituent part then becomes testable, reusable, replaceable and testable
+//    - rely on abstractions and not concrete implementations
 
-// Denefits of Dependency Inversion Principle
+//    - no direct dependencies (the importing of concrete implementations), only depend on abstractions
 
-//   - swapping out implementations can be done with ease and without propagation of effects as long as the contract (implementation of the subclass implementing the abstract class is the same i.e. implementor not defining things an an unexpected way)
-//   - the application is no longer monolithic application and instead your system is decoupled, modular, and made of loosely coupled constituent parts
-//   - single responsibility as each constituent part only does one thing 
-//   - self contained tiny abstractions (interfaces and abstract classes) allowing implementations to easily be swapped out without side effect of propagation
-//   - can make small changes without big issues
-//   - sets you up for dependency injection (one of many ways to implement the Dependency Inversion Principle)
-//   - everything depends on abstractions (interfaces or abstract methods)
-//   - unit testing becomes easier as you are not tightly coupled with the instantiation of classes which means you can mock
-//   - you can create quick implementations of any interface you need
-//   = can use Dependency Injection to assign instances to interfaces
+//    - decouples code, objects are not instantiated internally (removing concrete implementation imports)
 
-// High Level Module
+//    - centralized instantiation of classes using some form of
+//      Dependency Injection or a Creational Design Pattern (Factory Pattern)
 
-//    - anything that is calling something else
-//    - anything you call is a dependency
+//    - you want to communicate though abstractions from top to bottom and from bottom to top
+
+//    - use abstractions and composition instead of internally creating objects within classes 
+
+//    - each constituent part (software entity) then becomes testable, reusable, and replaceable
+
+//   - if it's not a primitive or part of the standard library / sdk it should be an abstraction??? [think this one over a bit]
+
+//? Benefits of The Dependency Inversion Principle
+
+//    - self contained tiny abstractions (interfaces and abstract classes) that define contracts (set of rules for implementing and inheriting classes)
+
+//    - Implementations are then replaceable without side effects so long as contracts (abstraction rules) are abidded by
+
+//    - your systems is longer monolithic, instead your system is modular, made up of loosely coupled constituent parts
+//      allowing developers to make small changes without big issues
+
+//    - each component does one thing having a single responsibility
+
+//    - your system is architected in a way to use dependency injection (one of many ways to implement the Dependency Inversion Principle)
+
+//    - everything depends on abstractions (interfaces or abstract classes)
+
+//    - unit testing and mocking becomes easier as you are not tightly coupled with the instantiation of classes
+
+//    - Your high level modules are disconnected from low level modules (no imports of low level modules into high level modules and vice versa)
+
+//? High Level Module
+
+//    - anything that is calling something else as a dependency
+
 //    - has dependancies other than the Standard SDK or Standard Library
-// 
 
-//  TODO: Refactor Notes |WFW
+//? Dependency
 
-// Dependency vs Import
-
-// Generally, the use dependency indicates that a model element - not necessarily a package - requires another model element for its implementation
+//   - an object, module, or package that another object, module, or package depends upon for its implementation to function
+//   - a change in the object, module, or package that another object, module, or package depends upon can break the system if that dependency is concrete
