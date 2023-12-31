@@ -29,5 +29,5 @@ abstract class AbstractChore {
 
 // Abstract Classes Acting as Interfaces
 
-//   - if defined method signatures and getter computed properties are not implemented 
+//   - if defined method signatures and getter computed member variables are not implemented 
 //     within an Abstract Class, the sub-class must implement all of them via the @override annotation (Polymorphism)

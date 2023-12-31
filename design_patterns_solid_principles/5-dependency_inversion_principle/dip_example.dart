@@ -57,20 +57,24 @@ void main() {
 
 //? Dependency Inversion Principle
 
-//    - `High level modules should not depend on low level modules,
-//      both should depend on abstractions (Interfaces and Abstract Classes)
-//      and abstractions should not depend on details (implementations).`
+//    - high level modules (classes that use other classes to perform a task)
+//      should not depend on (import anything from) low level modules (concrete class implementations),
+//      both should import and depend on abstractions (interfaces and abstract classes)
+//
+//    - abstractions (interfaces and abstract classes) should not depend on details (concrete method / class implementations).
+
+//    - details (concrete implementations) should depend on abstraction contracts (design by contract)
 
 //    - rely on abstractions and not concrete implementations
 
 //    - no direct dependencies (the importing of concrete implementations), only depend on abstractions
 
-//    - decouples code, objects are not instantiated internally (removing concrete implementation imports)
+//    - decouples code and objects are not instantiated internally (removing concrete implementation imports)
 
 //    - centralized instantiation of classes using some form of
-//      Dependency Injection or a Creational Design Pattern (Factory Pattern)
+//      Dependency Injection or a Creational Design Pattern (e.g. Factory Pattern)
 
-//    - you want to communicate though abstractions from top to bottom and from bottom to top
+//    - you want to communicate through abstractions from top to bottom and from bottom to top
 
 //    - use abstractions and composition instead of internally creating objects within classes 
 
