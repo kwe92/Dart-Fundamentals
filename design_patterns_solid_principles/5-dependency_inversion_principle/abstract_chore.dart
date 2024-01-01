@@ -2,11 +2,11 @@ import 'abstract_maid.dart';
 import 'abstract_owner.dart';
 
 abstract class AbstractChore {
-  final String chore;
+  String chore;
 
-  final AbstractMaid maid;
+  AbstractMaid maid;
 
-  final AbstractOwner owner;
+  AbstractOwner owner;
 
   // implementation required in sub-class
   double get hoursWorked;

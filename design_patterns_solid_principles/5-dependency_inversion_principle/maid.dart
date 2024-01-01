@@ -2,7 +2,7 @@
 import 'abstract_maid.dart';
 
 class Maid extends AbstractMaid {
-  const Maid({
+  Maid({
     required super.firstName,
     required super.lastName,
     required super.email,

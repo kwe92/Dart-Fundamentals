@@ -2,7 +2,7 @@
 import 'abstract_owner.dart';
 
 class Owner extends AbstractOwner {
-  const Owner({
+  Owner({
     required super.firstName,
     required super.lastName,
     required super.email,

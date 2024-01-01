@@ -6,9 +6,9 @@ import 'abstract_message_sender.dart';
 class Chore extends AbstractChore {
   // required implementations could have been instantiated here but instead we compose them by passing them into the constructor
   // remoiving the creation of objects, localizing them in one place, in our case the Factory Creational Design Pattern
-  late final AbstractLogger _logger;
+  AbstractLogger? _logger;
 
-  late final AbstractMessageSender _emailer;
+  AbstractMessageSender? _emailer;
 
   double _hoursWorked = 0;
 
@@ -36,14 +36,14 @@ class Chore extends AbstractChore {
   void performedWork(double timeWorked) {
     _hoursWorked += timeWorked;
 
-    _logger.log("performed $timeWorked hours of work task: $chore");
+    _logger!.log("performed $timeWorked hours of work task: $chore");
   }
 
   void completeChore() {
     _isComplete = true;
 
-    _logger.log("completed task: $chore");
+    _logger!.log("completed task: $chore");
 
-    _emailer.sendMessage(owner, "completed task: $chore");
+    _emailer!.sendMessage(owner, "completed task: $chore");
   }
 }
