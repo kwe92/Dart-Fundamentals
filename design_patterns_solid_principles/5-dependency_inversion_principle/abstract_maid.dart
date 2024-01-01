@@ -1,8 +1,8 @@
 abstract class AbstractMaid {
-  String firstName;
-  String lastName;
-  String email;
-  String phoneNumber;
+  final String firstName;
+  final String lastName;
+  final String email;
+  final String phoneNumber;
   AbstractMaid({
     required this.firstName,
     required this.lastName,

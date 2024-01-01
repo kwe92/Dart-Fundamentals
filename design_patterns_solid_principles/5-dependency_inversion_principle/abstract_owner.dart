@@ -1,9 +1,9 @@
 abstract class AbstractOwner {
-  String firstName;
-  String lastName;
-  String email;
-  String phoneNumber;
-  String Address;
+  final String firstName;
+  final String lastName;
+  final String email;
+  final String phoneNumber;
+  final String Address;
   AbstractOwner({
     required this.firstName,
     required this.lastName,
