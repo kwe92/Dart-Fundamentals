@@ -1,16 +1,14 @@
-// THE HIGH LEVEL MODULE
-
-// the only dependancies are abstractions (shared by low level modules) and the factory class
+// the only dependancies are abstractions (shared by high level and low level modules)
 import 'abstract_chore.dart';
 import 'abstract_maid.dart';
 import 'abstract_owner.dart';
 import 'factory.dart';
 import 'logger.dart';
 
-// DPI Example: Simple Maid Service Application
+// DIP Example: Simple Maid Service Application
 
 void main() {
-  // require an abstraction (interface / abstract class) instead of a concrete implementation
+  // require an abstraction (interface / abstract class) instead of a concrete implementation as a return type
   final AbstractOwner owner = Factory.createOwner(
     firstName: "Baki",
     lastName: "Hanma",
@@ -19,7 +17,7 @@ void main() {
     Address: "123 Japan st",
   );
 
-  // require an abstraction (interface / abstract class) instead of a concrete implementation
+  // require an abstraction (interface / abstract class) instead of a concrete implementation as a return type
   final AbstractMaid maid = Factory.createMaid(
     firstName: "Annalise",
     lastName: "Ramirez",
@@ -27,7 +25,7 @@ void main() {
     phoneNumber: "1234567890",
   );
 
-  // require an abstraction (interface / abstract class) instead of a concrete implementation
+  // require an abstraction (interface / abstract class) instead of a concrete implementation as a return type
   final AbstractChore chore = Factory.createChore(
     chore: "Wash and fold the clothes.",
     maid: maid,
@@ -45,23 +43,23 @@ void main() {
   Logger.logCache.forEach((logMessage) => print(logMessage));
 }
 
-//? What are Design Patterns
+// What are Design Patterns
 
 //    - Repeatable best practices and concepts to solve common software design problems
 //      and create a system of software that is:
-//        - Maintainable, Readable, Testable, Extensible, Modular, and Loosely Coupled
+//        - Maintainable, Readable, Testable, Scalable, Extensible, Modular, and Loosely Coupled
 
-//? Software Entity (in the context of this writing)
+// Software Entity (in the context of this writing)
 
 //    - Class, Function, Method, and Module
 
-//? Dependency Inversion Principle
+// Dependency Inversion Principle
 
 //    - high level modules (classes that use other classes to perform a task)
 //      should not depend on (import anything from) low level modules (concrete class implementations),
 //      both should import and depend on abstractions (interfaces and abstract classes)
 //
-//    - abstractions (interfaces and abstract classes) should not depend on details (concrete method / class implementations).
+//    - abstractions (interfaces and abstract classes) should not depend on details (concrete method / concrete  bclass implementations).
 
 //    - details (concrete implementations) should depend on abstraction contracts (design by contract)
 
@@ -82,14 +80,14 @@ void main() {
 
 //   - if it's not a primitive or part of the standard library / sdk it should be an abstraction??? [think this one over a bit]
 
-//? Benefits of The Dependency Inversion Principle
+// Benefits of The Dependency Inversion Principle
 
 //    - self contained tiny abstractions (interfaces and abstract classes) that define contracts (set of rules for implementing and inheriting classes)
 
 //    - Implementations are then replaceable without side effects so long as contracts (abstraction rules) are abidded by
 
-//    - your systems is longer monolithic, instead your system is modular, made up of loosely coupled constituent parts
-//      allowing developers to make small changes without big issues
+//    - your systems is no longer monolithic, instead your system is modular, made up of loosely coupled constituent parts
+//      allowing developers to make small changes without big issues (side effects)
 
 //    - each component does one thing having a single responsibility
 
@@ -101,13 +99,11 @@ void main() {
 
 //    - Your high level modules are disconnected from low level modules (no imports of low level modules into high level modules and vice versa)
 
-//? High Level Module
+// High Level Module
 
 //    - anything that is calling something else as a dependency
 
-//    - has dependancies other than the Standard SDK or Standard Library
-
-//? Dependency
+// Dependency
 
 //   - an object, module, or package that another object, module, or package depends upon for its implementation to function
 //   - a change in the object, module, or package that another object, module, or package depends upon can break the system if that dependency is concrete

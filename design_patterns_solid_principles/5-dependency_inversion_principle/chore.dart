@@ -1,13 +1,13 @@
-// the only dependencies are abstractions (shared by the high level module)
+// the only dependencies are abstractions (shared by high level and low level modules)
 import 'abstract_chore.dart';
 import 'abstract_logger.dart';
 import 'abstract_message_sender.dart';
 
 class Chore extends AbstractChore {
-  // required implementations could have been instantiated here but instead we compose them by passing them into the constructor
-  // remoiving the creation of objects, localizing them in one place, in our case the Factory Creational Design Pattern
+  // private variable, instantiated within constructor body
   late final AbstractLogger _logger;
 
+  // private variable, instantiated within constructor body
   late final AbstractMessageSender _emailer;
 
   double _hoursWorked = 0;
@@ -28,7 +28,7 @@ class Chore extends AbstractChore {
     required AbstractLogger logger,
     required AbstractMessageSender emailer,
   }) {
-    // initialize late variables that were defined and meant to be used internally
+    // initialize late variables that were defined and meant to be used internally (privately)
     _logger = logger;
     _emailer = emailer;
   }
@@ -47,3 +47,11 @@ class Chore extends AbstractChore {
     _emailer.sendMessage(owner, "completed task: $chore");
   }
 }
+
+// Composing Objects Instead of Internal Creation
+
+//   - instead of instantiating (creating) object internally they are composed
+//     by being passed into the constructor as arguments, localizing the creation
+//     of objects in one place, in our case the Factory Static Class (Creational Design Pattern)
+//   - this process removes concrete dependencies if an abstraction (interface / abstract class) is defined
+

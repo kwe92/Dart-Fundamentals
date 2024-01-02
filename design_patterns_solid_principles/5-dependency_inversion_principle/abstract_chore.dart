@@ -1,3 +1,5 @@
+// the only dependencies are abstractions (shared by high level and low level modules)
+
 import 'abstract_maid.dart';
 import 'abstract_owner.dart';
 
@@ -29,5 +31,5 @@ abstract class AbstractChore {
 
 // Abstract Classes Acting as Interfaces
 
-//   - if defined method signatures and getter computed member variables are not implemented 
+//   - if defined method signatures and getter methods are not implemented 
 //     within an Abstract Class, the sub-class must implement all of them via the @override annotation (Polymorphism)

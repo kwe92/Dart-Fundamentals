@@ -1,5 +1,6 @@
-// Central location for abstractions and concretions
+// Central location the creation of concrete implementations
 
+// dependencies are a mix of abstractions and their concrete implementations
 import 'abstract_chore.dart';
 import 'abstract_logger.dart';
 import 'abstract_maid.dart';
@@ -11,8 +12,9 @@ import 'maid.dart';
 import 'owner.dart';
 import 'texter.dart';
 
-/// Responsible for the creation (instantiation) of all consumed concrete class implementations for both low level and high level modules
+/// Responsible for the creation (instantiation) of all consumed concrete class implementations for both high level and low level modules
 class Factory {
+  // private named constructor to prevent instantiation
   const Factory._();
 
   static AbstractOwner createOwner({
@@ -64,8 +66,7 @@ class Factory {
   static AbstractLogger createLogger() => Logger();
 }
 
-
-//? Factory Method Pattern
+// Factory Method Pattern (Creational Design Pattern) | static Class That Creates Objects
 
 //   - also referred to as the Virtual Constructor Pattern
 //   - one of the most widely used creational design patterns
@@ -75,5 +76,5 @@ class Factory {
 //   - Factory method implementations conceal creation logic away from clients
 //   - adds flexibility to object creation architecture without adding too much complexity
 //   - you can't define static method signatures within an abstraction (interface / abstract base class)
-//   - therefore a static Factory Class is required to handle instantiation (creation of objects)
-//   - contains concrete dependancies adhering to abstract dependiecies
+//     therefore a static Factory Class is required to handle instantiation (creation of objects)
+//   - contains concrete dependancies adhering to abstract constracts

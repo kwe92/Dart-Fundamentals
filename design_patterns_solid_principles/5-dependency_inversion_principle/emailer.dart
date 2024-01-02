@@ -1,4 +1,4 @@
-// the only dependencies are abstractions (shared by the high level module)
+// the only dependencies are abstractions (shared by high level and low level modules)
 import 'abstract_message_sender.dart';
 import 'abstract_owner.dart';
 

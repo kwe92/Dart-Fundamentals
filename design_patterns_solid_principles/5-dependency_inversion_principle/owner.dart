@@ -1,4 +1,4 @@
-// the only dependency is an abstraction (shared by the high level module)
+// the only dependency is an abstraction (shared by high level and low level modules)
 import 'abstract_owner.dart';
 
 class Owner extends AbstractOwner {
