@@ -77,4 +77,4 @@ class Factory {
 //   - adds flexibility to object creation architecture without adding too much complexity
 //   - you can't define static method signatures within an abstraction (interface / abstract base class)
 //     therefore a static Factory Class is required to handle instantiation (creation of objects)
-//   - contains concrete dependancies adhering to abstract constracts
+//   - contains concrete dependancies adhering to abstract contracts

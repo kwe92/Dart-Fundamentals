@@ -9,7 +9,7 @@
     },
     {
       "name": "collection",
-      "rootUri": "file:///Users/kwe/.pub-cache/hosted/pub.dev/collection-1.17.2",
+      "rootUri": "file:///Users/kwe/.pub-cache/hosted/pub.dev/collection-1.18.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -33,15 +33,15 @@
     },
     {
       "name": "meta",
-      "rootUri": "file:///Users/kwe/.pub-cache/hosted/pub.dev/meta-1.9.1",
+      "rootUri": "file:///Users/kwe/.pub-cache/hosted/pub.dev/meta-1.11.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "path",
-      "rootUri": "file:///Users/kwe/.pub-cache/hosted/pub.dev/path-1.8.3",
+      "rootUri": "file:///Users/kwe/.pub-cache/hosted/pub.dev/path-1.9.0",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "3.0"
     },
     {
       "name": "pedantic",
@@ -80,7 +80,7 @@
       "languageVersion": "3.0"
     }
   ],
-  "generated": "2023-06-09T15:38:26.165071Z",
+  "generated": "2024-01-05T15:07:59.922046Z",
   "generator": "pub",
-  "generatorVersion": "3.0.1"
+  "generatorVersion": "3.2.3"
 }

@@ -4,6 +4,7 @@ import 'package:http/http.dart';
 
 void main() {
   // JSON (JavaScript Object Notation)
+
   //   - text format for storing and transporting data
   //   - defines objects with properties as key/value pairs
   //   - essentially JSON is a string of one object or a string of an array of objects separated by commas
