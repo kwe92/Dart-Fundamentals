@@ -40,8 +40,14 @@ typedef AddProduct = ({
 });
 
 void main() {
-  String myString = 'Kweayon';
-  String myString2 = '';
-  print(myString[myString.length - 1]);
-  print(myString2[0]);
+  List<int> myList = [1, 2, 3, 4];
+
+  print(myList[myList.length - 1]);
+
+  print(myList[myList.length - 2]);
+
+  // String myString = 'Kweayon';
+  // String myString2 = '';
+  // print(myString[myString.length - 1]);
+  // print(myString2[0]);
 }
