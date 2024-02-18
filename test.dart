@@ -39,12 +39,30 @@ typedef AddProduct = ({
   int orderCode,
 });
 
+typedef Foo = int;
+
+class FooBar {}
+
 void main() {
-  List<int> myList = [1, 2, 3, 4];
+  // Identifiers
 
-  print(myList[myList.length - 1]);
+  int x;
 
-  print(myList[myList.length - 2]);
+  int Function(int) doubleNum = (x) => x * 2;
+
+  Type fooBarType = FooBar;
+
+  FooBar fooBar = FooBar();
+
+  var genericIdentityFunction = <T>(T identifier) => identifier;
+
+  print(genericIdentityFunction<int>(2));
+
+  // List<int> myList = [1, 2, 3, 4];
+
+  // print(myList[myList.length - 1]);
+
+  // print(myList[myList.length - 2]);
 
   // String myString = 'Kweayon';
   // String myString2 = '';
