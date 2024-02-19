@@ -10,9 +10,7 @@ void main() {
 }
 
 List<R> transform<T, R>(List<T> collection, R Function(T) f) {
-  List<R> result = [
-    for (var i = 0; i < collection.length; i++) f(collection[i])
-  ];
+  List<R> result = [for (var i = 0; i < collection.length; i++) f(collection[i])];
   return result;
 }
 

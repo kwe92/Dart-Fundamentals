@@ -47,39 +47,35 @@ abstract base class AbstractBasePoint<T> {
   String toString() => 'Point($x, $y)';
 }
 
-final class Point<T> extends AbstractBasePoint {
+final class Point<T> extends AbstractBasePoint<T> {
   const Point({required super.x, required super.y});
 
   @override
-  T euclideanDistance(Point other) {
-    print("euclideanDistance: call: ${x.runtimeType == int}, ${y.runtimeType == int}");
-    final T distance;
-
-    if (x.runtimeType == int || y.runtimeType == int) {
-      distance = sqrt(
-        pow((other.x - this.x), 2) + pow((other.y - this.y), 2),
-      ).toInt() as T;
-    } else {
-      distance = sqrt(
-        pow((other.x - this.x), 2) + pow((other.y - this.y), 2),
-      ) as T;
-    }
-
-    return distance;
-  }
+  T euclideanDistance(Point other) => T == int
+      ? sqrt(
+          pow((other.x - this.x), 2) + pow((other.y - this.y), 2),
+        ).toInt() as T
+      : sqrt(
+          pow((other.x - this.x), 2) + pow((other.y - this.y), 2),
+        ) as T;
 }
 
 void main() {
   // parameterized type information is ommited
   // so the compile-time type is Point<dynamic>
 
-  final Point p0 = Point<int>(x: -1, y: 12.13);
-  final Point p1 = Point<double>(x: 3, y: 42);
-  final distance = p0.euclideanDistance(p1);
+  final Point p0 = Point<int>(x: -1, y: 12);
+  final Point p1 = Point<double>(x: 3.321321321, y: 2.321321);
+
+  final distance00 = p0.euclideanDistance(p1);
+
+  final distance01 = p1.euclideanDistance(p0);
 
   // the reified run-time type information is retained
   print('\nx run time type: ${p0.x.runtimeType}\n');
   print('y run time type: ${p0.y.runtimeType}\n');
 
-  print('euclidean distance between:\n\n$p0 and $p1:\n\n${distance}\n');
+  print('int euclidean distance between:\n\n$p0 and $p1:\n\n${distance00}\n');
+
+  print('double euclidean distance between:\n\n$p0 and $p1:\n\n${distance01}\n');
 }
