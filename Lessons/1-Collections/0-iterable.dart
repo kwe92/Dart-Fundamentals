@@ -43,7 +43,7 @@
 //    - separate implementations of the Iterable types
 //      allows sub-types (sub-classes) to serve distinct
 //      purposes as individual data structures and maintain
-//      separation of concerns (separation of behaviors between sub-types)
+//      separation of concerns (separation of behaviors between sub-types) - SRP - Interface Segregation Principle
 
 typedef IntFunc = int Function(int);
 

@@ -2,20 +2,21 @@ import '../../utility/spacedPrint.dart';
 
 // ignore_for_file: unused_local_variable
 
-// List
+// List (Arrays)
 
 //   - An indexable collection of objects with a length
 //   - 0-based indexed array
-//   - index has a one-to-one correspondence with Whole numbers {0, 1, 2, 3,...}
+//   - index has a one-to-one correspondence with the set of Whole numbers {0, 1, 2, 3,...,n}
+//   - Lists that are not frozen at compile time can be seen as sequences of mutable cells mapped to indices (just as a pointer is an index to a cell of memory)
 //   - if type is omitted parameterized type is defaulted to dynamic
 //       - non-homogeneous i.e. <dynamic>[]
 //   - List literals <E>[] or [] can be declared as Iterable
 
-// Most Common List Implementations (sub-classes)
+// Most Common List Implementations (sub-classes) | Mutable | Imperative Updating
 
 //   Fixed-length List
 
-//     - The length is determined at compile-time and can not be changed
+//     - The length is determined at compile-time and can not be changed (similar to Array's in SML)
 //     - operations attempting to change the length by adding or removing elements will throw an error
 //     - you can modify the elements "change the values referenced within" of a fixedlength List
 //       indicating fixed-length Lists are not frozen at compile-time
@@ -23,8 +24,8 @@ import '../../utility/spacedPrint.dart';
 //   Growable List
 
 //     - the default implementation of a List literal <E>[]
-//     - an internal buffer is kept and grows as the list grows
-//     - allowing for amortized constant time operations
+//     - an internal buffer is kept and grows as the list grows (array doubling / amortized arrays)
+//     - allowing for amortized constant time operations O(1)
 
 // Constructing a List
 
