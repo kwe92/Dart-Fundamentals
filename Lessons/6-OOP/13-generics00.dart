@@ -6,7 +6,7 @@ import 'dart:math';
 //   - a single capitalized letter represents a placeholder type
 //   - generics are a form of abstraction, and a way to keep code D.R.Y
 
-// Placeholder Type
+// Placeholder Type | Type Variable | Type Parameter
 
 //   - a single capitalized letter representing a placeholder type
 //     prior to initalization or a function being invoked

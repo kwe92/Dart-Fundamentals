@@ -9,11 +9,31 @@ void main() {
 
   final groupedData = groupBy([for (var mood in weightedMoodData) mood.toMap()], (Map obj) => DateTime.parse(obj['createdAt']).day);
 
-  print("Grouped mood data: $groupedData");
+  final groupedDataV2 = [
+    for (var moodMap in groupedData.entries)
+      () {
+        double value = 0;
+        int count = 0;
+        for (Map<String, dynamic> moodMap in moodMap.value) {
+          value += moodMap["weight"];
+          count++;
+        }
+        return {moodMap.key: value / count};
+      }()
+  ];
+
+  weightedMoodData.forEach((element) {
+    print(element);
+    print((element.createdAt.difference(DateTime.now()).inDays).abs());
+  });
+
+  // print("Grouped mood data V2: $groupedDataV2");
+
+  // print("Grouped mood data V2: $groupedData");
 }
 
 List<WeightedMood> weightedMoodData = [
-  for (int i = 0; i < 5; i++)
+  for (int i = 0; i < 50; i++)
     WeightedMood(
       mood: getRandomMood(),
       createdAt: getRandomDateTime(),
@@ -117,7 +137,7 @@ String getRandomMood() {
 
 DateTime getRandomDateTime() {
   // final int value = GetRandom.randRangeInt(min: 1, max: 31);
-  final int value = GetRandom.randRangeInt(min: 1, max: 3);
+  final int value = GetRandom.randRangeInt(min: 1, max: 32);
 
   return DateTime.now().add(Duration(days: -value));
 }

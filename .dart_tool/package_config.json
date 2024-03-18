@@ -8,6 +8,12 @@
       "languageVersion": "2.18"
     },
     {
+      "name": "clock",
+      "rootUri": "file:///Users/kwe/.pub-cache/hosted/pub.dev/clock-1.1.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "collection",
       "rootUri": "file:///Users/kwe/.pub-cache/hosted/pub.dev/collection-1.18.0",
       "packageUri": "lib/",
@@ -30,6 +36,12 @@
       "rootUri": "file:///Users/kwe/.pub-cache/hosted/pub.dev/http_parser-4.0.2",
       "packageUri": "lib/",
       "languageVersion": "2.12"
+    },
+    {
+      "name": "intl",
+      "rootUri": "file:///Users/kwe/.pub-cache/hosted/pub.dev/intl-0.19.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
     },
     {
       "name": "meta",
@@ -80,7 +92,7 @@
       "languageVersion": "3.0"
     }
   ],
-  "generated": "2024-01-05T15:07:59.922046Z",
+  "generated": "2024-03-02T23:32:37.428851Z",
   "generator": "pub",
   "generatorVersion": "3.2.3"
 }

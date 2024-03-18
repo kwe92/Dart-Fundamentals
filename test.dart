@@ -1,36 +1,8 @@
-// import 'package:http/http.dart' as http;
-// import 'dart:convert';
+import 'dart:math';
 
-// class ApiClient {
-//   ApiClient();
-//   static const uri = 'https://animechan.vercel.app/api/random';
-//   static Future<void> fetchQuote() async {
-//     final Uri url = Uri.parse(uri);
-//     final response = await http.get(url);
-//     if (response.statusCode != 200) {
-//       throw Exception("Cant connect: Status Code: ${response.statusCode}");
-//     }
-//     final responseObject = jsonDecode(response.body);
-//     print(responseObject);
-//   }
-// }
+final rng = Random();
 
-// Future<int> fetchInt() {
-//   return Future.value(999);
-// }
-
-// class Point {
-//   Point(this.x, this.y);
-//   int x;
-//   int y;
-
-//   int getX() => x;
-// }
-
-// void main(List<String> args) {
-//   print(() => '');
-//   print(Point(2, 4).getX);
-// }
+int randRangeInt(int min, int max) => rng.nextInt(max - min) + min;
 
 // from Pragmatic Programmer Illustration figure 3.4
 typedef AddProduct = ({
@@ -46,26 +18,19 @@ class FooBar {}
 void main() {
   // Identifiers
 
-  int x;
+  // int x;
 
-  int Function(int) doubleNum = (x) => x * 2;
+  // int Function(int) doubleNum = (x) => x * 2;
 
-  Type fooBarType = FooBar;
+  // Type fooBarType = FooBar;
 
-  FooBar fooBar = FooBar();
+  // FooBar fooBar = FooBar();
 
-  var genericIdentityFunction = <T>(T identifier) => identifier;
+  // var genericIdentityFunction = <T>(T identifier) => identifier;
 
-  print(genericIdentityFunction<int>(2));
+  // print(genericIdentityFunction<int>(2));
 
-  // List<int> myList = [1, 2, 3, 4];
-
-  // print(myList[myList.length - 1]);
-
-  // print(myList[myList.length - 2]);
-
-  // String myString = 'Kweayon';
-  // String myString2 = '';
-  // print(myString[myString.length - 1]);
-  // print(myString2[0]);
+  for (int i = 0; i < 100; i++) {
+    print(randRangeInt(5, 11));
+  }
 }
