@@ -33,4 +33,8 @@ void main() {
   for (int i = 0; i < 100; i++) {
     print(randRangeInt(5, 11));
   }
+
+  print(roundToNearest(4, 12.232332323232));
 }
+
+double roundToNearest(int n, double num) => double.parse(num.toStringAsPrecision(n));
