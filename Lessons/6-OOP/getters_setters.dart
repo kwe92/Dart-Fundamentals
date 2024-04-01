@@ -2,13 +2,14 @@
 
 //   - special method providing read access to:
 //       - member variables and computed variables
+
 //   - generated implicitly for all public member vairables
 
 // setter
 
 //  - special method, provides write access to mutable member variables
-//  - nullable and late instance variables that have
-//    not been initalized implicitly have setter methods
+
+//  - nullable and late instance variables that have not been initalized implicitly have setter methods
 
 // Nullable mutable Class
 

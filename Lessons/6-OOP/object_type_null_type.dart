@@ -3,8 +3,11 @@
 // Object Type Hierarchy
 
 //   - The base class for all non-nullable Objects in Dart
+
 //   - The root of the non-nullable Type heirarchy
+
 //   - ALL non-nullable Classes are a sub-type of Object
+
 //   - Object is implemented implicitly
 //     on all non-nullable sub-types
 

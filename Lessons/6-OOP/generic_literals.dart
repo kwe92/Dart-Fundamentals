@@ -1,9 +1,9 @@
 // Collection Implementation
 
-//   - ALL collections in Dart are
-//     implemented as parameterized types (Generics)
-//   - as such you are able to use any type as
-//     an element of a collection
+//   - ALL collections in Dart are implemented as parameterized types (Generics)
+
+//   - as such you are able to use any type as an element of a collection
+
 //   - e.g. Lists in Dart are implemented as such:
 //       - abstract class List<E> implements ... {
 //                                                ...
@@ -11,8 +11,7 @@
 
 // Collection literals
 
-//   - explicitly define an elements type within
-//     a collection be before elements
+//   - explicitly define an elements type within a collection
 //   - will through a compile-time error if you do not
 //     supply the correct parameterized type defined
 

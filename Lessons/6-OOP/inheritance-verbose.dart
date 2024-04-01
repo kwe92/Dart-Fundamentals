@@ -1,9 +1,12 @@
 // Inheriting Constructors
 
 //     - super-class constructors CAN NOT be inherited
+
 //     - You MUST implement the super-class constructor in the sub-class
+
 //     - If the implementation of the super class constructor is ommited
 //       the super class unnamed no argument constructor is used
+
 //     - Unnamed no argument constructors are the default constructors
 //       for all omissions of class constructors
 

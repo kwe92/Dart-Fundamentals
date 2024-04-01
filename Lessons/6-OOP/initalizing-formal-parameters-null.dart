@@ -3,6 +3,7 @@
 // Declaring Null member variables
 
 //   - member variables declared null get initalized as Null Objects implicitly
+
 //   - to declare a null member variable suffix its type with [?]
 //       - e.g.
 //           - String? would declare a member
@@ -11,8 +12,10 @@
 // Class with nullable member variables
 
 //   - constructor can be ommited entirely
+
 //   - if the constructor is ommited there is an
 //     unnamed no arguement constructor generated
+
 //   - no arguement constructor implies you must instantiate the class
 //     without arguments or use cascading during instantiation
 

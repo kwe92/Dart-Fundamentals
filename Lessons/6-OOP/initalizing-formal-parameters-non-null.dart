@@ -2,7 +2,9 @@
 
 //   - member variables can be initalized before the constructor body
 //     by passing this.memberVariable into the head of the constructor function
+
 //   - the constructor body can then be ommited for brevity requiring less code
+
 //   - non-nullable member variables must be initalized
 //     in the constructor function head or assigned a default value
 

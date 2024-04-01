@@ -1,7 +1,3 @@
-// ignore_for_file: unused_catch_stack
-
-// TODO: Add Comments!
-
 import '../../utility/spacedPrint.dart';
 
 class PreviousAppStateError extends Error {
@@ -17,6 +13,10 @@ class AppStateError<T> extends Error {
       'the state_or_state_callback argument must be of type AppState or PreviousAppStateCallback but a type of ${obj.runtimeType} was recieved.';
 }
 
+// Abstract representation of a stateful object with an integer value
+
+//   - State Representation
+
 abstract class State {
   final int state;
   const State({required this.state});
@@ -25,27 +25,32 @@ abstract class State {
   String toString() => 'State(state: $state)';
 }
 
+// Concrete implementation of the abstract State class
 class AppState extends State {
   const AppState({required super.state});
 }
 
 typedef PreviousAppStateCallback = AppState Function(AppState previousState);
 
+// State Management Object
+
 class StateGraph {
   // underscore _ named constructor prevents instantiation
   // without the need to make the class abstract
 
-  StateGraph._();
+  StateGraph();
 
-  static final _states = <AppState>[];
+  // list of all states
+  final _states = <AppState>[];
 
-  static List<AppState> get allStates => _states;
+  List<AppState> get allStates => _states;
 
-  static AppState get currentState => _states.last;
+  AppState get currentState => _states.last;
 
-  static AppState get previousState => _states.length > 1 ? _states[_states.length - 2] : throw PreviousAppStateError();
+  AppState get previousState => _states.length > 1 ? _states[_states.length - 2] : throw PreviousAppStateError();
 
-  static void apply<T>(T state_or_state_callback) {
+  // State Transition Function
+  void apply<T>(T state_or_state_callback) {
     if (state_or_state_callback is AppState) {
       final AppState appState = state_or_state_callback;
       _states.add(appState);
@@ -63,8 +68,9 @@ class StateGraph {
 }
 
 int main() {
+  final stateGraph = StateGraph();
   for (int i = 0; i < 5; i++) {
-    StateGraph.apply(
+    stateGraph.apply(
       AppState(state: i),
     );
   }
@@ -73,27 +79,42 @@ int main() {
         state: prevState.state + 5,
       );
 
-  spacedPrint('App Current State: ${StateGraph.currentState}', prefix_space: true);
+  spacedPrint('App Current State: ${stateGraph.currentState}', prefix_space: true);
 
-  spacedPrint('App previous State: ${StateGraph.previousState}');
+  spacedPrint('App previous State: ${stateGraph.previousState}');
 
-  StateGraph.apply(prevStateCallback);
+  stateGraph.apply(prevStateCallback);
 
-  spacedPrint('App Current State: ${StateGraph.currentState}');
+  spacedPrint('App Current State: ${stateGraph.currentState}');
 
-  StateGraph.apply(
+  stateGraph.apply(
     (AppState prevState) => AppState(
       state: prevState.state + 10,
     ),
   );
 
-  spacedPrint('App Current State: ${StateGraph.currentState}');
+  spacedPrint('App Current State: ${stateGraph.currentState}');
 
   try {
-    StateGraph.apply('I WILL CAUSE AN ERROR!');
-  } catch (error, stackTrace) {
+    stateGraph.apply('I WILL CAUSE AN ERROR!');
+  } catch (error, _) {
     spacedPrint(error);
   }
 
   return 0;
 }
+
+// State Graph
+
+//   - visual representation of a finite state machine (FSM)
+
+//   - Consists of:
+
+//       - all possible states of a system
+
+//       - transitions (functions) between states
+
+
+// Complex State Management
+
+//   - it is better to use libraries for more complex state management

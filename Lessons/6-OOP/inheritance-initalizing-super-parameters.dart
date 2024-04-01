@@ -1,15 +1,16 @@
 // Inheriting Constructors
 
 //     - super-class constructors CAN NOT be inherited
+
 //     - You MUST implement the super-class constructor in the sub-class
 
 // Implementating super-class constructor (Brevity)
 
 //   - Implementing the super-class constructor is manditory
-//   - you can use super.instanceVariable
-//     to initalize super-class parameters
+
+//   - you can use super.instanceVariable to initalize super-class parameters
 //     in the head of the sub-class constructor
-//     reducing the amount of code neede in order to initalize super-class variables
+//     reducing the amount of code needed in order to initalize super-class variables
 
 class FictonalPerson {
   final String fname, lname;
@@ -46,7 +47,7 @@ class Vector2d {
 class Vector3d extends Vector2d {
   final double z;
 
-  // initalizing variables with super class constructor and initalizer list
+  // initalizing variables with super class constructor and initalizer list (allows partial application)
   Vector3d({required this.z, required super.y}) : super.pointOnCartesianPlane(x: 0);
 
   @override

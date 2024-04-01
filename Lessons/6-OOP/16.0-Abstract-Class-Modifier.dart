@@ -3,16 +3,19 @@
 // Class Modifiers
 
 //   - Prefix class declaration
+
 //   - Adds additional features and restrictions to class declarations
 
 // abstract class modifier
 
 //  - Can not be instantiated (constructed) in any module (library)
+
 //  - function signature implementation is not enforced on sub-types
 
 // abstract methods
 
 //   - replace method body with semi-colon, indicating to the compiler that the method is abstract
+
 //   - Only abstract classes can have abstract methods
 
 // Stateful abstract class Employee
@@ -23,6 +26,7 @@ abstract class Employee {
   late double _salary;
 
   double get salary => _salary;
+
   String get email => '${fname.substring(0, 1) + lname}@ayonInnovations.net'.toLowerCase();
 
   Employee({
@@ -33,7 +37,7 @@ abstract class Employee {
     this._salary = salary;
   }
 
-  // an abstract signature that must be implemented by inheriting sub-types
+  // an abstract method signature that must be implemented by inheriting sub-types
   void giveRaise(double x);
 }
 
