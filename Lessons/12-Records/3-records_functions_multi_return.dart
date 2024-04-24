@@ -2,34 +2,46 @@
 
 // Functional Dart
 
-const bookJSON = {
+import 'dart:convert';
+
+Future<void> main() async {
+  var (book, error) = await getBook();
+
+  if (error.isNotEmpty) {
+    print(error);
+    return;
+  }
+
+  print(book);
+}
+
+final bookJSON = jsonEncode({
   "author": "Shunryū Suzuki",
   "title": "Zen Mind, Beginner's Mind",
   "op": "1970",
   "about":
       "Zen Mind, Beginner's Mind is a book of teachings by Shunryu Suzuki, a compilation of talks given to his satellite Zen center in Los Altos, California.",
-};
+});
 
-typedef Book = ({String author, String title, String op, String about});
+Future<(BookModel book, String error)> getBook() async {
+  BookModel book;
 
-Book parseBookJSON(Map<String, dynamic> json) => (
-      author: json["author"],
-      title: json["title"],
-      op: json["op"],
-      about: json["about"],
-    );
-void main() {
-  print("Parsed json object:");
-  print(
-    parseBookJSON(
-      bookJSON,
-    ),
-  );
+  try {
+    final responseJson = await fetchBook();
 
-  final Book book1 = parseBookJSON(bookJSON);
+    book = BookModel.fromJSON(jsonDecode(responseJson));
+
+    return (book, '');
+  } catch (error) {
+    return (BookModel(author: '', title: '', op: '', about: ''), error.toString());
+  }
 }
 
-// Old Way
+Future<String> fetchBook() async {
+  await Future.delayed(Duration(seconds: 1));
+  return bookJSON;
+}
+
 class BookModel {
   final String author;
   final String title;
@@ -48,4 +60,7 @@ class BookModel {
         op: json["op"],
         about: json["about"],
       );
+
+  @override
+  String toString() => "Book(title: $title, author: $author)";
 }

@@ -1,18 +1,35 @@
 // Records
-//    - Must use Dart SDK ^3.0 (Require language version at least 3.0.)
-//    - Records are:
-//        - An anonymous, immutable and aggregate type
-//        - Fixed size
-//        - FROZEN at compile time
-//        - heterogeneous (elements can be of multiple types)
-//        - typed
-//        - Bundle multiple objects into a single object
-//        - Record fields are:
-//                - named || unnamed($i) wrapped in parentheses
+
+//    - similar to a tuple with additional features
+
+//    - heterogeneous statically typed collection of objects
+
+//    - the use of Records requires Dart SDK ^3.0
+
+//    - Characteristics of Records:
+
+//        - anonymous by nature (but can be assigned to variables and type aliases)
+
+//        - Immutable and aggregate type
+
+//        - Fixed size and frozen at compile time
+
+//        - fields in a record can be named or positional
+
+//        - elements of a Record can only be accessed by field name
+
+//        - Records can be deconstructed
+
+//        - allows functions to return multiple values of different types in a type safe manner with brevity and ease
+
 //        - Records are `real values` and can be used:
+
 //                - As variables
+
 //                - As nested values
+
 //                - Passed to and from function
+
 //                - Stored in data structures (lists, maps, and sets)
 
 void divider() => print("---------------------------------------");

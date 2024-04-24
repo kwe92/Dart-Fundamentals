@@ -1,16 +1,22 @@
 void main() {
   // Record Shape
+
   //  - Records are structurally typed based on the types of their fields
-  //  - A Records shape is the set of fields, field types and field names (if any field names are defined)
 
-  // The Shape of Named Records
+  //  - A Records shape is:
 
-  //   - The shape of a Named Record is SCTRICTLY typed
-  //       - Named Record shape: property names, types, and values
+  //      -  the set of fields
 
-  // Record Equality (hashCode && == moethods are already defined for Records when they are created)
+  //      -  the fields type
+
+  //      -  the field names (if any field names are defined within curly brackets {})
+
+  // Record Equality
+
+  //   - (hashCode && == moethods are already defined for Records when they are created)
 
   //   - Depends on the shape of the record and its values
+
   //   - The order of named fields does not matter
 
   ({double x, double y}) point1;
