@@ -10,7 +10,7 @@ Future<void> main() async {
   for (int i = 0; i < 5; i++) {
     await Future.delayed(Duration(seconds: 1, milliseconds: 500));
     try {
-      // create a socket connection to the server
+      // create a new socket of type TCP bound to port 8080 requesting cummincation to a remote server
       final socketConnectionToServer = await Socket.connect(host, port);
 
       // send data to the server
@@ -19,7 +19,6 @@ Future<void> main() async {
       print("message successfully sent to server!");
 
       // listen for data coming from the server
-
       socketConnectionToServer.listen((data) {
         print("data received from the server: ${String.fromCharCodes(data)}");
       }, onDone: (() {
