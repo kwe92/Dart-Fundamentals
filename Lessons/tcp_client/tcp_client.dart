@@ -14,30 +14,27 @@ Future<void> main() async {
       final socketConnectionToServer = await Socket.connect(host, port);
 
       // send data to the server
-      socketConnectionToServer.writeln("this is a message from DART!");
+      socketConnectionToServer.writeln("this is a message from the Dart client!");
 
       print("message successfully sent to server!");
 
       // listen for data coming from the server
       socketConnectionToServer.listen((data) {
         print("data received from the server: ${String.fromCharCodes(data)}");
-      }, onDone: (() {
+        socketConnectionToServer.destroy();
+      }, onDone: (() async {
         print("Server disconnected.");
 
         // close the connection in both directions
-        socketConnectionToServer.destroy();
+        await socketConnectionToServer.close();
       }), onError: (error) {
         print("error when listening to server communication: $error");
 
         // close the connection in both directions
         socketConnectionToServer.destroy();
       });
-
-      socketConnectionToServer.destroy();
     } catch (e) {
       print("Error when attempting to create a socket connection to $host:$port");
     }
   }
 }
-
-// TODO: Understand String.fromCharCodes
