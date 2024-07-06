@@ -15,9 +15,9 @@
     },
     {
       "name": "collection",
-      "rootUri": "file:///Users/kwe/.pub-cache/hosted/pub.dev/collection-1.18.0",
+      "rootUri": "file:///Users/kwe/.pub-cache/hosted/pub.dev/collection-1.19.0",
       "packageUri": "lib/",
-      "languageVersion": "2.18"
+      "languageVersion": "3.4"
     },
     {
       "name": "equatable",
@@ -33,9 +33,9 @@
     },
     {
       "name": "http_parser",
-      "rootUri": "file:///Users/kwe/.pub-cache/hosted/pub.dev/http_parser-4.0.2",
+      "rootUri": "file:///Users/kwe/.pub-cache/hosted/pub.dev/http_parser-4.1.0",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "3.4"
     },
     {
       "name": "intl",
@@ -45,7 +45,7 @@
     },
     {
       "name": "meta",
-      "rootUri": "file:///Users/kwe/.pub-cache/hosted/pub.dev/meta-1.11.0",
+      "rootUri": "file:///Users/kwe/.pub-cache/hosted/pub.dev/meta-1.15.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -92,7 +92,10 @@
       "languageVersion": "3.0"
     }
   ],
-  "generated": "2024-05-06T18:58:30.299414Z",
+  "generated": "2024-06-30T19:29:08.067075Z",
   "generator": "pub",
-  "generatorVersion": "3.2.3"
+  "generatorVersion": "3.4.3",
+  "flutterRoot": "file:///opt/homebrew/Caskroom/flutter/3.7.5/flutter",
+  "flutterVersion": "3.22.2",
+  "pubCache": "file:///Users/kwe/.pub-cache"
 }

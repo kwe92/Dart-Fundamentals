@@ -5,13 +5,9 @@ class Counter {
 
   static final Counter _counter = Counter._internal();
 
-  factory Counter.instance() {
-    return _counter;
-  }
+  factory Counter() => _counter;
 
   Counter._internal();
 
   void increment() => _count++;
 }
-
-Counter get singletonCounter => Counter.instance();

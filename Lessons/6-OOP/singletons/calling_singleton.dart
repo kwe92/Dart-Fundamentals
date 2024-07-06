@@ -1,8 +1,8 @@
 import 'singleton.dart';
 
-final instance00 = singletonCounter;
+final instance00 = Counter();
 
-final instance01 = singletonCounter;
+final instance01 = Counter();
 
 void main() {
   for (var i = 0; i < 5; i++) {
