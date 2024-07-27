@@ -1,4 +1,4 @@
-// Opertor overloading
+// Operator overloading
 
 //   - a feature found in most OOP languages distinct from method overriding
 //   - operator overloading is a compile-time polymorphism

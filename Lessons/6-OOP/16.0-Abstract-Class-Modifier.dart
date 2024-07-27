@@ -64,10 +64,7 @@ class SoftwareEngineer extends Employee {
 
 class RaiseSalaryError extends Error {
   final String? message;
-  RaiseSalaryError({required this.message});
-
-  @override
-  String toString() => message != null ? message as String : 'Raise amount can not exceed 15%.';
+  RaiseSalaryError({this.message = 'Raise amount can not exceed 15%.'});
 }
 
 int main() {
