@@ -2,9 +2,10 @@ import 'dart:math';
 
 // Generic Types (Parameterized Types)
 
-//   - allows implementations to specify multiple types instead of a single  default type
+//   - gives both functions and classes the ability to specify multiple types instead of a single default type
+//   - generics are a form of both abstraction and polymorphism
+//   - reduces the presents of code duplication (D.R.Y)
 //   - a single capitalized letter represents a placeholder type
-//   - generics are a form of abstraction, and a way to keep code D.R.Y
 
 // Placeholder Type | Type Variable | Type Parameter
 
