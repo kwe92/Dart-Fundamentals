@@ -1,48 +1,87 @@
-// TODO: Edit old comments
+Future<String> fetchUserOrder() async => await Future.delayed(Duration(seconds: 2), () => throw Exception('Out of oat milk!'));
 
-// create a function that returns Future of type String
+Future<String> fetchAnotherOrder() async => await Future.delayed(Duration(seconds: 4), () => 'Vanilla Oat Milk Cold Brew');
 
-Future<String> fetchUserOrder() => Future.delayed(Duration(seconds: 2), () => throw Exception('Out of oat milk!'));
-//Future.delayed(Duration(seconds: 2), () => 'Vanilla Oat Milk Cold Brew');
+Future<String> fetchLongOrder() async => await Future.delayed(Duration(seconds: 10), () => 'Chai With Oat Milk');
 
-int main() {
+Future<String> fetchFinalOrder() async => await Future.delayed(Duration(seconds: 3), () => 'Blueberry Miffin');
+
+Future<int> main() async {
   print('program has started!');
+
+  // if await is omitted the asynchronous computations are none blocking - Concurrent - promise-based / future-based concurrency
 
   fetchUserOrder()
       .then((order) => print('Order is ready: $order'))
-      .catchError((err) => print(err))
-      .whenComplete(() => print('Completed Order!'));
+      .catchError((err) => print('fetchUserOrder: $err'))
+      .whenComplete(() => print('First Order Completed Order!'));
+
+  fetchAnotherOrder()
+      .then((order) => print('Order is ready: $order'))
+      .catchError((err) => print('fetchAnotherOrder: $err'))
+      .whenComplete(() => print('Second Order Completed Order!'));
+
+  fetchLongOrder()
+      .timeout(const Duration(seconds: 6))
+      .then((order) => print('Order is ready: $order'))
+      .catchError((err) => print('fetchLongOrder: $err'))
+      .whenComplete(() => print('Third Order Completed Order!'));
+
+  print('I print before the asynchronous computations complete because I am not blocked by them!');
+
+  await fetchFinalOrder()
+      .then((order) => print('Order is ready: $order'))
+      .catchError((err) => print('fetchAnotherOrder: $err'))
+      .whenComplete(() => print('fourth Order Completed Order!'));
+
+  print('I print after the fourth asynchronous computation completes because I am blocked by it!');
+
   return 0;
 }
+
+
+// TODO: edit comments
 
 // Future
 
 //  - a "Future" represents the results of an asynchronous operation
-//  - Futures are used to wait for an asynchronous operation to complete
+
+//  - Futures are used to wait for an asynchronous operation to complete (blocking the flow of the program)
 //    like fetching data from a database / api or reading from a file
+
+//  - Futures that are non-blocking (omitting the await keyword) are treated as concurrent operations
 
 // Future States
 
-//   ~ a Future has two states:
+//   ~ a Future has three states:
 
-//       + Uncomplete (waiting for an asynchronous operation to complete)
-//       + Complete (asynchronous operation returns a value or throws an error)
-//         both cases should be handled
+//       + Pending (waiting for an asynchronous operation to complete)
+
+//       + Complete (asynchronous operation completed with value)
+
+//       + Rejected (throws an error)
 
 // What is Future.delayed?
 
 //   - a factory constructor for the future class
 
-  // .then()
+// .timeout()
 
-  //   - a method that is part of the Future type
-  //   - returns the result inside an asynchronous function
+//   - 
 
-// catchError
+// .then()
 
-//   - if one is thrown and return as print statement
+//   - takes as an argument a callback whose parameter is the type of the asynchronous computation
 
-// .whenComplete
+// .catchError()
 
-//   - Calls the passed anonymous function
+//   - takes as an argument a callback to handle any caught exception
+
+//   - generally better to use at errors are propagated down the call stack
+
+
+// .whenComplete()
+
+//   - calls the passed in anonymous function
+
 //   - When the asynchronous operation is complete regardless of outcome
