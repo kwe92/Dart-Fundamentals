@@ -3,6 +3,13 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+Future<int> main() async {
+  final api = ZenQuoteClient();
+  final quote = await api.fetchQuote();
+  print(quote);
+  return 0;
+}
+
 class ZenQuoteClient {
   static const uri = "https://zenquotes.io/api/quotes";
 
@@ -23,8 +30,7 @@ class Quote {
   final author;
   final quote;
 
-  factory Quote.fromJSON(Map<String, Object?> json) =>
-      Quote(author: json["a"], quote: json["q"]);
+  factory Quote.fromJSON(Map<String, Object?> json) => Quote(author: json["a"], quote: json["q"]);
 
   @override
   String toString() => """
@@ -34,11 +40,4 @@ $quote
 - $author
 
 """;
-}
-
-Future<int> main() async {
-  final api = ZenQuoteClient();
-  final quote = await api.fetchQuote();
-  print(quote);
-  return 0;
 }
