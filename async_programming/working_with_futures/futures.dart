@@ -1,12 +1,4 @@
-// TODO: edit comments | review: https://web.mit.edu/6.031/www/sp22/classes/22-promises/#@model_concurrency_called
-
-Future<String> fetchUserOrder() async => await Future.delayed(Duration(seconds: 2), () => throw Exception('Out of oat milk!'));
-
-Future<String> fetchAnotherOrder() async => await Future.delayed(Duration(seconds: 4), () => 'Vanilla Oat Milk Cold Brew');
-
-Future<String> fetchLongOrder() async => await Future.delayed(Duration(seconds: 10), () => 'Chai With Oat Milk');
-
-Future<String> fetchFinalOrder() async => await Future.delayed(Duration(seconds: 3), () => 'Blueberry Miffin');
+// TODO: review
 
 Future<int> main() async {
   print('program has started!');
@@ -35,43 +27,38 @@ Future<int> main() async {
 
   print("Change for fetchFinalOrder: ${await change}");
 
-  print('I print after the fetchFinalOrder asynchronous computation completes because I am blocked by it!');
+  print('I print after the fetchFinalOrder asynchronous computation completes because I am blocked by its Promise!');
 
   return 0;
 }
+
+Future<String> fetchUserOrder() async => await Future.delayed(Duration(seconds: 2), () => throw Exception('Out of oat milk!'));
+
+Future<String> fetchAnotherOrder() async => await Future.delayed(Duration(seconds: 4), () => 'Vanilla Oat Milk Cold Brew');
+
+Future<String> fetchLongOrder() async => await Future.delayed(Duration(seconds: 10), () => 'Chai With Oat Milk');
+
+Future<String> fetchFinalOrder() async => await Future.delayed(Duration(seconds: 3), () => 'Blueberry Miffin');
 
 void _handleError(err) {
   print('$err');
 }
 
 
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 // Future
 
-//  - a "Future" represents the results of an asynchronous operation
+//   - a "Future" represents the result of an asynchronous operation
 
-//  - Futures are used to wait for an asynchronous operation to complete (blocking the flow of the program)
-//    like fetching data from a database / api or reading from a file
+//   - Futures are used to wait for an asynchronous operation to complete (potentially blocking the flow of the program)
+//     like fetching data from a database / api or reading from a file
 
-//  - Futures that are non-blocking (omitting the await keyword) are treated as concurrent operations
+//   - asynchronous functions that are non-blocking (omitting the await keyword) are treated as concurrent operations
 
-// TODO: refactor in your own words
+//   - you can await the future instead of the asynchronous function to treat asynchronous operations as concurrent operations
 
-//  - To summarize, when you write async function instead of function, the compiler internally transforms the function’s behavior:
-
-//      - await expressions are transformed into returning a promise composed with then();
-
-//      - return/throw statements are transformed into fulfilling/rejecting (respectively) that promise
-
-//      - a function that returns by falling off the end of its body is transformed to fulfill its promise before doing so
-
-//      - Because the behavior of await depends on these transformations, await can only be used inside an async function
-
-//       - Dart statically checks this requirement. It will produce a static error if await occurs anywhere except inside an async function.
-
-// TODO: END
-
-// TODO: What is Future.any do? Logical-OR for futures? review: Aggregating promises in 22-promises
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 // Future States
 
@@ -83,45 +70,61 @@ void _handleError(err) {
 
 //       + Rejected (throws an error)
 
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
+
 // What is Future.delayed?
 
-//   - a factory constructor for the future class
+//   - a factory constructor for the future class that adds a delay before a future completes
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 // .timeout()
 
-//   - 
+//   - stop waiting for a future after the specified time has passed
 
-// .then()
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+// .then() (try)
 
 //   - takes as an argument a callback whose parameter is the type of the asynchronous computation
 
 //   - also produces a Future of the return type of the callback passed in
 
-// TODO: refactor in your own words
-//   - It helps to think about then as a composition operation for asynchronous computations. Conventional function composition takes two functions f and g and composes them into a new function g ⚬ f, such that (g ⚬ f)(x) = g(f(x)). If f: S → T and g: T → U, then the type of the resulting composition is g ⚬ f: S → U.
+//   - what await uses under the hood to compose asynchronous operations
 
-//   - In much the same way, then composes one computation f, represented by a promise of its return value Promise<T>, with another computation g that expects to consume that T value and produce a U value. The result of the composition is a combined computation that promises to eventually produce that U value, so its type is Promise<U>.
+//   - it helps to think about .then() as a composition operation for asynchronous computations
+//     conventional function composition takes two functions
+//     f and g and composes them into a new function g ⚬ f,such that (g ⚬ f)(x) = g(f(x))
+//     if f: S → T and g: T → U, then the type of the resulting composition is g ⚬ f: S → U.
 
-//   - You can call then as many times as you want on a promise, to attach different callbacks that might do different things with the promise’s value.
+//   - in much the same way, then composes one computation f
+//     represented by a Future of its return value Future<T>
+//     with another computation g that expects to consume that T value and produce a U value
+//     the result of the composition is a combined computation that promises to eventually produce that future U value
+//     so its type is Future<U>.
 
-//   - then() is the only way to access the value that a promise computes
+//   - you can call then as many times as you want on a Future
+//     to attach different callbacks that might do different things with the Future's value.
 
-//??   - await actually uses then | is the previous statement true for Dart as well?
+//   - then() is the only way to access the value that a Future computes
 
-//   - then() is a feature of concurrency design. It allows a concurrent computation to be built up by a sequence of composed computations – a sequence of then() callbacks, which can be interleaved in controlled, predictable ways.
-// TODO: END
+//   - then() is a feature of concurrency design allowing a concurrent computation to be built up
+//     by a sequence of composed computations – a sequence of then() callbacks
+//     which can be interleaved in controlled, predictable ways.
 
 //   - can be view as a composition operation for asynchronous computations (g ⚬ f)(x) == g(f(x)) executed right to left in set theory
 
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
-// .catchError()
+// .catchError() (catch)
 
 //   - takes as an argument a callback to handle any caught exception
 
 //   - generally better to use at errors are propagated down the call stack
 
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
-// .whenComplete()
+// .whenComplete() (finally)
 
 //   - calls the passed in anonymous function
 
