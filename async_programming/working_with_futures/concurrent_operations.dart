@@ -1,7 +1,16 @@
-// TODO: review https://web.mit.edu/6.031/www/sp22/classes/22-promises/ | start here: Suppose a client calls totalBalance(). Here’s what happens:
+Future<void> main() async {
+  double? total;
 
-void main() {
-  totalBalance();
+  final Future<double> futureBalance = totalBalance();
+
+  futureBalance.then<double>((double val) => total = val).whenComplete(() => print(total));
+
+  for (int i = 0; i < 10; i++) {
+    await Future.delayed(const Duration(milliseconds: 500));
+    total == null
+        ? print('Doing other things on main thread while waiting for asynchronous operations to complete...')
+        : print('Doing things on main thread after asynchronous operations are completed...');
+  }
 }
 
 enum AccountType {
@@ -27,20 +36,55 @@ Future<double> getBalance(AccountType accountType) async {
 }
 
 Future<double> totalBalance() async {
-  // start asynchronous functions in parallel - Concurrently - immediately returning a Future Object
-  final Future<double> checkingPromise = getBalance(AccountType.checking);
+  print('starting concurrent operations...');
 
-  final Future<double> savingsPromise = getBalance(AccountType.savings);
+  // start asynchronous functions in parallel - Concurrently - immediately returning a Future Object - (Non-BLocking main thread)
+  final Future<double> checkingFuture = getBalance(AccountType.checking);
 
-  // wait for both of the asynchronous functions to complete and then do something with the results of each - in this case add them together
-  return (await checkingPromise) + (await savingsPromise);
+  final Future<double> savingsFuture = getBalance(AccountType.savings);
+
+  // wait for both Futures to complete and then do something with the results of each - in this case add them together
+  final double totalBalance = (await checkingFuture) + (await savingsFuture);
+
+  print('concurrent operations complete...');
+
+  return totalBalance;
 }
-// TODO: add notes on placing await keyword in different places
 
-// TODO: explain the cooperative or non-preemptive model of concurrency | what are other concurrency models?
+// Cooperative or Non-Preemptive Concurrency Model
 
-// TODO: understand the flow of control of asynchronous operations
+//   - a simple concurrency model, deterministic in nature
 
-// TODO: how many threads does dart / flutter use for concurrent operations?
+//   - no scheduler (which can add complexity) to decide which task runs next, each task relinquishes control voluntrily
 
-// This model of concurrency is called cooperative or non-preemptive. There is only one thread of control, and concurrent computations must cooperate to release control to each other at well-defined points (such as await and return).
+//   - threads are responsible for yeilding control
+
+//   - typically runs on a single thread
+
+
+//  Understanding The Flow of Control in Asynchronous Operations Within a Cooperative Concurrency Model
+
+//    - the mechanism for task switching is the voluntary relinquishment of control while a task is waiting
+
+//    - callbacks are registered and called when an asynchronous operation completes (.then() method)
+
+// The Flow:
+
+//   - Initial Task Execution: main loop starts executing a task.
+
+//   - Asynchronous Operation: the task starts an asynchronous operation that may take some time to complete
+
+//   - Yielding Control: instead of blocking all other tasks the asynchronous operation yields control back to the main loop / caller
+
+//   - Main Loop Iterates: main loop / caller continues to execute other tasks
+
+//   - Callback Trigger: When the asynchronous operation completes, it triggers a pre-registered callback function (.then())
+
+//   - Callback Execution: The callback function is executed (.then()), allowing the task to handle the result of the asynchronous operation (e.g., processing the data read from the file).
+
+//   - Returning to Task: The main loop returns control to the task that initiated the asynchronous operation, allowing it to resume execution.
+
+//   - This model of concurrency is called cooperative or non-preemptive model
+
+//   - There is only one thread of control, and concurrent computations must cooperate to release control
+//     to each other at well-defined points (such as await and return).
