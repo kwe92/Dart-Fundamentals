@@ -3,7 +3,9 @@ Future<void> main() async {
 
   final Future<double> futureBalance = totalBalance();
 
-  futureBalance.then<double>((double val) => total = val).whenComplete(() => print(total));
+  futureBalance.timeout(const Duration(seconds: 10))
+    ..then<double>((double val) => total = val)
+    ..whenComplete(() => print(total));
 
   for (int i = 0; i < 10; i++) {
     await Future.delayed(const Duration(milliseconds: 500));
