@@ -1,7 +1,3 @@
-// Enumerated types: enum - Enumerations
-
-//   - a set of unique constant values, defined by a special class
-
 enum DayOfWeek {
   Monday,
   Tuesday,
@@ -53,3 +49,14 @@ void main() {
 void _getDayByNumber(DayOfWeek dow) => print(
       'Numerical day: ${dow.index + 1}',
     );
+
+
+// Enumerated types: enum - Enumerations
+
+//   - a set of unique constant values, defined by a special class
+
+
+// When to Use an Enum?
+
+//   - when you have a set of values that are immutable and will be used throughout your application
+//     and you don't want to worry about mispelling or type mismatches when utilizing those valuess
