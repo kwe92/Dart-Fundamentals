@@ -1,3 +1,5 @@
+// TODO: refactor comments and code
+
 // ignore_for_file: unused_local_variable, unused_import
 
 // Functional Dart
@@ -5,7 +7,8 @@
 import 'dart:convert';
 
 Future<void> main() async {
-  var (book, error) = await getBook();
+  // destructuring assignment
+  var (BookModel book, String error) = await getBook();
 
   if (error.isNotEmpty) {
     print(error);

@@ -1,15 +1,21 @@
 // Closure:
 
-//   - anonymous function
-//   - has access to variables inside their lexical scope
-//   - even when a function is used outside of its original scope
+//   - functions (anonymous or named) that have access to variables inside their enclosing lexical scope
+//     even when a function is used outside of its original scope
+
+//  They can be used to manage the state of enclosing scope variables
 
 typedef IntFunc = int Function(int);
 
 // makeAdder returns an anonymous function
-// functions are objects and can be returned as values
+// functions are first class objects and can be returned as values
 
-IntFunc makeAdder(int addBy) => (int x) => x + addBy;
+IntFunc makeAdder(int addBy) {
+  return (int x) {
+    // addBy is a variable that is part of the enclosing lexical scope of the makeAdder function
+    return x + addBy;
+  };
+}
 
 /// The entry point of any program
 void main() {
