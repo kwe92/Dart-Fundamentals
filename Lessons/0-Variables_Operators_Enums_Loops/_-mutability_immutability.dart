@@ -2,8 +2,8 @@
 
 //   - understand the difference between mutable and immutable objects
 
-//   - understand what happens when there are multiple references
-//     to the same object (two or more variables point to the same object / value)
+//   - understand what happens when there are multiple references (aliases)
+//     to the same mutable object (two or more variables point to the same mutable object / value in memory)
 
 void main() {
   // reassignable reference to an immutable object
