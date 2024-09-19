@@ -7,10 +7,6 @@ void main() {
 
   const extraColors = ['purple', 'orange'];
 
-  // spread operator
-
-  //   - concise way to insert multiple values into a collection
-
   final List<String> colors0 = [
     'green',
     'yellow',
@@ -21,3 +17,9 @@ void main() {
 
   print(colors0);
 }
+
+  // spread operator
+
+  //   - concise way to insert multiple values into a collection from another collection
+
+  //   - a way to copy values to a reference pointing to a new place in memory

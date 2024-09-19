@@ -3,6 +3,23 @@
 void main() {
   String fighter = 'Baki';
 
+  print('fighter hascode ${fighter.hashCode}');
+
+  // immutable String get reassigned under the hood as the hashcodes are different
+  fighter += ' ' + 'Hanma';
+
+  print('fighter: $fighter');
+
+  print('fighter hascode after adding ${fighter.hashCode}');
+
+  final arr0 = [];
+
+  print('arr0 hascode ${arr0.hashCode}');
+
+  arr0.add('added value');
+
+  print('figarr0hter hascode after adding ${arr0.hashCode}');
+
   int numFightingStyles = 6;
 
   double pie = 3.14;
@@ -74,7 +91,7 @@ Numbers
 
 Strings
 
-    - sequence of characters
+    - immutable sequence of characters
 
     - A Dart string is a sequence of UTF-16 code units. 
 

@@ -1,10 +1,19 @@
 void main() {
-  // mutable if:
+  // mutable reference if:
 
   //   - var keyword used
-  //   - final keyword used
-  //   - parameterized type specified
+
+  //   - type specified without keyword
+
   //   - const is omitted
+
+  // Mutable object if:
+
+  //   - the instantiated type (created object) is mutable (has mutator operations as part of its interface)
+
+  //   - the const keyword is not used during variable declaration
+  //
+  //   -  the collection is not created with SomeCollectionType.unmodifiable (alternate named constructor for collections to make them immutable)
 
   final List<String> heroNames = [
     'Goku',
@@ -15,16 +24,16 @@ void main() {
 
   print("initial List elements: $heroNames");
 
-  // add value to end of array
+  // add value to end of array (mutator operation)
   heroNames.add('Vegeta');
 
-  // insert element at specified index,
+  // insert element at specified index, (mutator operation)
   // shifting ALL elements O(n) linear time complexity
   heroNames.insert(0, 'Almight');
 
   print("List elements after adding two values with add and insert methods: $heroNames");
 
-  // removes an element at a specified index location ( O(n) or O(1)? )
+  // removes an element at a specified index location ( O(n) or O(1)? ) | (mutator operation)
   heroNames.removeAt(2);
 
   print("List elements after calling removeAt(2) method: $heroNames");
@@ -33,7 +42,7 @@ void main() {
 
   print("List elements after calling update function with side effects: $heroNames");
 
-  // removes all elements from a growable List
+  // removes all elements from a growable List | (mutator operation)
   heroNames.clear();
   print(heroNames);
 
@@ -56,4 +65,11 @@ void update<T>(List<T> arr, int i, T value) {
 // Functions With Side Effects (impure function)
 
 //   - mutates a value outside of its lexical scope
+
 //   - can be non-deterministic in nature
+
+//   - RARELY RECOMENDED
+
+//   - it is better to make a copy of the underlying mutable object
+
+//       - e.g. useing the spread operation to copy an array: final arrayCopy = [...arrayIwantToCopy];
