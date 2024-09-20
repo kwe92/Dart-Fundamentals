@@ -7,7 +7,7 @@ void main() {
   //----------Iterating with: for-in-loop----------//
 
   for (String hero in heros) {
-    spacedPrint('for in llop heros current element: $hero');
+    spacedPrint('for in loop heros current element: $hero');
   }
 
   // ----------Iterating with: Iterator Object----------//

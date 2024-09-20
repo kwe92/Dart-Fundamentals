@@ -1,4 +1,5 @@
 void main() {
+  // declare unreassignable reference (variable) to mutable array
   final List<String> heroNames = [
     'Goku',
     'Naruto',
@@ -28,7 +29,7 @@ void main() {
 
   print("List elements after calling update function with side effects: $heroNames");
 
-  // defensive copies insure that the referenced collection is not modified unintentionally
+  // defensive copies ensure that the referenced collection will not modified unintentionally
   update<String>([...heroNames], 4, "Bakugo");
 
   print("List elements after calling update function with defensive copy: $heroNames");
@@ -59,9 +60,7 @@ void update<T>(List<T> arr, int i, T value) {
   }
 }
 
-// TODO: Refactor comments and move them around to other modules if needed
-
-// mutable reference if:
+// mutable (reassignable) reference if:
 
 //   - var keyword used
 
@@ -71,9 +70,9 @@ void update<T>(List<T> arr, int i, T value) {
 
 //   - the instantiated type (created object) is mutable (has mutator operations as part of its interface)
 
-//   - the const keyword is not used during variable declaration (implicitly omiting unmodifiable)
+//   - the const keyword was not used during variable declaration (implicitly omitting unmodifiable)
 
-//   -  the collection is not created with SomeCollectionType.unmodifiable (alternate named constructor for collections to make them immutable / unmodifiable)
+//   - the collection was not created with SomeCollectionType.unmodifiable (alternate named constructor for collections to make them immutable / unmodifiable)
 
 // Functions With Side Effects (impure function)
 
@@ -87,11 +86,11 @@ void update<T>(List<T> arr, int i, T value) {
 
 //  What to Do Instead of Mutating Collections or Returning Mutable Objects
 
-//   - it is better to make a copy of the underlying mutable collection
+//   - make a copy of the underlying mutable collection
 //     either inside the implementation of the function or
 //     pass a defensive copy of the mutable collection
 
-//   - e.g. of copy / defensive copy of an array using the spread operation:
+//   - e.g. of copy / defensive copy of an array using the spread operator:
 
 //       - final arrayCopy = [...arrayIwantToCopy];
 
@@ -109,6 +108,6 @@ void update<T>(List<T> arr, int i, T value) {
 
 //   - so you increase both time complexity and space complexity
 
-//   - it is better to use immutable objects where possible to have
+//   - it is better to use immutable objects where possible granting
 //     the ability to safely share the same value in memory
 

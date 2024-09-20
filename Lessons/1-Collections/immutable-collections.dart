@@ -11,7 +11,7 @@ void main() {
   var arr2 = arr0[0];
 
   try {
-    // attempt to modify a colle1ction whose that is immutable, throwing an error
+    // attempt to modify a colle1ction that is immutable, throwing an error
     arr2.add(4);
 
     print(arr2);

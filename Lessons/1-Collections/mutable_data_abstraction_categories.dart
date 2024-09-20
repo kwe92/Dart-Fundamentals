@@ -1,5 +1,6 @@
 // CS 312 Lecture 16
-// Mutable data abstractions
+
+// Mutable Data Abstractions
 
 // Observers
 
