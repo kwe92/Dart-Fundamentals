@@ -1,5 +1,3 @@
 # Dart-Programming-Language-Foundation
 
-    - Learn the Dart programming language core conpects and principles step by step.
-
-    - Will Include Data Structures and Algorithms
+    - Learn the Dart Programming Language core concepts and principles step by step.
