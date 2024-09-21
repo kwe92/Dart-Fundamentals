@@ -47,11 +47,9 @@ void main() {
   print('using integer operations on a dynamic variable: ${completelyReassignableVariable.toDouble()}');
 }
 
-// TODO: Refactor Comments
-
 // Variables
 
-//   - References an Object (instance of a Type) in memory with the Objects associated value
+//   - references an Object (instance of a Type) in memory with the Objects associated value
 
 //   - most mordern laguages have a way to track what Object a reference (variable) points to
 //     by the referenced objects hash code or memory address
@@ -71,7 +69,7 @@ Types
 
 Type Annotation
 
-  - 
+  - setting the static type of a variable at compile-time
 
 Dart language: Built-in Types
 
@@ -85,19 +83,19 @@ Dart language: Built-in Types
 
   - Boolean | immutable 
 
-  - List | default mutable | immutable option
+  - List | collection | default mutable | immutable option
 
-  - Set | default mutable | immutable option
+  - Set | collection | default mutable | immutable option
 
-  - Map | default mutable | immutable option
+  - Map | collection | default mutable | immutable option
 
-  - Record | immutable
+  - Record | collection | immutable
 
-  - Rune | 
+  - Rune | immutable
 
-  - Symbol | 
+  - Symbol | immutable
 
-  - dynamic | 
+  - dynamic | mutable
 
 Numbers
 
@@ -111,6 +109,7 @@ Numbers
       - double:
 
           - Set of rational numbers Q: fractional form required
+
           - {..., -3.21, -2.0, -0.45, 0.0, 1.0, 2.42, 3.5, ...}
 
 
@@ -118,20 +117,20 @@ Strings
 
     - immutable sequence of characters
 
-    - A Dart string is a sequence of UTF-16 code units. 
+    - Dart strings are sequences of UTF-16 code units
 
 Boolean
 
-  - true and false values (truth values).
+  - the truth values true and false
 
 */
 
 // Type Declarations Without Keywords
 
-//   - Specifiying a type declaration without a keyword
+//   - Specifiying a type declaration without a keyword and instead using type annotation
 //     creates a reassignable reference (variable) of that type
 
-//   - it is a compile-time error to try to assign a different type
+//   - it is a compile-time error to try to assign an object of a different type
 
 // dynamic Type Declaration
 
@@ -142,13 +141,12 @@ Boolean
 //   - has no operations at compile-time
 
 //   - can use any arbitrary operation at compile-time, but at run-time
-//     if the variable does not refer to a value of the correct type then an error is thrown
+//     if the variable does not reference an object with the correct interface then an error is thrown
 
 // var keyword
 
-//   - mutable (reassignable) variable (reference)
-
-//   - can be initalized to any type and remains that type at runtime
+//   - created a mutable (reassignable) variable (reference)
+//     whose type is infered and remains that type at compile-time
 
 
 // final and const keywords:
@@ -183,4 +181,4 @@ Boolean
 
 //  - use $variableName syntax to format a single variable into a string literal.
 
-//  - Use ${} when you are specifiying more than one variable or using dot notation.
+//  - Use ${} when you are specifiying more than one variable or using dot notation to access properties or methods
