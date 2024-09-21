@@ -1,5 +1,9 @@
 import 'dart:io';
 
+void main() {
+  stdout.write('Hello Universe!\n');
+}
+
 /* 
     - main function
 
@@ -12,13 +16,10 @@ import 'dart:io';
       - informing dart where the program starts
 
       - Lines terminate with semi-colon
-
  */
 
-void main() {
-  // string literals end with \n
-  // \n
+  // string literals end with
+
   //   - new line
+
   //   -  similar to endl in C++
-  stdout.write('Hello Universe!\n');
-}
