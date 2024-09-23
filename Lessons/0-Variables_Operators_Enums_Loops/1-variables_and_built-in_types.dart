@@ -1,9 +1,17 @@
 // ignore_for_file: unused_local_variable
 
-void main() {
-  const num x = 3;
+//   - we are ignoring the unused_local_variable warning because
+//     we do not need to use all variables in this example
 
-  final int y = 2;
+void main() {
+  // type is inferred to be int
+  const x = 3;
+
+  // type is inferred to be double
+  final y = 2.0;
+
+  // type annotation is explicitly num
+  const num someNumber = 5.32131231;
 
   int numFightingStyles = 6;
 
@@ -37,14 +45,26 @@ void main() {
 
   print('Encoding UTF-16 code points: $fighterRunes2: returning string: ${String.fromCharCodes(fighterRunes2)}');
 
-  // not only can you reassign the value that the variabled references but the type of value can change as well
-  dynamic completelyReassignableVariable = 'I am a string!';
+  const Symbol mySymbolName = Symbol('The_Symbol_of_Humanity');
 
-  print('using String operations on a dynamic variable: ${completelyReassignableVariable.contains('a')}');
+  // not only can you reassign the value that iCanChangeIntoAnyType references due to ommiting the const and final keywords
+  // but the type of value can change durring runtime as well
 
-  completelyReassignableVariable = 42;
+  dynamic iCanChangeIntoAnyType = 'I am a string!';
 
-  print('using integer operations on a dynamic variable: ${completelyReassignableVariable.toDouble()}');
+  print('using String operations on a dynamic variable: ${iCanChangeIntoAnyType.contains('a')}');
+
+  iCanChangeIntoAnyType = 42;
+
+  print('using integer operations on a dynamic variable: ${iCanChangeIntoAnyType.toDouble()}');
+
+  final noTypeAnnotation; // defaults to dynamic
+
+  noTypeAnnotation = 42.42; // daynamic variable initialzed with an double
+
+  print('noTypeAnnotation has no known operations or methods of double until runtime: ${noTypeAnnotation.round()}');
+
+  print('noTypeAnnotation runtime type: ${noTypeAnnotation.runtimeType}');
 }
 
 // Variables
@@ -67,27 +87,35 @@ Types
 
   - there are built in types and user defined types
 
+Type Inferrence
+
+  - when you ommit the type annotation during variable declaration
+    then the type is inferred based on what is initalized
+
+  - if there is no inital value upon variable declaration then the type
+    is inferred to be 'dynamic'
+
 Type Annotation
 
   - setting the static type of a variable at compile-time
 
 Dart language: Built-in Types
 
-  - Number | immutable 
+  - Number | immutable
 
     ~ int
 
     ~ double
 
-  - String | immutable 
+  - String | immutable
 
-  - Boolean | immutable 
+  - Boolean | immutable
 
-  - List | collection | default mutable | immutable option
+  - List | collection | default mutable | has immutable option
 
-  - Set | collection | default mutable | immutable option
+  - Set | collection | default mutable | has immutable option
 
-  - Map | collection | default mutable | immutable option
+  - Map | collection | default mutable | has immutable option
 
   - Record | collection | immutable
 
@@ -101,12 +129,13 @@ Numbers
 
   - Numeric literals:
 
-      - int:
+      ~ int:
 
           - Set of integers Z
+
           - {..., -3, -2, -1, 0, 1, 2, 3, ...}
 
-      - double:
+      ~ double:
 
           - Set of rational numbers Q: fractional form required
 
@@ -121,13 +150,13 @@ Strings
 
 Boolean
 
-  - the truth values true and false
+  - the truth values: true and false
 
 */
 
 // Type Declarations Without Keywords
 
-//   - Specifiying a type declaration without a keyword and instead using type annotation
+//   - Specifiying a type declaration without a keyword and instead using a type annotation
 //     creates a reassignable reference (variable) of that type
 
 //   - it is a compile-time error to try to assign an object of a different type
@@ -136,17 +165,18 @@ Boolean
 
 //   - a reassignable variable whose value can be of any type
 
-//   - the type of the value can change at compile-time without error
+//   - the type of the value can change at compile-time without error if const and final are omitted
 
-//   - has no operations at compile-time
-
-//   - can use any arbitrary operation at compile-time, but at run-time
+//   - has no operations at compile-time and the operations used are evlauated at run-time
 //     if the variable does not reference an object with the correct interface then an error is thrown
 
 // var keyword
 
 //   - created a mutable (reassignable) variable (reference)
 //     whose type is infered and remains that type at compile-time
+
+//   - similar to using a Type Annotation without the keywords const or final
+//     with type inferrence
 
 
 // final and const keywords:
@@ -162,7 +192,7 @@ Boolean
 //     - it is a compile-time error to try to use a final variable that has not been initialized
 //       unless it is prefixed with the late keyword
 
-//     - unlike the const keyword the referenced value in memory will still be mutable if
+//     - unlike the const keyword the reference value in memory will still be mutable if
 //       it has mutating oerations
 
 //   const
@@ -175,10 +205,24 @@ Boolean
 
 //     - must be initialized upon declaration
 
+//         ~ e.g. const List<List<int>> myListOfLists = [[0, 1, 2], [3, 4, 5]];
+
+//         ~ all of the collections in this case Arrays become unmodifiable (immutable) at compile-time, effectively frozen
+
+
+
 // String interpolation
 
 //  - Insert variables (references) into strings
 
-//  - use $variableName syntax to format a single variable into a string literal.
+//  - use $variableName syntax to format a single variable into a string literal
 
-//  - Use ${} when you are specifiying more than one variable or using dot notation to access properties or methods
+//  - Use ${} when you are:
+
+//   ~ specifiying more than one variable
+
+//   ~ using dot notation to access properties or methods
+
+//   ~ evaluating some expression
+
+//     - e.g. print('The sum of $x + $y = ${x + y}');
