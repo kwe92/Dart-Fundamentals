@@ -4,10 +4,7 @@ void main() {
   int num1 = 42;
   int num2 = 12;
 
-  print(num1.runtimeType);
-  print(num2.runtimeType);
-
-  var sum_num1_num2 = num1 + num2; // adding variables
+  var sum_num1_num2 = num1 + num2; // adding values a variable references
 
   print('the sum of $num1 + $num2 is $sum_num1_num2.');
 
@@ -15,18 +12,19 @@ void main() {
 
   // Logical AND
 
-  //   - && represents AND
+  //   - && represents Logical AND
 
   print(sum_num1_num2 >= num1 && sum_num1_num2 == num1 + num2);
 
 // Modulo
+
 //  - returns the remander
 
   print(10 % 2);
 
   // Logical OR
 
-  //   - || represents OR
+  //   - || represents Logical OR
 
   print(sum_num1_num2 >= num1 || num1 < num2);
 
@@ -34,9 +32,11 @@ void main() {
 
   //   - returns turns true if the condition is met false otherwise
 
+  //   - typically used to say a variable references a value of a certain type
+
   print(sum_num1_num2 is! bool); // is! == is not
 
-// Augmented operators
+// Some Augmented Assignment Operators
 
   y += 5; // the same as y = y + 5;
 
