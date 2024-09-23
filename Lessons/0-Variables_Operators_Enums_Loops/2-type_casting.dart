@@ -1,26 +1,11 @@
-// Type Casting || Type Conversion
-
-//   - Convert one data type to another
-//   - Can be done:
-//     - implicitly by the compiler (var keyword)
-//     - explicitly by the developer (compile-time)
-//     - destination data type can not be smaller than the source
+import '../7-Extensions_Mixins/number_parsing.dart';
 
 void main() {
-  // Example: Converting String to int
+  const dynamic x = '42';
 
-  //  .parse method
+  final String y = x as String;
 
-  //    - int and double have this method
-  //    - converts a string literal into the respectve type
-
-  // .toString method
-
-  //   - Returns the object as a String literal
-
-  const String x = '42';
-  final int y = int.parse(x);
-  final String z = y.toString();
+  final int z = y.toIntOrNull() ?? 0;
 
   print(x);
 
@@ -28,14 +13,41 @@ void main() {
 
   print(z);
 
-  // .runtimeType
-
-  //   - a property that all objects have
-  //   - The type of a variable at runtime
-
   print(x.runtimeType);
 
   print(y.runtimeType);
 
   print(z.runtimeType);
 }
+
+
+// Type Casting || Type Conversion
+
+//   - Convert one data type to another
+
+//   - Can be done:
+
+//     - implicitly by the compiler (var keyword)
+
+//     - explicitly by the developer (compile-time)
+
+//     - destination data type can not be smaller than the source
+
+  // Example: Converting String to int
+
+  //  .parse method
+
+  //    - int and double have this method
+  
+  //    - converts a string literal into the respectve type
+
+  // .toString method
+
+  //   - Returns the object as a String literal
+
+
+  // .runtimeType
+
+  //   - a property that all objects have
+
+  //   - The type of a variable at runtime
