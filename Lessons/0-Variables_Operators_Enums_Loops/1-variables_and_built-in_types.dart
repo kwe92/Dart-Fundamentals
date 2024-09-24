@@ -67,6 +67,8 @@ void main() {
   print('noTypeAnnotation runtime type: ${noTypeAnnotation.runtimeType}');
 }
 
+// TODO: Add notes on the idomatic way to use keywords and type annotations
+
 // Variables
 
 //   - references an Object (instance of a Type) in memory with the Objects associated value
