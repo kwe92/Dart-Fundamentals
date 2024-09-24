@@ -1,21 +1,26 @@
-import '5.5-switch_statements_guard_clause.dart';
+void main() {
+  final Vehicle bicycle = Vehicle.bicycle;
+  final Vehicle sedan = Vehicle.car;
 
-// Enhanced enum
+  print('bicycle: ${bicycle}');
 
-//   - multiple unique instances
-//   - this keyword references current instance
+  print('Sedan: ${sedan}');
 
-// Enhanced enum parts and order:
+  print('bicycle carbon footprint: ${bicycle.carbonFootPrint}');
 
-//   - unique instances of const class
-//   - fields (member variables / derivations)
-//   - const class constructor
-//   - class methods
+  print(bicycle.additionalFeatures);
 
-// inheriting from Comparable class is optional
+  try {
+    // throws a run-time exception as you are trying to modify an unmodifiable (const) Array
+    bicycle.additionalFeatures[0] = '100 INCH RIMS';
+  } catch (err) {
+    print(err.toString());
+  }
+}
 
 enum Vehicle implements Comparable<Vehicle> {
-  bycicle(
+  // the set of fixed known enum instances
+  bicycle(
     tires: 2,
     passengers: 1,
     carbonKilometer: 0,
@@ -29,15 +34,21 @@ enum Vehicle implements Comparable<Vehicle> {
     tires: 6,
     passengers: 50,
     carbonKilometer: 800,
-  ),
-  ;
+  );
 
   final int tires;
+
   final int passengers;
+
   final int carbonKilometer;
+
+  // the field (property / memeber variable) must be final and its value must be constant (immutable - frozen at compile-time)
+  final additionalFeatures = const ['padded seating', 'star wheels'];
+
   // computed get dervation - returns a derivative
   int get carbonFootPrint => (carbonKilometer / passengers).round();
-  bool get isTwoWheeled => this == Vehicle.bycicle;
+
+  bool get isTwoWheeled => this == Vehicle.bicycle;
 
   const Vehicle({
     required this.tires,
@@ -45,22 +56,50 @@ enum Vehicle implements Comparable<Vehicle> {
     required this.carbonKilometer,
   });
 
+  // TODO: find a use case for a redirect constructor in an enum
+  const Vehicle.bike()
+      : this(
+          tires: 2,
+          passengers: 1,
+          carbonKilometer: 0,
+        );
+
+  // enum factory constructor returning one of the known declared fixed instances car
+  factory Vehicle.sedan() => Vehicle.car;
+
   @override
   int compareTo(Vehicle other) => this.carbonFootPrint - other.carbonFootPrint;
 
   @override
   String toString() =>
-      '${this.name}(tires: $tires, passengers: $passengers, carbonKilometer: $carbonKilometer, carbonFootPrint: $carbonFootPrint, isTwoWheeled: $isTwoWheeled)';
+      '${this.name}(tires: $tires, passengers: $passengers, carbonKilometer: $carbonKilometer, carbonFootPrint: $carbonFootPrint, isTwoWheeled: $isTwoWheeled, additionalFeatures: $additionalFeatures)';
 }
 
-void main() {
-  final Vehicle bike = Vehicle.bycicle;
-  final Vehicle sedan = Vehicle.car;
-  try {
-    print('Bike: ${bike}');
-    print('Sedan: ${sedan}');
-  } catch (errorMsg, stackTrace) {
-    print(errorMsg);
-    printStackTrace(stackTrace);
-  } finally {}
-}
+// Enhanced enum
+
+//   - as the name implies Enhanced Enum's are enhanced with added features
+//     beyond a simple fixed set of unique constant values
+
+// Enhanced enum Additional Features:
+
+//   - fields (member variables / derivations)
+
+//   - class methods
+
+//   - const class constructors (limited to a fixed number of known constant instances)
+
+//   - the 'this' keyword references the current instance
+
+// Enhanced Enum Restrictions
+
+//   - instance variables (fields, properties, member variables, etc) must be final
+
+//   - all generative constructors must be constant
+
+//   - factory constructors can only return one of the fixed known enum instances
+
+//   - no other class can be extended as Dart only allows a class to be a subclass of one Super Class (Parent Class)
+
+//   - there must be one declared isntance and all fixed instances must be declared at the top of the class
+
+//?? inheriting from Comparable class is optional
