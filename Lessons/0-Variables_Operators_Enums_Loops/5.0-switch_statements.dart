@@ -17,6 +17,7 @@ void main() {
 //   - given some arithmetic operation to perform
 
 //   - execute the given operation on the values referenced by the variables x and y respectively
+
   try {
     switch (operation) {
       case ArithneticOperations.add:
@@ -84,12 +85,14 @@ void main() {
 
 //   - each case clause is a pattern that a value can match against
 
+//   - any kind of pattern can be used for a case, granting enormous flexibility
+
 //   - if the value matches the cases pattern the case body executes
 
 //   - if no case clause is matched then the default case is returned
 
 //   - non-empty case clauses do not require a break statement as they jump to the end of the switch statement
 
-//   - empty case clauses fall through to the next case
+//   - empty case clauses fall through to the next case, allowing case statements to share a body
 
 //   - for more complex control flow you can use case labels along with the continue keyword
