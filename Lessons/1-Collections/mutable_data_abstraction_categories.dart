@@ -1,6 +1,8 @@
-// CS 312 Lecture 16
+// CS 312 Lecture 10 & 16 | https://web.mit.edu/6.031/www/sp22/classes/10-abstract-data-types/
 
 // Mutable Data Abstractions
+
+// Abstract Data Type Operation Classifications
 
 // Observers
 
@@ -9,6 +11,10 @@
 // Creators
 
 //   - creates an instance an abstract data type without mutating the original abstraction
+
+// Producers
+
+//   - creates an Object of a type given one or more existing objects
 
 // Mutators | methods or functions with side-effects
 
@@ -20,6 +26,9 @@ void main() {
 
   print("Observer method List.length on List arr0: ${arr0.length}");
 
+  print("Observer method List.elementAt(3) on List arr0: ${arr0.elementAt(3)}");
+
+  // Producer factory method
   var arr1 = List.from({5, 6, 7, 8});
 
   print("Creator method List.from, this example creates a List from a Set but the elements themselves remain the same: ${arr1}");
