@@ -1,34 +1,51 @@
-// Switch statement - fall through
+import 'dart:math';
 
-//   - empty cases fall through to the next case
-//       - use break in an empty case's body to prevent fall through
+enum ItemStatus {
+  paid,
+  ship,
+  unpaid,
+  notify;
+}
 
-// Switch statement - non-sequential fallthrough
+void main() {
+  final randomIndex = Random().nextInt(ItemStatus.values.length);
 
-//   - execute different sections of a switch statement depending on the value passed
-//   - use the continue statement and a label
+  final status = ItemStatus.values[randomIndex == 1 ? 0 : randomIndex];
+
+  print(status);
+
+  switch (status) {
+    case ItemStatus.paid:
+      executePaid();
+      continue shipItem; //  non-sequential fallthrough continuing to shipItem label
+
+    case ItemStatus.unpaid:
+    case ItemStatus.notify:
+      executeNotify();
+
+    shipItem:
+    case ItemStatus.ship:
+      executeShip();
+  }
+}
 
 void executePaid() => print('paid, closing and shipping.');
 void executeShip() => print('package has been shipped.');
 void executeNotify() => print('unpaid, notifying customer via email.');
 
-void main() {
-  final List<String> status = [
-    'PAID',
-    'SHIP',
-    'UNPAID',
-    'NOTIFY',
-  ];
+// Switch statement - fall through
 
-  switch (status[0]) {
-    case 'PAID':
-      executePaid();
-      continue shipItem;
-    shipItem:
-    case 'SHIP':
-      executeShip();
-    case 'UNPAID':
-    case 'NOTIFY':
-      executeNotify();
-  }
-}
+//  - empty cases fall through to the next case
+//    giving case clauses the ability to share a body (block of code that will be executed)
+
+//  - in most cases Logical OR is preferred at it more concise and readable
+
+//      ~ e.g. case ItemStatus.unpaid || case ItemStatus.notify: ...
+    
+//  - use break in an empty case's body to prevent fall through
+
+// Switch statement - non-sequential fallthrough
+
+//   - execute different sections of a switch statement depending on the value passed
+
+//   - use the continue statement and a label
