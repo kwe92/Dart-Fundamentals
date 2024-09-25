@@ -1,9 +1,3 @@
-// forEach
-
-//   - method collections in Dart 3
-//   - argument is a callback, executes for every element
-//   - returns void, not a new lazy iterable
-
 void main() {
   List<String> dopeAnimeCharacters = [
     'Baki Hanma',
@@ -29,3 +23,14 @@ void main() {
     (String hero) => print(hero),
   );
 }
+
+
+// forEach
+
+//   - a method collections have in Dart 3
+
+//   - takes as a positional argument a callback to execute for every element
+
+//   - returns void and not a new lazy iterable
+
+//   - NOTE: it is better to use list comprehension (collection for) and return a new list
