@@ -1,17 +1,26 @@
-// Callbacks in for loops
-
-//   - The value is captured in callback
 void main() {
-  var lambdaFunctions = [];
-  for (var i = 0; i < 3; i++) {
-    lambdaFunctions.add(() => print(i));
+  var closureFunctionCallbacks = List.filled(5, () {}, growable: false);
+
+  for (var i = 0; i < closureFunctionCallbacks.length; i++) {
+    closureFunctionCallbacks[i] = () {
+      print(i);
+    };
   }
+
+  for (final closure in closureFunctionCallbacks) {
+    closure.call();
+  }
+}
+
+// Closures in Dart for loops
+
+//   - The loop variable value can be captured in closures
+//     to be called back later in the code
 
   // for-in loop
 
-  //   - iterate over callbacks, invoking them indvidually
+  //   - loop over the elements within an Iterable Object
+  //     without returning the iteration counter
 
-  for (final lambda in lambdaFunctions) {
-    lambda();
-  }
-}
+  //   - a for-in loop implicitly stops when there are no more elements to iterate
+  //     over within an Iterable Object
