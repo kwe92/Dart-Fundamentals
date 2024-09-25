@@ -19,13 +19,15 @@ void main() async {
   }
 
   // continue example
-
   for (var candidate in _candidates) {
     if (candidate.yearsExperience < 5) {
       continue;
     }
     candidate.interview();
   }
+
+  // the above for loop code also be written imperitively
+  _candidates.where((candidate) => candidate.yearsExperience > 5).forEach((candidate) => candidate.interview());
 }
 
 Future<void> _processIncomingRequestData() async {
