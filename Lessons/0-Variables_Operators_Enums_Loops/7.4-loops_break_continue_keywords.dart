@@ -21,7 +21,7 @@ void main() async {
   // continue example
 
   for (var candidate in _candidates) {
-    if (candidate.yearsExperience > 5) {
+    if (candidate.yearsExperience < 5) {
       continue;
     }
     candidate.interview();
