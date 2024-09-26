@@ -1,31 +1,30 @@
 import '../../utility/spacedPrint.dart';
 
 void main() {
-  // homogeneous Iterable of Strings | would work if the static type was a List as well
   final Iterable<String> heros = ['Vegeta', 'Bakugo', 'Gaara'];
 
   //----------Iterating with: for-in-loop----------//
 
-  for (String hero in heros) {
+  for (var hero in heros) {
     spacedPrint('for in loop heros current element: $hero');
   }
 
   // ----------Iterating with: Iterator Object----------//
 
   // assgin Iterator to a variable
-  final Iterator herosIterator = heros.iterator;
+  final herosIterator = heros.iterator;
 
   for (var hasElement = herosIterator.moveNext(), hero = herosIterator.current;
       hasElement;
-      hasElement = herosIterator.moveNext(), hero = hasElement ? herosIterator.current : null) {
+      hasElement = herosIterator.moveNext(), hero = hasElement ? herosIterator.current : '') {
     spacedPrint('heros Iterator current element: $hero');
   }
 
   // ----------Iterating with: Iterator Object After Iterator Initialized && Array Mutated---------- //
 
-  List<String> heros2 = heros.toList();
+  final heros2 = heros.toList();
 
-  Iterator herosIterator2 = heros2.iterator;
+  final herosIterator2 = heros2.iterator;
 
   try {
     // mutate growable Array by adding an element
@@ -34,15 +33,13 @@ void main() {
     // try to access the iterator that was initalized before the mutation occured, will throw an error
     for (var hasElement = herosIterator2.moveNext(), hero = herosIterator2.current;
         hasElement;
-        hasElement = herosIterator2.moveNext(), hero = hasElement ? herosIterator2.current : null) {
+        hasElement = herosIterator2.moveNext(), hero = hasElement ? herosIterator2.current : '') {
       spacedPrint('heros Iterator2 current element: $hero');
     }
   } catch (err, _) {
     spacedPrint('Error: ' + err.toString());
   }
 }
-
-// TODO: refactor comments
 
 // Accessing Elements of an Iterable Object
 
