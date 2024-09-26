@@ -1,10 +1,5 @@
 void main() {
-  List<String> heroNames = [
-    'Gon',
-    'Deku',
-    'Gara',
-    'Shikamaru',
-  ];
+  List<String> heroNames = ['Gon', 'Deku', 'Gara', 'Shikamaru'];
 
   // Iterable iteration
 
