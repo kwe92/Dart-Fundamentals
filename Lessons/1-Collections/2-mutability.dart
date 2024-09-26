@@ -1,11 +1,6 @@
 void main() {
   // declare unreassignable reference (variable) to mutable array
-  final List<String> heroNames = [
-    'Goku',
-    'Naruto',
-    'Gon',
-    'Deku',
-  ];
+  final heroNames = ['Goku', 'Naruto', 'Gon', 'Deku'];
 
   print("initial List elements: $heroNames");
 
