@@ -18,6 +18,8 @@ void main() {
 
   print("List elements after calling removeAt(2) method: $heroNames");
 
+  print("List elements before calling update function with side effects: $heroNames");
+
   print('heroNames hash code: ${heroNames.hashCode}');
 
   update<String>(heroNames, 3, "Gaara");
@@ -31,8 +33,6 @@ void main() {
 
   // removes all elements from a growable List | (mutator operation)
   heroNames.clear();
-
-  print(heroNames);
 
   print("List elements after calling clear method: $heroNames");
 
