@@ -1,28 +1,18 @@
-// TODO: Check out map docs and expand onthe lesson
-
-// Dynamic hashmap
-
 void main() {
-  const myList = <String>[
-    'sky',
-    'cloud',
-    'sod',
-    'worm',
-    'put',
-    'water',
-    'cup',
-  ];
+  const myList = <String>['sky', 'cloud', 'sod', 'worm', 'put', 'water', 'cup'];
 
-  var i = 0;
-
-// elements of an Iterables can be control flow statements and predicates
-// creating elements dynamically
-
-  final wordMap = {
+  final wordMap = <dynamic, String>{
     "i_come_first": 'first element',
-    for (var w in myList)
-      if (w.length >= 3) i++: w,
-    "i_come_last": 'second element',
+    for (var i = 0; i < myList.length; i++)
+      if (myList[i].length > 3) i: myList[i],
+//    ^^^^^^^^^dynamic key^^^^^^^^^^  ^^dynamic value^^
+    "i_come_last": 'last element',
   };
   print(wordMap);
 }
+
+// Hash Map: Collection-for
+
+//   - you can use the collection-for syntax
+//     to create key-values pairs of a hash map dynamically
+//     with a Map literal
