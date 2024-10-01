@@ -1,56 +1,64 @@
-// TODO: review from the top
-
 // HashMap: Iteration
 
 void main() {
-  Map<String, dynamic> hero = {
+  var hero = <String, dynamic>{
     'name': 'Killua',
     'age': 12,
     'anime': 'Hunter x Hunter',
     'friends': <String>['Gon', 'Kurapika', 'Leorio']
   };
 
-  // keys property
+  final keys = hero.keys;
 
-  //   - returns all keys as elements of an Iterable Object
-
-  final Iterable<String> keys = hero.keys;
-
+  print('hero map keys:\n');
   for (String key in keys) {
-    print(key);
+    print('$key\n');
   }
 
-  // value property
+  final values = hero.values;
 
-  //   - returns all values as Iterable
-
-  Iterable<dynamic> values = hero.values;
-
+  print('hero map values:\n');
   for (var val in values) {
-    print(val);
-    print(val.runtimeType);
+    print('$val\n');
+    print('element runt-time type: ${val.runtimeType}\n');
   }
 
-  // values can also be accessed with key and supscript
-
+  // values can be accessed with key and sub-script
+  print('accessing hash map values with key and sub-script:\n');
   for (var key in hero.keys) {
-    print(hero[key]);
+    print('${hero[key]}\n');
   }
 
-  // entries property (MapEntry)
+  print('accessing hash map entries property:\n');
+  for (var mapEntry in hero.entries) {
+    print('map entry: $mapEntry\n');
 
-  //   - an Iterable object where its elements are MapEntry objects
-
-// MapEntry Object
-
-//   - represents a single entry of a Map
-
-  for (MapEntry<String, dynamic> mapEntry in hero.entries) {
-    print('key: ${mapEntry.key} | value: ${mapEntry.value}');
+    print('key: ${mapEntry.key} | value: ${mapEntry.value}\n');
   }
-  // forEach method
 
   hero.forEach(
     (key, value) => print('Key using forEach: $key | value using forEach: $value'),
   );
 }
+
+// keys property
+
+//   - returns all keys of a hash map as an Iterable object
+
+// value property
+
+//   - returns all values of a hash map as an Iterable object
+
+// entries property (MapEntry)
+
+//   - an Iterable object where its elements are MapEntry objects
+
+//   - each MapEntry object represents a single key-value pair in a hash nap
+
+// MapEntry Object
+
+//   - represents a single entry of a Map
+
+// forEach method
+
+//   - Applies [action / callback function] to each key/value pair of the map
