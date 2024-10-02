@@ -1,42 +1,53 @@
-// Globally Mutable State
+// Global Mutable State
 
-//    - mutable globally declared variable
+//    - mutable global variable
+
 //    - typically bad idea, should rarely be used
 
-var global_Mutable_Variable_Counter = 0;
+var globalMutableVariableCounter = 0;
 
-const global_Immutable_Variable = 0;
+const globalImmutableVariable = 0;
 
 /// The entry point to any program
 void main() {
-  // Non-pure Functions
+  void increment() => globalMutableVariableCounter++;
 
-  //    - A function producing side effect
-  //    - modifies a variable outside of its scope
-  //    - may not always return the same output given the same input
+  int Function() increment2(int n) => () {
+        return n++ + 1;
+      };
 
-  void increment() {
-    global_Mutable_Variable_Counter++;
-    print('I am a function that modifies the value of globalVariableCounter' +
-        '\n' +
-        'Which makes me a NON-PURE Function!' +
-        '\n' +
-        'globalVariableCounter value: $global_Mutable_Variable_Counter');
+  for (var i = 0; i < 3; i++) {
+    increment();
   }
+
+  print('globalMutableVariableCounter: $globalMutableVariableCounter');
+
+  final counter = increment2(globalMutableVariableCounter);
+
+  for (var i = 0; i < 3; i++) {
+    print(counter.call());
+  }
+
+  print('globalMutableVariableCounter: $globalMutableVariableCounter');
+}
 
   // Pure Function (Law of Demeter)
 
-  //   - produce same result when called with the same argument
+  //   - a function without side effects
+
+  //   - produces the same result when called with the same argument
+
   //   - does not modify varables outside of its scope
 
-  num increment2([num i = 1]) {
-    num result = 0;
-    result += global_Immutable_Variable + i;
-    return result;
-  }
+  //   - typically returns something
 
-  for (var i = 0; i < 3; i++) increment();
-  print('Result from calling increment2 a pure function: ${increment2()} | global_Immutable_Variable value: $global_Immutable_Variable');
-  for (var i = 0; i < 2; i++)
-    print('result of increment2(3): ${increment2(3)} | global_Immutable_Variable value: $global_Immutable_Variable');
-}
+
+  // Impure Functions
+
+  //   - A function producing side effect
+
+  //   - modifies a variable outside of its scope
+
+  //   - may not always return the same output given the same input
+
+  //   - typically returns void
