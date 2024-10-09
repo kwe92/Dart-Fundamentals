@@ -101,3 +101,19 @@ invocation of const Class
 implicit getters
 
   - getters are impllicity defined when you declare a member variable in a class
+
+// TODO: refactor
+
+Instance Field Initialization
+
+   - instance fields must have a value before reaching the constructor body unless prefixed with the late keyword
+
+   - instance fields must either:
+
+     - have an initializer at the declaration
+
+     - use an initializing formal (be a parameter of the constructor function)
+
+         - e.g. ClassConstructor(this.initializingFormal)
+
+     - be initialized in the constructor's initialization list
