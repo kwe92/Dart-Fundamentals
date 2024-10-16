@@ -108,11 +108,11 @@ Instance Field Initialization
 
    - instance fields must have a value before reaching the constructor body unless prefixed with the late keyword
 
-   - instance fields must either:
+   - there are three ways in which an instance variable can be initialized:
 
-     - have an initializer at the declaration
+     - have an initializer unpon variable declaration
 
-     - use an initializing formal (be a parameter of the constructor function)
+     - use an initializing formal parameter (be a parameter of the constructor function)
 
          - e.g. ClassConstructor(this.initializingFormal)
 
