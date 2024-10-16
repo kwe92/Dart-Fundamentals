@@ -23,9 +23,7 @@ class False extends Bool {
 
 class True extends Bool {
   True(super.truthValue) {
-    if (truthValue != 1) {
-      throw Exception("the integer representation of true is 1");
-    }
+    if (truthValue != 1) throw Exception("the integer representation of true is 1");
   }
 }
 
@@ -49,14 +47,7 @@ void main() {
   print("not operation on F: ${not(_false).truthValue}");
 }
 
-Bool and(Bool a, Bool b) {
-  return Bool(a.truthValue * b.truthValue);
-}
+Bool and(Bool a, Bool b) => Bool(a.truthValue * b.truthValue);
+Bool or(Bool a, Bool b) => Bool(a.truthValue + b.truthValue - a.truthValue * b.truthValue);
 
-Bool or(Bool a, Bool b) {
-  return Bool(a.truthValue + b.truthValue - a.truthValue * b.truthValue);
-}
-
-Bool not(Bool a) {
-  return Bool(1 - a.truthValue);
-}
+Bool not(Bool a) => Bool(1 - a.truthValue);
