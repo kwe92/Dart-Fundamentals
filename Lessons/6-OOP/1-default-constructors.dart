@@ -33,6 +33,7 @@ void main() {
 
 //   - special functions that create instances of classes (Objects) in Object-Oriented Languages
 
+//   -  Constructor names can be either ClassName or ClassName.identifier in most modern Object-Oriented Languages
 
 // Default Constructor
 
@@ -40,6 +41,21 @@ void main() {
 
 //   - default constructors create instances of classes and do not take arguments
 
-//   - all instance fields must be nullable and not prefixed with final or an explicit constructor must be implemented
+//   - all instance fields must be nullable or initalized with a value once declared
+//     and not prefixed with final or an explicit constructor must be implemented
 
+// Instance Variables
 
+//   - an uninitialized instance variable declared with a nullable type has the value null
+
+//   - non-nullable instance variables must be initialized
+
+//   - there are three ways in which an instance variable can be initialized:
+
+//     - have an initializer unpon variable declaration
+
+//     - use an initializing formal parameter (be a parameter of the constructor function prefixed with this.fieldName)
+
+//         - e.g. ClassConstructor(this.initializingFormal)
+
+//     - be initialized in the constructor's initialization list
