@@ -83,6 +83,10 @@ void main() {
 
 //   - the type parameter can then be used anywhere a type annotation would be used
 
+//   - type parameters function similarly to that of regular parameters of a class or function
+//     and can optionally acccept type arguments upon class instantiation or method invocation
+//     via angle brackets (<TypeArgument> e.g. List<double>)
+
 // Type Bounds
 
 //   - to constrain the types that can be used as a type parameter
