@@ -88,13 +88,10 @@ class RaiseSalaryError extends Error {
 
 // Dart 3 Class Modifiers
 
-// Class Modifiers
+//   - keywords added as a prefix to a class declaration
+//     giving a class additional features or restrictions
 
-//   - Prefixes class declaration
-
-//   - Adds additional features and restrictions to class declarations
-
-// Interface
+// Interface (pure virtual base class in C++)
 
 //   - the highest level of abstraction for an object
 
@@ -102,9 +99,28 @@ class RaiseSalaryError extends Error {
 
 //   - contains only the signatures of methods omitting any implementation details
 
-// abstract class modifier
+//   - typically does not have any member variables (instance fields)
 
-//   - Some Object-Oriented languages do not have interfaces but rather an Abstract Class that can act as an Interface
+// Benefits of Interfaces:
+
+//   - Polymorphism:
+
+//       - allows objects of different classes that inherit from the same interface to be treated interchangeably
+
+// Code Reusability:
+
+//   - promote code reusability by separating the definition of behavior from its implementation
+
+// Loose Coupling:
+
+//   - promote loose coupling, making code more modular and easier to maintain
+
+// Class Modifier: abstract (Abstract Class)
+
+//   - some Object-Oriented languages do not have the ability to define an explicit interface
+//     but rather an Abstract Class (Abstract Base Class) that can act as an interface
+
+//   - similar to interfaces Abstract Classes provide a mechanism for class inheritance
 
 //   - abstract classes can declare instance fields and have a set of method signatures to be implemented by sub-types
 
@@ -113,21 +129,19 @@ class RaiseSalaryError extends Error {
 //   - unlike traditional Interfaces Abstract Classes can provide implementations
 //     for methods if they choose too but typically don't
 
-// abstract methods
+// Abstract Methods (pure virtual function C++)
 
 //   - equivalent to Interface methods, providing only the signature of a method that must be implemented
 //     by sub-types
 
-//   - replace method body with semi-colon, indicating to the compiler that the method is abstract
+//   - replace method body (implementation) with semi-colon, indicating to the compiler that the method is abstract
 
-//   -  abstract methods can only be defined in abstract classes
+//   -  abstract methods can only be defined in abstract classes and but be implemented by sub-types of the class
 
-// Initializing Private Fields as Initializing Formal Parameters
+// Pure Virtual Base Class Example:
 
-//   - private fields can't be used as named initializing formals
-//     and must be initialized with an initializer list instead
-//     or marked as late and initialized in the constructor body (not idomatic nor recommended)
-
-//   - private fields can be used as positional initializing formals
-
-
+// class Shape { // pure virtual class; extend me!
+// virtual double area() const = 0;
+// virtual double perimeter() const = 0;
+// virtual int sides() const = 0;
+// };
