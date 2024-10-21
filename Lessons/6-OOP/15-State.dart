@@ -35,15 +35,12 @@ typedef PreviousAppStateCallback = AppState Function(AppState previousState);
 // State Management Object
 
 class StateGraph {
-  // underscore _ named constructor prevents instantiation
-  // without the need to make the class abstract
-
   StateGraph();
 
   // list of all states
   final _states = <AppState>[];
 
-  List<AppState> get allStates => _states;
+  List<AppState> get states => _states;
 
   AppState get currentState => _states.last;
 
@@ -67,17 +64,16 @@ class StateGraph {
   }
 }
 
-int main() {
+void main() {
   final stateGraph = StateGraph();
+
   for (int i = 0; i < 5; i++) {
     stateGraph.apply(
       AppState(state: i),
     );
   }
 
-  final PreviousAppStateCallback prevStateCallback = (AppState prevState) => AppState(
-        state: prevState.state + 5,
-      );
+  final prevStateCallback = (AppState prevState) => AppState(state: prevState.state + 5);
 
   spacedPrint('App Current State: ${stateGraph.currentState}', prefix_space: true);
 
@@ -87,21 +83,17 @@ int main() {
 
   spacedPrint('App Current State: ${stateGraph.currentState}');
 
-  stateGraph.apply(
-    (AppState prevState) => AppState(
-      state: prevState.state + 10,
-    ),
-  );
+  stateGraph.apply((AppState prevState) => AppState(state: prevState.state + 10));
 
   spacedPrint('App Current State: ${stateGraph.currentState}');
+
+  spacedPrint('app states: ${stateGraph.states}');
 
   try {
     stateGraph.apply('I WILL CAUSE AN ERROR!');
   } catch (error, _) {
     spacedPrint(error);
   }
-
-  return 0;
 }
 
 // State Graph

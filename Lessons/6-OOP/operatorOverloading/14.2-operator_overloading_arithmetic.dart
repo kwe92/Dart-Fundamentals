@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import '../../utility/round.dart';
+import '../../../utility/round.dart';
 
 class TypeError implements Exception {
   TypeError([this.message = 'Wrong Type']);
