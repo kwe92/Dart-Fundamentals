@@ -78,7 +78,7 @@ void main() {
 
   //   - similar to initialzing formal parameters
 
-  //   - forward parameters to the default super constructor avoiding the need to
+  //   - forward parameters to the super constructor avoiding the need to
   //     pass each parameter into the super constructor via an initializer list
 
 // Implementating super-class Constructor (Brevity)
