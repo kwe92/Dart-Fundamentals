@@ -1,24 +1,3 @@
-// Operator Overloading - (with covariant)
-
-// covariant
-
-//   - Removes the need to check the type
-//     when using operator overloading
-
-// Create a Point class and use operator overloading for:
-
-//   - Relational Operator:
-
-//       - ==
-
-//   - Arithmetic Operators:
-
-//       - subtraction, addition, multiplication, and division
-
-// Bonus:
-
-//   - Add Euclidean Distance formula method
-
 import 'dart:math';
 
 import '../../utility/round.dart';
@@ -32,9 +11,11 @@ class TypeError implements Exception {
 }
 
 class Point {
-  const Point(this.x, this.y);
   final double x;
+
   final double y;
+
+  const Point(this.x, this.y);
 
   double euclideanDistance(Point p) => round(sqrt(pow(p.x - x, 2) + pow(p.y - y, 2)), 2);
 
@@ -67,6 +48,7 @@ class Point {
 void main() {
   final Point p1 = Point(2, 3);
   final Point p2 = Point(4, 1);
+
   print('$p1 + $p2 = ${p1 + p2}');
   print('$p1 - $p2 = ${p1 - p2}');
   print('$p1 * $p2 = ${p1 * p2}');
@@ -75,3 +57,10 @@ void main() {
   print('$p1 == $p2 = ${p1 == p2}');
   print('Pythagorean distance between $p1 and $p2 = ${p1.euclideanDistance(p2)}');
 }
+
+// Operator Overloading - (with covariant)
+
+// covariant
+
+//   - removes the need to check the type
+//     when using operator overloading
