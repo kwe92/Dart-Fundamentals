@@ -1,11 +1,13 @@
+// ignore_for_file: unnecessary_type_check
+
 import '../7-Extensions_Mixins/number_parsing.dart';
 
 void main() {
   const dynamic x = '42';
 
-  final String y = x as String;
+  final y = x as String;
 
-  final int z = y.toIntOrNull() ?? 0;
+  final z = y.toIntOrNull() ?? 0;
 
   print(x);
 
@@ -18,6 +20,8 @@ void main() {
   print(y.runtimeType);
 
   print(z.runtimeType);
+
+  print(x is String);
 }
 
 
@@ -51,3 +55,8 @@ void main() {
   //   - a property that all objects have
 
   //   - The type of a variable at runtime
+
+  // Getting an object's type
+
+  //   - better to use the type test operator: Object is Type
+  //     rather than Object.runtimeType == Type as the type test operator is more stable

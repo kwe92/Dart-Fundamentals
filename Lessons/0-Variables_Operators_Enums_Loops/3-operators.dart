@@ -1,7 +1,10 @@
+//!! TODO: Refactor based on https://dart.dev/language/operators
+
 void main() {
   int y = 5;
 
   int num1 = 42;
+
   int num2 = 12;
 
   var sum_num1_num2 = num1 + num2; // adding values a variable references

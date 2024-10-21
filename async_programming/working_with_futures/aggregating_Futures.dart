@@ -1,11 +1,11 @@
 Future<void> main() async {
-  final String result = await Future.any([
-    fetchFromServer1(),
-    fetchFromServer2(),
-    fetchFromServer3(),
-  ]);
+  // final String result = await Future.any([
+  //   fetchFromServer1(),
+  //   fetchFromServer2(),
+  //   fetchFromServer3(),
+  // ]);
 
-  print(result);
+  // print(result);
 
   final List<String> result2 = await Future.wait([
     fetchFromServer1(),
@@ -17,18 +17,24 @@ Future<void> main() async {
 }
 
 Future<String> fetchFromServer1() async {
+  print('started fetching data from server 1');
+
   await Future.delayed(const Duration(seconds: 2));
 
   return 'Some data from some web server.';
 }
 
 Future<String> fetchFromServer2() async {
+  print('started fetching data from server 2');
+
   await Future.delayed(const Duration(seconds: 3));
 
   throw Exception('I failed to reach the server.');
 }
 
 Future<String> fetchFromServer3() async {
+  print('started fetching data from server 3');
+
   await Future.delayed(const Duration(seconds: 10));
 
   return 'I am taking a long time to get server response.';
