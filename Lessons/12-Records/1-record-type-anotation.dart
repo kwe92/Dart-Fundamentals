@@ -1,3 +1,7 @@
+// type aliasing record type annotation
+
+typedef Employee2 = (int employeeID, {String firstName, String lastName, String email, double salary});
+
 void main() {
   // Record variable declaration: with unnamed type annotation
   (String, int) record;
@@ -11,7 +15,7 @@ void main() {
   ({String firstName, String lastName, String email, double salary}) employee;
 
   // Record variable declaration: named and unamed field names | positional field names go first
-  (int employeeID, {String firstName, String lastName, String email, double salary}) employee2;
+  Employee2 employee2;
 
   employee = (
     firstName: "Baki",
@@ -40,3 +44,11 @@ void main() {
 // Named Fields of a Record
 
 //   - part of the Record's type signature
+
+//   - implicitly required
+
+// type aliasing Records
+
+//   - record type annotations can get rather long
+//     so it is better to use type aliasing when using
+//     records to shorten the type annotation
