@@ -1,25 +1,23 @@
-// TODO: refactor comments and code
-
 void main() {
   var record1 = (
     "string",
     1,
     3.14,
-    nestedRecord: (recordId: 99999, "records number 2"),
+    nestedRecord: (
+      "records number 2",
+      recordId: 99999,
+    ),
     nestedList: [1, 2, 3, 4, 5],
   );
 
-  divider();
   print("record1: $record1");
-  divider();
+
   print("nestedList: ${record1.nestedList}");
-  divider();
+
   print("nestedRecord: ${record1.nestedRecord}");
-  divider();
+
   print("record1 second element: ${record1.$2}");
 }
-
-void divider() => print("---------------------------------------");
 
 
 // Records (Product Type - Type Theory)
@@ -28,7 +26,8 @@ void divider() => print("---------------------------------------");
 
 //    - heterogeneous (of different kind) statically typed collection of fields / objects
 
-//    - can be viewed as an object that is a collection of named or unnamed fields, without any methods or operations to manipulate those fields
+//    - can be viewed as an object that is a collection of named or unnamed fields
+//      without any methods or operations to manipulate those fields
 
 //    - the use of Records requires Dart SDK ^3.0
 
@@ -42,11 +41,17 @@ void divider() => print("---------------------------------------");
 
 //        - fields in a record can be named or unnamed (accessed by position)
 
-//        - elements of a Record can be accessed by field name or position name if the field name is omitted
+//        - record fields have implicit getters and no setters as records are immutable
 
-//        - Records can be deconstructed using destructuring assignment (most mmodern languages offer some form of pattern matching to destructure structs)
+//        - elements of a record can be accessed through their implicit positional getter $<position number>
+//          starting at 1 for the first element
+
+//        - if a field is named then the field can be accessed throguh a getter of the same name
+
+//        - Records can be deconstructed using destructuring assignment (most modern languages offer some form of pattern matching to destructure structs)
 
 //        - allows functions to return multiple values of different types in a type safe manner with brevity and ease
+//          using destructuring
 
 //        - Records are `real values` and can be used:
 
