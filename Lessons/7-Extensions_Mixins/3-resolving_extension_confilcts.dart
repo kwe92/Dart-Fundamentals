@@ -1,12 +1,12 @@
 // ignore_for_file: unused_import
 
-import '9.2-confilcting_extension_1.dart';
+import '3.1-confilcting_extension_1.dart';
 
-import '9.3-confilcting_extension_2.dart' hide ConfilctingExtension2;
+import '3.2-confilcting_extension_2.dart' hide ConfilctingExtension2;
 
-import '9.5-confilcting_extension_3.dart' as og;
+import '3.4-confilcting_extension_3.dart' as og;
 
-import '9.4-confilcting_extension_3_copy.dart';
+import '3.3-confilcting_extension_3_copy.dart';
 
 void main() {
   final value = '42';
