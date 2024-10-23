@@ -1,14 +1,10 @@
-// TODO: refactor comments and code
-
-// ignore_for_file: unused_local_variable, unused_import
-
-// Functional Dart
-
 import 'dart:convert';
+
+import 'package:http/http.dart';
 
 Future<void> main() async {
   // destructuring assignment
-  var (BookModel book, String error) = await getBook();
+  var (book, error) = await getBook();
 
   if (error.isNotEmpty) {
     print(error);
@@ -27,29 +23,36 @@ final bookJSON = jsonEncode({
 });
 
 Future<(BookModel book, String error)> getBook() async {
-  BookModel book;
+  var book = BookModel(author: '', title: '', op: '', about: '');
 
   try {
-    final responseJson = await fetchBook();
+    final response = await fetchBook();
 
-    book = BookModel.fromJSON(jsonDecode(responseJson));
-
-    return (book, '');
+    if (response.statusCode == 200) {
+      book = BookModel.fromJSON(jsonDecode(response.body));
+      return (book, '');
+    }
+    return (book, 'Error: status code: ${response.statusCode}');
   } catch (error) {
-    return (BookModel(author: '', title: '', op: '', about: ''), error.toString());
+    return (book, error.toString());
   }
 }
 
-Future<String> fetchBook() async {
+Future<Response> fetchBook() async {
   await Future.delayed(Duration(seconds: 1));
-  return bookJSON;
+
+  return Response(bookJSON, 200);
 }
 
 class BookModel {
   final String author;
+
   final String title;
+
   final String op;
+
   final String about;
+
   const BookModel({
     required this.author,
     required this.title,
@@ -57,13 +60,23 @@ class BookModel {
     required this.about,
   });
 
-  factory BookModel.fromJSON(Map<String, dynamic> json) => BookModel(
-        author: json["author"],
-        title: json["title"],
-        op: json["op"],
-        about: json["about"],
-      );
+  BookModel.fromJSON(Map<String, dynamic> json)
+      : author = json["author"],
+        title = json["title"],
+        op = json["op"],
+        about = json["about"];
 
   @override
-  String toString() => "Book(title: $title, author: $author)";
+  String toString() => 'BookModel(author: $author, title: $title, op: $op, about: $about)';
 }
+
+// Multiple returns
+
+//   - records allow functions to return multiple values bundled together in a type safe way
+
+//   - values from a record returned by a function can be destructured into local
+//     variables by using pattern matching
+
+//   - you do not have to assign all of the values returned by a record
+//     to local variables, to omit any record values you do not wish to bind
+//     when destructuring us the wildcard _ in place of a local variables
