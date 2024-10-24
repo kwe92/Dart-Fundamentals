@@ -10,12 +10,12 @@ class Point {
   String toString() => "Point($x, $y)";
 }
 
-const (double, double) pair = (4.0, 2.0);
+const pair = (4.0, 2.0);
 
-const (double, double, double) triplet = (2.12, 43.3, 5.6);
+const triplet = (2.12, 43.3, 5.6);
 
 Point? point(Record point) {
-  if (pair case (double x, double y) when x > y && y > 0) {
+  if (point case (double x, double y) when x > y && y > 0) {
     return Point(x: x, y: y);
   } else {
     return null;
@@ -23,9 +23,9 @@ Point? point(Record point) {
 }
 
 void main() {
-  final Point? p1 = point(pair);
+  final p1 = point(pair);
 
-  final Point? p2 = point(triplet);
+  final p2 = point(triplet);
 
   print('Point 1: $p1');
   print('Point 2: $p2');

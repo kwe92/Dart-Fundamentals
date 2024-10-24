@@ -47,3 +47,4 @@ Point point(Pair pair) => switch (pair) {
 //   - adds additional constraints on case body execution
 
 //   - false gaurd clauses fallthrough, continuing to the next case instead of exiting the switch
+//     unlike if statements which will exitthe switch if false

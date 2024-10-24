@@ -15,7 +15,7 @@ void main() {
   print(hero);
 }
 
-// Class
+// Class (Concrete Product Type: Type Theory)
 
 //   - a blueprint for creating objects
 

@@ -2,15 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-// URL Object
-
-//   - constructed from a parsed string representation of a URL
-
-//   - breaks a string representation of a URL into its constituent component parts
-//     accessed and manipulated through the URL objects properties and methods
-
-//   - in the Dart language Uri.parse is used to parse a string representation of a URL
-
 Future<void> main() async {
   // final url = Uri.parse("http://example.com:80/docs/books/tutorial" + "/index.html?name=networking&isFun=true#DOWNLOADING");
 
@@ -78,6 +69,15 @@ Future<void> main() async {
 
 //   - as the name implies a URL is a resource locator
 //     and the resource in which it locates is one that is on the internet
+
+// URL Object
+
+//   - constructed from a parsed string representation of a URL
+
+//   - breaks a string representation of a URL into its constituent component parts
+//     accessed and manipulated through the URL objects properties and methods
+
+//   - in the Dart language Uri.parse is used to parse a string representation of a URL
 
 // Decomposition of a URL
 

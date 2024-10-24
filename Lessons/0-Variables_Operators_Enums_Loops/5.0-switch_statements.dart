@@ -1,3 +1,5 @@
+// !! TODO: move switch statements to its own module
+
 enum ArithneticOperations {
   add,
   subtract,

@@ -14,45 +14,47 @@ class Truck extends Vehicle {}
 
 class Bicycle extends Vehicle {}
 
+// return different implementation depending on the data structure
 String getVehicleSound(Vehicle vehicle) => switch (vehicle) {
       Car() => 'vroom',
       Truck() => 'VROOM',
       Bicycle() => 'click click click',
     };
 
-int main() {
-  // final Vehicle car0 = Vehicle(); //// results in error
+void main() {
+  // final Vehicle car0 = Vehicle(); // results in error as sealed classes can not be instantiated
 
-  final Vehicle car1 = Car();
-  final Vehicle bicycle = Bicycle();
+  final car1 = Car();
+  final bicycle = Bicycle();
 
-  getVehicleSound(Car());
-  getVehicleSound(Truck());
+  print(getVehicleSound(Car()));
 
-  // polymorphism
+  print(getVehicleSound(Truck()));
+
+  // Polymorphism (Algebraic Data Type)
 
   car1.getVehicleSound();
 
   bicycle.getVehicleSound();
-
-  return 0;
 }
 
-//  sealed class modifier - Polymorphism
+//  sealed class modifier - Polymorphism - Algebraic Data Type
 
-//    - Known Compile-time enumerable set of sub-types
+//    - a way to construct an Algebraic Data Type
 
-//    - Create a switch over sub-types that is statically exhaustive
+//    - known Compile-time enumerable set of sub-types
 
-//    - Implicitly abstract and can not be instantiated (constructed)
+//    - create a statically exhaustive switch over sub-types
 
-//    - Can have factory constructors
+//    - implicitly abstract and can not be instantiated (constructed)
 
-//    - Can define constructors for their sub-types to use
+//    - can have factory constructors
+
+//    - can define constructors for their sub-types to use
 
 // Sub-types of sealed class modifier
 
-//   - Not implicitly abstract (can be instatiated)
+//   - not implicitly abstract (can be instatiated)
 
 // Dart: Exhaustiveness
 
