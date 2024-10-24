@@ -1,0 +1,113 @@
+ The Use of Classes
+ 
+ "ALL IS OBJECT."
+        
+        - Type System
+
+ Classes
+ 
+   - pillar of OOP - Object Oriented Programming
+
+   - containers that hold data and functions that manipulate behavior of internal data
+
+   - encapsulates functionality that manipulates internal data (state)
+
+ Object Class
+
+   - every Object is an instance of a Class or Type
+
+   - everything Type in Dart is a subtype of Object with the exception of Null
+
+ Mixedin-based Inheritance
+
+   - all classes except Object have only one super-type
+
+   - you can not extend more than one super-type
+
+   - you can however extend the functionality of a class by using a mix-in
+
+ Extension Methods
+
+   - adds extra functionality to an existing library (Module / Class / API)
+
+   - users of an API can add functionality without changing the implementation details directly
+
+ Class Modifiers
+
+   - controls how a class or mix-in can be inherited and instantiated 
+
+   - add additional restrictions:
+
+       - from within it own library (file where the API is defined)
+
+       - from outside its library (how API gets inherited or instantiated)
+
+ Class Members
+
+   - Objects only have two types members:
+
+       - data (instance variables / member variables) mutable || immutable
+       
+       - functions (methods implementing some behavior)
+
+ invoke (invocation - function application)
+
+   - when a method is called you invoke that method upon an Object
+
+   - methods have access to an Objects internal data and methods
+
+ dot (.) notation
+
+   - a syntax used in programming languages to access an objects:
+
+       - attributes (member variables)
+
+       - methods (functions / operations)
+
+Class Constructors
+
+  - used to create Objects
+  
+Class Constructors Types:
+
+  - Default Constructor
+
+  - Generative Constructor
+
+  - Constant Constructor
+
+  - Named Constructor
+
+  - Factory Constructor
+
+  - Redirecting Constructor
+
+implicit getters
+
+  - getters are impllicity defined when you declare a member variable in a class
+
+Instance Field Initialization
+
+   - instance fields must have a value before reaching the constructor body unless prefixed with the late keyword
+
+   - there are three ways in which an instance variable can be initialized:
+
+     - have an initializer upon variable declaration
+
+     - use an initializing formal parameter (be a parameter of the constructor function)
+
+         - e.g. ClassConstructor(this.initializingFormal)
+
+     - be initialized in the constructor's initialization list
+
+         - e.g. ClassConstructor({required String privateField}): _privateField = privateField;
+
+Four Pillars of Object-Oriented Programming:
+
+  - Encapsulation
+
+  - Inheritance
+
+  - Abstraction
+
+  - Polymorphism
