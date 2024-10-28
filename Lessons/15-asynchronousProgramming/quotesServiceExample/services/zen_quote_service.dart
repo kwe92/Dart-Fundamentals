@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
-import '../../workingWithLocalEndpoints/services/api_service.dart';
+import '../../shared/api_service.dart';
 
 class ZenQuoteService extends ApiService {
   @override
