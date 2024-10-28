@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
-import '../../workingWithLocalEndpoints/services/api_service.dart';
+import '../../shared/api_service.dart';
 import '../models/ani_memes_model.dart';
 
 class AniMemeService extends ApiService {
