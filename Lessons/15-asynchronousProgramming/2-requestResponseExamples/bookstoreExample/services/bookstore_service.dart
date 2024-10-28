@@ -10,9 +10,9 @@ BookstoreService get bookstoreService => BookstoreService.instance;
 class BookstoreService with HttpServiceMixin {
   BookstoreService._();
 
-  static final _singleton = BookstoreService._();
+  static final instance = BookstoreService._();
 
-  static final instance = _singleton;
+  factory BookstoreService() => instance;
 
   @override
   String get host => 'http://127.0.0.1:8080';

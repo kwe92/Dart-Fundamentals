@@ -8,9 +8,9 @@ BookRepository get bookRepository => BookRepository.instance;
 class BookRepository {
   BookRepository._();
 
-  static final _singleton = BookRepository._();
+  static final instance = BookRepository._();
 
-  static final instance = _singleton;
+  factory BookRepository() => instance;
 
   List<Book> _books = [];
 
