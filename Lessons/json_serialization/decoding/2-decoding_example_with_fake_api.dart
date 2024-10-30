@@ -1,28 +1,28 @@
-import 'repositories/fake_ninja_repository.dart';
+import 'repositories/ninja_repository.dart';
 import 'services/fake_ninja_api_service.dart';
 
 Future<void> main() async {
   // Example with mock API Call
 
-  fakeNinjaApiRepository.getNinja();
+  ninjaApiRepository.getNinja();
 
-  while (fakeNinjaApiRepository.isBusy) {
+  while (ninjaApiRepository.isBusy) {
     await Future.delayed(const Duration(milliseconds: 250));
 
     print('doing other work on main isloate while waiting for asynchronous events...');
   }
 
-  print(fakeNinjaApiRepository.ninjas);
+  print(ninjaApiRepository.ninjas);
 
-  fakeNinjaApiRepository.getNinjas();
+  ninjaApiRepository.getNinjas();
 
-  while (fakeNinjaApiRepository.isBusy) {
+  while (ninjaApiRepository.isBusy) {
     await Future.delayed(const Duration(milliseconds: 250));
 
     print('doing other work on main isloate while waiting for asynchronous events...');
   }
 
-  print(fakeNinjaApiRepository.ninjas);
+  print(ninjaApiRepository.ninjas);
 
   fakeNinjaApiService.closeClient();
 }
