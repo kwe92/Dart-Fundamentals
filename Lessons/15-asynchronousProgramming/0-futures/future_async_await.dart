@@ -1,7 +1,6 @@
-//!! TODO: Review Comments and Edit them
 Future<int> main() async {
-  // prefix function call with "await"
   print("Order started!");
+
   try {
     final order = fetchOrder();
 
@@ -35,12 +34,12 @@ Future<String> fetchOrder3() async {
 
 // Synchronous Programming
 
-//   - operations (functions) are executed sequentially, one after the other in the oder they were invoked
+//   - operations (functions) are executed sequentially, one after the other in the order they were invoked
 
 //   - synchronous operations are blocking, meaning no other operation can run until
 //     the synchronous operation is complete
 
-//   - due to the lack or parallelism synchronous operations can be a performance bottle next
+//   - due to the lack or parallelism synchronous operations can be a performance bottle neck
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
@@ -55,13 +54,94 @@ Future<String> fetchOrder3() async {
 //   - asynchronous operations do have the option of blocking (pausing the programming) if their results are
 //     required to proceed and no other actions can be taken through the use of  the 'await' keyword
 
-//   - asynchronous operations in Dart return a Future, which is a concurrent process that will
-//     return a value or throw an error in the Future  (similar to a Promise in JavaScript)
+//   - asynchronous operations in Dart return a Future, which notifies the Event Queue once it completes
+//     returning a value or throw an error in the Future (similar to a Promise in JavaScript)
 
 //   - there are multiple ways to retrieve the value of a Future once it has completed
 
 //   - asnychronous computations can await for other asnychronous computations to complete
-//     without blocking the main thread or isolate
+//     without blocking the main thread or Isolate
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+// Event Loop
+
+//   - the model in which Darts runtime is based on
+
+//   - the event loop executes your programs code one instruction at a time
+//     in the order in which the operations were queued
+
+//   - it also manages events and notifications
+
+//   - the Event Loop monitors the Event Queue where all of your events are stored
+
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+// Event Handling
+
+//   - events are handled by the Event Loop removing events from the Event Queue in first-int, first-out order
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+
+// Asynchronous Operations and The Event Loop
+
+//   - in Dart asynchronous operations are asynchronous events that are managed by the Event Loop
+//     within the Isolate that they were called in
+
+//   - the Event Loop has an Event Queue with a notification mechinism to execute the callbacks associated with
+//     an asynchronous event upon being notified of its completion (e.g. then() or whenComplete() part of the Future API)
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+// Asynchronous Operation Completion and The Event Queue
+
+//   - when a notification associated with an asynchrnous event is removed from the Event Queue
+//     the corresponding Event Object is retreived along with any callbacks that need to be
+//     executed on that object by the Event Loop
+
+// step 1:
+
+//   - Notification Arrives:
+
+//       - when an asynchronous operation completes, a notification is placed in the event queue
+//         This notification signals that the asynchronous operation is finished and ready to be processed
+
+// step 2:
+
+//   - Event Loop Retrieves Notification:
+
+//       - the event loop constantly monitors the event queue
+//         When it encounters a notification, it retrieves it from the queue
+
+// step 3:
+
+//   - Event Object Retrieval:
+
+//       - associated with the notification is the asynchronous event object
+//         the event loop retrieves this object, which contains
+//         the result or data related to the completed asynchronous operation
+
+// step 4:
+
+//   - Callback Retrieval:
+
+//       - also linked to the notification are any callback functions (closures)
+//         that were registered when the asynchronous operation was initiated
+//         these callbacks specify what actions should be taken when the operation completes
+
+//       - e.g. then(), catchError(), whenComplete(), etc
+
+//       - callbacks are stored in a callback registery and retrieved by the event Loop
+
+// step 5:
+
+//   - Callback Execution:
+
+//       - the event loop executes the retrieved callbacks, passing the event object as an argument
+//         this allows the callbacks to access the result or data related to the asynchronous operation
+//         and perform the necessary actions
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
@@ -72,7 +152,7 @@ Future<String> fetchOrder3() async {
 
 //   - asynchronous functions must return a Future<T> where T is the expected return value
 
-//    - asynchronous functions that produce a side-effect typically return Future<void>
+//   - asynchronous functions that produce a side-effect typically return Future<void>
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
