@@ -1,5 +1,3 @@
-//!! TODO: Review Comments and Edit them
-
 Future<void> main() async {
   double? total;
 
@@ -8,7 +6,7 @@ Future<void> main() async {
   final futureBalance = totalBalance();
 
   futureBalance.timeout(const Duration(seconds: 10))
-    ..then<double>((double val) => total = val)
+    ..then<double>((val) => total = val)
     ..catchError((error) {
       print(error);
       return 0.0;
@@ -84,6 +82,83 @@ Future<double> getBalance(AccountType accountType) async {
 //   - interleaved operations on a single processor
 
 //   - the CPU rapidly switches between tasks
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+// Models of Concurrency
+
+//   - concurrency models are about how concurrent operations communicate with one another
+
+//   - there are two common models of concurrency:
+
+//       - Shared Memory Model: 
+//
+//           - concurrent processes share memory space allowing them to read and write
+//             to the same mutable objects sharing state
+
+//       - Message Passing:
+
+//           - concurrent processes do not share mutable state but instead pass messages to one another
+
+//           - removing the complexities of synchronization mechinisms but at the cost of additional over head
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+// Concurrency in Dart
+
+//   - concurrent programming in Dart refers to both asynchronous APIs (Future and Stream)
+//     and Dart Isolates, which allow you to move processes to separate cores giving them there own
+//     virutal isolated resources
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+// Threads - (Shared Memory Model)
+
+//   - light weight unit of execution within a proccess
+
+//   - threads share a proccesses memory space and resources
+
+//   - threads can communicate and synchronize with each other through mechanisms such as
+//     shared memory, locks and mutexes
+
+//   - Threads have there own:
+
+//       - program counter
+
+//       - call stack
+
+//       - local variables (private variabls)
+
+//  - multiple threads on one processor are time sliced to give the illusion of parallelism
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+// Isolates - (Message Passing Model - Actor Model)
+
+//   - all Dart code runs in isolates, which are similar to threads but have isolated memory
+//     and their own event loop on a single thread
+
+//   - isolates can only communicate by message passing and no global state is shared
+
+//   - dart programs run in the main Isolate by default the entry point to a program and its set of instructions
+
+//   - Isolates have there own:
+
+//       - memory space
+
+//       - call stack
+
+//       - event loop
+
+//       - local and global variables that can not be shared with other Isolates
+
+//  - since Isolates use a shared memory concurrency model they do not have to worry
+//    about the complexities of concurrent operation synchronization mechanisms
+//    and race conditions are kept to a minimium
+
+
+//   - Isolates are useful when you expect a synchronous operation to take a long time to complete
+//     due to frame gaps which can freeze UI and cause animation jank
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
