@@ -1,6 +1,6 @@
 // ignore_for_file: unnecessary_type_check
 
-import '../7-extensionsMixins/2.1-number_parsing.dart';
+import '../7-extensionsMixins/extensions/2.1-number_parsing.dart';
 
 void main() {
   const dynamic x = '42';
