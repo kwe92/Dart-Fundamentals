@@ -62,7 +62,7 @@ void main() {
 
 //   - returns a new Iterator object when called
 
-// Iterator.moveNext | abstract method
+// Iterator.moveNext
 
 //   - a predicate method (boolean function) of an Iterator object
 
