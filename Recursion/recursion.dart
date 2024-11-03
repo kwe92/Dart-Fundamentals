@@ -1,4 +1,4 @@
-// TODO: Need comments
+//!! TODO: Need comments look in not book about set theory and recurrance relations
 
 void main() {
   var num1 = 3;
@@ -6,8 +6,7 @@ void main() {
 
   print(pow(3, 3)); // returns 3 * 3 * 3 * 1 = 27
 
-  print(
-      'Recursive power function using value $num1 power:$p : ${pow(num1, p)}');
+  print('Recursive power function using value $num1 power:$p : ${pow(num1, p)}');
 }
 
 num pow(var n, var p) {

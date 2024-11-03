@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import '../lessons/7-Extensions_Mixins/2.2-named_extensions_with_generics.dart';
+import '../lessons/7-extensionsMixins/extensions/2.2-named_extensions_with_generics.dart';
 
 void main() {
   List<double> roundedAmounts = randDoubleArr(9);

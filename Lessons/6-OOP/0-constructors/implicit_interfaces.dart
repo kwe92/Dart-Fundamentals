@@ -1,0 +1,1 @@
+//!! TODO: read and create lesson on Implicit Interfaces: https://dart.dev/language/classes#implicit-interfaces

@@ -1,63 +1,43 @@
-abstract interface class EmployeeAbstractInterface {
-  final String fname;
-  final String lname;
-  late double _salary;
+abstract interface class TodoInterface {
+  abstract final String id;
 
-  String get email => '${fname.substring(0, 1) + lname}@ayonInnovations.io';
-  double get salary => this._salary;
+  abstract final String todo;
 
-  EmployeeAbstractInterface({
-    required this.fname,
-    required this.lname,
-    required double salary,
-  }) {
-    this._salary = salary;
-  }
+  bool get isComplete;
 
-  void raise(double raisePct);
+  String checkTodo();
 }
 
-class DataEngineer extends EmployeeAbstractInterface {
-  final List<String> progLang;
-  DataEngineer({
-    required super.fname,
-    required super.lname,
-    required super.salary,
-    required this.progLang,
-  });
+class Todo implements TodoInterface {
+  bool _isComplete;
+
+  final String id;
+
+  final String todo;
+
+  bool get isComplete => _isComplete;
+
+  Todo({
+    required this.id,
+    required this.todo,
+    required bool isComplete,
+  }) : _isComplete = isComplete;
 
   @override
-  void raise(double raisePct) => raisePct < 0.16 ? this._salary = this._salary + (this._salary * raisePct) : throw InvalidSalaryError();
-}
-
-class InvalidSalaryError extends Error {
-  InvalidSalaryError();
-
-  @override
-  String toString() => 'Invalid raisePct: raisePct < 0.16';
+  String checkTodo() => todo;
 }
 
 void main() {
-  final DataEngineer dataEngineerI = DataEngineer(fname: 'Baki', lname: 'Hanma', salary: 115000, progLang: <String>['SQL', 'Python']);
+  final TodoInterface todo = Todo(
+    id: '1104',
+    todo: 'Do the laundry.',
+    isComplete: false,
+  );
 
-  print(dataEngineerI.email + '\n');
+  final todoItem = todo.checkTodo();
 
-  print('Before raise: ${dataEngineerI.salary} \n');
-
-  dataEngineerI.raise(0.12);
-
-  print('After raise: ${dataEngineerI.salary} \n');
-
-  try {
-    dataEngineerI.raise(0.16);
-  } catch (errorMessage, stackTrace) {
-    print('Error Message:\n\n $errorMessage\n');
-    print('Stack Trace:\n\n $stackTrace');
-  } finally {
-    print('Keep it pushing king!');
-  }
+  print("Todo Item: $todoItem");
 }
-
 
 // Combining Class Modifiers - Group Theory
 

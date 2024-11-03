@@ -1,5 +1,7 @@
 import 'dart:io';
 
+//!! TODO: Review Comments and Edit them
+
 /// An object that can create a list of numbers and write them to a file.
 class ListOfNumbers {
   List<int> _list = [];
@@ -61,15 +63,6 @@ void main() async {
 }
 
 void throwUnhandledException() => throw 'exception string';
-
-// Isolates
-
-//   - Dat code runs in isolates, which are similar to threads but have isolated memory
-
-//   - isolates can only communicate by message passing
-
-//   - be default all programs do all their work on a single isolate, the main isolate
-//     which is started when a dart program runs
 
 // Exceptions
 

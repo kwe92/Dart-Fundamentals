@@ -1,4 +1,4 @@
-abstract interface class TodoInterface {
+interface class TodoInterface {
   final String id;
   final String todo;
   late bool _isComplete;
@@ -12,8 +12,6 @@ abstract interface class TodoInterface {
   }) {
     this._isComplete = isComplete;
   }
-
-  String checkTodo();
 }
 
 class Todo extends TodoInterface {
@@ -23,20 +21,27 @@ class Todo extends TodoInterface {
     required super.isComplete,
   });
 
-  @override
   String checkTodo() => super.todo;
 }
 
 void main() {
-  final TodoInterface todo = Todo(
+  final todo01 = Todo(
     id: '1104',
     todo: 'Do the laundry.',
     isComplete: false,
   );
 
-  final todoItem = todo.checkTodo();
+  final todoItem = todo01.checkTodo();
+
+  final todo02 = TodoInterface(
+    id: '1104',
+    todo: 'Do the laundry.',
+    isComplete: false,
+  );
 
   print("Todo Item: $todoItem");
+
+  print(todo02);
 }
 
 
@@ -54,5 +59,5 @@ void main() {
   // Impure interface
 
   //   - Can be constructed
-  
+
   //   - Implies signatures do not have to be implemented if not defined
