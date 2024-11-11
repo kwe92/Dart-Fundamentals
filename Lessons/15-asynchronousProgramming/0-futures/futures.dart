@@ -1,5 +1,3 @@
-//!! TODO: Review Comments and Edit them
-
 Future<void> main() async {
   print('program has started!');
 
@@ -73,7 +71,7 @@ void _handleError(err) {
 
 //       - the await keyword prefixing an uncompleted Future
 
-//       - using the Future API low level functions (await and aasync are built on top of the Future API)
+//       - using the Future API low level functions (await and async are built on top of the Future API)
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
@@ -117,7 +115,7 @@ void _handleError(err) {
 //   - what await uses under the hood to compose asynchronous operations
 
 //   - you do not have to return the type T of the object in the callback to .then
-//     you can return whatever you want an the resulting Future value does not have to be used
+//     you can return whatever you want and the resulting Future value does not have to be used
 //     what matters is the type argument to the Future parametered type when the variable is
 //     declared if the result is passed to a variable
 
@@ -138,7 +136,7 @@ void _handleError(err) {
 //   - you can call then as many times as you want on a Future
 //     to attach different callbacks that might do different things with the Future's value.
 
-//   - then() is the only way to access the value that a Future computes
+//   - then() is the only way to access the value that a Future computes (await uses .then under the hood)
 
 //   - then() is a feature of concurrency design allowing a concurrent computation to be built up
 //     by a sequence of composed computations – a sequence of then() callbacks
@@ -152,7 +150,7 @@ void _handleError(err) {
 
 //   - takes as an argument a callback to handle any caught exception
 
-//   - generally better to use at errors are propagated down the call stack
+//   - generally better to use as errors are propagated down the call stack
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 

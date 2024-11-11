@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart';
 
-import 'shared/models/ninja.dart';
+import '../shared/models/ninja.dart';
 
 void main() {
   // deserialize json string into an array of dynamic objects

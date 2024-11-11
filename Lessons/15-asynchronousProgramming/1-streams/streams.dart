@@ -126,7 +126,7 @@ Future main() async {
 
 //       - can be listened to multiple times by multiple listeners
 
-//       - can be unsubscribe from and resubscribe too
+//       - can be unsubscribed from and resubscribed too
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
@@ -158,7 +158,7 @@ Future main() async {
 
 // Stream Generators
 
-//    - similar to the syntax of creating functions thar return a future
+//    - similar to the syntax of creating functions that return a future
 
 //    - use "async*" prefix body rather than "async" keyword prefix for the body
 
@@ -170,7 +170,7 @@ Future main() async {
 
 // await for
 
-//   - an asnychronous for loop to iterate over an interable of asynchronous events (sequence of Futures)
+//   - an asnychronous for loop to iterate over an iterable of asynchronous events (sequence of Futures)
 
 //   - when reading streams with await for if the stream has an error it is thrown by the loop
 
@@ -201,7 +201,7 @@ Future main() async {
 
 //   - when you start listening on a Stream a StreamSubscription object is returned
 
-//   - StreamSubscription represent the active stream producing events
+//   - a StreamSubscription object represents the active stream producing events
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
