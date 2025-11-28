@@ -1,3 +1,4 @@
+// Abstract Class
 abstract class Employee {
   final String fname;
 
@@ -20,6 +21,7 @@ abstract class Employee {
   void giveRaise(double x);
 }
 
+//  Concrete Class
 class SoftwareEngineer extends Employee {
   final List<String> programmingLanguages;
 
@@ -99,7 +101,7 @@ class RaiseSalaryError extends Error {
 
 //   - contains only the signatures of methods omitting any implementation details
 
-//   - typically does not have any member variables (instance fields)
+//   - does not have any member variables (instance fields)
 
 // Benefits of Interfaces:
 
@@ -121,13 +123,14 @@ class RaiseSalaryError extends Error {
 //     but rather an Abstract Class (Abstract Base Class) that can act as an interface
 
 //   - similar to interfaces Abstract Classes provide a mechanism for class inheritance
+//     and define the set of methods that a sub-class must implement if the operation is an abstract method
 
 //   - abstract classes can declare instance fields and have a set of method signatures to be implemented by sub-types
 
 //   - abstract classes can not be instantiated (constructed) directly in any module (library)
 
-//   - unlike traditional Interfaces Abstract Classes can provide implementations
-//     for methods if they choose too but typically don't
+//   - Abstract Operations
+//       - declared operations of an abstract class with no implementation
 
 // Abstract Methods (pure virtual function C++)
 

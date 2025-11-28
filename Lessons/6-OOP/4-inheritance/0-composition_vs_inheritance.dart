@@ -1,3 +1,5 @@
+// Programming to an Interface, not an Implementation
+
 // Simulating a U.I.
 
 abstract class Key<T extends Object> {
@@ -8,14 +10,14 @@ abstract class Key<T extends Object> {
   const Key.empty() : value = '';
 }
 
-// Abstract Widget Class to be inherited (extended)
+// Abstract Widget Class (Interface) to be inherited (extended)
 abstract class Widget extends Object {
   final Key? key;
 
   const Widget({this.key});
 }
 
-// Text Widget which inherits (extends) Widget
+// Text Widget (Concrete Class) which inherits (extends) Widget Interface
 class Text extends Widget {
   final String text;
   const Text(this.text, {super.key});
@@ -26,7 +28,7 @@ class Text extends Widget {
 
 typedef VoidCallback = void Function();
 
-// Button Widget which inherits (extends) Widget
+// Button Widget (Concrete Class) which inherits (extends) Widget Interface
 class Button extends Widget {
   final Widget child;
   final VoidCallback onPressed;
@@ -69,7 +71,7 @@ void main() {
 
 //   - Subclasses can override methods inherited from the superclass, allowing for customization of behavior
 //     however, overriding methods requires careful consideration to ensure compatibility with the superclass's design
-//     and to avoid unintended side effects due to inappropriate subclass implementations.
+//     and to avoid unintended side effects due to an inappropriate subclass implementation.
 
 // Composition
 

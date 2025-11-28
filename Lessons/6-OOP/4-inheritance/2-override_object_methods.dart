@@ -32,15 +32,10 @@ void main() {
 //     methods implemented in the super-class
 
 //   - sometimes the default super-class implementation of a method does not
-//     suit the needs of the sub-class inthe context it wil be used in
+//     suit the needs of the sub-class in the context it will be used in
 
 //   - overriding gives the sub-class the ability to polymorphically reimplement
 //     a method that was defined and implemented in the super class
 
-//   - all methods implemented in a class have the implicit abaility to be overriden
+//   - all methods implemented in a class have the implicit ability to be overriden
 //     unlike C++ where methods need to be explictly marked as 'vitrual' to be overriden
-
-//   - to call the method that was overridden by the sub-class in the sub-class use:
-
-//       - super.MethodName(params?);
- 

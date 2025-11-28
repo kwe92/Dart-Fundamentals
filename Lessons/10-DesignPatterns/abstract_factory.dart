@@ -1,5 +1,7 @@
 import 'dart:math';
 
+// TODO: Explain the Builder Pattern in your own words
+
 enum Direction {north, south, east, west}
 
 abstract class MapSite{
@@ -198,3 +200,5 @@ void main(){
   // Intent
   //  - Provide an interface for creating families of related or dependent objects without
   //    specifying their concrete classes.
+
+  //  - different representations

@@ -19,10 +19,10 @@ void main() {
 
 //   - a blueprint for creating objects
 
-//   - defines the instance fields and methods that an object of that type will have
+//   - defines the instance fields (internal state) and methods (operations) that an object of that type will have
 
 //   - classes can optionally implement an interface or abstract class providing concrete implementations (method bodies)
-//     for the set of methods defined in the implemented interface or abstract class
+//     for the set of methods defined in the defined interface or abstract class
 
 // Object
 
