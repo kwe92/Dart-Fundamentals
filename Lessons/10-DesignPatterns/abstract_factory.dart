@@ -1,50 +1,8 @@
-import 'dart:math';
+import 'helper_functions.dart';
+import 'maze_components.dart';
 
-// TODO: Explain the Builder Pattern in your own words
+// TODO: Explain the Abstract Factory Pattern in your own words
 
-enum Direction {north, south, east, west}
-
-abstract class MapSite{
-  void enter();
-}
-
-class Room extends MapSite{
-  final int roomNo;
-  static Set<int> _currentRoomNums = {};
-  static get currentRoomNums => _currentRoomNums;
-
-  List _sides = List.filled(4, 0);
-  List get sides => _sides;
-
-  Room({required this.roomNo}){
-    if (!_currentRoomNums.contains(this.roomNo)){
-      _currentRoomNums.add(this.roomNo);
-    }
-    else {
-      throw Exception('$roomNo is already a current room number.');
-    }
-  }
-
-  @override
-  String toString() => 'Room(roomNo: $roomNo)';
-
-  void enter(){
-    // TODO: implement method
-  }
-
-  void setSide(Direction direction, MapSite element){
-      for(var i=0; i < _sides.length; i++){
-        if(_sides[i] == 0){
-          _sides[i] = (direction, element);
-          break;
-        }
-      }
-  }
-
-  MapSite? getSide(){
-    // TODO: implement method
-  }
-}
 
 class Spell {
   final name;
@@ -65,22 +23,6 @@ class EnchantedRoom extends Room{
   String toString() => 'Room(roomNo: $roomNo, activeSpell: $activeSpell)';
 }
 
-class Door extends MapSite{
-  final Room r1;
-  final Room r2;
-  final bool isOpen;
-
-  Door({required this.r1, required this.r2, this.isOpen = true}){
-    if(this.r1 == this.r2){
-      throw Exception('$r1 and $r2 are the same room and a normal door can not lead to the same room you walked out of.');
-    }
-  }
-
-  void enter(){
-    // TODO: implement method
-  }
-}
-
 class DoorNeedingSpell extends Door {
   final Spell requiredSpell;
   DoorNeedingSpell({
@@ -93,34 +35,10 @@ class DoorNeedingSpell extends Door {
   void enter(){}
 }
 
-class Wall extends MapSite{
-  void enter(){
-    // TODO: implement method
-  }
-}
-
-class Maze {
-  List _rooms = [];
-
-  List get rooms => _rooms;
-
-  void addRoom(Room room){
-    if(!_rooms.contains(room)){
-      _rooms.add(room);
-    } else {
-      throw Exception('$room is already a current room in the maze.');
-    }
-  }
-}
-
 class MazeFactory {
   Maze makeMaze()=> Maze();
   Wall makeWall()=> Wall();
   Room makeRoom({required int roomNo})=> Room(roomNo: roomNo);
-  // void makeRooms({List<int> roomNums}){
-  //   for(int i = 0; i < roomNums.length; i++){
-  //   }
-  // }
   Door makeDoor({required Room r1, required Room r2})=> Door(r1:r1, r2:r2);
 
 }
@@ -163,17 +81,6 @@ class MazeGame {
 
     return maze;
   }
-}
-
-T getRandom<T>(List<T> items){
-  final random = Random();
-
-  final randomIndex = random.nextInt(items.length);
-
-  // Retrieve the item at the random index
-  T randomItem = items[randomIndex];
-
-  return randomItem;
 }
 
 void main(){
