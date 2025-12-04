@@ -1,114 +1,135 @@
 import 'helper_functions.dart';
 
-// TODO: may need to refactor seems unnecessarily difficult
+typedef Side = (Direction, MapSite?);
 
-abstract class MapSite<T>{
-  void enter();
+// Interface for things that can be cloned
+abstract class Cloneable<T>{
   T clone();
 }
 
+// Interface For Products like (Room, Wall, Door)
+abstract class MapSite<T> implements Cloneable<T>{
+  void enter();
+}
+
 class Room implements MapSite<Room>{
-  static Set<int> _currentRoomNums = {};
-  final int roomNo;
-  List _sides = List.filled(4, 0);
+  late final int roomNo;
+  
+  List<Side> _sides = [(Direction.north, null),(Direction.east, null),
+                       (Direction.south, null),(Direction.west, null)];
+  
+  List<Side> get sides => _sides;
+  
+  
+  Room();
 
-  static get currentRoomNums => _currentRoomNums;
-  List get sides => _sides;
-
-  Room({required this.roomNo}){
-     _currentRoomNums.add(this.roomNo);
+  // initialize separates internal state from object creation
+  void initialize(int roomNo) => this.roomNo = roomNo;
+  
+  @override
+  String toString(){
+    // defensive coding practice for debug printing late variables
+    try {
+      return 'Room(roomNo: $roomNo)';
+    } catch (e) {
+      return 'Room(Uninitialized)';
+    }
   }
+
+  void enter(){
+     // TODO: implement method
+  }
+  
+  Room clone() => Room().._sides = List.from(this._sides);
+  
+  void setSide(Direction direction, MapSite element){
+    final index = _sides.indexWhere((side) => side.$1 == direction);
+    if(index != -1){
+      _sides[index] = (direction, element);
+    }
+  }
+
+ MapSite? getSide(Direction direction){
+    final record = _sides.firstWhere((side) => side.$1 == direction, // find the first matching record
+                                     orElse: ()=> (direction, null)); // orElse return default
+    return record.$2;
+  }
+}
+
+class Door implements MapSite<Door> {
+  late final Room r1;
+  late final Room r2;
+  bool isOpen = true;
+
+  Door();
+
+  void initialize(Room r1, Room r2, [bool? isOpen]){
+      if (r1 == r2) {
+      throw Exception('A door cannot connect a room to itself.');
+    }
+    this.r1 = r1;
+    this.r2 = r2;
+    this.isOpen = isOpen != null ? isOpen : this.isOpen;
+  }
+
+  void enter(){}
+
+  Door clone() => Door()..isOpen = this.isOpen;
+
+}
+
+class Wall implements MapSite<Wall> {
+  Wall();
+
+  @override // @override can be omitted as in the above Products (Classes)
+  void enter() {}
 
   @override
-  String toString() => 'Room(roomNo: $roomNo)';
-
-  void enter(){
-    // TODO: implement method
-  }
-
-  void setSide(Direction direction, MapSite element){
-    final emptyIndex = _sides.indexWhere((side)=> side == 0);
-    _sides[emptyIndex] = (direction, element);
-  }
-
-  MapSite? getSide(){
-    // TODO: implement method
-  }
-
-  Room clone({int? roomNo, List? sides}){
-    if(sides != null){
-      final room = Room(roomNo: roomNo != null ? roomNo : this.roomNo);
-      for(var side in sides){
-        room.setSide(side.$1, side.$2);
-      }
-      return room;
-    }
-    final room = Room(roomNo: roomNo != null ? roomNo : this.roomNo);
-    for(var side in this.sides){
-      if(side != 0){
-        room.setSide(side.$1, side.$2);
-      }
-        
-      }
-    return room;
-  }
+  Wall clone() => Wall();
+  
 }
 
-class Door extends MapSite{
-  final Room r1;
-  final Room r2;
-  final bool isOpen;
+class Spell {
+  final name;
+  Spell({required this.name});
 
-  Door({required this.r1, required this.r2, this.isOpen = true}){
-    if(this.r1 == this.r2){
-      throw Exception('$r1 and $r2 are the same room and a normal door can not lead to the same room you walked out of.');
-    }
-  }
-
-  void enter(){
-    // TODO: implement method
-  }
-
-  Door clone({Room? r1, Room? r2, bool? isOpen}) => Door(r1: r1 != null ? r1 : this.r1,
-                                                       r2: r2 != null ? r2 : this.r2,
-                                                       isOpen: isOpen != null ? isOpen : this.isOpen);
+  @override
+  String toString() => 'Spell(name: $name)';
 }
 
-class Wall extends MapSite{
-  void enter(){
-    // TODO: implement method
-  }
+class EnchantedRoom extends Room{
+  static final List<Spell> _roomSpells = [Spell(name:'Enhanced map'), Spell(name:'Intangibility'), Spell(name:'Unlock IV')];
+  late final Spell activeSpell;
+  
+  EnchantedRoom();
 
-  Wall clone()=> Wall();
+  @override
+  void initialize(int roomNo) => this..roomNo = roomNo..activeSpell = getRandom([for(int i = 0; i < _roomSpells.length; i++) _roomSpells[i]]);
+
+  @override
+  EnchantedRoom clone() => EnchantedRoom();
+
+  @override
+  String toString() => 'Room(roomNo: $roomNo, activeSpell: $activeSpell)';
 }
 
-class Maze {
-  List _rooms = [];
+class Maze implements Cloneable<Maze>{
+  List<Room> _rooms = [];
 
-  List get rooms => _rooms;
+  List<Room> get rooms => _rooms;
+
+  Maze clone() => Maze();
 
   void addRoom(Room room){
-    if(!_rooms.contains(room)){
+    final isDuplicateRoomNo = _rooms.any((r) => r.roomNo == room.roomNo);
+    if(!isDuplicateRoomNo){
       _rooms.add(room);
     } else {
       throw Exception('$room is already a current room in the maze.');
     }
   }
 
-  Maze clone({List<Room>? rooms}){
-    if(rooms != null){
-      final maze = Maze();
-      for(var room in rooms){
-        addRoom(room);
-      }
-      return maze;
-    }
-    final maze = Maze();
-    for(var room in this.rooms){
-      addRoom(room);
-      }
-    return maze;
-    }
+  int getNextRoomId() => _rooms.isEmpty ? 1 : _rooms.last.roomNo + 1;
 }
 
 class MazeFactory {
@@ -117,27 +138,35 @@ class MazeFactory {
   final Wall _prototypeWall;
   final Door _prototypeDoor;
   
-  MazeFactory(Maze maze, Room room, Wall wall, Door door)
-      : _prototypeMaze = maze,
-        _prototypeRoom = room,
-        _prototypeWall = wall,
-        _prototypeDoor = door;
+  MazeFactory({required Maze maze, required Room room,
+               required Door door, required Wall wall}):_prototypeMaze = maze,
+                                                        _prototypeRoom = room,
+                                                        _prototypeWall = wall,
+                                                        _prototypeDoor = door;
 
-  Maze makeMaze()=> _prototypeMaze.clone();
-  Wall makeWall()=> _prototypeWall.clone();
-  Room makeRoom({required int roomNo})=> _prototypeRoom.clone(roomNo: roomNo);
-  Door makeDoor({required Room r1, required Room r2})=> _prototypeDoor.clone(r1:r1,r2:r2);
+  Maze makeMaze() => _prototypeMaze.clone();
+  
+  Wall makeWall() => _prototypeWall.clone();
+
+  Room makeRoom(int roomNo) => _prototypeRoom.clone()..initialize(roomNo);
+
+  Door makeDoor(Room r1, Room r2) => _prototypeDoor.clone()..initialize(r1, r2); // using the Cascade operator to remove the need for temporary variables
 }
-
 
 class MazeGame {
   static Maze createMaze({required MazeFactory mazeFactory}){
-    int roomNo = 1;
     final maze = mazeFactory.makeMaze();
-    final r1 = mazeFactory.makeRoom(roomNo: roomNo);
-    final r2 = mazeFactory.makeRoom(roomNo: Room.currentRoomNums.last + 1);
-    final door = mazeFactory.makeDoor(r1: r1, r2: r2);
+    
+    final r1 = mazeFactory.makeRoom(maze.getNextRoomId());
+    maze.addRoom(r1); 
+
+    final r2 = mazeFactory.makeRoom(maze.getNextRoomId());
+    maze.addRoom(r2);
+
     final walls = [for(int i = 0; i < 6; i++) mazeFactory.makeWall()];
+
+    final door = mazeFactory.makeDoor(r1, r2);
+
     r1.setSide(Direction.north, walls[0]);
     r1.setSide(Direction.east, door);
     r1.setSide(Direction.south, walls[1]);
@@ -148,28 +177,38 @@ class MazeGame {
     r2.setSide(Direction.south, walls[5]);
     r2.setSide(Direction.west, door);
 
-    maze.addRoom(r1);
-    maze.addRoom(r2);
-
     return maze;
   }
 }
-
 void main(){
-  final mazeFactory = MazeFactory(Maze(), Room(roomNo:-1), Wall(), Door(r1:Room(roomNo:-2), r2: Room(roomNo:-3)));
-  // final enchantedMazeFactory = EnchantedMazeFactory(roomSpells: [Spell(name:'Enhanced map'), Spell(name:'Intangibility'), Spell(name:'Unlock IV')],
-  //                                                   doorSpells: [Spell(name:'Lock I'),Spell(name:'Lock III'),Spell(name:'Lock V')]);
+  final mazeFactory = MazeFactory(maze: Maze(), room: EnchantedRoom(), door: Door(), wall: Wall());
   final maze = MazeGame.createMaze(mazeFactory: mazeFactory);
-  // final enchanteMaze = MazeGame.createMaze(mazeFactory: enchantedMazeFactory);
 
-  print(maze.rooms);
-  // print(enchanteMaze.rooms);
-
-  for(var room in maze.rooms){
+  print("Maze created with ${maze.rooms.length} rooms.");
+  
+   for(var room in maze.rooms){
+    print(room);
     print(room.sides);
   }
+}
 
-  // for(var room in enchanteMaze.rooms){
-  //   print(room.sides);
-  // }
-  }
+// Some SOLID principles covered in the sample code
+
+  // Interface Segregation Principle (ISP) -  Segregating Interfaces
+
+  //   - no class should implement methods it does not use
+  //     as it is better to have many small interfaces rather
+  //     than one general purpose interface
+
+  // Separation of Concerns (Single Responsibility)
+
+  //  - Decoupling:
+  
+  //    - Creation (clone): the clone method is responsible for structual copying of shared state
+  
+  //    - Configuration (initialize): initialization is resonsible for injecting unique state
+  
+  //    - Representation (_prototypeProduct/ class Product): the code that defines WHAT the object contains and HOW it holds data
+  
+  //       - NOTE: class Product is generic and means any object instance returned to the Client
+  //               through means that are typically hidden from the Client (Factory Methods, Builders, Prototypes, etc)
