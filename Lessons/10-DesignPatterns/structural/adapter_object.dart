@@ -64,7 +64,7 @@ class TextView {
 class TextShape implements Shape {
   final TextView _text;
 
-  TextShape(this._text); // Constructor initializes the composed Adaptee
+  TextShape(this._text);
 
   @override
   (Point, Point) boundingBox() {

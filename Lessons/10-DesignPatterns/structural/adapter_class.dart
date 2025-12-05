@@ -1,6 +1,9 @@
+// TODO: add notes about the adapter class
+
 // ---------------------------------------------------------
 // 1. HELPER CLASSES
 // ---------------------------------------------------------
+typedef BoundingBox = (Point, Point);
 
 class Point {
   final double x;
@@ -30,7 +33,7 @@ class TextManipulator extends Manipulator {
 //  - Typically define as an interface (or abstract class)
 
 abstract class Shape {
-  (Point, Point) boundingBox();
+  BoundingBox boundingBox();
 
   Manipulator createManipulator();
 
@@ -68,7 +71,7 @@ class TextShape extends TextView implements Shape {
   TextShape(double x, double y, double w, double h) : super(x, y, w, h);
 
   @override
-  (Point, Point) boundingBox() {
+  BoundingBox boundingBox() {
     final origin = super.getOrigin();
     final extent = super.getExtent();
 
@@ -127,8 +130,9 @@ void main() {
 
 // ------------------------------------------------------------------------------------------------------------------------ //
 
-// Passing Initializatino Data Up
-  // The constructor passes initialization data up to the parent (Adaptee)
+// Passing Initialization Data Up
+
+  // The constructor of TextShape passes initialization data up to the parent (Adaptee)
   // removing the need to redefine variables
 
 // ------------------------------------------------------------------------------------------------------------------------ //
