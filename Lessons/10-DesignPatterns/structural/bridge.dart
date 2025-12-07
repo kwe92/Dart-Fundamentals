@@ -272,6 +272,33 @@ void main() {
 
 // TODO: Review Comments
 
+// 4. Why you likely haven't used it (and when you should)
+// You mentioned you haven't seen this in your career. That is normal. The Bridge pattern is typically used by Framework Developers, not Application Developers.
+// Why you haven't seen it:
+// If you use Flutter, React Native, Java Swing, or .NET MAUI, you are the client of a Bridge Pattern.
+// Flutter is the Bridge.
+// You write Dart widgets (The Abstraction).
+// The Flutter Engine has implementations for iOS (Metal/OpenGL) and Android (Vulkan/OpenGL) (The Implementation).
+// You don't write the bridge; you stand on top of it.
+// When you SHOULD use it:
+// You should use the Bridge pattern if you are building a system that needs to run on multiple external "engines" that might change, and you want your business logic to stay clean.
+// Real-world examples (besides UI):
+// Database Drivers:
+// Abstraction: Your Repository/Service class (saveUser(), getUser()).
+// Implementation: The Database Driver (PostgresDriver, MySQLDriver, MongoDriver).
+// Benefit: You can switch from MySQL to Postgres without rewriting your business logic saveUser() method.
+// Payment Gateways:
+// Abstraction: PaymentProcessor (processRefund(), chargeCard()).
+// Implementation: StripeAdapter, PayPalAdapter, SquareAdapter.
+// Benefit: Your shopping cart logic doesn't need to know the specific API endpoints of Stripe.
+// File Storage:
+// Abstraction: FileService (upload(), download()).
+// Implementation: AWS_S3_Imp, Azure_Blob_Imp, Local_Disk_Imp.
+// Summary
+// The Problem: You have two changing dimensions (e.g., Logical Features vs. Operating Systems) causing code duplication and too many subclasses.
+// The Fix: Separate them into two class hierarchies and link them with a pointer (composition).
+// The Usage: Common in frameworks/libraries that interact with hardware, databases, or third-party APIs. Less common in standard day-to-day UI business logic.
+
 // **Yes, exactly.**
 
 // That is the primary structural purpose of the Bridge pattern. It prevents what is formally called "Class Explosion" or the "Cartesian Product" problem.
