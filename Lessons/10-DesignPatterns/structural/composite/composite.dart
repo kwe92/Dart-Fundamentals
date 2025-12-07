@@ -1,6 +1,8 @@
 typedef Watt = double;
 typedef Currency = double;
 
+// TODO: review and add notes to the Composite Pattern
+
 /// Equipment class defines an interface for all equipment in the part-whole hierarchy
 abstract class Equipment {
   final String _name;

@@ -1,4 +1,5 @@
 import 'dart:math';
+// TODO: Review Comments and Add notes on Bridge pattern
 
 // ---------------------------------------------------------------------------
 // 1. PRIMITIVES & HELPERS
@@ -269,8 +270,6 @@ void main() {
   appWindowMac.open();
   appWindowMac.drawRect(const Point(5, 5), const Point(200, 100));
 }
-
-// TODO: Review Comments
 
 // 4. Why you likely haven't used it (and when you should)
 // You mentioned you haven't seen this in your career. That is normal. The Bridge pattern is typically used by Framework Developers, not Application Developers.
