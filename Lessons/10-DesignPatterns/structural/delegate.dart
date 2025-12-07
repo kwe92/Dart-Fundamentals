@@ -1,3 +1,5 @@
+// TODO: Explain Delegation
+
 // THE INTERFACE (Contract)
 // Any object that wants to use the RectangleDelegate must implement this.
 abstract class DimensionProvider {
