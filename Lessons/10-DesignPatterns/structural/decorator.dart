@@ -1,11 +1,9 @@
-// Defines the interface for objects that can have responsibilities (additional state/variables or operations) added dynamically
 abstract class VisualComponent {
   void draw();
   void resize();
 }
 
-// Defines an object to which additional responsibilities can be attached
-class TextView extends VisualComponent {
+class TextView implements VisualComponent {
   @override
   void draw() => print("Drawing TextView");
 
@@ -13,11 +11,10 @@ class TextView extends VisualComponent {
   void resize() => print("Resizing TextView");
 }
 
-// Maintains a reference to a Component and forwards requests to it
-abstract class Decorator extends VisualComponent {
+abstract class ComponentDecorator implements VisualComponent {
   final VisualComponent _component;
 
-  Decorator(this._component);
+  ComponentDecorator(this._component);
 
   @override
   void draw() => _component.draw();
@@ -26,9 +23,8 @@ abstract class Decorator extends VisualComponent {
   void resize() => _component.resize();
 }
 
-// Adds a border to the enclosing component.
-class BorderDecorator extends Decorator {
-  final int _width;
+class BorderDecorator extends ComponentDecorator {
+  final int _width; // added primitive state
 
   BorderDecorator(VisualComponent component, this._width) : super(component);
 
@@ -41,8 +37,7 @@ class BorderDecorator extends Decorator {
   void _drawBorder(int width) => print("Drawing Border of width $width");
 }
 
-// Adds scrolling capabilities to the enclosing component
-class ScrollDecorator extends Decorator {
+class ScrollDecorator extends ComponentDecorator {
   ScrollDecorator(VisualComponent component) : super(component);
 
   @override
@@ -54,7 +49,6 @@ class ScrollDecorator extends Decorator {
   void _drawScrollBars() => print("Drawing ScrollBars");
 }
 
-// Represents a Window that holds a generic VisualComponent.
 class Window {
   VisualComponent? _contents;
 
@@ -67,8 +61,6 @@ void main() {
   Window window = Window();
   TextView textView = TextView();
 
-  // Decorate the TextView with a ScrollDecorator, then wrap that in a BorderDecorator
-  // creating a bordered, scrollable TextView dynamically
   window.setContents(
     BorderDecorator(
       ScrollDecorator(textView),
@@ -77,6 +69,9 @@ void main() {
   );
 
   window.paint();
+
+  // Within window.setContents the TextView is decorated with a ScrollDecorator
+  // then wraped in a BorderDecorator creating a bordered, scrollable TextView dynamically
 }
 
 // DECORATOR PATTERN:
@@ -104,8 +99,7 @@ void main() {
 //    BEFORE and AFTER forwarding
 
 //  - decorators can be nested together recursively in theory allowing additional functionality
-//    to be added unlimitedly (typically you onle have a few decorators on a single object)
-//    or mixed and matched
+//    to be added unlimitedly or mixed and matched
 
 //  - the Client should not depend on the Decoration as a concrete object
 
@@ -122,9 +116,36 @@ void main() {
 
 //  • Decorator
 
-//     - maintains a reference to a Component object and defines an interface that
-//       conforms to Component's interface
+//     - maintains a reference to a Component object and implements an interface that
+//       conforms to the Component's interface
 
 //  • ConcreteDecorator (BorderDecorator, ScrollDecorator)
 
 //     - adds responsibilities to the component
+
+// Clsses in example
+
+//  - VisualComponent
+
+//      - Defines the interface for objects/Components that can have responsibilities
+//        (additional state/instance variables or operations) added dynamically
+
+//  - TextView
+
+//     - Concrete Component to which additional responsibilities can be attached
+
+//  - ComponentDecorator
+
+//     - Base Decorator that maintains a reference to a Component and forwards requests to it
+
+//  - BorderDecorator
+
+//     - Adds a border to the enclosing component
+
+//  - ScrollDecorator
+
+//     - Adds scrolling capabilities to the enclosing component
+
+//  - Window
+
+//     - Represents a Window that holds a generic VisualComponent
