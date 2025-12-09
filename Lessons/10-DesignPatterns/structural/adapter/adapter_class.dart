@@ -1,5 +1,7 @@
 // TODO: add notes about the adapter class
 
+// ignore_for_file: unused_local_variable
+
 // ---------------------------------------------------------
 // 1. HELPER CLASSES
 // ---------------------------------------------------------
