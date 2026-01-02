@@ -230,3 +230,4 @@ void main() {
   compiler.compile(sourceCode, bytecodeOutput);
   print("--- Client: Compilation Finished ---");
 }
+
