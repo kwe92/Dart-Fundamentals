@@ -202,3 +202,12 @@ void main() {
 //    not the data being passed into it
 
 //  -  In OOP varients the Context maintains a collection of Components and delegates layout to a Compositor
+
+// TODO: Edit bellow notes
+// In this context, the Strategy Pattern is simply the OOP way of treating algorithms as "First Class Citizens" (passing logic around as if it were data).
+// Summary
+// You are right that the mechanics are just polymorphism.
+// But the Strategy Pattern is a specific architectural decision to:
+// Prefer Composition (has-a) over Inheritance (is-a).
+// Encapsulate algorithms into separate objects.
+// Allow behavior to change dynamically without destroying the Context object.
