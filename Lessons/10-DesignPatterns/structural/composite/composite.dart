@@ -1,46 +1,34 @@
 typedef Watt = double;
 typedef Currency = double;
 
-// TODO: review and add notes to the Composite Pattern
-
-/// Equipment class defines an interface for all equipment in the part-whole hierarchy
+// Component Base Class
 abstract class Equipment {
   final String _name;
 
-  // C++: protected Equipment(const char*);
   Equipment(this._name);
 
-  // C++: const char* Name() { return _name; }
   String get name => _name;
 
-  // C++: virtual Watt Power();
   Watt power();
 
-  // C++: virtual Currency NetPrice();
   Currency netPrice();
 
-  // C++: virtual Currency DiscountPrice();
   Currency discountPrice();
 
-  // C++: virtual void Add(Equipment*);
-  // Default implementation throws or does nothing (safety for Leafs)
   void add(Equipment equipment) {
     throw UnimplementedError("Cannot add to a Leaf");
   }
 
-  // C++: virtual void Remove(Equipment*);
   void remove(Equipment equipment) {
     throw UnimplementedError("Cannot remove from a Leaf");
   }
 
-  // C++: virtual Iterator<Equipment*>* CreateIterator();
   Iterator<Equipment> createIterator() {
     return <Equipment>[].iterator;
   }
 }
 
-/// Subclass of Equipment (Leaf)
-/// Matches C++ class FloppyDisk : public Equipment
+// Primitive Components (Leaves)
 class FloppyDisk extends Equipment {
   FloppyDisk(String name) : super(name);
 
@@ -54,7 +42,6 @@ class FloppyDisk extends Equipment {
   Currency discountPrice() => 8.0;
 }
 
-/// Subclass of Equipment (Leaf)
 class Card extends Equipment {
   Card(String name) : super(name);
 
@@ -68,48 +55,38 @@ class Card extends Equipment {
   Currency discountPrice() => 90.0;
 }
 
-/// CompositeEquipment is the base class for equipment that contains other equipment
+// Composite Component Base Class
 abstract class CompositeEquipment extends Equipment {
-  // C++: List<Equipment*> _equipment;
   final List<Equipment> _equipment = [];
 
   CompositeEquipment(String name) : super(name);
 
-  // C++: virtual void Add(Equipment*);
   @override
   void add(Equipment equipment) {
     _equipment.add(equipment);
   }
 
-  // C++: virtual void Remove(Equipment*);
   @override
   void remove(Equipment equipment) {
     _equipment.remove(equipment);
   }
 
-  // C++: virtual Iterator<Equipment*>* CreateIterator();
   @override
   Iterator<Equipment> createIterator() {
     return _equipment.iterator;
   }
 
-  // C++: Currency CompositeEquipment::NetPrice()
-  // Matches the logic of iterating and summing
   @override
   Currency netPrice() {
     Iterator<Equipment> i = createIterator();
     Currency total = 0;
 
-    // C++ Loop: for (i->First(); !i->IsDone(); i->Next())
     while (i.moveNext()) {
-      // C++: total += i->CurrentItem()->NetPrice();
       total += i.current.netPrice();
     }
-    // No need to delete i in Dart (Garbage Collection)
     return total;
   }
 
-  // Implementing other abstract methods by summing children (Composite behavior)
   @override
   Watt power() {
     Iterator<Equipment> i = createIterator();
@@ -131,13 +108,10 @@ abstract class CompositeEquipment extends Equipment {
   }
 }
 
-/// A computer chassis as a subclass of CompositeEquipment
-/// Matches C++ class Chassis : public CompositeEquipment
+// Composite Components
+// (Containers that can hold other Equipment)
 class Chassis extends CompositeEquipment {
   Chassis(String name) : super(name);
-
-  // Inherits Add, Remove, CreateIterator, and NetPrice logic
-  // from CompositeEquipment.
 }
 
 class Cabinet extends CompositeEquipment {
@@ -154,58 +128,112 @@ class Bus extends CompositeEquipment {
 void main() {
   print("Constructing PC...");
 
-  // C++: Cabinet* cabinet = new Cabinet("PC Cabinet"); Root node
-  Cabinet cabinet = Cabinet("PC Cabinet");
+  final cabinet = Cabinet("PC Cabinet");
 
-  // C++: Chassis* chassis = new Chassis("PC Chassis");
-  Chassis chassis = Chassis("PC Chassis");
+  final chassis = Chassis("PC Chassis");
 
-  // C++: cabinet->Add(chassis);
   cabinet.add(chassis);
 
-  // C++: Bus* bus = new Bus("MCA Bus");
-  Bus bus = Bus("MCA Bus");
+  final bus = Bus("MCA Bus");
 
-  // C++: bus->Add(new Card("16Mbs Token Ring"));
   bus.add(Card("16Mbs Token Ring"));
 
-  // C++: chassis->Add(bus);
   chassis.add(bus);
 
-  // C++: chassis->Add(new FloppyDisk("3.Bin Floppy"));
   chassis.add(FloppyDisk("3.Bin Floppy"));
 
-  // C++: cout << "The net price is " << chassis->NetPrice() << endl
   print("The net price is ${chassis.netPrice()}");
+
+  print("The discount price is ${chassis.discountPrice()}");
+
+  print("The power is ${chassis.power()}");
 }
 
-// The Composite Pattern
+// 1. Core Identity
 
-//  - Compose objects into tree structures to represent part-whole hierarchies
+      // Pattern Name: Composite
+      // Category: Structural (Object)
+      // Intent: Compose objects into tree structures to represent part-whole hierarchies.
+      // Composite lets clients treat individual objects and compositions of objects uniformly.
 
-//  - A Composite is a container that implements the same interface as the things it contains
+// 2. The Problem & Solution (Motivation)
 
-//  - the Root node is typically a composite and all subsequent children can be either composite or Leaf Nodes
-//    i.e. Composite nodes can hold another Composite node or a Leaf Node as a child
+      // Scenario: Applications often deal with hierarchical structures (e.g., graphics, hardware)
+      // where simple primitives (Lines, Disks) can be grouped into complex containers
+      // (Pictures, Chassis).
+      // Problem: Client code becomes complex if it has to treat primitives and containers differently
+      // (e.g., "if object is Container do X, else do Y").
+      // Solution: Create an abstract class that represents both primitives and their containers.
+      // Use recursive composition so operations flow down the tree automatically.
 
-//  - The final node is either a leaf or an empty composite Node
+// 3. Participants
 
-// Composite: I hold a list of Products, but I look and act exactly like a
-//            single Products so I can be treated as one
+      // Component (Equipment):
 
-// Leaf: I am the single Product that actually does the work
+            // - Declares the interface for all objects in the composition.
+            // - Implements default behavior (often throws errors for child management).
 
-// The Leaf
+      // Leaf (FloppyDisk, Card):
 
-//  - The Leaf is the end of the line, it does not have a list of children
-//    When you call Power() on a Leaf (like FloppyDisk):
+            // - Represents leaf objects with no children.
+            // - Implements primitive behavior directly.
 
-//     - It does not delegate the work to anyone else (children in the case of a tree structure)
+      // Composite (CompositeEquipment, Chassis):
 
-//     - It uses its own internal logic (primitives, hard-coded math, variables)
-//       to return the answer immediately
+            // - Defines behavior for components having children.
+            // - Stores child components.
+            // - Implements operations by forwarding them to children (recursive delegation).
 
-// Benefits
+      // Client:
 
-//  - The reason this pattern is powerful is not just because we have Containers and Primitives
-//    it is because the outside world treats them exactly the same
+            // - Manipulates objects through the Component interface, indifferent to whether
+            // the object is a Leaf or a Composite.
+
+// 4. Critical Implementation Trade-off: Transparency vs. Safety
+
+      // There is a conflict between making the interface uniform and making it type-safe.
+
+      // Option A: Transparency (Preferred in this text)
+
+            // - Define child management (Add/Remove) in the root Component class.
+            // - Pros: Clients treat all objects identical. No type casting needed.
+            // - Cons: Unsafe. Calling Add() on a Leaf implies a bug and must fail (throw exception).
+
+      // Option B: Safety
+
+            // - Define child management (Add/Remove) only in the Composite class.
+            // - Pros: Impossible to add a child to a Leaf at compile time.
+            // - Cons: Loses uniformity. Client must cast Component to Composite to add children.
+
+// 5. Consequences
+
+      // Pros:
+
+            // - Simplifies Client: No tag-and-case logic needed for different types.
+            // - Scalable: New Leaf or Composite classes work automatically with existing code.
+
+      // Cons:
+
+            // - Overly General: You cannot rely on the type system to restrict what goes inside
+            // a composite (e.g., preventing a Line from containing a Picture).
+
+// 6. Use Case Analysis (Based on Sample Code)
+
+      // Scenario: Modeling a computer hardware inventory where parts (Cards, Disks)
+      // are contained within sub-assemblies (Bus, Chassis), which are inside main assemblies (Cabinet).
+
+      // Recursive Aggregation (The "Magic"):
+
+            // - The Client asks the top-level container (Chassis) for the "netPrice".
+            // - The Chassis delegates to its children.
+            // - If a child is a Bus (Composite), it delegates to the Cards inside it.
+            // - If a child is a FloppyDisk (Leaf), it returns its specific price.
+            // - The results bubble up the stack, summing automatically.
+
+      // Implementation Strategy Used:
+
+            // - The code uses the "Transparency" approach.
+            // - The abstract class `Equipment` defines `add/remove` but throws `UnimplementedError`.
+            // - This ensures that if the Client accidentally tries `floppyDisk.add(card)`,
+            // it fails at runtime, but allows the Client to pass around `Equipment` types
+            // without constantly checking `if (item is CompositeEquipment)`.
