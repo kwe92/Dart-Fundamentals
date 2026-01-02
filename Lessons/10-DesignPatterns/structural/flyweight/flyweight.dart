@@ -1,4 +1,3 @@
-
 // Glyph Base Class (The Flyweight Interface)
 abstract class Glyph {
   // Operations receive extrinsic state (Context)
@@ -60,11 +59,11 @@ class GlyphFactory {
   GlyphFactory();
 
   Character createCharacter(int charCode) {
-    if (!_characters.containsKey(charCode)) {
+    if (!_existing(charCode)) {
       _characters[charCode] = Character(charCode);
       print("  [Factory] Created new object for character code: $charCode ('${String.fromCharCode(charCode)}')");
     } else {
-       print("  [Factory] Reusing existing object for character code: $charCode ('${String.fromCharCode(charCode)}')");
+      print("  [Factory] Reusing existing object for character code: $charCode ('${String.fromCharCode(charCode)}')");
     }
 
     return _characters[charCode]!;
@@ -77,6 +76,8 @@ class GlyphFactory {
   Column createColumn() {
     return Column();
   }
+
+  bool _existing(int key) => _characters.containsKey(key);
 }
 
 class Window {
@@ -88,7 +89,7 @@ class Window {
 class Font {
   final String name;
   Font(this.name);
-  
+
   @override
   String toString() => name;
 }
@@ -97,8 +98,8 @@ class Font {
 class GlyphContext {
   int _index = 0;
 
-  final  _fonts = <int, Font>{};
-  final  _defaultFont = Font("System-Default-12");
+  final _fonts = <int, Font>{};
+  final _defaultFont = Font("System-Default-12");
 
   int get currentIndex => _index;
 
@@ -124,7 +125,6 @@ class GlyphContext {
   void setFont(Font font) {
     _fonts[_index] = font;
   }
-  
 }
 
 void main() {
@@ -144,15 +144,14 @@ void main() {
     glyphFactory.createCharacter(32), // ' '
     glyphFactory.createCharacter(98), // 'b'
     glyphFactory.createCharacter(98), // 'b' - should reuse
-    glyphFactory.createCharacter(99), // 'b' - should reuse
-
+    glyphFactory.createCharacter(99), // 'c'
   ];
 
   print("\n--- Setting up Context (Extrinsic State) ---");
-  context.setFont(times12); 
+  context.setFont(times12);
 
   print("\n--- Drawing Document ---");
-  
+
   for (int i = 0; i < document.length; i++) {
     print(context.currentIndex);
     print(context.getFont());
@@ -167,51 +166,107 @@ void main() {
   }
 }
 
-// TODO: Review and edit the notes below
+// 1. Core Identity
 
-// 1. Classification & Intent
-// Type: Object Structural.
-// Intent: Use sharing to support large numbers of fine-grained objects efficiently.
+      // Pattern Name: Flyweight
+      // Category: Structural (Object)
+      // Intent: Use sharing to support large numbers of fine-grained objects efficiently.
 
-// 2. Core Concept: State Separation
-// The most critical aspect of this pattern is distinguishing between two types of state:
-// Intrinsic State:
-//   Stored inside the Flyweight.
-//   Independent of context.
-//   Sharable (e.g., the character code 'A').
-// Extrinsic State:
-//   Stored or computed by the Client.
-//   Depends on context.
-//   Not shared.
-//   Passed to the Flyweight as arguments during method calls (e.g., position x,y, font color).
+// 2. The Problem & Solution (Motivation)
 
-// 3. Participants
-// Flyweight (Interface): Declares methods that accept extrinsic state.
-// ConcreteFlyweight: Implements the interface and stores intrinsic state. Must be sharable.
-// UnsharedConcreteFlyweight: Subclasses that are not shared (often composites like a "Row" or "Column" that contain Flyweights).
-// FlyweightFactory:
-//   Creates and manages the pool of flyweights.
-//   Ensures proper sharing (returns an existing instance if available).
-// Client:
-//   Maintains references to flyweights.
-//   Computes/stores extrinsic state.
-//   Rule: Must access ConcreteFlyweights only through the Factory.
+      // Scenario: Applications like text editors or game engines that require huge numbers of
+      // objects (e.g., a character object for every letter in a book).
+      // Problem: Creating a distinct object instance for every item consumes prohibitive amounts
+      // of memory and incurs runtime overhead.
+      // Solution: Create a "pool" of shared objects. Separate the data that is common to all
+      // instances (Intrinsic) from the data that is unique to specific instances (Extrinsic).
 
-// 4. Applicability (The 5 Prerequisites)
-// Apply this pattern only when all of the following are true:
-//   The app uses a large number of objects.
-//   Storage costs are high due to the quantity.
-//   Most object state can be made extrinsic.
-//   Many groups of objects can be replaced by few shared objects.
-//   The application does not rely on object identity (since distinct conceptual objects will share the same physical instance).
+// 3. The Key Concept: State Splitting
 
-// 5. Classic Example
-// Text Editor:
-//   Instead of creating an object for every character in a document (too expensive), create one Flyweight for each letter of the alphabet.
-//   Intrinsic: Character code.
-//   Extrinsic: Font, position, color (passed in by the layout manager).
+      // Intrinsic State:
 
-// 6. Consequences (Trade-offs)
-// Benefit: significant reduction in memory usage (Space savings).
-// Cost: potential runtime overhead (CPU) to calculate or transfer extrinsic state.
-// Identity: a == b may return true even if a and b are conceptually different characters in different locations.
+            // - Information that is independent of the object's context.
+            // - Stored permanently inside the Flyweight object.
+            // - Example: The character code 'a' (it is always 'a' regardless of where it appears).
+
+      // Extrinsic State:
+
+            // - Information that depends on and varies with the object's context.
+            // - NOT stored in the Flyweight.
+            // - Passed to the Flyweight by the Client during method calls.
+            // - Example: The (x,y) position, the font color, or the font size.
+
+// 4. Participants
+
+      // Flyweight (Glyph):
+
+            // - Declares an interface through which flyweights can receive and act on extrinsic state.
+
+      // ConcreteFlyweight (Character):
+
+            // - Implements the Flyweight interface.
+            // - Stores Intrinsic state.
+            // - Must be sharable.
+
+      // UnsharedConcreteFlyweight (Row, Column):
+
+            // - Not all subclasses need to be shared (e.g., container objects that hold Flyweights).
+
+      // FlyweightFactory:
+
+            // - Creates and manages flyweight objects.
+            // - Ensures proper sharing (returns an existing instance if available, or creates a new one).
+
+      // Client:
+
+            // - Maintains references to flyweights.
+            // - Computes or stores the Extrinsic state.
+
+// 5. Applicability
+
+// Apply this pattern only when ALL of the following are true:
+
+      // - The application uses a huge number of objects.
+      // - Storage costs are high.
+      // - Most object state can be made extrinsic.
+      // - The application does not depend on object identity (since the same object instance
+      //   represents multiple distinct logical entities).
+
+// 6. Consequences
+
+      // Pros:
+
+           // - Drastic reduction in memory usage.
+
+      // Cons:
+
+            // - Runtime cost: Computing and passing extrinsic state takes CPU time.
+            // - Complexity: The code logic becomes more complex as state is separated.
+
+// 7. Sample Code Use Case & Analysis
+
+      // Scenario: A Document Editor rendering the text "aa bb".
+      // The application needs to draw characters on a window but wants to avoid creating
+      // a heavy object for every single letter on the screen.
+
+      // Memory Efficiency (The Result):
+
+            // - The input string "aa bb" has 5 characters (plus a 6th 'c' in the code).
+            // - Without Flyweight: 6 distinct objects created.
+            // - With Flyweight: Only 4 objects created ('a', ' ', 'b', 'c').
+            // - The Factory detects that 'a' and 'b' already exist and returns the existing pointer.
+
+      // Separation of Concerns:
+
+            // - Intrinsic: The Character class is tiny. It only knows it is the letter 'a'.
+            // - Extrinsic: The GlyphContext acts as the repository for the "expensive" data
+            //   (Fonts, Styles, Positions).
+            // - The draw() method acts as the bridge: The Client (main) tells the Context
+            //   to set the Font, then passes that Context to the Character.
+
+      // The Factory Mandate:
+
+            // - Critical Requirement: Clients must NOT instantiate ConcreteFlyweights directly
+            //   (e.g., new Character('a')).
+            // - They must go through GlyphFactory.createCharacter('a') to ensure the
+            //   pooling/caching logic is executed.
