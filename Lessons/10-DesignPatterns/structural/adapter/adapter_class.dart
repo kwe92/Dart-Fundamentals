@@ -1,5 +1,3 @@
-// TODO: add notes about the adapter class
-
 // ignore_for_file: unused_local_variable
 
 // ---------------------------------------------------------
@@ -32,7 +30,7 @@ class TextManipulator extends Manipulator {
 // 2. THE TARGET (Shape)
 // ---------------------------------------------------------
 
-//  - Typically define as an interface (or abstract class)
+//  - Typically defined as an interface (or abstract class)
 
 abstract class Shape {
   BoundingBox boundingBox();
@@ -94,14 +92,8 @@ class TextShape extends TextView implements Shape {
 // ---------------------------------------------------------
 
 void main() {
-  // 1. Create the Adapter directly
-  // Note: We don't create a separate TextView object; the TextShape IS a TextView (by inheritance)
   final Shape shape = TextShape(10.0, 20.0, 100.0, 50.0);
 
-  // to further clarify the aforementioned note
-  final TextView textView = TextShape(10.0, 20.0, 100.0, 50.0);
-
-  // 2. The Client treats a TextShape strictly as a Shape
   print("Client: Requesting BoundingBox...");
 
   final boundingBox = shape.boundingBox();
@@ -110,46 +102,73 @@ void main() {
 
   print("\nClient: Checking isEmpty...");
 
-  // This triggers the inherited method from TextView
   print("Is Empty? ${shape.isEmpty()}");
 
   print("\nClient: Creating Manipulator...");
+
   Manipulator m = shape.createManipulator();
+
   m.drag();
 }
+//  1. Core Identity
 
-// ------------------------------------------------------------------------------------------------------------------------ //
+      // Pattern Name: Adapter
+      // Category: Structural (Both Class and Object)
+      // Also Known As: Wrapper
+      // Intent: Converts the interface of a class into another interface the client expects.
+      // It allows classes with incompatible interfaces to work together.
 
-//  - The key to class adapters is to use one inheritance branch (Multiple inheritance)
-//    to inherit the interface (extend in our language specific case)
-//    and another branch to inherit the implementation (implements in our language specific case)
+// 2. The Problem & Solution (Motivation)
 
-// KEY DIFFERENCE FROM OBJECT ADAPTER:
+      // Scenario: You have a reusable toolkit class (e.g., TextView) but need it to fit a
+      // specific domain interface (e.g., Shape).
+      // Constraint: You cannot modify the toolkit class (no source code or shouldn't change
+      // reusable code).
+      // Solution: Create an Adapter class (TextShape) that maps requests from the
+      // Target interface (Shape) to the Adaptee interface (TextView).
 
-//  1. We EXTEND TextView: This inherits the implementation/state directly
+// 3. Participants
 
-//  2. We IMPLEMENT Shape: This promises to satisfy the Target interface
+      // Target (Shape): Defines the domain-specific interface used by the Client.
+      // Client (DrawingEditor): Collaborates with objects conforming to the Target interface.
+      // Adaptee (TextView): The existing interface that needs adapting.
+      // Adapter (TextShape): Adapts the Adaptee interface to the Target interface.
 
-// ------------------------------------------------------------------------------------------------------------------------ //
+// 4. Class Adapter (Inheritance)
 
-// Passing Initialization Data Up
+      // Structure: Uses multiple inheritance. Inherits publicly from Target and privately
+      // from Adaptee.
+      // Pros:
+      // - No pointer indirection: Slightly faster; implies one object in memory.
+      // - Overriding: The Adapter can easily override behavior of the Adaptee because it is a subclass.
+      // Cons:
+      // - Rigid: Commits to a specific concrete Adaptee class. It cannot adapt a class and
+      // all its subclasses simultaneously.
 
-  // The constructor of TextShape passes initialization data up to the parent (Adaptee)
-  // removing the need to redefine variables
+// Sample Code Use Case & Analysis
 
-// ------------------------------------------------------------------------------------------------------------------------ //
+      // Scenario: A Drawing Editor (Client) requires all elements to be treated as a "Shape".
+      // The application wants to reuse a "TextView" class from an external toolkit, but
+      // "TextView" does not implement the "Shape" interface.
 
-// DIRECT CALLS:
-// Because we extended TextView, we can call getOrigin()
-// and getExtent() directly on 'this' (super). We do not need a
-// delegate object like '_text.getOrigin()'
-
-// ------------------------------------------------------------------------------------------------------------------------ //
-
-// NOTE on isEmpty():
-// We do not need to override isEmpty()
-// Since we extend TextView, we automatically inherit TextView.isEmpty()
-// Which satisfies the Shape.isEmpty() contract automatically
-// A key benefit of Class Adapters: automatic implementation reuse
-
-// ------------------------------------------------------------------------------------------------------------------------ //
+  // Semantic Compatibility (Crucial Requirement):
+  
+        // For adaptation to work, the Target and Adaptee must share "semantic similarity."
+        // They represent the same fundamental concept (a visual object occupying space)
+        // but speak different languages:
+        //
+        // 1. Calculated Mapping (Different Signatures, Same Intent):
+        //    - Target (Shape): Expects a "BoundingBox" (Bottom-Left and Top-Right points).
+        //    - Adaptee (TextView): Provides "Origin" (x,y) and "Extent" (width, height).
+        //    - The Adapter allows the Adaptee to conform to the Target interface by
+        //      mathematically converting the Adaptee's data into the format the Target requires.
+        //
+        // 2. Direct Mapping (Identical Signatures):
+        //    - Both classes happen to have an "isEmpty()" method.
+        //    - The Adapter simply forwards this call, proving that parts of the interfaces
+        //      may already align naturally.
+        //
+        // 3. Augmented Functionality:
+        //    - The Adaptee (TextView) lacks dragging logic.
+        //    - The Adapter fills this gap by implementing "createManipulator" to satisfy
+        //      the Shape interface, extending the Adaptee's capabilities without modifying it.

@@ -1,5 +1,3 @@
-// TODO: add notes about the adapter object style
-
 // ---------------------------------------------------------
 // 1. HELPER CLASSES
 // ---------------------------------------------------------
@@ -114,28 +112,14 @@ void main() {
   Manipulator m = textShape.createManipulator();
   m.drag();
 }
-// ------------------------------------------------------------------------------------------------------------------------ //
+// B. Object Adapter (Composition)
 
-// NOTE: The Adapter Pattern Object requires more code but works better with subclasses
-//       also seems easier to test with Dependency Injection
-
-// ------------------------------------------------------------------------------------------------------------------------ //
-
-// ---------------------------------------------------------
-// 3. THE ADAPTEE (TextView)
-// ---------------------------------------------------------
-
-// The existing toolkit class that is incompatible with Shape.
-// It uses Origin/Extent logic instead of BoundingBox logic.
-
-// ------------------------------------------------------------------------------------------------------------------------ //
-
-// ---------------------------------------------------------
-// 4. THE ADAPTER (TextShape) - Object Adapter
-// ---------------------------------------------------------
-
-// Adapts the TextView interface to the Shape interface.
-// Uses Composition (holding a reference to TextView) rather than
-// Multiple Inheritance
-
-// ------------------------------------------------------------------------------------------------------------------------ //
+      // Structure: Uses object composition. The Adapter holds a pointer/reference to an
+      // Adaptee instance.
+      // Pros:
+      // - Flexible: One Adapter can work with an Adaptee and all its subclasses.
+      // - Dynamic: Can add functionality to all Adaptees at once.
+      // Cons:
+      // - Hard to override: If you need to change Adaptee behavior, you must subclass the
+      // Adaptee separately and wrap that subclass.
+      // - Pointer overhead: Requires extra indirection.
