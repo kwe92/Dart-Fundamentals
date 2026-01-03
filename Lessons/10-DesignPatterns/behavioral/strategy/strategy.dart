@@ -2,7 +2,6 @@
 
 typedef Coord = double;
 
-/// Like a Widget
 class Component {
   final Coord natural;
   final Coord stretch;
@@ -12,7 +11,6 @@ class Component {
 }
 
 /// The Strategy Interface
-/// Encapsulates a linebreaking strategy
 abstract class Compositor {
   int compose(
     List<Coord> natural,
@@ -81,8 +79,8 @@ class ArrayCompositor implements Compositor {
 /// The Context
 class Composition {
   final Compositor _compositor;
-  final List<Component> _components = []; // The list of components
-  int _lineWidth = 100; // Example width
+  final List<Component> _components = [];
+  int _lineWidth = 100;
   List<int> _lineBreaks = [];
 
   int get componentCount => _components.length;
@@ -91,18 +89,14 @@ class Composition {
 
   void addComponent(Component c) => _components.add(c);
 
-  /// Prepares data and calls the strategy.
   void repair() {
-    // Prepare independent arrays to "take the data to the strategy"
     List<Coord> natural = _components.map((c) => c.natural).toList();
     List<Coord> stretch = _components.map((c) => c.stretch).toList();
     List<Coord> shrink = _components.map((c) => c.shrink).toList();
     int componentCount = _components.length;
 
-    // Prepare the buffer for the strategy to fill
     _lineBreaks.clear();
 
-    // Delegate to the Strategy
     int breakCount = _compositor.compose(
       natural,
       stretch,
@@ -112,102 +106,111 @@ class Composition {
       _lineBreaks,
     );
 
-    // Lay out components according to breaks (omitted)
     print("Layout complete. $_lineBreaks breaks generated.\n");
   }
 }
 
 void main() {
-  // 1. Composition with SimpleCompositor
   Composition quick = Composition(SimpleCompositor());
   quick.addComponent(Component(10, 2, 1));
   quick.repair();
 
-  // 2. Composition with TeXCompositor
   Composition slick = Composition(TeXCompositor());
   slick.addComponent(Component(10, 5, 2));
   slick.repair();
 
-  // 3. Composition with ArrayCompositor (passing specific state)
   Composition iconic = Composition(ArrayCompositor(100));
   iconic.addComponent(Component(10, 0, 0));
   iconic.repair();
 }
 
-// 1. Strategy Pattern Summary:
+// 1. Core Identity
 
-//  - Define a family of algorithms (Compositor interface and its implementations)
+      // Pattern Name: Strategy
+      // Category: Behavioral (Object)
+      // Also Known As: Policy
+      // Intent: Define a family of algorithms, encapsulate each one, and make them interchangeable.
+      // Strategy lets the algorithm vary independently from clients that use it.
 
-//  - Encapsulate each algorithm in its own class (SimpleCompositor, TeXCompositor, ArrayCompositor)
+// 2. The Problem & Solution (Motivation)
 
-//  - Make them interchangeable within the Context (Composition class / Client code)
+      // Scenario: A text editor needs to break a stream of text into lines. Different situations
+      // require different algorithms (Simple line-by-line, TeX global optimization, Fixed Arrays).
+      // Problem: Hard-wiring these algorithms into the Client (Composition) makes the class
+      // complex and hard to maintain. It also requires massive conditional logic (switch/case)
+      // to select the right one.
+      // Solution: Encapsulate each algorithm in a separate Strategy class (Compositor).
+      // The Client holds a reference to a Strategy object and forwards the work to it.
 
-//  - In a functional approach in a language where functions are treated as first class objects
-//    we can use function typedefs and pass functions instead of classes
+// 3. Participants
 
-//  - instead of conforming to the class type we conform to the function signature
+      // Strategy (Compositor):
+      
+            // - Declares an interface common to all supported algorithms.
+            // ConcreteStrategy (SimpleCompositor, TeXCompositor):
+            // - Implements the algorithm using the Strategy interface.
+      
+      // Context (Composition):
+            
+            // - Is configured with a ConcreteStrategy object.
+            // - Maintains a reference to a Strategy object.
+            // - Forwards requests to the Strategy.
+            // - Note: "Context" refers to the wrapper class triggering the logic, not the data passed in.
 
-//  - the functions should be stateless or we can use closures to capture state
+// 4. Consequences
 
-// 2. When to Use The Strategy Pattern
+      // Elimination of Conditionals: Replaces massive switch/case statements with polymorphism.
+      // Families of Algorithms: Defines a hierarchy of interchangeable behaviors.
+      // Alternative to Subclassing: Instead of subclassing the Context to change behavior
+      // (e.g., SimpleComposition, TeXComposition), you delegate to a separate object.
+      // Communication Overhead: The Strategy interface must be generic enough for all algorithms.
+      // Simple strategies might not use all the parameters passed to them.
+      // Increased Object Count: Introduces more classes and objects into the system.
 
-//     - Refactoring Conditionals: Use it to replace massive switch or if/else statements inside a class
+// 5. Implementation Issues
 
-//     - Behavioral Variations: Use it when many related classes differ only in their behavior (operation implementation)
+      // Data Access (Push vs. Pull):
 
-//     - Hidden Complexity: Use it when an algorithm uses data structures that the client shouldn't know about
+            // - Push: Context passes data as parameters (Decoupled, but might pass too much).
+            // - Pull: Context passes ITSELF to the Strategy (Coupled, but Strategy takes exactly what it needs).
+      
+      // Stateless Strategies: If strategies have no internal state, they can be shared (Flyweight).
+      
+      // Optional Strategy: Context can check if the Strategy is null; if so, execute default behavior.
 
-//     - Algorithm Variants: Use it to provide different space/time trade-offs (e.g., fast/inaccurate vs. slow/precise)
+// 6. Sample Code Use Case & Analysis
 
-// 3. Structure & Participants
+      // Scenario: Text Layout Engine (Line Breaking).
 
-//    - Strategy (Interface (OOP)/Function Signature (Functional)): Declares the common interface for all supported algorithms
+      // Encapsulation of Logic:
 
-//    - ConcreteStrategy: Implements the actual algorithms using the Strategy interface
+            // - `SimpleCompositor` ignores stretchability and just breaks lines.
+            // - `TeXCompositor` performs complex calculations using all metrics.
+            // - The `Composition` class (Context) doesn't know *how* the breaks are calculated.
 
-//    - Context: Maintains a reference to a Strategy object and is configured
-//               by the client with a specific ConcreteStrategy
-//               it then orwards requests to the Strategy
+      // Runtime Configuration:
 
-// 4. Benefits (Pros)
+            // - The Main function creates three identical `Composition` objects but injects different
+            // `Compositor` strategies. This demonstrates swapping behavior without changing code.
 
-//    - Alternatives to Subclassing: Unlike subclassing the Context directly (which hard-wires behavior and makes the class hard to understand)
-//                                   Strategy lets you vary the algorithm dynamically (run-time) and independently
+// 7. Functional Programming Perspective (Modern Approach)
 
-//    - Eliminates Conditionals: It removes the need for "hard-coded" decision logic (case statements) in the Context
+      // In languages where functions are "First Class Citizens" (like Dart):
 
-//    - Reuse: Hierarchies of Strategy classes allow algorithms to share common code via inheritance (in OOP varients)
+            // - You can use function typedefs instead of interfaces.
+            // - You can pass functions/lambdas instead of concrete classes.
+            // - Instead of conforming to a class type, you conform to a function signature.
+            // - State can be captured using closures rather than instance variables.
 
-// 5. Drawbacks (Cons)
+// 8. Key Architectural Insights (The "Why")
 
-//    - Client Burden: The client must understand how the strategies differ to select the right one
+// Composition over Inheritance:
 
-//    - Communication Overhead: The Strategy interface is generic; sometimes the Context passes parameters that a specific ConcreteStrategy doesn't use
+      // - Strategy is a specific decision to prefer Composition (has-a) over Inheritance (is-a).
+      // - Unlike subclassing, which hard-wires behavior, Strategy allows behavior to change
+      // dynamically without destroying the Context object.
 
-//    - Object Explosion: It increases the total number of objects in the application (though stateless strategies can be shared as Flyweights)
+// "Logic as Data":
 
-// 6. Implementation Nuances
-
-//    - Data Passing (Push vs. Pull):
-
-//       - Push: Context passes data as parameters (keeps them decoupled, but might pass too much data)
-
-//       - Pull: Context passes itself as an argument, and Strategy requests what it needs (more efficient, but tightly couples Strategy to Context)
-
-//    - Optional Strategies: The Context can be designed to check if a Strategy exists; if not, it executes a default behavior
-
-// The Context
-
-//  - Context refers to the class that triggers the strategy (the "Client" wrapper)
-//    not the data being passed into it
-
-//  -  In OOP varients the Context maintains a collection of Components and delegates layout to a Compositor
-
-// TODO: Edit bellow notes
-// In this context, the Strategy Pattern is simply the OOP way of treating algorithms as "First Class Citizens" (passing logic around as if it were data).
-// Summary
-// You are right that the mechanics are just polymorphism.
-// But the Strategy Pattern is a specific architectural decision to:
-// Prefer Composition (has-a) over Inheritance (is-a).
-// Encapsulate algorithms into separate objects.
-// Allow behavior to change dynamically without destroying the Context object.
+      // - The Strategy Pattern is simply the OOP way of treating algorithms as first-class citizens
+      // (passing logic around as if it were data).
