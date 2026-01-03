@@ -135,7 +135,7 @@ void main() {
 
             // - Use Decorator when the Component is lightweight and you want to wrap it.
             // - Use Strategy when the Component is heavyweight. Instead of wrapping the whole thing,
-            // the Component delegates specific tasks (like drawing a border) to a Strategy object.
+            //   the Component delegates specific tasks (like drawing a border) to a Strategy object.
 
       // Transparency:
 
