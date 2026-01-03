@@ -1,5 +1,3 @@
-// TODO: add a description of the state pattern
-
 class TCPOctetStream {
   final String data;
   TCPOctetStream(this.data);
@@ -70,14 +68,14 @@ class TCPEstablished extends TCPState {
 
 /// Concrete State: Listen
 class TCPListen extends TCPState {
-  static final TCPListen _instance = TCPListen._internal();
+  static final _instance = TCPListen._internal();
   TCPListen._internal();
   static TCPListen get instance => _instance;
 
   @override
-  void send(TCPConnection t) {
+  void send(TCPConnection connection) {
     print("TCPListen: Sending SYN, moving to Established...");
-    changeState(t, TCPEstablished.instance);
+    changeState(connection, TCPEstablished.instance);
   }
 
   @override
@@ -90,24 +88,24 @@ class TCPListen extends TCPState {
 
 /// Concrete State: Closed
 class TCPClosed extends TCPState {
-  static final TCPClosed _instance = TCPClosed._internal();
+  static final _instance = TCPClosed._internal();
   TCPClosed._internal();
   static TCPClosed get instance => _instance;
 
   @override
-  void activeOpen(TCPConnection t) {
+  void activeOpen(TCPConnection connection) {
     print("TCPClosed: Active Open. Sending SYN...");
-    changeState(t, TCPEstablished.instance);
+    changeState(connection, TCPEstablished.instance);
   }
 
   @override
-  void passiveOpen(TCPConnection t) {
+  void passiveOpen(TCPConnection connection) {
     print("TCPClosed: Passive Open. Listening...");
-    changeState(t, TCPListen.instance);
+    changeState(connection, TCPListen.instance);
   }
 
   @override
-  void send(TCPConnection t) {
+  void send(TCPConnection connection) {
     print("TCPClosed: Connection closed can not send, the connection must be established first...");
   }
 }
@@ -137,3 +135,82 @@ void main() {
 
   connection.send();
 }
+
+// 1. Core Identity
+
+      // Pattern Name: State
+      // Category: Behavioral (Object)
+      // Also Known As: Objects for States
+      // Intent: Allow an object to alter its behavior when its internal state changes. The object
+      // will appear to change its class.
+
+// 2. The Problem & Solution (Motivation)
+
+      // Scenario: A TCP Connection behaves differently depending on its status (Established,
+      // Listening, Closed).
+      // Problem: Monolithic conditional logic (if-else or switch-case statements) scattered
+      // throughout methods like Open() or Send() is hard to maintain and extend.
+      // Solution: Introduce an abstract class (TCPState) to represent states. Each specific state
+      // (TCPClosed, TCPEstablished) becomes a subclass that implements the behavior valid
+      // for that state. The Context (TCPConnection) delegates requests to its current state object.
+
+// 3. Participants
+
+      // Context (TCPConnection):
+
+            // - Defines the interface of interest to clients.
+            // - Maintains an instance of a ConcreteState subclass that defines the current state.
+
+      // State (TCPState):
+
+            // - Defines an interface for encapsulating behavior associated with a particular state.
+
+      // ConcreteState (TCPClosed, TCPEstablished):
+
+           // - Implements behavior associated with a state of the Context.
+
+// 4. Consequences
+
+      // Localization: Localizes state-specific behavior. New states are just new classes.
+      // Explicitness: Makes state transitions explicit (reassigning a variable) rather than
+      // implicit (changing data values inside variables).
+      // Structure: Replaces large monolithic conditional statements with object polymorphism.
+      // Class Explosion: Increases the number of classes.
+      // Sharing: State objects with no internal instance variables (stateless) can be shared
+      // among Contexts (acting as Flyweights/Singletons).
+
+// 5. Implementation Issues
+
+      // Transitions: Who defines the next state:
+
+      // - Option A: The Context handles logic (Fixed/Rigid).
+
+      // - Option B: The State subclasses handle logic (Flexible/Decentralized). The sample
+      //   code uses this approach (State calls `context.changeState(newState)`).
+
+      // Creation vs. Reuse:
+
+          // - Create state objects on demand and destroy them (low memory, high CPU).
+          // - Create all state objects once and reuse them (high memory, zero CPU transition cost).
+
+// 6. Sample Code Use Case & Analysis
+
+      // Scenario: A TCP Connection Life-cycle.
+
+          // Delegation Model (The "Magic"):
+
+          // - The Client calls `connection.activeOpen()`.
+          // - The Connection delegates: `_state.activeOpen(this)`.
+          // - If `_state` is currently `TCPClosed`:
+          // - It prints "Active Open...".
+          // - It calls `changeState(connection, TCPEstablished.instance)`.
+          // - Now `_state` is `TCPEstablished`.
+          // - The next call `connection.transmit()` is handled by `TCPEstablished`, which processes data.
+          // - If the client calls `close()`, `TCPEstablished` handles the cleanup and transitions
+          //   back to `TCPClosed`.
+
+          // Behavioral Change:
+          
+          // - Notice that calling `connection.send()` when closed prints an error ("Cannot send").
+          // - Calling `connection.send()` when established prints "Sending data...".
+          // - The Context object (Connection) effectively "changed its class" behavior at runtime.
