@@ -43,6 +43,26 @@ void main() {
       // Intent: To reuse behavior by forwarding a responsibility to another object
       // (the Delegate) instead of inheriting it from a superclass.
 
+      // State Pattern: High-Level Definition
+
+      // In the simplest terms, the State pattern is a strict dynamic delegate that knows about other delegates.
+
+      // 1. "Strict Dynamic Delegate"
+
+      //    - Dynamic: The "Delegate" (State object) is swapped out at runtime, changing how the object behaves instantly.
+      //    - Strict: The Context passes this to the Delegate (e.g., state.handle(this)). The Delegate modifies the Context, not just itself.
+
+      // 2. "Knows About Other Delegates"
+
+      //    - The Key Differentiator: This is the primary feature that separates State from Strategy.
+      //    - Strategy: The delegates (algorithms) are isolated; they do not know each other exist.
+      //    - State: State A specifically knows that the next step is State B. It triggers the transition.
+
+      // 3. The Litmus Test
+
+      //    - If the delegate says: "I'm done, here is my result," it is a Strategy.
+      //    - If the delegate says: "I'm done, become this thing next," it is a State.
+
 // 2. The Problem & Solution (Motivation)
 
       // Scenario: Multiple unrelated classes (Window, Image) need to share specific
@@ -79,8 +99,10 @@ void main() {
       // A. Strict Delegation: The Delegator passes this to the Delegate.
       // The Delegate performs operations on the Delegator instance specifically.
       // (Effective simulation of method overriding).
+      
       // B. Simple Forwarding: The Delegator calls a method on the helper without
       // passing this. The helper acts independently of the caller's context.
+      
       // C. Dynamic Delegation: The delegate object is injected or swapped at runtime
       // (Foundation of the Strategy and State patterns).
 
@@ -120,3 +142,4 @@ void main() {
             // - In this specific example, the delegate is hardcoded (= RectangleDelegate()),
             // creating a tight coupling suitable for static helper logic.
             // - If the delegate were passed via constructor, it would become the Strategy Pattern.
+
