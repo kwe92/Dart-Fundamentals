@@ -1,5 +1,5 @@
-import 'helper_functions.dart';
-import 'maze_components.dart';
+import '../utils/helper_functions.dart';
+import '../utils/maze_components.dart';
 
 abstract class MazeBuilder {
   Maze get currentMaze;
