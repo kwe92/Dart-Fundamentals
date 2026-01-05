@@ -1,148 +1,18 @@
 import '../utils/helper_functions.dart';
+import '../utils/prototype_maze_components.dart';
 
-typedef Side = (Direction, MapSite?);
-
-// Interface for things that can be cloned
-abstract class Cloneable<T> {
-  T clone();
-}
-
-// Interface For Products like (Room, Wall, Door)
-abstract class MapSite<T> implements Cloneable<T> {
-  void enter();
-}
-
-class Room implements MapSite<Room> {
-  late final int roomNo;
-
-  List<Side> _sides = [(Direction.north, null), (Direction.east, null), (Direction.south, null), (Direction.west, null)];
-
-  List<Side> get sides => _sides;
-
-  Room();
-
-  // initialize separates internal state from object creation
-  void initialize(int roomNo) => this.roomNo = roomNo;
-
-  @override
-  String toString() {
-    // defensive coding practice for debug printing late variables
-    try {
-      return 'Room(roomNo: $roomNo)';
-    } catch (e) {
-      return 'Room(Uninitialized)';
-    }
-  }
-
-  void enter() {
-    // TODO: implement method
-  }
-
-  Room clone() => Room().._sides = List.from(this._sides);
-
-  void setSide(Direction direction, MapSite element) {
-    final index = _sides.indexWhere((side) => side.$1 == direction);
-    if (index != -1) {
-      _sides[index] = (direction, element);
-    }
-  }
-
-  MapSite? getSide(Direction direction) {
-    final record = _sides.firstWhere((side) => side.$1 == direction, // find the first matching record
-        orElse: () => (direction, null)); // orElse return default
-    return record.$2;
-  }
-}
-
-class Door implements MapSite<Door> {
-  late final Room r1;
-  late final Room r2;
-  bool _isOpen = true;
-
-  bool get isOpen => _isOpen;
-
-  Door();
-
-  void initialize(Room r1, Room r2, [bool? isOpen]) {
-    if (r1 == r2) {
-      throw Exception('A door cannot connect a room to itself.');
-    }
-    this.r1 = r1;
-    this.r2 = r2;
-    this._isOpen = isOpen != null ? isOpen : this.isOpen;
-  }
-
-  void enter() {}
-
-  Door clone() => Door().._isOpen = this.isOpen;
-}
-
-class Wall implements MapSite<Wall> {
-  Wall();
-
-  @override // @override can be omitted as in the above Products (Classes)
-  void enter() {}
-
-  @override
-  Wall clone() => Wall();
-}
-
-class Spell {
-  final name;
-  Spell({required this.name});
-
-  @override
-  String toString() => 'Spell(name: $name)';
-}
-
-class EnchantedRoom extends Room {
-  final List<Spell> _roomSpells = [Spell(name: 'Enhanced map'), Spell(name: 'Intangibility'), Spell(name: 'Unlock IV')];
-  late final Spell activeSpell;
-
-  EnchantedRoom();
-
-  @override
-  void initialize(int roomNo) => this
-    ..roomNo = roomNo
-    ..activeSpell = getRandom([for (int i = 0; i < _roomSpells.length; i++) _roomSpells[i]]);
-
-  @override
-  EnchantedRoom clone() => EnchantedRoom();
-
-  @override
-  String toString() => 'Room(roomNo: $roomNo, activeSpell: $activeSpell)';
-}
-
-class Maze implements Cloneable<Maze> {
-  List<Room> _rooms = [];
-
-  List<Room> get rooms => _rooms;
-
-  Maze clone() => Maze();
-
-  void addRoom(Room room) {
-    final isDuplicateRoomNo = _rooms.any((r) => r.roomNo == room.roomNo);
-    if (!isDuplicateRoomNo) {
-      _rooms.add(room);
-    } else {
-      throw Exception('$room is already a current room in the maze.');
-    }
-  }
-
-  int getNextRoomId() => _rooms.isEmpty ? 1 : _rooms.last.roomNo + 1;
-}
-
+// Creator Class
 class MazeFactory {
   final Maze _prototypeMaze;
   final Room _prototypeRoom;
   final Wall _prototypeWall;
   final Door _prototypeDoor;
 
-  MazeFactory({required Maze maze, required Room room, required Door door, required Wall wall})
-      : _prototypeMaze = maze,
-        _prototypeRoom = room,
-        _prototypeWall = wall,
-        _prototypeDoor = door;
+  MazeFactory({Maze? maze, Room? room, Door? door, Wall? wall})
+      : _prototypeMaze = maze ?? Maze(),
+        _prototypeRoom = room ?? Room(),
+        _prototypeWall = wall ?? Wall(),
+        _prototypeDoor = door ?? Door();
 
   Maze makeMaze() => _prototypeMaze.clone();
 
@@ -183,7 +53,7 @@ class MazeGame {
 }
 
 void main() {
-  final mazeFactory = MazeFactory(maze: Maze(), room: EnchantedRoom(), door: Door(), wall: Wall());
+  final mazeFactory = MazeFactory(room: EnchantedRoom());
   final maze = MazeGame.createMaze(mazeFactory: mazeFactory);
 
   print("Maze created with ${maze.rooms.length} rooms.");
@@ -194,158 +64,110 @@ void main() {
   }
 }
 
-// Some SOLID principles covered in the sample code
+// 1. Core Identity
 
-  // Interface Segregation Principle (ISP) -  Segregating Interfaces
+      // Pattern Name: Prototype
+      // Category: Creational (Object)
+      // Intent: Specify the kinds of objects to create using a prototypical instance, and
+      // create new objects by copying (cloning) this prototype.
+      // Core Concept: Treat object creation as a "copy" operation rather than a "new" operation.
 
-  //   - no class should implement methods it does not use
-  //     as it is better to have many small interfaces rather
-  //     than one general purpose interface
+// 2. The Problem & Solution (Motivation)
 
-  // - applied Interface Segregation by separating Cloneable (copying capability) from MapSite (game behavior)
-  //   Maze implements Cloneable but not MapSite, as it is a container, not a location
+      // Scenario: A MazeFactory needs to create different kinds of objects (Standard Room vs.
+      // Enchanted Room).
+      // Problem: In Abstract Factory, changing products requires creating a new Factory subclass
+      // (e.g., `EnchantedMazeFactory` class). This leads to a parallel class hierarchy.
+      // Solution: Parameterize a single `MazeFactory` class with *instances* (Prototypes).
+      // The Factory remains a single concrete class; we simply configure it with different
+      // objects at runtime.
 
-  // Separation of Concerns (Single Responsibility)
+// 3. Participants (Mapped to Dart Sample)
 
-  //  - Decoupling:
-  
-  //    - Creation (clone): the clone method is responsible for structual copying of shared state
-  
-  //    - Configuration (initialize): initialization is responsible for injecting unique state
-  
-  //    - Representation (_prototypeProduct / class Product): the code that defines WHAT the object contains and HOW it holds data
-  
-  //       - NOTE: class Product is generic and means any object instance returned to the Client
-  //               through means that are typically hidden from the Client (Factory Methods, Builders, Prototypes, etc)
+      // Prototype Interface (Cloneable<T> / MapSite<T>):
 
-// PROTOTYPE
+      // - Declares the interface for cloning.
+      // - Applies Interface Segregation Principle (ISP): Separation of Copying capability.
 
-// Intent
+      // Concrete Prototype (Room, EnchantedRoom, Door):
 
-//  - Specify the kinds of objects to create using a prototypical instance
-//    and create new objects by copying (cloning) this prototype
-//    the Prototype pattern defers the instantiation logic to the object itself
-//    rather than relying on the factory class to know the specific class name
-//    (e.g. Room _prototypeRoom could be a Room or an EnchantedRoom the factory has no idea as long as the contract (Interface / Base Class) it expects is adhered to)
+      // - Implements the clone() operation.
+      // - Acts as a Template: These objects are never inserted into the game; they exist
+      //   solely to spawn copies.
 
-// Participants (Mapped to Sample Code)
+      // Client / Manager (MazeFactory):
 
-//  - Prototype Interface: Cloneable<T> and MapSite<T>
+      // - As Client: Creates new objects by asking the prototype to clone itself.
+      // - As Manager: Acts as a registry/store for the prototypes.
 
-//      - Declares the interface for cloning (clone())
+      // Product:
 
-//  - Concrete Prototype: Room, Door, Wall, Maze
+      // - The distinct instances resulting from the manufacturing process (Clone + Initialize).
 
-//     - Implements the clone() operation to return a copy of itself
+// 4. Consequences
 
-//     - These instances act as templates, the objects passed to the factory constructor
-//       are never inserted into the game; they exist solely to spawn copies
+      // Reduced Subclassing: You don't need a hierarchy of Creator classes. One `MazeFactory`
+      // class handles ALL game variations.
+      // Dynamic Configuration: You can add/swap prototypes at run-time (e.g., loading a
+      // plugin) without recompiling the Factory logic.
+      // Liability - Cloning Complexity: Implementing clone() is difficult (Deep vs. Shallow copy).
+      // Liability - Initialization States: Object exists briefly in an uninitialized state.
 
-//  - Client / Prototype Manager: MazeFactory
+// 5. Implementation Issues (Dart Specifics)
 
-//     - As Client: It creates new objects by asking the prototype to clone itself: _prototypeRoom.clone()
+      // The Uniform Interface Problem:
 
-//     - As Manager: It acts as a registry (store) for the prototypes (_prototypeRoom, etc.)
-//       in complex systems, this registry allows dynamic registration of new prototypes at runtime
+            // - clone() cannot accept arguments.
+            // - Solution: Separate Creation (clone) from Configuration (initialize).
 
-//  - Product: The objects returned by makeRoom, makeDoor, etc
+      // Deep Copy Logic:
 
-//     - These are the distinct instances resulting from the manufacturing process
-//       (the clone plus the initialization)
+            // - Essential for aggregate objects (`List.from(this._sides)`).
 
-// Core Motivation
+      // Dart Syntax Nuances:
 
-//  - In previous patterns, changing the type of room (e.g., to EnchantedRoom)
-//    required creating a new Factory subclass (EnchantedMazeFactory) that hard-codes the class name
+            // - late final: Allows clean instantiation of the prototype.
+            // - Cascade Operator (..): Fluently chains creation and configuration.
 
-//  - With the Prototype pattern, the MazeFactory class remains unchanged
-//    we simply configure it with different prototypes (templates) at runtime via Composition
+// 6. Structural Insight: The Two-Level Injection Architecture
 
-//  - Standard Game: MazeFactory(room: Room()...)
+      // This pattern utilizes two distinct levels of Dependency Injection to achieve
+      // total flexibility without subclassing:
 
-//  - Magic Game: MazeFactory(room: EnchantedRoom()...)
+            // Level 1: Method Injection (Into the Game)
 
-//  - This shifts the configuration from Class Inheritance (defining new factory classes)
-//    to Object Composition (passing different objects to the same factory)
+                  // - `MazeGame.createMaze({required MazeFactory factory})`
+                  // - The Game accepts *any* factory. This is similar to Abstract Factory.
 
-// Key Implementation Nuances (Dart Specific)
+            // Level 2: Constructor Injection (Into the Factory)
 
-//  - The Uniform Interface Problem (Creation vs. Configuration):
+                  // - `MazeFactory({required Room prototypeRoom, ...})`
+                  // - This is the Critical Difference.
+                  // - In Abstract Factory, the products are hard-coded into the Factory Subclass.
+                  // - In Prototype, the products are injected into the Factory Instance.
 
-//     - A major challenge in the Prototype pattern is that clone() cannot accept arguments
-//       because different products need different data
-//       this is solved by separating Creation (clone) from Configuration (initialize)
+      // Result: Total Decoupling
 
-//     - Creation (clone): Creates the shell and copies structure / shared state (e.g., _sides)
+            // - To change from "Standard" to "Enchanted":
+            // - Abstract Factory: You must write a new class `EnchantedMazeFactory`.
+            // - Prototype: You simply pass different arguments to the `MazeFactory` constructor.
+            // - The `MazeFactory` class is never subclassed; it is reused 100%.
 
-//     - Configuration (initialize): Injects unique state (e.g., roomNo)
+// 7. Sample Code Use Case & Analysis
 
-//  - late final:
+      // Scenario: Maze Construction via Cloning.
 
-//     - Allows the Prototype to be instantiated cleanly (Room()) without dummy constructor arguments
-//       while still ensuring the final product's ID is immutable once initialized
+            // The Generic Factory (The "Magic"):
 
-//  - The Cascade Operator (..):
+                  // - The `MazeFactory` is concrete, not abstract.
+                  // - In `main()`, we pass `room: EnchantedRoom()`.
 
-//     - Used in makeRoom (_prototypeRoom.clone()..initialize(roomNo))
-//       which fluently chains the Creation and Configuration steps into a single returnable expression
+            // The Cloning Process:
 
-//  - Defensive Coding:
+                  // - When `MazeGame` calls `mazeFactory.makeRoom()`, the factory runs `_prototypeRoom.clone()`.
+                  // - Since `_prototypeRoom` is an `EnchantedRoom`, the clone method returns a new
+                  // `EnchantedRoom` with a random spell.
 
-//     - Room.toString() uses try/catch to handle cases where a prototype
-//      (which has an uninitialized late final ID) might be printed during debugging
+            // Defensive Coding:
 
-// Benefits
-
-//  - Reduced Subclassing
-
-//     - You do not need a parallel hierarchy of Factory classes (Standard Maze Products; parallel hierarchy: MazeFactory Class, Enchanted Maze Products; parallel hierarchy: EnchantedMazeFactory Class, etc)
-//       one Factory Class handles all game variations
-
-//  - Runtime Flexibility:
-
-//     - You can add or swap prototypes dynamically (at run-time by creating a Maze type depending on user input)
-//       without recompiling the Factory logic
-
-//  - Decoupling (Program to an interface, not an implementation): 
-
-//     - The Client (MazeFactory) knows nothing about the concrete classes (EnchantedRoom, DoorNeedingSpell, etc)
-//       it only knows that the objects implement Cloneable or a BaseClass (Room, Door, Wall)
-
-//  - Reduced Product Classes: 
-
-//    - You can reduce the number of classes in your system by registering
-//      different instances of the same class (configured differently) as separate prototypes
-
-// Liabilities
-
-//  - Cloning Complexity (Deep vs. Shallow):
-
-//     - Implementing clone() correctly is the hardest part of the pattern
-//       which requires deciding between Shallow Copies (sharing references)
-//       and Deep Copies (duplicating everything)
-
-//  - Sample Code Solution to Cloning Complexity:
-
-//     - Implements a Structure-Deep Copy for Room by using List.from(this._sides)
-//       ensuring that if you add a wall to a specific room instance
-//       it does not accidentally add that wall to the prototype or other rooms
-
-//  - Initialization States:
-
-//     - Because the creation is split into two steps (clone and initialize)
-//       there is a brief window where the object exists in an invalid or uninitialized state
-//       (Handled in your code via late checks)
-
-//    - The Factory or Builder must initialize objects
-//      before handing them off to a client
-
-// Summary
-
-//  - The Prototype pattern is about creating objects by copying existing ones
-
-//  - Allowing a system to be independent of how its products are created, composed, and represented
-//    by treating object creation as a "copy" operation rather than a "new" operation
-
-//  - It leverages object composition and dependency injection to configure systems at runtime
-//    decoupling the client from concrete types and facilitating easier testing through mockable prototypes
+                  // - `Room.toString()` uses try/catch to handle printing of uninitialized prototypes.
