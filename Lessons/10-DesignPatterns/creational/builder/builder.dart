@@ -11,13 +11,8 @@ abstract class MazeBuilder {
   void buildDoor(int roomFrom, int roomTo);
 }
 
-// REPRESENTATION
-
-//  - Where is it? Inside StandardMazeBuilder
-//  - What is it? It is the specific classes (Room, Wall, Door) and
-//    how they are stored in memory (List, variables)
-
-class StandardMazeBuilder extends MazeBuilder {
+// Concrete Builder (REPRESENTATION)
+class StandardMazeBuilder implements MazeBuilder {
   late final Maze _maze;
 
   @override
@@ -54,16 +49,11 @@ class StandardMazeBuilder extends MazeBuilder {
   }
 }
 
-// Director
+// DIRECTOR
 //  - Knows the order of operations
-//  - Does not know what the maze is actually made of (Room, EnchantedRoom, BombedRoom, etc)
 class MazeGame {
   // CONSTRUCTION
-  //  - the that code dictates the logic/sequence (the operations must happen in a specific order)
-  //  - Where is it? Inside MazeGame.createMaze
-  //  -  What is it? The sequence of method calls
   static Maze createMaze({required MazeBuilder mazeBuilder}) {
-    // Directions
     mazeBuilder.buildMaze(); // Step 1: Start
     mazeBuilder.buildRoom(); // Step 2: Add a room
     mazeBuilder.buildRoom(); // Step 3: Add another room
@@ -73,11 +63,6 @@ class MazeGame {
     return mazeBuilder.currentMaze;
   }
 }
-// Construction vs Representation
-
-//  - If you pass EnchantedMazeBuilder to the MazeGame
-//    the Construction (the steps in MazeGame) stays exactly the same
-//    but the Representation changes completely
 
 void main() {
   final mazeBuilder = StandardMazeBuilder();
@@ -90,81 +75,93 @@ void main() {
   }
 }
 
-// Builder
+// 1. Core Identity
 
-// Intent
+      // Pattern Name: Builder
+      // Category: Creational (Object)
+      // Intent: Separate the construction of a complex object from its representation so that
+      // the same construction process can create different representations.
 
-// - Separate the construction of a complex object (Maze) from its representation
-//   allowing the same construction process (the sequence of steps in MazeGame)
-//   to create different representations (e.g. StandardMazeBuilder vs. EnchantedMazeBuilder)
+// 2. The Problem & Solution (Motivation)
 
-// Participants (Mapped to Sample Code)
+      // Scenario: A Game Engine needs to construct complex Maze levels consisting of interconnected
+      // Rooms, Doors, and Walls.
+      // Problem: The logic to assemble these parts is complex. For example, every Room needs
+      // exactly 4 walls, and connecting a Door requires calculating directional vectors (North vs South)
+      // and updating two different Room objects. Placing this "messy" math inside the Game logic
+      // makes it hard to read and hard to change (e.g., if we wanted to generate a JSON save file instead).
+      // Solution: Create a `MazeBuilder` interface. The `MazeGame` (Director) calls generic
+      // high-level steps like `buildRoom()` or `buildDoor()`. The `StandardMazeBuilder` handles
+      // the specific details of assembly and state management.
 
-//  - Builder: MazeBuilder
-//     - Specifies the abstract interface (buildMaze, buildRoom, buildDoor)
-//       for creating parts of the Product (Maze)
+// 3. Participants (Mapped to Dart Sample)
 
-//  - ConcreteBuilder: StandardMazeBuilder
+      // Builder (MazeBuilder):
+      
+           // - Specifies the abstract interface (buildMaze, buildRoom) for creating parts.
+      
+      // ConcreteBuilder (StandardMazeBuilder):
+            
+            // - Constructs and assembles parts (e.g., initializes 4 Walls, resolves side connections).
+            // - Stateful: Keeps track of the representation being built (`_maze`) locally.
+            // - Exposes the result (`currentMaze`) only when finished.
+            
+      // Director (MazeGame):
+            
+            // - Constructs the object using the Builder interface.
+            // - Defines the algorithm/sequence: "Start" -> "Room" -> "Room" -> "Door".
+      
+      // Product (Maze):
+      
+            // - The complex object under construction.
 
-//     - Constructs and assembles parts of the product
-//       (e.g. creates Room, initializes 4 Walls, resolves side connections)
+// 4. Consequences
 
-//     - Keeps track of the representation being built (_maze)
+      // Varying Internal Representation: You can change the product simply by swapping Builders.
 
-//     - Exposes the result via currentMaze 
+      // - Example: You could write a `JSONMazeBuilder` that writes text strings instead of
+      //   objects. It would work with the exact same `MazeGame` logic but produce JSON output.
+      //   Isolation of Code: The details of how Wall objects are instantiated and assigned to
+      //   Room sides are entirely encapsulated in the Builder.
+      //   Liability - Coupling to Construction Order: The Director *must* know the logical
+      //   constraints of the product.
 
-//  - Director: MazeGame (specifically the createMaze method)
+      // - Risk: If `MazeGame` calls `buildDoor` before `buildRoom`, the Builder logic
+      // (finding indices) will crash.
 
-//     - Constructs the object using the Builder interface
+// 5. Implementation Issues
 
-      // It defines the algorithm or sequence of construction: "Start Maze" 
-      // →
-      // →
-      //  "Room" 
-      // →
-      // →
-      //  "Room" 
-      // →
-      // →
-      //  "Door"
+      // Assembly Model: Results can be appended to a stream or constructed in a graph.
+      // No Abstract Product Class: Products from different builders (JSON vs. Objects) may
+      // share no common interface.
 
-// - Product: Maze
+// 6. Comparison with Related Patterns
 
-//    - The complex object under construction
+      // Abstract Factory:
 
-// Core Motivation
+            // - Client Responsibility: The Client receives parts and must link them together.
+            // - Return: Returns product immediately.
 
-//  - The MazeGame needs a maze with two rooms and a connecting door
-//    However, the logic to ensure a room has 4 walls
-//    or the math required to orient a door correctly (finding indexes, calculating oppositeDirection)
-//    is complex assembly logic, by using a Builder, MazeGame simply issues high-level commands
-//    ("build a door between 1 and 2"), and the StandardMazeBuilder handles the messy details of internal assembly
+      // Builder:
 
-// Key Variations
+            // - Builder Responsibility: The Builder handles the linking. The Client just says "Connect A to B".
+            // - Return: Returns product at the end.
 
-//  - Stateful Construction: The StandardMazeBuilder holds the _maze instance locally
-//    while it is being constructed. The result is only retrieved
-//    via currentMaze once the Director (MazeGame.createMaze) finishes the sequence
+// 7. Sample Code Use Case & Analysis
 
-//  - Complex Assembly Hiding: Unlike Abstract Factory, where the client links objects the Builder
-//    here handles the linking Notice buildDoor in StandardMazeBuilder contains logic to
-//    search the room list and calculate directional vectors. The Director is shielded from this
+      // Scenario: Maze Construction with Complex Logic.
 
-// Benefits
+      // Core Motivation (Why use Builder here?):
 
-//  - Finer Control: The process is step-by-step the Director controls
-//    exactly when a room is added or a door is built
+            // - The `MazeGame` needs a maze with rooms and doors.
+            // - However, the math required to orient a door correctly (finding indexes, calculating
+            //   vectors/oppositeDirection) is complex.
+            // - By using a Builder, `MazeGame` simply issues high-level commands ("build a door"),
+            //   and the `StandardMazeBuilder` handles the complex assembly logic.
 
-//  - Isolation of Code: The details of how Wall objects are instantiated and assigned to Room sides
-//    are entirely encapsulated in StandardMazeBuilder
-//    the MazeGame contains no loops or array manipulation logic
+      // Construction vs. Representation:
 
-//  - Reusability: You could write a JSONMazeBuilder that writes text strings instead of objects
-//    passed to the exact same MazeGame and it would produce
-//    a valid JSON output without changing the Game logic
-
-// Liabilities
-
-//  - Coupling to Construction Order: The Director (MazeGame) must know the logical constraints of the product
-//    For example, it must call buildRoom before buildDoor
-//    or the StandardMazeBuilder logic (finding indices) will crash
+            // - Construction: The steps in `MazeGame` (Step 1..4).
+            // - Representation: The object `_maze` inside the Builder.
+            // - If you pass `EnchantedMazeBuilder`, the Construction steps stay exactly the same,
+            //   but the Representation changes completely.
