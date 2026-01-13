@@ -1,5 +1,5 @@
-import '../utils/helper_functions.dart';
-import '../utils/prototype_maze_components.dart';
+import '../../utils/helper_functions.dart';
+import '../../utils/prototype_maze_components.dart';
 
 // Creator Class
 class MazeFactory {

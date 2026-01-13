@@ -1,6 +1,6 @@
-import '../utils/helper_functions.dart';
-import '../utils/maze_components.dart';
-import '../utils/enchanted_maze_components.dart';
+import '../../utils/helper_functions.dart';
+import '../../utils/maze_components.dart';
+import '../../utils/enchanted_maze_components.dart';
 
 // Base Creator
 class MazeGame {

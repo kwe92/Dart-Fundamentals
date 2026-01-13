@@ -1,4 +1,4 @@
-import '../utils/helper_functions.dart';
+import 'helper_functions.dart';
 
 typedef Side = (Direction, MapSite?);
 
