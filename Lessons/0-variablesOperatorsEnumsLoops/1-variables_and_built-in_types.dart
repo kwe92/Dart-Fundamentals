@@ -6,6 +6,7 @@
 void main() {
   // type is inferred to be int
   const x = 3;
+  const xx = 5;
 
   // type is inferred to be double
   final y = 2.0;
