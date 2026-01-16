@@ -1,3 +1,5 @@
+// creating objects to represent actions
+
 class Document {
   final String name;
   Document(this.name);
@@ -17,8 +19,12 @@ class Application {
   void addDocument(Document doc) => _docs.add(doc);
 
   void removeDocument(String name) {
-    final document = _docs.firstWhere((doc) => doc.name.toLowerCase() == name.toLowerCase(), orElse: () => Document(""));
-    _docs.remove(document);
+    final documentNameMatchs = (Document doc) => doc.name.toLowerCase() == name.toLowerCase();
+    final emptyDocument = () => Document("");
+    final document = _docs.firstWhere(documentNameMatchs, orElse: emptyDocument);
+    if (document.name.isNotEmpty) {
+      _docs.remove(document);
+    }
   }
 
   Document latestDocument() => _docs.last;
@@ -68,6 +74,7 @@ class PasteCommand extends Command {
   }
 }
 
+// Composition pattern
 class MacroCommand extends Command {
   List<Command> _commands = [];
 
@@ -96,4 +103,8 @@ void main() {
   final application = Application();
   commands.addMany([PasteCommand(application), OpenCommand(application), PasteCommand(application)]);
   commands.execute();
+
+  print(application.documents);
+  application.removeDocument('my_document');
+  print(application.documents);
 }
