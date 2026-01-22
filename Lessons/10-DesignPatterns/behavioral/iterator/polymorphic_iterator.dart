@@ -1,5 +1,6 @@
 // ignore_for_file: unused_field
-// TODO: add notes on Polymorphic external iterator, also what makes this example polymorphic
+// TODO: add notes on example and how it compares to modern day coding
+// Polymorphic External Iterator Example
 
 abstract class AbstractIterator<T> {
   T get current; // the current item
@@ -19,7 +20,7 @@ class SimpleList<T> implements AbstractContainer<T> {
   int get length => _items.length;
 
   @override
-  AbstractIterator<T> get iterator => SimpleListIterator(this);
+  AbstractIterator<T> get iterator => SimpleListIterator(this); // Factory method in the form of a computed variable (getter method)
 
   @override
   void add(T item) => _items.add(item);

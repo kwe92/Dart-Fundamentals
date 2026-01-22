@@ -1,3 +1,5 @@
+// TODO: add notes
+
 // creating objects to represent actions
 
 class Document {

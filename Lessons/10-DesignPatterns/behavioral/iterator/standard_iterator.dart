@@ -1,3 +1,5 @@
+// Standard External Iterator Example
+// TODO: add notes on example and how it compares to modern day coding
 class Employee {
   final String name;
   Employee(this.name);
