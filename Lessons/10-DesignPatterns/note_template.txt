@@ -1,0 +1,26 @@
+
+// 1. Core Identity
+
+      // Pattern Name: 
+      // Category: 
+      // Intent:
+
+// 2. The Problem & Solution (Motivation)
+
+      // Scenario:
+      // Problem: 
+      // Solution:
+
+// 3. Participants
+
+
+// 4. Consequences
+
+
+// 5. Implementation Issues
+
+
+// 6. Related Patterns
+
+
+// 7. Sample Code Use Case & Analysis (Optional)
