@@ -28,13 +28,22 @@ class EnchantedMazeFactory extends MazeFactory {
 }
 
 class MazeGame {
-  MazeGame();
-  static Maze createMaze({required MazeFactory mazeFactory}) {
-    final maze = mazeFactory.makeMaze();
-    final r1 = mazeFactory.makeRoom(roomNo: Room.currentRoomNums.length > 0 ? Room.currentRoomNums.last + 1 : 1);
-    final r2 = mazeFactory.makeRoom(roomNo: Room.currentRoomNums.last + 1);
-    final door = mazeFactory.makeDoor(r1: r1, r2: r2);
-    final walls = [for (int i = 0; i < 6; i++) mazeFactory.makeWall()];
+  MazeFactory _mazeFactory;
+  int _level = 1;
+  int get currentLevel => _level;
+
+  MazeGame(MazeFactory mazeFactory) : _mazeFactory = mazeFactory;
+
+  void changeBehavior(MazeFactory mazeFactory) => _mazeFactory = mazeFactory;
+
+  void nextLevel() => _level += 1;
+
+  Maze createMaze() {
+    final maze = _mazeFactory.makeMaze();
+    final r1 = _mazeFactory.makeRoom(roomNo: Room.currentRoomNums.length > 0 ? Room.currentRoomNums.last + 1 : 1);
+    final r2 = _mazeFactory.makeRoom(roomNo: Room.currentRoomNums.last + 1);
+    final door = _mazeFactory.makeDoor(r1: r1, r2: r2);
+    final walls = [for (int i = 0; i < 6; i++) _mazeFactory.makeWall()];
     r1.setSide(Direction.north, walls[0]);
     r1.setSide(Direction.east, door);
     r1.setSide(Direction.south, walls[1]);
@@ -57,20 +66,26 @@ void main() {
   final enchantedMazeFactory = EnchantedMazeFactory(
       roomSpells: [Spell(name: 'Enhanced map'), Spell(name: 'Intangibility'), Spell(name: 'Unlock IV')],
       doorSpells: [Spell(name: 'Lock I'), Spell(name: 'Lock III'), Spell(name: 'Lock V')]);
-  final maze = MazeGame.createMaze(mazeFactory: mazeFactory);
-  final enchanteMaze = MazeGame.createMaze(mazeFactory: enchantedMazeFactory);
+
+  final game = MazeGame(mazeFactory);
+
+  // User starts game on standard maze
+  final maze = game.createMaze();
+  print('Currently on level: ${game.currentLevel}');
+
+  // user goes to level 2 and now is in an enchanted maze
+  game.nextLevel();
+
+  game.changeBehavior(enchantedMazeFactory); // Setter Injection
+
+  final enchanteMaze = game.createMaze(); // runtime polymorphism: same object different behaviour as the program is running
 
   print(maze.rooms);
   print(enchanteMaze.rooms);
-
-  // for(var room in maze.rooms){
-  //   print(room.sides);
-  // }
-
-  // for(var room in enchanteMaze.rooms){
-  //   print(room.sides);
-  // }
+  print('Currently on level: ${game.currentLevel}'); // state-preservation
 }
+
+// Using Setter Injection to achieve state-preserving runtime polymorphism.
 
 // 1. Core Identity
 

@@ -2,13 +2,14 @@ import '../../utils/helper_functions.dart';
 import '../../utils/maze_components.dart';
 import '../../utils/enchanted_maze_components.dart';
 
-// Base Creator
+// Base Class: Creator - (Abstract Interface - API)
 class MazeGame {
   Maze makeMaze() => Maze();
   Wall makeWall() => Wall();
   Room makeRoom({required int roomNo}) => Room(roomNo: roomNo);
   Door makeDoor({required Room r1, required Room r2}) => Door(r1: r1, r2: r2);
 
+  // Template Method
   Maze createMaze() {
     final maze = makeMaze();
     final r1 = makeRoom(roomNo: Room.currentRoomNums.length > 0 ? Room.currentRoomNums.last + 1 : 1);
