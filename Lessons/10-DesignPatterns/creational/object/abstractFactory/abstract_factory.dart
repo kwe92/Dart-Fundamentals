@@ -28,7 +28,7 @@ class EnchantedMazeFactory extends MazeFactory {
 }
 
 class MazeGame {
-  MazeFactory _mazeFactory;
+  MazeFactory _mazeFactory; // mutable delegate object reference
   int _level = 1;
   int get currentLevel => _level;
 
@@ -67,7 +67,7 @@ void main() {
       roomSpells: [Spell(name: 'Enhanced map'), Spell(name: 'Intangibility'), Spell(name: 'Unlock IV')],
       doorSpells: [Spell(name: 'Lock I'), Spell(name: 'Lock III'), Spell(name: 'Lock V')]);
 
-  final game = MazeGame(mazeFactory);
+  final game = MazeGame(mazeFactory); // constructor injecrion for initial configuration
 
   // User starts game on standard maze
   final maze = game.createMaze();
@@ -76,7 +76,7 @@ void main() {
   // user goes to level 2 and now is in an enchanted maze
   game.nextLevel();
 
-  game.changeBehavior(enchantedMazeFactory); // Setter Injection
+  game.changeBehavior(enchantedMazeFactory); // Setter/method Injection
 
   final enchanteMaze = game.createMaze(); // runtime polymorphism: same object different behaviour as the program is running
 
