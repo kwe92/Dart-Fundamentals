@@ -2,6 +2,7 @@ import 'dart:io';
 
 void main() {
   stdout.write('Hello Universe!\n');
+  const s = "String";
 }
 
 /* 

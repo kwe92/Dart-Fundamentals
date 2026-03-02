@@ -9,6 +9,8 @@ void main() {
 
   final z = y.toIntOrNull() ?? 0;
 
+  const yy = "S";
+
   print(x);
 
   print(y);
